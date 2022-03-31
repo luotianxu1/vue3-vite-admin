@@ -18,8 +18,6 @@ const baseRouter: RouteRecordRaw[] = [
 
 const routes: RouteRecordRaw[] = [...baseRouter, ...asyncRouterList]
 
-console.log(routes)
-
 const router = createRouter({
     routes: routes,
     history: createWebHashHistory()

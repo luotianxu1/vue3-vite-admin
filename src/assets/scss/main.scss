@@ -55,3 +55,11 @@ a {
 .iconfont {
   font-size: 25px;
 }
+
+.query-item {
+  margin-left: 5px;
+
+  &:first-child {
+    margin: 0;
+  }
+}
