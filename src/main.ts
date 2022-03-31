@@ -3,7 +3,7 @@ import router from './router'
 import store, { Key } from '@/store'
 import I18n from '@/lang/index'
 import App from './App.vue'
-import '@/assets/main.scss'
+import '@/assets/scss/main.scss'
 import 'element-plus/dist/index.css'
 
 const app = createApp(App)

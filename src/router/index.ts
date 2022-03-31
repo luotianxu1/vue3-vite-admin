@@ -1,7 +1,8 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
 import systemRouter from '@/router/modules/system'
+import demoRouter from '@/router/modules/demo'
 
-export const asyncRouterList: Array<RouteRecordRaw> = [...systemRouter]
+export const asyncRouterList: Array<RouteRecordRaw> = [...systemRouter, ...demoRouter]
 
 const baseRouter: RouteRecordRaw[] = [
     {
