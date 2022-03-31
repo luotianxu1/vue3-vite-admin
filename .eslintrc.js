@@ -1,44 +1,62 @@
 module.exports = {
     // 此项是用来告诉eslint找当前配置文件不能往父级查找
-    'root': true,
+    root: true,
     // 全局环境
-    'env': {
-        'node': true
+    env: {
+        node: true
     },
     // 指定如何解析语法。可以为空，但若不为空，只能配该值
-    'parser': 'vue-eslint-parser',
-    // 优先级低于parse的语法解析配置
-    'parserOptions': {
+    parser: 'vue-eslint-parser',
+    parserOptions: {
         // 指定ESlint的解析器
-        'parser': '@typescript-eslint/parser',
+        parser: '@typescript-eslint/parser',
         // 允许使用ES语法
-        'ecmaVersion': 2020,
+        ecmaVersion: 2020,
         // 允许使用import
-        'sourceType': 'module',
+        sourceType: 'module',
         // 允许解析JSX
-        'ecmaFeatures': {
-            'jsx': true
+        ecmaFeatures: {
+            jsx: true
         }
     },
     'extends': [
         "plugin:vue/vue3-essential",
-        // "eslint:recommended",
         "plugin:vue/vue3-recommended",
         "prettier",
-        "@vue/prettier",
+        '@vue3/standard'
     ],
-    'rules': {
+    rules: {
+        // 'plugin:vue/vue3-essential',
+        // 'plugin:vue/vue3-recommended',
+        // '@vue/standard',
+        // 'prettier'
+        'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+
+        'indent': 0, // 缩进风格
         'quotes': [
-            2,
+            1,
             'single',
             {
-                'allowTemplateLiterals': true
+                allowTemplateLiterals: true
             }
         ],
-        'vue/multi-word-component-names': ['off', {
-            'ignores': []
-        }],
-        'vue/v-on-event-hyphenation': ["never", { "ignore": ["custom-event"] }],
+        'no-mixed-spaces-and-tabs': ['error', false], // 禁止混用tab和空格
+        'no-var-requires': 0, // 可以使用require导入
+        'import/no-unresolved': 'off',
+        'import/extensions': 'off',
+        'import/no-absolute-path': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        '@typescript-eslint/no-explicit-any': 'off', //any检测
+        '@typescript-eslint/no-var-requires': 0,
+        '@typescript-eslint/explicit-module-boundary-types': 0,
+        '@typescript-eslint/noImplicitAny': 0,
+        'vue/multi-word-component-names': [
+            'off',
+            {
+                ignores: []
+            }
+        ],
         'vue/no-multiple-template-root': 'off',
         'array-bracket-spacing': ['error', 'never'], // 是否允许非空数组里面有多余的空格
         'arrow-parens': 'off', // 箭头函数用小括号括起来
@@ -62,7 +80,7 @@ module.exports = {
         'dot-notation': [
             'off',
             {
-                'allowKeywords': true
+                allowKeywords: true
             }
         ], // 避免不必要的方括号
         'eol-last': 'off', // 文件以单一的换行符结束
@@ -73,13 +91,12 @@ module.exports = {
         'guard-for-in': 'off', // for in循环要用if语句过滤
         'handle-callback-err': 'off', // nodejs 处理错误
         'id-length': 'off', // 变量名长度
-        'indent': [0, 2], // 缩进风格
         'init-declarations': 'off', // 声明时必须赋初始值
         'key-spacing': [
             'off',
             {
-                'beforeColon': false,
-                'afterColon': true
+                beforeColon: false,
+                afterColon: true
             }
         ], // 对象字面量中冒号的前后空格
         'lines-around-comment': 'off', // 行前/行后备注
@@ -136,7 +153,6 @@ module.exports = {
         'no-lonely-if': 'error', // 禁止else语句内只有if语句
         'no-loop-func': 'warn', // 禁止在循环中使用函数（如果没有引用外部变量不形成闭包就可以）
         'no-mixed-requires': ['off', false], // 声明时不能混用声明类型
-        'no-mixed-spaces-and-tabs': ['error', false], // 禁止混用tab和空格
         'linebreak-style': ['off', 'windows'], // 换行风格
         'no-multi-spaces': 'warn', // 不能用多余的空格
         'no-multi-str': 'error', // 字符串不能用\换行
@@ -184,8 +200,8 @@ module.exports = {
         'no-unused-vars': [
             'error',
             {
-                'vars': 'all',
-                'args': 'after-used'
+                vars: 'all',
+                args: 'after-used'
             }
         ], // 不能有声明后未被使用的变量或参数
         'no-use-before-define': 'error', // 未定义前不能使用
@@ -195,8 +211,8 @@ module.exports = {
         'no-warning-comments': [
             'warn',
             {
-                'terms': ['todo', 'fixme', 'xxx'],
-                'location': 'start'
+                terms: ['todo', 'fixme', 'xxx'],
+                location: 'start'
             }
         ], // 不能有警告备注
         'no-with': 'error', // 禁用with
@@ -216,10 +232,10 @@ module.exports = {
         'require-yield': 'off', // 生成器函数必须有yield
         'semi': ['error', 'never'], // 语句强制分号结尾
         'semi-spacing': [
-            'off',
+            'error',
             {
-                'before': false,
-                'after': true
+                before: false,
+                after: true
             }
         ], // 分号前后空格
         'sort-vars': 'off', // 变量声明时排序
@@ -232,8 +248,8 @@ module.exports = {
         'space-unary-ops': [
             'off',
             {
-                'words': true,
-                'nonwords': false
+                words: true,
+                nonwords: false
             }
         ], // 一元运算符的前/后要不要加空格
         'spaced-comment': 'off', // 注释风格要不要有空格什么的

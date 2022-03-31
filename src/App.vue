@@ -1,7 +1,7 @@
 <template>
     <el-config-provider
         size="small"
-        :zIndex="3000"
+        :z-index="3000"
         :locale="localLanguage"
         :message="config"
     >
