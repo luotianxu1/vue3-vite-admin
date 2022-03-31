@@ -21,10 +21,11 @@ module.exports = {
         }
     },
     'extends': [
-        'plugin:vue/vue3-essential',
-        '@vue/standard',
-        'plugin:@typescript-eslint/recommended',
-        'prettier'
+        "plugin:vue/vue3-essential",
+        // "eslint:recommended",
+        "plugin:vue/vue3-recommended",
+        "prettier",
+        "@vue/prettier",
     ],
     'rules': {
         'quotes': [
@@ -37,6 +38,7 @@ module.exports = {
         'vue/multi-word-component-names': ['off', {
             'ignores': []
         }],
+        'vue/v-on-event-hyphenation': ["never", { "ignore": ["custom-event"] }],
         'vue/no-multiple-template-root': 'off',
         'array-bracket-spacing': ['error', 'never'], // 是否允许非空数组里面有多余的空格
         'arrow-parens': 'off', // 箭头函数用小括号括起来

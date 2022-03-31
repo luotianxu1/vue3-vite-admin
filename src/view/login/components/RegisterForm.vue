@@ -3,15 +3,15 @@
         <ChangeLanguage class="language"></ChangeLanguage>
         <h1>{{ $t('login.registerTitle') }}</h1>
         <el-form
-            class="form"
             ref="registerFormRef"
+            class="form"
             :model="registerInfo"
             :rules="rules"
         >
             <el-form-item class="item" prop="username">
                 <el-input
-                    class="item"
                     v-model="registerInfo.username"
+                    class="item"
                     :placeholder="$t('login.loginUser')"
                     :prefix-icon="User"
                     size="default"
@@ -19,8 +19,8 @@
             </el-form-item>
             <el-form-item class="item" prop="password">
                 <el-input
-                    class="item"
                     v-model="registerInfo.password"
+                    class="item"
                     :placeholder="$t('login.loginPassword')"
                     :prefix-icon="Lock"
                     show-password
@@ -29,8 +29,8 @@
             </el-form-item>
             <el-form-item class="item" prop="password">
                 <el-input
-                    class="item"
                     v-model="registerInfo.passwordAgain"
+                    class="item"
                     :placeholder="$t('login.loginPasswordAgain')"
                     :prefix-icon="Lock"
                     show-password

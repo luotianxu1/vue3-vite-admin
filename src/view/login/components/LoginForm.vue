@@ -1,11 +1,11 @@
 <template>
     <div ref="loginRef" class="box login">
-        <ChangeLanguage class="language"></ChangeLanguage>
+        <ChangeLanguage class="language" />
         <h1>{{ $t('login.loginTitle') }}</h1>
         <el-form
+            ref="loginFormRef"
             class="form"
             action=""
-            ref="loginFormRef"
             :model="loginInfo"
             :rules="rules"
         >
