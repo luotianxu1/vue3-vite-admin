@@ -43,6 +43,7 @@ declare module 'vue' {
     Info: typeof import('./src/components/layoutBase/components/header/components/Info.vue')['default']
     LayoutBase: typeof import('./src/components/layoutBase/index.vue')['default']
     LayoutQuery: typeof import('./src/components/layoutQuery/LayoutQuery.vue')['default']
+    Loading: typeof import('element-plus/es')['ElLoadingDirective']
     Screenfull: typeof import('./src/components/layoutBase/components/header/components/Screenfull.vue')['default']
     Setting: typeof import('./src/components/layoutBase/components/header/components/Setting.vue')['default']
     Sidebar: typeof import('./src/components/layoutBase/components/sidebar/Sidebar.vue')['default']

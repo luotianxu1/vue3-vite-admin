@@ -33,7 +33,6 @@
     })
 
     const KeyDown = (event: KeyboardEvent) => {
-        console.log(event)
         if (event.keyCode === 122) {
             click()
             event.returnValue = false

@@ -9,7 +9,7 @@
                 ></el-input>
             </div>
             <div class="query-item">
-                <el-button type="primary" :icon="Search">查询</el-button>
+                <el-button type="primary" :icon="Search" @click="getMenuList">查询</el-button>
             </div>
         </template>
         <template #fr>
@@ -69,12 +69,17 @@
 </template>
 
 <script lang="ts" setup>
-    import { onMounted, reactive } from 'vue'
+    import { computed, onMounted, reactive } from 'vue'
+    import { useStore } from 'vuex'
+    import { Key } from '@/store'
     import LayoutQuery from '@/components/layoutQuery/LayoutQuery.vue'
     import Icon from '@/components/icon/Icon.vue'
     import { getUserPageList } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
     import { ElMessage } from 'element-plus'
+
+    const store = useStore(Key)
+    const userInfo = computed(() => store.state.user?.USER_INFO)
 
     const tableData = reactive({
         name: '',
@@ -85,9 +90,14 @@
         loading: false
     })
 
-    async function getMenuList(id: number) {
+    async function getMenuList() {
         tableData.loading = true
-        const res = await getUserPageList({ id })
+        let res
+        if (userInfo.value) {
+            res = await getUserPageList({
+                id: userInfo.value.id as number
+            })
+        }
         if (res.data && res.data.total && res.data.list) {
             tableData.data = res.data?.list
             tableData.total = res.data?.total

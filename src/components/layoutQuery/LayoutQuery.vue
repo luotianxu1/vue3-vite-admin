@@ -1,5 +1,5 @@
 <template>
-    <div class="layout">
+    <div v-loading.fullscreen.lock="props.loading" element-loading-text="加载中..." class="layout">
         <div class="query">
             <div class="fl">
                 <slot name="fl"></slot>
@@ -17,7 +17,15 @@
     </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+    const props = defineProps({
+        loading: {
+            required: false,
+            type: Boolean,
+            default: false
+        }
+    })
+</script>
 
 <style scoped lang="scss">
     .layout {

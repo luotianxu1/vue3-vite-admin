@@ -1,5 +1,5 @@
 <template>
-    <LayoutQuery>
+    <LayoutQuery :loading="tableData.loading">
         <template #fl>
             <div class="query-item">
                 <el-input
@@ -113,7 +113,7 @@
                     prop="type"
                     align="center"
                     label="角色"
-                    width="90"
+                    width="100"
                 >
                     <template #default="scope">
                         <el-tag v-if="scope.row.type === 0" type="danger">
@@ -205,7 +205,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { defineComponent, reactive, ref, shallowReadonly, watch } from 'vue'
+    import { reactive, ref, shallowReadonly, watch } from 'vue'
     import { getUserListApi, deleteUserApi } from '@/api/system/userApi'
     import LayoutQuery from '@/components/layoutQuery/LayoutQuery.vue'
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
