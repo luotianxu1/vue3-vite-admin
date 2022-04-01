@@ -7,6 +7,10 @@ NProgress.configure({ showSpinner: false })
 
 export const asyncRouterList: Array<RouteRecordRaw> = [...systemRouter, ...demoRouter]
 
+export type AppRouteRecordRaw = RouteRecordRaw & {
+    hidden: boolean
+}
+
 const baseRouter: RouteRecordRaw[] = [
     {
         path: '/',

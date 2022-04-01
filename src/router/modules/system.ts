@@ -1,6 +1,7 @@
 import LayoutBase from '@/components/layoutBase/index.vue'
+import { RouteRecordRaw } from 'vue-router'
 
-export default [
+const systemRouter: RouteRecordRaw[] = [
     {
         path: '/system',
         component: LayoutBase,
@@ -17,9 +18,11 @@ export default [
             {
                 path: 'menu',
                 name: '菜单管理',
-                meta: { title: '菜单管理',keepAlive: true },
+                meta: { title: '菜单管理', keepAlive: true },
                 component: () => import('@/view/system/menu/Menu.vue')
             }
         ]
     }
 ]
+
+export default systemRouter

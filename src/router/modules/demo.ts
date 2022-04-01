@@ -1,6 +1,7 @@
 import Layout from '@/components/layoutBase/index.vue'
+import { RouteRecordRaw } from 'vue-router'
 
-export default [
+const demoRouter: RouteRecordRaw[] = [
     {
         path: '/demo',
         component: Layout,
@@ -61,3 +62,5 @@ export default [
         ]
     }
 ]
+
+export default demoRouter
