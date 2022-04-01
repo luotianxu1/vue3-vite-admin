@@ -10,6 +10,7 @@
     "lint:fix": "eslint src --fix --ext .ts,.tsx"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^0.2.4",
     "axios": "^0.26.1",
     "dayjs": "^1.11.0",

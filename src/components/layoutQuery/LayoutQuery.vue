@@ -1,5 +1,9 @@
 <template>
-    <div v-loading.fullscreen.lock="props.loading" element-loading-text="加载中..." class="layout">
+    <div
+        v-loading.fullscreen.lock="props.loading"
+        element-loading-text="加载中..."
+        class="layout"
+    >
         <div class="query">
             <div class="fl">
                 <slot name="fl"></slot>
@@ -22,7 +26,9 @@
         loading: {
             required: false,
             type: Boolean,
-            default: false
+            default: () => {
+                return false
+            }
         }
     })
 </script>

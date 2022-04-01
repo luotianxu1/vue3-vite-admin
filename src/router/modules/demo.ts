@@ -1,10 +1,10 @@
-import Layout from '@/components/layoutBase/index.vue'
+import LayoutBase from '@/components/layoutBase/index.vue'
 import { RouteRecordRaw } from 'vue-router'
 
 const demoRouter: RouteRecordRaw[] = [
     {
         path: '/demo',
-        component: Layout,
+        component: LayoutBase,
         name: 'demo',
         meta: { title: 'demo' },
         redirect: '/demo/lottery1',

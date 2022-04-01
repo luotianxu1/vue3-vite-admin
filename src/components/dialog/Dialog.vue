@@ -57,6 +57,7 @@ export default defineComponent({
             default: false
         }
     },
+emits: ['update:visible'],
     setup(props, context) {
         // 关闭弹窗
         const handleClose = function () {

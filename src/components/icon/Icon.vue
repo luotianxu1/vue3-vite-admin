@@ -4,7 +4,7 @@
         :class="iconStr"
         :style="{
             fontSize: fontSize,
-            color: color,
+            color: props.color,
             fontWeight: width,
             padding: paddingNum
         }"
@@ -21,21 +21,30 @@
         font: {
             required: false,
             type: Number,
-            default: 18
+            default: () => {
+                return 18
+            }
         },
         color: {
             required: false,
             type: String,
-            default: '#252323'
+            default: () => {
+                return '#252323'
+            }
         },
         width: {
             required: false,
-            type: Number
+            type: Number,
+            default: () => {
+                return 400
+            }
         },
         padding: {
             required: false,
             type: Number,
-            default: 0
+            default: () => {
+                return 0
+            }
         }
     })
     const iconStr = computed(() => 'iconfont ' + props.icon)

@@ -108,7 +108,7 @@
     }
 
     onMounted(() => {
-        getMenuList(1)
+        getMenuList()
     })
 </script>
 

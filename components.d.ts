@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AMap: typeof import('./src/components/aMap/AMap.vue')['default']
     Avatar: typeof import('./src/components/layoutBase/components/header/components/Avatar.vue')['default']
     BreadCrumb: typeof import('./src/components/layoutBase/components/header/components/BreadCrumb.vue')['default']
     ChangeLanguage: typeof import('./src/components/changeLanguage/ChangeLanguage.vue')['default']
