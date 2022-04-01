@@ -4,25 +4,21 @@
             <keep-alive>
                 <component
                     :is="Component"
-                    :key="$route.name"
                     v-if="$route.meta.keepAlive"
+                    :key="$route.name"
                 />
             </keep-alive>
             <component
                 :is="Component"
-                :key="$route.name"
                 v-if="!$route.meta.keepAlive"
+                :key="$route.name"
             />
         </router-view>
         <div class="sidebarBox" @click="changAside">
-            <div class="top box"></div>
-            <div class="center">
-                <Icon
-                    :icon="isCollapse ? 'xiangyou' : 'xiangzuo'"
-                    :font="14"
-                ></Icon>
-            </div>
-            <div class="bottom box"></div>
+            <Icon
+                :icon="isCollapse ? 'xiangyou' : 'xiangzuo'"
+                :font="14"
+            ></Icon>
         </div>
     </div>
 </template>
@@ -48,34 +44,19 @@
         position: relative;
 
         .sidebarBox {
+            width: 10px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: absolute;
             top: 50%;
             left: 0;
             transform: translateY(-50%);
             cursor: pointer;
-
-            .box {
-                width: 10px;
-                height: 10px;
-                background-color: #dadbe0;
-            }
-
-            .top {
-                border-top-right-radius: 10px;
-            }
-
-            .center {
-                width: 10px;
-                height: 45px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #dadbe0;
-            }
-
-            .bottom {
-                border-bottom-right-radius: 10px;
-            }
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #dadbe0;
         }
     }
 </style>

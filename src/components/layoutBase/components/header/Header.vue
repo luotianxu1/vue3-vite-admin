@@ -37,7 +37,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 50px;
+        height: 6%;
         width: 100%;
         padding: 0 10px;
         border-bottom: 1px solid #e4e4e4;
