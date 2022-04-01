@@ -27,7 +27,11 @@
                 />
             </el-form-item>
         </el-form>
-        <el-button class="button" type="primary" @click="loginSubmit">
+        <el-button
+            class="button"
+            type="primary"
+            @click="loginSubmit()"
+        >
             {{ $t('login.login') }}
         </el-button>
         <p class="sign">
@@ -42,6 +46,7 @@
 <script lang="ts" setup>
     import ChangeLanguage from '@/components/changeLanguage/ChangeLanguage.vue'
     import { reactive, ref } from 'vue'
+    import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { loginApi } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
@@ -56,7 +61,7 @@
     const router = useRouter()
 
     const loginRef = ref()
-    const loginFormRef = ref()
+    const loginFormRef = ref<FormInstance>()
 
     const loginInfo = reactive({
         username: 'admin',
@@ -66,8 +71,8 @@
         username: [
             {
                 required: true,
-                message: '123',
-                trigger: '请输入用户名！'
+                message: '请输入账号',
+                trigger: 'blur'
             }
         ],
         password: [
@@ -84,12 +89,18 @@
     }
 
     const changeToRegister = () => {
+        if (!loginFormRef.value) {
+            return
+        }
         emit('changeToRegister')
-        loginFormRef.value.clearValidate()
+        loginFormRef.value.resetFields()
         loginRef.value.style.transform = 'rotateY(180deg)'
     }
 
     const loginSubmit = () => {
+        if (!loginFormRef.value) {
+            return
+        }
         loginFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
                 const res = await loginApi(loginInfo)

@@ -75,7 +75,7 @@
                     prop="id"
                     align="center"
                     label="ID"
-                    width="50"
+                    width="60"
                 />
                 <el-table-column
                     prop="name"
@@ -309,6 +309,10 @@
             .catch(() => {
                 ElMessage.warning('取消删除!')
             })
+    }
+
+    const addNewsInfo = () => {
+        console.log(123)
     }
 </script>
 

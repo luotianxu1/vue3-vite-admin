@@ -54,6 +54,7 @@
 <script lang="ts" setup>
     import ChangeLanguage from '@/components/changeLanguage/ChangeLanguage.vue'
     import { reactive, ref } from 'vue'
+    import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { registerApi } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
@@ -62,7 +63,7 @@
     const emit = defineEmits(['changeToLogin'])
 
     const registerRef = ref()
-    const registerFormRef = ref()
+    const registerFormRef = ref<FormInstance>()
 
     const registerInfo = reactive({
         username: '',
@@ -91,12 +92,18 @@
     }
 
     const changeToLogin = () => {
+        if (!registerFormRef.value) {
+            return
+        }
         emit('changeToLogin')
         registerFormRef.value.clearValidate()
         registerRef.value.style.transform = 'rotateY(180deg)'
     }
 
     const registerSubmit = () => {
+        if (!registerFormRef.value) {
+            return
+        }
         registerFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
                 const res = await registerApi(registerInfo)
