@@ -20,8 +20,6 @@ const userSate: UserSate = {
   USER_INFO: {}
 }
 
-export type userSateType = typeof userSate
-
 export default {
   namespaced: true,
   state: userSate,

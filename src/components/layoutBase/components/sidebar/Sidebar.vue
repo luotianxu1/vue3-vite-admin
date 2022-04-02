@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { computed, onMounted, ref } from 'vue'
+    import { computed, onMounted, ref, watch } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import router from '@/router'
@@ -42,6 +42,16 @@
     import Icon from '@/components/icon/Icon.vue'
 
     const store = useStore(Key)
+
+    // 监听路由
+    watch(
+        () => router.currentRoute.value.path,
+        (newValue) => {
+            store.commit('system/SET_SYSTEM_ACTIVE_ROUTER', newValue)
+        },
+        { immediate: true }
+    )
+
     // 是否收缩侧边栏
     const isCollapse = computed(() => store.state.system?.SYSTEM_COLLAPSE)
     // 图标
