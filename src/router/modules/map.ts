@@ -33,6 +33,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapSatelliteLayer',
                 name: '卫星图',
                 component: () => import('@/views/map/AMapSatelliteLayer.vue')
+            },
+            {
+                path: 'aMapLayer',
+                name: '图层管理',
+                component: () => import('@/views/map/AMapLayer.vue')
             }
         ]
     }

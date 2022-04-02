@@ -21,6 +21,7 @@
             <el-button @click="moveCenter">平移中心点</el-button>
             <el-button @click="autoAdjust">自动调整视野</el-button>
             <el-button @click="manualAdjust">自定义调整视野</el-button>
+            <el-button @click="changeMap">改变地图样式</el-button>
             <el-switch
                 v-model="isLimit"
                 active-text="锁定"
@@ -66,6 +67,7 @@
                 Map.value = AMap
                 map.value = new AMap.Map('map', {
                     viewMode: '3D',
+		                terrain: true,
                     zoom: 5,
                     center: [105.602725, 37.076636]
                 })
@@ -205,6 +207,10 @@
 
 		const manualAdjust = () => {
 				map.value.setFitView([polyline,marker1])
+		}
+
+		const changeMap = () => {
+				map.value.setMapStyle('amap://styles/dark')
 		}
 </script>
 
