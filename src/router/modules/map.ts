@@ -7,17 +7,22 @@ const mapRouter: RouteRecordRaw[] = [
         component: LayoutBase,
         name: '地图',
         meta: { title: '地图' },
-        redirect: '/map/aMap',
+        redirect: '/map/aMapDefaultLayer',
         children: [
             {
-                path: 'aMap',
-                name: '高德地图',
-                component: () => import('@/views/map/AMapTest.vue')
+                path: 'aMapDefaultLayer',
+                name: '高德地图标准地图',
+                component: () => import('@/views/map/AMapDefaultLayer.vue')
             },
             {
                 path: 'aMapLiveLayer',
-                name: '高德地图1',
+                name: '高德地图实时路况',
                 component: () => import('@/views/map/AMapLiveLayer.vue')
+            },
+            {
+                path: 'aMapSatelliteLayer',
+                name: '高德地图卫星图',
+                component: () => import('@/views/map/AMapSatelliteLayer.vue')
             }
         ]
     }

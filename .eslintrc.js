@@ -41,8 +41,9 @@ module.exports = {
                 allowTemplateLiterals: true
             }
         ],
-        'no-mixed-spaces-and-tabs': ['error', false], // 禁止混用tab和空格
+        'no-mixed-spaces-and-tabs':0,
         'no-var-requires': 0, // 可以使用require导入
+        'no-tabs':'off',
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
         'import/no-absolute-path': 'off',
