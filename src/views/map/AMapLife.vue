@@ -1,23 +1,18 @@
 <template>
     <div class="container">
         <div id="map" class="map"></div>
-        <div class="switch">
-            是否显示实时路况
-            <el-switch v-model="isOpen" class="mb-2" />
+        <div class="btn">
+            <el-button @click="initMap">创建地图</el-button>
+            <el-button @click="destoryMap">销毁地图</el-button>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { onMounted, ref, shallowRef, watch } from 'vue'
+    import { shallowRef } from 'vue'
 
     const map = shallowRef()
-    const trafficLayer = shallowRef()
-
-    onMounted(() => {
-        initMap()
-    })
 
     const initMap = () => {
         AMapLoader.load({
@@ -28,36 +23,21 @@
                 map.value = new AMap.Map('map', {
                     viewMode: '3D',
                     zoom: 5,
-                    zooms: [2, 22],
                     center: [105.602725, 37.076636]
                 })
 
-                //实时路况图层
-                trafficLayer.value = new AMap.TileLayer.Traffic({
-                    zooms: [7, 22]
+                map.value.on('complete', () => {
+                    console.log('加载完成')
                 })
-
-                trafficLayer.value.setMap(map.value)
-		            trafficLayer.value.hide()
             })
             .catch((e) => {
                 console.log(e)
             })
     }
 
-    const isOpen = ref(false)
-
-    watch(
-        isOpen,
-        (val) => {
-            if (!val && trafficLayer.value) {
-                trafficLayer.value.hide()
-            } else if (val && trafficLayer.value) {
-                trafficLayer.value.show()
-            }
-        },
-        { immediate: true }
-    )
+    const destoryMap = () => {
+        map.value.destroy()
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -73,7 +53,7 @@
             width: 100%;
         }
 
-        .switch {
+        .btn {
             position: absolute;
             top: 20px;
             left: 20px;
