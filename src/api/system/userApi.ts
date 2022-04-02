@@ -45,7 +45,7 @@ export const loginApi = (data: LoginParams): Promise<ResponseData<LoginData>> =>
 export const registerApi = (data: RegisterParams): Promise<ResponseData<null>> => request.post('/api/register', data)
 
 // 获取用户菜单
-export const getUserPageList = (data: PageListParams): Promise<ResponseData<UserList>> => request.post('/api/pageList', data)
+export const getUserPageList = (data: PageListParams): Promise<ResponseData<UserList>> => request.post('/api/pageListV2', data)
 
 // 获取用户列表
 export const getUserListApi = (data: PageListParams) :Promise<ResponseData<UserList>> => request.post('/api/userList', data)

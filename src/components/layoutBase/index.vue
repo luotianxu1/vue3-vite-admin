@@ -22,7 +22,7 @@
         .bottom {
             display: flex;
             width: 100%;
-            height: 94%;
+            height: calc(100% - 50px);
             flex-direction: row;
         }
     }

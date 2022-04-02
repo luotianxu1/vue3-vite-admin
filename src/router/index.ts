@@ -13,10 +13,10 @@ export const asyncRouterList: Array<RouteRecordRaw> = [
 ]
 
 export type AppRouteRecordRaw = RouteRecordRaw & {
-    hidden: boolean
+    hidden?: boolean
 }
 
-const baseRouter: RouteRecordRaw[] = [
+const baseRouter: AppRouteRecordRaw[] = [
     {
         path: '/',
         redirect: '/login'
@@ -24,7 +24,7 @@ const baseRouter: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/view/login/Login.vue')
+        component: () => import('@/views/login/Login.vue')
     }
 ]
 

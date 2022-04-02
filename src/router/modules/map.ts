@@ -12,7 +12,7 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMap',
                 name: '高德地图',
-                component: () => import('@/view/map/AMapTest.vue')
+                component: () => import('@/views/map/AMapTest.vue')
             }
         ]
     }
