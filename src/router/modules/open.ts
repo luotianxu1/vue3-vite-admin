@@ -1,0 +1,21 @@
+import { RouteRecordRaw } from 'vue-router'
+import LayoutOpen from '@/components/layoutOpen/LayoutOpen.vue'
+
+const openRouter: RouteRecordRaw[] = [
+    {
+        path: '/open',
+        component: LayoutOpen,
+        name: '其他',
+        meta: { title: '其他' },
+        redirect: '/open/car',
+        children: [
+            {
+                path: 'car',
+                name: '汽车',
+                component: () => import('@/views/open/car/index.vue')
+            }
+        ]
+    }
+]
+
+export default openRouter

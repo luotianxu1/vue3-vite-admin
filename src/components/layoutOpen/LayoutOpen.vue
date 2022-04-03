@@ -1,13 +1,7 @@
 <template>
-$END$
+    <router-view></router-view>
 </template>
 
-<script>
-export default {
-name: "LayoutOpen"
-}
-</script>
+<script lang="ts" setup></script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
