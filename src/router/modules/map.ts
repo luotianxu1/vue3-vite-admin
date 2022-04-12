@@ -38,6 +38,21 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapLayer',
                 name: '图层管理',
                 component: () => import('@/views/map/AMapLayer.vue')
+            },
+            {
+                path: 'aMapAdministrative',
+                name: '简易行政区',
+                component: () => import('@/views/map/AMapAdministrative.vue')
+            },
+            {
+                path: 'aMapCustom',
+                name: '自定义地图',
+                component: () => import('@/views/map/AMapCustom.vue')
+            },
+            {
+                path: 'aMapArea',
+                name: '世界地图',
+                component: () => import('@/views/map/AMapArea.vue')
             }
         ]
     }
