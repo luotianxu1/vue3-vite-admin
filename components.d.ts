@@ -25,13 +25,13 @@ declare module 'vue' {
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElIconEdit: typeof import('element-plus/es')['ElIconEdit']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
@@ -47,10 +47,12 @@ declare module 'vue' {
     LayoutBase: typeof import('./src/components/layoutBase/index.vue')['default']
     LayoutOpen: typeof import('./src/components/layoutOpen/LayoutOpen.vue')['default']
     LayoutQuery: typeof import('./src/components/layoutQuery/LayoutQuery.vue')['default']
+    List: typeof import('./src/components/list/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     Screenfull: typeof import('./src/components/layoutBase/components/header/components/Screenfull.vue')['default']
     Setting: typeof import('./src/components/layoutBase/components/header/components/Setting.vue')['default']
     Sidebar: typeof import('./src/components/layoutBase/components/sidebar/Sidebar.vue')['default']
+    Src: typeof import('./src/components/list/src/index.vue')['default']
   }
 }
 

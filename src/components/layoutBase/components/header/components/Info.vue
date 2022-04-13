@@ -1,18 +1,21 @@
 <template>
-    <div class='info'>
-        <el-tooltip content='消息' placement='bottom' effect='light'>
-            <el-badge :value='12' class='item'>
-                <i class='iconfont xiaoxi'></i>
-            </el-badge>
-        </el-tooltip>
+    <div class="info">
+        <el-popover placement="bottom" :width="400" trigger="click">
+            <slot>
+                <MList></MList>
+            </slot>
+            <template #reference>
+                <el-badge :value="12">
+                    <i class="iconfont xiaoxi"></i>
+                </el-badge>
+            </template>
+        </el-popover>
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup></script>
 
-</script>
-
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .info {
         cursor: pointer;
     }
