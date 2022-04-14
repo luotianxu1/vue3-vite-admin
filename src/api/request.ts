@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { diffTokenTime, getToken } from '@/utils/auth'
 
 const request = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_URL as string,
@@ -7,6 +8,11 @@ const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use(config => {
+    if (getToken()) {
+        if (diffTokenTime()) {
+            return Promise.reject(new Error('请重新登录！'))
+        }
+    }
     return config
 }, error => {
     return Promise.reject(error)

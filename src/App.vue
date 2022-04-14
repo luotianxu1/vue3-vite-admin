@@ -15,7 +15,6 @@
     import en from 'element-plus/lib/locale/lang/en'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
-    import useCurrentInstance from '@/utils/useCurrentInstance'
 
     const store = useStore(Key)
     const languages = computed(() => store.state.system?.SYSTEM_LANGUAGE)
@@ -29,8 +28,6 @@
                 return zhCn
         }
     })
-    const { proxy } = useCurrentInstance()
-    proxy.$I18n.global.locale = languages.value
 
     const config = reactive({
         max: 3

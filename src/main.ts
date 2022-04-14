@@ -12,5 +12,4 @@ app.use(router)
 app.use(store, Key)
 app.use(I18n)
 app.use(mUI)
-app.config.globalProperties.$I18n = I18n
 app.mount('#app')

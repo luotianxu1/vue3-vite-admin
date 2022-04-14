@@ -47,7 +47,6 @@ declare module 'vue' {
     LayoutBase: typeof import('./src/components/layoutBase/index.vue')['default']
     LayoutOpen: typeof import('./src/components/layoutOpen/LayoutOpen.vue')['default']
     LayoutQuery: typeof import('./src/components/layoutQuery/LayoutQuery.vue')['default']
-    List: typeof import('./src/components/list/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     Screenfull: typeof import('./src/components/layoutBase/components/header/components/Screenfull.vue')['default']
     Setting: typeof import('./src/components/layoutBase/components/header/components/Setting.vue')['default']

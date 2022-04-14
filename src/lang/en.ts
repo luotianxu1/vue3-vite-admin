@@ -6,7 +6,7 @@ export default {
     loginUser: 'Please enter a user name',
     loginPassword: 'Please enter your password',
     loginPasswordAgain: 'Please enter your password again',
-    registerTitle: 'user registration',
+    registerTitle: 'User registration',
     login: 'Login',
     register: 'Register',
     registerPrompt: 'Existing account',

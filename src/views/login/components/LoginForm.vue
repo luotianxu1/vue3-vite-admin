@@ -27,11 +27,7 @@
                 />
             </el-form-item>
         </el-form>
-        <el-button
-            class="button"
-            type="primary"
-            @click="loginSubmit()"
-        >
+        <el-button class="button" type="primary" @click="loginSubmit()">
             {{ $t('login.login') }}
         </el-button>
         <p class="sign">
@@ -53,8 +49,9 @@
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import { useRouter } from 'vue-router'
-    // import { useI18n } from 'vue-i18n'
-    // const { t } = useI18n()
+    import { setToken, setTokenTime } from '@/utils/auth'
+    import { useI18n } from 'vue-i18n'
+    const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])
 
     const store = useStore(Key)
@@ -71,14 +68,14 @@
         username: [
             {
                 required: true,
-                message: '请输入账号',
+                message: t('login.loginUser'),
                 trigger: 'blur'
             }
         ],
         password: [
             {
                 required: true,
-                message: '请输入密码',
+                message: t('login.loginPassword'),
                 trigger: 'blur'
             }
         ]
@@ -108,6 +105,8 @@
                     return ElMessage.warning(res.message)
                 }
                 ElMessage.success('登录成功！')
+                setToken('123')
+                setTokenTime()
                 store.commit('user/SET_USER_INFO', res.data)
                 await router.push('/system/user')
             } else {

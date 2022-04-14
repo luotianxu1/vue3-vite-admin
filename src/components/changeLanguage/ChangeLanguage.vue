@@ -23,12 +23,12 @@
 
 <script lang="ts" setup>
     import { shallowReadonly } from 'vue'
-    import useCurrentInstance from '@/utils/useCurrentInstance'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
-
+    import { useI18n } from 'vue-i18n'
+    const { locale } = useI18n()
     const store = useStore(Key)
-    const { proxy } = useCurrentInstance()
+
     const options = shallowReadonly([
         {
             value: 'zh',
@@ -46,7 +46,7 @@
 
     function selectLanguage(val) {
         store.commit('system/SET_SYSTEM_LANGUAGE', val) // 存储
-        proxy.$I18n.global.locale = val
+        locale.value = val
     }
 </script>
 

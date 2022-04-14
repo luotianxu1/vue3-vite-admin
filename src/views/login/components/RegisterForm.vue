@@ -58,8 +58,8 @@
     import { User, Lock } from '@element-plus/icons-vue'
     import { registerApi } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
-    // import { useI18n } from 'vue-i18n'
-    // const { t } = useI18n()
+    import { useI18n } from 'vue-i18n'
+    const { t } = useI18n()
     const emit = defineEmits(['changeToLogin'])
 
     const registerRef = ref()
@@ -74,14 +74,14 @@
         username: [
             {
                 required: true,
-                message: '请输入用户名！',
+                message: t('login.loginUser'),
                 trigger: 'blur'
             }
         ],
         password: [
             {
                 required: true,
-                message: '请输入密码！',
+                message: t('login.loginPassword'),
                 trigger: 'blur'
             }
         ]
