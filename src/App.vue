@@ -1,6 +1,5 @@
 <template>
     <el-config-provider
-        size="small"
         :z-index="3000"
         :locale="localLanguage"
         :message="config"

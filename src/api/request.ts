@@ -8,11 +8,11 @@ const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use(config => {
-    if (getToken()) {
-        if (diffTokenTime()) {
-            return Promise.reject(new Error('请重新登录！'))
-        }
-    }
+    // if (getToken()) {
+    //     if (diffTokenTime()) {
+    //         return Promise.reject(new Error('请重新登录！'))
+    //     }
+    // }
     return config
 }, error => {
     return Promise.reject(error)

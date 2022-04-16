@@ -58,6 +58,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'number',
                 name: 'Number',
                 component: () => import('@/views/demo/number/Number.vue')
+            },
+            {
+                path: 'driver',
+                name: 'Driver',
+                component: () => import('@/views/demo/driver/Driver.vue')
             }
         ]
     }
