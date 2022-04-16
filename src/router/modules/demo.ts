@@ -40,6 +40,11 @@ const demoRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/demo/card/Card3.vue')
             },
             {
+                path: 'card4',
+                name: '卡片4',
+                component: () => import('@/views/demo/card/Card4.vue')
+            },
+            {
                 path: 'button1',
                 name: '按钮1',
                 component: () => import('@/views/demo/button/Button1.vue')
