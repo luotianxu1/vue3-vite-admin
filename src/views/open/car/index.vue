@@ -1,114 +1,9 @@
 <template>
     <div class="body">
-        <div id="header" ref="header" class="header">
-            <nav class="nav container">
-                <a href="#" class="nav__logo">
-                    <i class="iconfont bilibili-line"></i>
-                    Elecar
-                </a>
-                <div
-                    id="nav-menu"
-                    class="nav__menu"
-                    :class="isShowMenu ? 'show-menu' : ''"
-                >
-                    <ul class="nav__list">
-                        <li class="nav__item" @click="closeMenu">
-                            <a href="#" class="nav__link">Home</a>
-                        </li>
-                        <li class="nav__item" @click="closeMenu">
-                            <a href="" class="nav__link">About</a>
-                        </li>
-                        <li class="nav__item" @click="closeMenu">
-                            <a href="" class="nav__link">Popular</a>
-                        </li>
-                        <li class="nav__item" @click="closeMenu">
-                            <a href="" class="nav__link">Featured</a>
-                        </li>
-                    </ul>
-                    <div id="nav__choose" class="nav__close" @click="closeMenu">
-                        <i class="iconfont qidong"></i>
-                    </div>
-                </div>
-                <div id="nav__toggle" class="nav__toggle" @click="openMenu">
-                    <i class="iconfont caidan"></i>
-                </div>
-            </nav>
-        </div>
-
+        <Header></Header>
         <main class="main">
-            <section id="home" class="home__center section">
-                <div class="shape shape__big"></div>
-                <div class="shape shape__small"></div>
-                <div class="home__container container grid">
-                    <div class="home__data">
-                        <h1 class="home__title">Choose The Best Car</h1>
-                        <h2 class="home__subtitle">Porsche Mission E</h2>
-                        <h3 class="home__elec">
-                            <i class="iconfont shandian">Electric car</i>
-                        </h3>
-                    </div>
-                    <img
-                        src="../../../assets/img/car/home.png"
-                        alt=""
-                        class="home__img"
-                    />
-                    <div class="home__car">
-                        <div class="home__car-data">
-                            <div class="home__car-icon">
-                                <i class="iconfont wendu"></i>
-                            </div>
-                            <h2 class="home__car-number">24°</h2>
-                            <h3 class="home__car-name">TEMPERATURE</h3>
-                        </div>
-                        <div class="home__car-data">
-                            <div class="home__car-icon">
-                                <i class="iconfont configure"></i>
-                            </div>
-                            <h2 class="home__car-number">873</h2>
-                            <h3 class="home__car-name">MILEAGE</h3>
-                        </div>
-                        <div class="home__car-data">
-                            <div class="home__car-icon">
-                                <i class="iconfont chongdiandian"></i>
-                            </div>
-                            <h2 class="home__car-number">94%</h2>
-                            <h3 class="home__car-name">BATTERY</h3>
-                        </div>
-                    </div>
-                    <div class="home__button">START</div>
-                </div>
-            </section>
-            <section id="about" class="about section">
-                <div class="about__container container grid">
-                    <div class="about__group">
-                        <img
-                            src="../../../assets/img/car/about.png"
-                            alt=""
-                            class="about__img"
-                        />
-                        <div class="about__card">
-                            <h3 class="about__card-title">2500+</h3>
-                            <p class="about__card-description">
-                                Supercharges placed along routes
-                            </p>
-                        </div>
-                    </div>
-                    <div class="about__data">
-                        <h2 class="section__title about__title">
-                            Machines With
-                            <br />
-                            Future Technology
-                        </h2>
-                        <p class="about__description">
-                            See the future with high-performance electric cars
-                            produced by renowned brands. They feature futuristic
-                            builds and designs with new and innovative platforms
-                            that last a long time.
-                        </p>
-                        <span class="button">Know more</span>
-                    </div>
-                </div>
-            </section>
+            <Home></Home>
+            <About></About>
             <section id="popular" class="popular section">
                 <h2 class="section__title">
                     Choose Your Electric Car
@@ -281,47 +176,7 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </section>
-            <section id="features" class="features section">
-                <h2 class="section__title">More Features</h2>
-                <div class="features__container container grid">
-                    <div class="features__group">
-                        <img
-                            src="../../../assets/img/car/features.png"
-                            alt=""
-                            class="features__img"
-                        />
-                        <div class="features__card features__card-1">
-                            <h3 class="features__card-title">800v</h3>
-                            <p class="features__card-description">
-                                Turbo
-                                <br />
-                                Chargin
-                            </p>
-                        </div>
-                        <div class="features__card features__card-2">
-                            <h3 class="features__card-title">350</h3>
-                            <p class="features__card-description">
-                                Km
-                                <br />
-                                Range
-                            </p>
-                        </div>
-                        <div class="features__card features__card-3">
-                            <h3 class="features__card-title">480</h3>
-                            <p class="features__card-description">
-                                Km
-                                <br />
-                                Travel
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <img
-                    src="../../../assets/img/car/map.svg"
-                    alt=""
-                    class="features__map"
-                />
-            </section>
+            <Features></Features>
             <section id="featured" class="featured section">
                 <h2 class="section__title">Featured Luxury Cars</h2>
                 <div class="featured__container container">
@@ -421,79 +276,8 @@
                     </div>
                 </div>
             </section>
-            <section class="offer section">
-                <div class="offer__container container grid">
-                    <img
-                        src="../../../assets/img/car/offer-bg.png"
-                        alt=""
-                        class="offer__bg"
-                    />
-                    <div class="offer__data">
-                        <h2 class="section__title offer__title">
-                            Do You Want To Receive
-                            <br />
-                            Special Offers
-                        </h2>
-                        <p class="offer__description">
-                            Be the first to receive all the information about
-                            our products and new cars by email by subscribing to
-                            our mailing list.
-                        </p>
-                        <a href="#" class="butto">Subscribe Now</a>
-                    </div>
-                    <img
-                        src="../../../assets/img/car/offer.png"
-                        alt=""
-                        class="offer__img"
-                    />
-                </div>
-            </section>
-            <section class="logos section">
-                <div class="logos__container container grid">
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo1.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo2.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo3.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo4.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo5.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                    <div class="logos__content">
-                        <img
-                            src="../../../assets/img/car/logo6.png"
-                            alt=""
-                            class="logos__img"
-                        />
-                    </div>
-                </div>
-            </section>
+            <Offer></Offer>
+            <Logos></Logos>
             <footer class="footer section">
                 <div class="shape shape__big"></div>
                 <div class="shape shape__small"></div>
@@ -577,19 +361,15 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue'
-
-    const isShowMenu = ref(false)
-    const openMenu = () => {
-        isShowMenu.value = true
-    }
-    const closeMenu = () => {
-        isShowMenu.value = false
-    }
+    import Header from './components/Header.vue'
+    import Home from './components/Home.vue'
+    import About from './components/About.vue'
+    import Features from './components/Features.vue'
+    import Logos from '@/views/open/car/components/Logos.vue'
+    import Offer from '@/views/open/car/components/Offer.vue'
 </script>
 
 <style lang="scss" scoped>
-    /*=============== GOOGLE FONTS ===============*/
     @import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600&display=swap');
 
     .body {
@@ -643,305 +423,10 @@
         margin-bottom: 2.5rem;
     }
 
-    .header {
-        width: 100%;
-        background-color: transparent;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: var(--z-fixed);
-    }
-
-    .nav {
-        height: var(--header-height);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav__logo,
-    .nav__toggle {
-        color: var(--title-color);
-        display: inline-flex;
-    }
-
-    .nav__logo {
-        align-items: center;
-        column-gap: 0.25rem;
-        font-weight: var(--font-medium);
-        transition: 0.3s;
-    }
-
-    .nav__logo i {
-        font-size: 1.25rem;
-    }
-
-    .nav__logo:hover {
-        color: var(--first-color);
-    }
-
-    .nav__toggle {
-        font-size: 1.25rem;
-        cursor: pointer;
-    }
-
-    @media screen and (max-width: 767px) {
-        .nav__menu {
-            position: fixed;
-            background-color: hsla(0, 0%, 100%, 0.1);
-            top: 0;
-            left: 100%;
-            width: 100%;
-            height: 100%;
-            backdrop-filter: blur(96px);
-            transition: 0.3s;
-        }
-    }
-
-    .nav__list {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        row-gap: 3rem;
-        padding-top: 9rem;
-    }
-
-    .nav__link {
-        text-transform: uppercase;
-        color: var(--title-color);
-        font-size: var(--h2-font-size);
-        font-weight: var(--font-medium);
-        transition: 0.3s;
-    }
-
-    .nav__link:hover {
-        color: var(--first-color);
-    }
-
-    .nav__close {
-        font-size: 2rem;
-        color: var(--white-color);
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-        cursor: pointer;
-    }
-
     .scroll-header {
         border-radius: 0 0 1rem 1rem;
         background-color: var(--body-color);
         box-shadow: 0 2px 4px hsla(0, 0%, 1%, 1);
-    }
-
-    .show-menu {
-        left: 0;
-    }
-
-    .home__center {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .shape {
-        background-color: hsl(219, 33%, 32%, 0.5);
-        filter: blur(112px);
-        border-radius: 50%;
-    }
-
-    .shape__small {
-        width: 300px;
-        height: 300px;
-    }
-
-    .shape__smaller {
-        width: 180px;
-        height: 180px;
-        filter: blur(64px);
-    }
-
-    .shape__big {
-        width: 400px;
-        height: 400px;
-    }
-
-    .home__container {
-        position: relative;
-        padding-top: 4rem;
-    }
-
-    .home__data {
-        text-align: center;
-    }
-
-    .home__title {
-        font-size: var(--h1-font-size);
-        margin-bottom: 1rem;
-    }
-
-    .home__subtitle {
-        font-size: var(--h3-font-size);
-        margin-bottom: 0.25rem;
-    }
-
-    .home__elec {
-        font-size: var(--small-font-size);
-        font-weight: 400;
-        color: var(--text-color);
-        display: inline-flex;
-        align-items: center;
-        column-gap: 0.25rem;
-    }
-
-    .home__elec i {
-        font-size: var(--small-font-size);
-        color: var(--first-color);
-    }
-
-    .home__img {
-        width: 280px;
-        justify-self: center;
-    }
-
-    .home__car {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: 4rem;
-        margin-bottom: 2rem;
-    }
-
-    .home__car-name {
-        font-size: 0.635rem;
-        font-weight: 400;
-        color: var(--text-color-light);
-    }
-
-    .home__car-data {
-        text-align: center;
-    }
-
-    .home__car-number {
-        font-size: var(--h2-font-size);
-        font-weight: var(--font-medium);
-        margin-bottom: 0.25rem;
-    }
-
-    .home__car-icon {
-        background-color: var(--container-color);
-        border-radius: 50%;
-        padding: 0.376rem;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.875rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .home__button {
-        position: relative;
-        border: 2px solid hsl(158, 89%, 30%);
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: var(--small-font-size);
-        color: var(--white-color);
-        font-weight: var(--font-medium);
-        justify-self: center;
-    }
-
-    .home__button::before {
-        content: '';
-        border: 2px solid hsl(158, 98%, 43%);
-        width: 90px;
-        height: 90px;
-        position: absolute;
-        border-radius: 50%;
-        box-shadow: 0 0 12px hsl(158, 98%, 43%);
-        transition: 0.3s;
-        animation: button 3s infinite;
-    }
-
-    .home__center .shape__big,
-    .home__center .shape__small {
-        position: absolute;
-    }
-
-    .home .shape__big {
-        left: -9rem;
-        top: -4rem;
-    }
-
-    .home__center .shape__small {
-        right: -10rem;
-        bottom: 3rem;
-    }
-
-    @keyframes button {
-        0% {
-            box-shadow: 0 0 12px hsl(158, 98%, 43%);
-        }
-        50% {
-            box-shadow: 0 0 24px hsl(158, 98%, 43%);
-        }
-    }
-
-    .about__container {
-        row-gap: 6rem;
-    }
-
-    .about__group {
-        position: relative;
-    }
-
-    .about__img {
-        width: 310px;
-        border-radius: 0.5rem;
-    }
-
-    .about__card {
-        width: 180px;
-        position: absolute;
-        right: 0;
-        bottom: -2.5rem;
-        background-color: hsla(0, 0%, 100%, 0.1);
-        backdrop-filter: blur(16px);
-        padding: 1rem 0.75rem;
-        text-align: center;
-        border-radius: 1.25rem;
-    }
-
-    .about__card-title {
-        font-size: var(--h3-font-size);
-        margin-bottom: 0.5rem;
-    }
-
-    .about__card-description {
-        font-size: var(--small-font-size);
-    }
-
-    .about__title {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .about__description {
-        margin-bottom: 2rem;
-    }
-
-    .button {
-        background-color: var(--first-color);
-        color: var(--white-color);
-        padding: 1rem 2rem;
-        border-radius: 0.25rem;
-        font-size: var(--normal-font-size);
-        transition: 0.3s;
-    }
-
-    .button:hover {
-        background-color: var(--first-color-alt);
     }
 
     .popular__container {
@@ -1027,73 +512,6 @@
 
     .popular__card:hover .popular__img {
         transform: translateY(-0.25rem);
-    }
-
-    .features {
-        overflow: hidden;
-        position: relative;
-    }
-
-    .features__container {
-        padding-top: 2rem;
-        grid-template-columns: 285px;
-        justify-content: center;
-    }
-
-    .features__group {
-        display: grid;
-        position: relative;
-        z-index: 10;
-    }
-
-    .features__img {
-        width: 150px;
-        justify-self: center;
-    }
-
-    .features__card {
-        width: 112px;
-        background-color: hsla(0, 0%, 100%, 0.1);
-        backdrop-filter: blur(16px);
-        border-radius: 1.25rem;
-        padding: 0.75rem 2rem;
-        text-align: center;
-        color: var(--title-color);
-        position: absolute;
-    }
-
-    .features__card-1 {
-        top: 4rem;
-        left: 1.5rem;
-    }
-
-    .features__card-2 {
-        top: 8rem;
-        right: 1rem;
-    }
-
-    .features__card-3 {
-        left: 1.5rem;
-        bottom: 2rem;
-    }
-
-    .features__card-title {
-        font-size: var(--h3-font-size);
-        margin-bottom: 0.25rem;
-    }
-
-    .features__card-description {
-        font-size: var(--smaller-font-size);
-    }
-
-    .features__map {
-        max-width: initial;
-        width: 450px;
-        position: absolute;
-        top: 8rem;
-        //left: 2rem;
-        margin: auto;
-        transform: rotate(-22deg);
     }
 
     .featured__content {
@@ -1216,67 +634,6 @@
         opacity: 1;
     }
 
-    .offer {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .offer__container {
-        grid-template-rows: max-content 224px;
-    }
-
-    .offer__bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .offer__data,
-    .offer__img {
-        position: relative;
-    }
-
-    .offer__data {
-        text-align: center;
-    }
-
-    .offer__title {
-        margin-bottom: 2rem;
-    }
-
-    .offer__description {
-        margin-bottom: 3rem;
-    }
-    .offer__img {
-        position: absolute;
-        max-width: initial;
-        width: 400px;
-        bottom: 2rem;
-        right: -5.5rem;
-    }
-
-    .logos__img {
-        width: 40px;
-        opacity: 0.4;
-        transition: 0.3s;
-    }
-
-    .logos__container {
-        grid-template-columns: repeat(3, max-content);
-        justify-content: center;
-        align-items: center;
-        gap: 4rem;
-        padding-bottom: 2rem;
-    }
-
-    .logos__img:hover {
-        opacity: 1;
-    }
-
     .footer {
         position: relative;
         overflow: hidden;
@@ -1395,4 +752,150 @@
     .show-scroll {
         bottom: 3rem;
     }
+
+    //@media screen and (max-width: 320px){
+    //    .container {
+    //        margin-left: 1rem;
+    //        margin-right: 1rem;
+    //    }
+    //
+    //    .home__car {
+    //        column-gap: 2rem;
+    //    }
+    //
+    //    .about__card {
+    //        width: 150px;
+    //    }
+    //
+    //    .offer__container {
+    //        grid-template-columns: max-content 180px;
+    //    }
+    //
+    //    .offer__img {
+    //        width: 340px;
+    //    }
+    //
+    //    .logos__container {
+    //        gap: 2.5rem;
+    //    }
+    //}
+    //
+    //@media screen and (max-width: 576px) {
+    //    .about__group {
+    //        width: 350px;
+    //        justify-self: center;
+    //    }
+    //
+    //    .features__map {
+    //        left: 0;
+    //        right: 0;
+    //    }
+    //
+    //    .featured__content {
+    //        grid-template-columns: repeat(2,228px);
+    //    }
+    //
+    //    .offer__container {
+    //        grid-template-rows: initial;
+    //        grid-template-columns: .5fr;
+    //        justify-content: center;
+    //    }
+    //
+    //    .offer__img {
+    //        position: relative;
+    //        bottom: initial;
+    //        right: initial;
+    //    }
+    //
+    //    .offer__data {
+    //        margin-bottom: 4rem;
+    //    }
+    //}
+    //
+    //@media screen and (max-width: 767px) {
+    //    .section {
+    //        padding: 7rem 0 2rem;
+    //    }
+    //
+    //    .nav {
+    //        height: calc(var(--header-height) + 1.5rem);
+    //    }
+    //
+    //    .nav__toggle,
+    //    .nav__close {
+    //        display: none;
+    //    }
+    //
+    //    .nav__list {
+    //        flex-direction: row;
+    //        column-gap: 3rem;
+    //        padding-top: 0;
+    //    }
+    //
+    //    .nav__link {
+    //        font-size: var(--normal-font-size);
+    //        text-transform: initial;
+    //    }
+    //
+    //    .about__container {
+    //        grid-template-columns: repeat(2,1fr);
+    //    }
+    //
+    //    .logos__container {
+    //        gap: 4rem 8rem;
+    //    }
+    //
+    //    .footer__container {
+    //        grid-template-columns: repeat(2, 1fr);
+    //    }
+    //}
+    //
+    //@media screen and (max-width: 1040px){
+    //    .container {
+    //        margin-left: auto;
+    //        margin-right: auto;
+    //    }
+    //
+    //    .shape__big {
+    //        width: 500px;
+    //        height: 500px;
+    //    }
+    //
+    //    .shape__small {
+    //        width: 400px;
+    //        height: 400px;
+    //    }
+    //
+    //    .home__container {
+    //        padding-top: 2rem;
+    //    }
+    //
+    //    .home__img {
+    //        width: 300px;
+    //    }
+    //
+    //    .home__car {
+    //        column-gap: 7rem;
+    //    }
+    //
+    //    .home__car-icon {
+    //        font-size: 1.25rem;
+    //        margin-bottom: 1rem;
+    //    }
+    //
+    //    .about__container {
+    //        column-gap: 6rem;
+    //        align-items: center;
+    //    }
+    //
+    //    .about__group,
+    //    .about__img {
+    //        width: 480px;
+    //    }
+    //
+    //    .about__card {
+    //        width: 198px;
+    //        padding: 1rem 1.25rem;
+    //    }
+    //}
 </style>
