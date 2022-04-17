@@ -15,7 +15,7 @@
     "axios": "^0.26.1",
     "dayjs": "^1.11.0",
     "driver.js": "^0.9.8",
-    "element-plus": "^2.1.7",
+    "element-plus": "^2.1.9",
     "nprogress": "^1.0.0-0",
     "screenfull": "^5.1.0",
     "vue": "^3.2.25",

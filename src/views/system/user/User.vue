@@ -113,7 +113,7 @@
                     prop="type"
                     align="center"
                     label="角色"
-                    width="100"
+                    width="110"
                 >
                     <template #default="scope">
                         <el-tag v-if="scope.row.type === 0" type="danger">
@@ -170,22 +170,22 @@
                     align="center"
                     fixed="right"
                     label="操作"
-                    width="180"
+                    width="120"
                 >
                     <template #default="scope">
                         <el-button
                             type="info"
                             :icon="Edit"
+                            circle
                             @click="deleteInfo(scope.row.id)"
                         >
-                            修改
                         </el-button>
                         <el-button
                             type="danger"
                             :icon="Delete"
+                            circle
                             @click="deleteInfo(scope.row.id)"
                         >
-                            删除
                         </el-button>
                     </template>
                 </el-table-column>
