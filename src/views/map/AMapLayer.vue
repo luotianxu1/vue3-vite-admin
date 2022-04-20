@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-        <div id="map" class="map"></div>
-        <div class="switch">
+        <div class="btn">
             <el-button @click="addMarker">添加Marker</el-button>
             <el-button @click="deleteMarker">删除Marker</el-button>
             <el-button @click="addSatellite">添加卫星图层</el-button>
@@ -9,6 +8,7 @@
             <el-button @click="getLayer">获取图层</el-button>
             <el-button @click="setLayer">设置图层</el-button>
         </div>
+        <div id="map" class="map"></div>
     </div>
 </template>
 
@@ -73,10 +73,10 @@
 
     const setLayer = () => {
         const layers = [
-		        // 卫星
-		        new Amap.value.TileLayer.Satellite(),
-		        // 路网
-		        new Amap.value.TileLayer.RoadNet()
+            // 卫星
+            new Amap.value.TileLayer.Satellite(),
+            // 路网
+            new Amap.value.TileLayer.RoadNet()
         ]
         map.value.setLayers(layers)
     }
@@ -86,19 +86,21 @@
     .container {
         height: 100%;
         width: 100%;
-        padding: 0;
-        margin: 0;
-        position: relative;
+        display: flex;
 
         .map {
             height: 100%;
             width: 100%;
         }
 
-        .switch {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .btn {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .el-button {
+                margin: 0 0 5px 0;
+            }
         }
     }
 </style>

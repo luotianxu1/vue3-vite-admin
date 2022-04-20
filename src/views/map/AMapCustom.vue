@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-        <div id="map" class="map"></div>
-        <div class="switch">
+        <div class="btn">
             <el-radio v-model="radio1" label="dark" size="large">
                 幻影黑
             </el-radio>
@@ -31,6 +30,7 @@
             </el-radio>
             <el-radio v-model="radio1" label="wine" size="large">酱籽</el-radio>
         </div>
+        <div id="map" class="map"></div>
     </div>
 </template>
 
@@ -76,19 +76,21 @@
     .container {
         height: 100%;
         width: 100%;
-        padding: 0;
-        margin: 0;
-        position: relative;
+        display: flex;
 
         .map {
             height: 100%;
             width: 100%;
         }
 
-        .switch {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .btn {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .el-button {
+                margin: 0 0 5px 0;
+            }
         }
     }
 </style>

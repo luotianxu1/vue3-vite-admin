@@ -63,7 +63,7 @@
         getList()
     })
 
-    async function getList() {
+     const getList = async () => {
         const res = await getUserPageList({ id: user.value?.id as number })
         if (res.status === 200) {
             list.value = res.data?.list
@@ -79,7 +79,7 @@
     )
 
     // 路由跳转
-    function navRouter(item: any) {
+    const navRouter = (item: any) => {
         router.push(item.url)
     }
 </script>

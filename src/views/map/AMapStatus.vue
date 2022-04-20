@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <div id="map" class="map"></div>
         <div class="btn">
             <el-button @click="setMapZoom">随机设置地图层级</el-button>
             <el-button @click="getMapZoom">获取地图层级</el-button>
@@ -27,18 +26,17 @@
                 active-text="锁定"
                 inactive-text="未锁定"
             />
-            <div style="width: 150px">
-                <el-input
-                    v-model="cityName"
-                    class="input-with-select"
-                    placeholder="设置地图当前行政区"
-                >
-                    <template #append>
-                        <el-button :icon="Search" @click="setCity"></el-button>
-                    </template>
-                </el-input>
-            </div>
+            <el-input
+                v-model="cityName"
+                class="input-with-select"
+                placeholder="设置地图当前行政区"
+            >
+                <template #append>
+                    <el-button :icon="Search" @click="setCity"></el-button>
+                </template>
+            </el-input>
         </div>
+        <div id="map" class="map"></div>
     </div>
 </template>
 
@@ -67,7 +65,7 @@
                 Map.value = AMap
                 map.value = new AMap.Map('map', {
                     viewMode: '3D',
-		                terrain: true,
+                    terrain: true,
                     zoom: 5,
                     center: [105.602725, 37.076636]
                 })
@@ -201,26 +199,24 @@
         ElMessage.success(`${e.lnglat.getLng()}${e.lnglat.getLat()}`)
     }
 
-		const autoAdjust = () => {
-				map.value.setFitView()
-		}
+    const autoAdjust = () => {
+        map.value.setFitView()
+    }
 
-		const manualAdjust = () => {
-				map.value.setFitView([polyline,marker1])
-		}
+    const manualAdjust = () => {
+        map.value.setFitView([polyline, marker1])
+    }
 
-		const changeMap = () => {
-				map.value.setMapStyle('amap://styles/dark')
-		}
+    const changeMap = () => {
+        map.value.setMapStyle('amap://styles/dark')
+    }
 </script>
 
 <style lang="scss" scoped>
     .container {
         height: 100%;
         width: 100%;
-        padding: 0;
-        margin: 0;
-        position: relative;
+        display: flex;
 
         .map {
             height: 100%;
@@ -228,9 +224,14 @@
         }
 
         .btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            width: 350px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .el-button {
+                margin: 0 0 5px 0;
+            }
         }
     }
 </style>

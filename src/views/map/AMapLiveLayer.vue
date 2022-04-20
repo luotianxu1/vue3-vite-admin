@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div id="map" class="map"></div>
-        <div class="switch">
-            是否显示实时路况
+        <div class="btn">
+            实时路况:
             <el-switch v-model="isOpen" class="mb-2" />
         </div>
+        <div id="map" class="map"></div>
     </div>
 </template>
 
@@ -38,7 +38,7 @@
                 })
 
                 trafficLayer.value.setMap(map.value)
-		            trafficLayer.value.hide()
+                trafficLayer.value.hide()
             })
             .catch((e) => {
                 console.log(e)
@@ -64,19 +64,21 @@
     .container {
         height: 100%;
         width: 100%;
-        padding: 0;
-        margin: 0;
-        position: relative;
+        display: flex;
 
         .map {
             height: 100%;
             width: 100%;
         }
 
-        .switch {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .btn {
+		        width: 150px;
+            padding: 10px;
+            display: flex;
+
+            .el-button {
+                margin: 0 0 5px 0;
+            }
         }
     }
 </style>
