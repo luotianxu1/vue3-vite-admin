@@ -6,28 +6,9 @@
             :collapse-transition="true"
             class="el-menu-vertical-demo"
             :default-active="activeRouter"
+            router
         >
-            <el-sub-menu
-                v-for="(item, index) in list"
-                :key="index"
-                :index="index.toString()"
-            >
-                <template #title>
-                    <Icon style="margin-right: 5px" :icon="item.icon"></Icon>
-                    <span>{{ item.name }}</span>
-                </template>
-                <el-menu-item
-                    v-for="(item1, index1) in item.children"
-                    :key="index1"
-                    :index="item1.url"
-                    @click="navRouter(item1)"
-                >
-                    <template #title>
-                        <Icon :padding="5" :icon="item1.icon"></Icon>
-                        <span>{{ item1.name }}</span>
-                    </template>
-                </el-menu-item>
-            </el-sub-menu>
+            <TreeMenu :tree-data='list'></TreeMenu>
         </el-menu>
     </el-scrollbar>
 </template>
@@ -39,7 +20,7 @@
     import router from '@/router'
     import { getUserPageList } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
-    import Icon from '@/components/icon/Icon.vue'
+    import TreeMenu from '@/components/layoutBase/components/sidebar/components/TreeMenu.vue'
 
     const store = useStore(Key)
 
@@ -63,7 +44,7 @@
         getList()
     })
 
-     const getList = async () => {
+    const getList = async () => {
         const res = await getUserPageList({ id: user.value?.id as number })
         if (res.status === 200) {
             list.value = res.data?.list
@@ -77,11 +58,6 @@
     const activeRouter = computed(
         () => store.state.system?.SYSTEM_ACTIVE_ROUTER
     )
-
-    // 路由跳转
-    const navRouter = (item: any) => {
-        router.push(item.url)
-    }
 </script>
 
 <style scoped lang="scss">
