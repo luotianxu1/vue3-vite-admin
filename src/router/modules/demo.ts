@@ -68,6 +68,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'driver',
                 name: 'Driver',
                 component: () => import('@/views/demo/driver/Driver.vue')
+            },
+            {
+                path: 'richText',
+                name: '富文本编辑器',
+                component: () => import('@/views/demo/richText/RichText.vue')
             }
         ]
     }

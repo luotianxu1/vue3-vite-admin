@@ -1,7 +1,8 @@
 import { App } from 'vue'
-import List from './list'
+import MList from './list'
+import MTextEditor from './textEditor'
 
-const components = [List]
+const components = [MList, MTextEditor]
 
 export default {
     install(app: App) {
