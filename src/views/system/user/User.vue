@@ -41,6 +41,9 @@
                 >
                     查询
                 </el-button>
+                <el-button :icon="Download" type="primary" @click="exportExcel">
+                    导出
+                </el-button>
             </div>
         </template>
         <template #fr>
@@ -178,15 +181,13 @@
                             :icon="Edit"
                             circle
                             @click="deleteInfo(scope.row.id)"
-                        >
-                        </el-button>
+                        ></el-button>
                         <el-button
                             type="danger"
                             :icon="Delete"
                             circle
                             @click="deleteInfo(scope.row.id)"
-                        >
-                        </el-button>
+                        ></el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -208,8 +209,15 @@
     import { reactive, ref, shallowReadonly, watch } from 'vue'
     import { getUserListApi, deleteUserApi } from '@/api/system/userApi'
     import LayoutQuery from '@/components/layoutQuery/LayoutQuery.vue'
-    import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
+    import {
+        Search,
+        Edit,
+        Delete,
+        CirclePlus,
+        Download
+    } from '@element-plus/icons-vue'
     import { ElMessageBox, ElMessage } from 'element-plus'
+    import { jsonToExcel } from '@/utils/excel'
 
     const options = shallowReadonly([
         {
@@ -313,6 +321,19 @@
 
     const addNewsInfo = () => {
         console.log(123)
+    }
+
+    const exportExcel = async () => {
+        jsonToExcel({
+            data: [{ id: 1, name: '123456', age: 18 }],
+            header: {
+                id: '编号',
+                name: '姓名',
+                age: '年龄'
+            },
+            fileName: '测试.xlsx',
+            bookType: 'xlsx'
+        })
     }
 </script>
 

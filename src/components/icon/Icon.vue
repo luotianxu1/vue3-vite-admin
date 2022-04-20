@@ -13,39 +13,18 @@
 
 <script lang="ts" setup>
     import { computed } from 'vue'
-    const props = defineProps({
-        icon: {
-            required: true,
-            type: String
-        },
-        font: {
-            required: false,
-            type: Number,
-            default: () => {
-                return 18
-            }
-        },
-        color: {
-            required: false,
-            type: String,
-            default: () => {
-                return '#252323'
-            }
-        },
-        width: {
-            required: false,
-            type: Number,
-            default: () => {
-                return 400
-            }
-        },
-        padding: {
-            required: false,
-            type: Number,
-            default: () => {
-                return 0
-            }
-        }
+    interface Props {
+        icon: string
+        font?: number
+        color?: string
+        width?: number
+		    padding?: number
+    }
+    const props = withDefaults(defineProps<Props>(), {
+        font: 18,
+        color: '#252323',
+        width: 400,
+		    padding: 0
     })
     const iconStr = computed(() => 'iconfont ' + props.icon)
     const fontSize = computed(() => props.font + 'px')
