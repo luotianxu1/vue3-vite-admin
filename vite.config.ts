@@ -11,21 +11,15 @@ export default defineConfig({
         vue(),
         AutoImport({
             resolvers: [ElementPlusResolver()],
-            include: [
-                /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-                /\.vue$/,
-                /\.vue\?vue/, // .vue
-                /\.md$/ // .md
-            ],
-            dts: true,
-            imports: ['vue', 'vue-router']
+            imports: ['vue', 'vue-router'],
+            dts: 'src/types/auto-imports.d.ts'
         }),
         Components({
             resolvers: [ElementPlusResolver()],
             dirs: ['src/components'],
             directoryAsNamespace: true,
-            dts: './components.d.ts',
-            deep: false
+            dts: 'src/types/components.d.ts',
+            deep: true
         })
     ],
     resolve: {
@@ -41,17 +35,20 @@ export default defineConfig({
             [config.VITE_APP_BASE_URL + '/api']: {
                 target: 'https://mock.apipost.cn/app/mock/project/d5c047b0-0e83-4778-a6b1-edae4f63dfbf',
                 changeOrigin: true,
-                rewrite: (serverPath) => serverPath.replace(config.VITE_APP_BASE_URL + '/api', '')
+                rewrite: (serverPath) =>
+                    serverPath.replace(config.VITE_APP_BASE_URL + '/api', '')
             },
             [config.VITE_APP_BASE_URL + '/jhApi']: {
                 target: 'http://v.juhe.cn',
                 changeOrigin: true,
-                rewrite: (serverPath) => serverPath.replace(config.VITE_APP_BASE_URL + '/jhApi', '')
+                rewrite: (serverPath) =>
+                    serverPath.replace(config.VITE_APP_BASE_URL + '/jhApi', '')
             },
             [config.VITE_APP_BASE_URL + '/map']: {
                 target: 'https://restapi.amap.com',
                 changeOrigin: true,
-                rewrite: (serverPath) => serverPath.replace(config.VITE_APP_BASE_URL + '/map', '')
+                rewrite: (serverPath) =>
+                    serverPath.replace(config.VITE_APP_BASE_URL + '/map', '')
             }
         }
     }
