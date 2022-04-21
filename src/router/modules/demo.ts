@@ -73,6 +73,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'richText',
                 name: '富文本编辑器',
                 component: () => import('@/views/demo/richText/RichText.vue')
+            },
+            {
+                path: 'draggable',
+                name: '拖拽',
+                component: () => import('@/views/demo/drag/Drag.vue')
             }
         ]
     }

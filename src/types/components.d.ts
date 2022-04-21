@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChangeLanguage: typeof import('./../components/changeLanguage/index.vue')['default']
     Dialog: typeof import('./../components/dialog/index.vue')['default']
+    Draggable: typeof import('./../components/draggable/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
