@@ -10,13 +10,22 @@ export default defineConfig({
     plugins: [
         vue(),
         AutoImport({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [ElementPlusResolver()],
+            include: [
+                /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                /\.vue$/,
+                /\.vue\?vue/, // .vue
+                /\.md$/ // .md
+            ],
+            dts: true,
+            imports: ['vue', 'vue-router']
         }),
         Components({
             resolvers: [ElementPlusResolver()],
             dirs: ['src/components'],
             directoryAsNamespace: true,
-            dts: './components.d.ts'
+            dts: './components.d.ts',
+            deep: false
         })
     ],
     resolve: {
