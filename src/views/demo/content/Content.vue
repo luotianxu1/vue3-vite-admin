@@ -70,7 +70,6 @@
 
 <script lang="ts" setup>
     import { onMounted, ref } from 'vue'
-    import Icon from '@/components/icon/Icon.vue'
     const active = ref(0)
     const box = ref()
     onMounted(() => {

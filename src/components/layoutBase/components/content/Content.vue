@@ -24,7 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-    import Icon from '@/components/icon/Icon.vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import { computed } from 'vue'

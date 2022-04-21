@@ -1,5 +1,5 @@
 <template>
-    <MTextEditor v-model="text"></MTextEditor>
+    <TextEditorSrc v-model="text"></TextEditorSrc>
 		{{text}}
 </template>
 

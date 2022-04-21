@@ -28,12 +28,12 @@
                                         3.7 Sec
                                     </div>
                                     <div class="popular__data-group">
-                                        <i class="iconfont shangsheng-2"></i>
+                                        <i class="iconfont shangsheng"></i>
                                         256 Km/h
                                     </div>
                                     <div class="popular__data-group">
                                         <i
-                                            class="iconfont qichexiangguan-chongdianzhan"
+                                            class="iconfont chongdianzhan"
                                         ></i>
                                         Electric
                                     </div>
@@ -60,12 +60,12 @@
                                         3.7 Sec
                                     </div>
                                     <div class="popular__data-group">
-                                        <i class="iconfont shangsheng-2"></i>
+                                        <i class="iconfont shangsheng"></i>
                                         256 Km/h
                                     </div>
                                     <div class="popular__data-group">
                                         <i
-                                            class="iconfont qichexiangguan-chongdianzhan"
+                                            class="iconfont chongdianzhan"
                                         ></i>
                                         Electric
                                     </div>
@@ -92,12 +92,12 @@
                                         3.7 Sec
                                     </div>
                                     <div class="popular__data-group">
-                                        <i class="iconfont shangsheng-2"></i>
+                                        <i class="iconfont shangsheng"></i>
                                         256 Km/h
                                     </div>
                                     <div class="popular__data-group">
                                         <i
-                                            class="iconfont qichexiangguan-chongdianzhan"
+                                            class="iconfont chongdianzhan"
                                         ></i>
                                         Electric
                                     </div>
@@ -124,12 +124,12 @@
                                         3.7 Sec
                                     </div>
                                     <div class="popular__data-group">
-                                        <i class="iconfont shangsheng-2"></i>
+                                        <i class="iconfont shangsheng"></i>
                                         256 Km/h
                                     </div>
                                     <div class="popular__data-group">
                                         <i
-                                            class="iconfont qichexiangguan-chongdianzhan"
+                                            class="iconfont chongdianzhan"
                                         ></i>
                                         Electric
                                     </div>
@@ -156,12 +156,12 @@
                                         3.7 Sec
                                     </div>
                                     <div class="popular__data-group">
-                                        <i class="iconfont shangsheng-2"></i>
+                                        <i class="iconfont shangsheng"></i>
                                         256 Km/h
                                     </div>
                                     <div class="popular__data-group">
                                         <i
-                                            class="iconfont qichexiangguan-chongdianzhan"
+                                            class="iconfont chongdianzhan"
                                         ></i>
                                         Electric
                                     </div>
@@ -354,7 +354,7 @@
                 </span>
             </footer>
             <a href="" class="scrollup">
-                <i class="iconfont arrowup"></i>
+                <i class="iconfont up"></i>
             </a>
         </main>
     </div>

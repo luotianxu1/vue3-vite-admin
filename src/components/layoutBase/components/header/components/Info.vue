@@ -2,7 +2,7 @@
     <div class="info">
         <el-popover placement="bottom" :width="400" trigger="click">
             <slot>
-                <MList></MList>
+                <List></List>
             </slot>
             <template #reference>
                 <el-badge :value="12">

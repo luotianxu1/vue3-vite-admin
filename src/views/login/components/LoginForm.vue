@@ -40,7 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-    import ChangeLanguage from '@/components/changeLanguage/ChangeLanguage.vue'
     import { reactive, ref } from 'vue'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'

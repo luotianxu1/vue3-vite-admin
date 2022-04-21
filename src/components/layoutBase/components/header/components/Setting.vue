@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-    import Icon from '@/components/icon/Icon.vue'
 </script>
 
 <style scoped lang='scss'>

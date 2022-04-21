@@ -21,7 +21,6 @@
     import Avatar from './components/Avatar.vue'
     import Info from './components/Info.vue'
     import Setting from './components/Setting.vue'
-    import ChangeLanguage from '@/components/changeLanguage/ChangeLanguage.vue'
     import ScreenFull from './components/Screenfull.vue'
     import BreadCrumb from './components/BreadCrumb.vue'
     import { ref } from 'vue'

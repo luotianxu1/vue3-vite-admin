@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-    import Icon from '@/components/icon/Icon.vue'
     defineProps({
         treeData: {
             type: Array,

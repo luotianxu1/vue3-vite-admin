@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import LayoutOpen from '@/components/layoutOpen/LayoutOpen.vue'
+import LayoutOpen from '@/components/layoutOpen/index.vue'
 
 const openRouter: RouteRecordRaw[] = [
     {

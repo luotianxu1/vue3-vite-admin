@@ -47,7 +47,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont youtube-fill"></span>
+                    <span class="iconfont youtube"></span>
                 </div>
                 <div class="text">Youtube</div>
             </div>

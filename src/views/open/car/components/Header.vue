@@ -2,7 +2,7 @@
     <div id="header" ref="header" class="header">
         <nav class="nav container">
             <a href="#" class="nav__logo">
-                <i class="iconfont bilibili-line"></i>
+                <i class="iconfont bilibili"></i>
                 Elecar
             </a>
             <div

@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div class="counter-container">
-            <Icon icon="bilibili-line" :font="48"></Icon>
+            <Icon icon="bilibili" :font="48"></Icon>
             <div ref="counter" class="counter" data-num="500">{{ num }}</div>
             <span>粉丝数</span>
         </div>
@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
     import { onMounted, ref } from 'vue'
-    import Icon from '@/components/icon/Icon.vue'
 
     const counter = ref()
     let num = ref(0)

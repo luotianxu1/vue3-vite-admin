@@ -72,8 +72,6 @@
     import { computed, onMounted, reactive } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
-    import LayoutQuery from '@/components/layoutQuery/LayoutQuery.vue'
-    import Icon from '@/components/icon/Icon.vue'
     import { getUserPageList } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
     import { ElMessage } from 'element-plus'

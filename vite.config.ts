@@ -13,13 +13,15 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()]
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [ElementPlusResolver()],
+            dirs: ['src/components'],
+            directoryAsNamespace: true,
+            dts: './components.d.ts'
         })
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src'),
-            '~/': `${path.resolve(__dirname, 'src')}/`
+            '@': path.resolve(__dirname, './src')
         }
     },
     server: {
