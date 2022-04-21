@@ -9,24 +9,27 @@
 <template>
     <div>
         <template v-for="item in treeData" :key="item._id">
-            <el-sub-menu v-if="item.children && item.children.length > 0" :index="item.url">
+            <el-sub-menu
+                v-if="item.children && item.children.length > 0"
+                :index="item.url"
+            >
                 <template #title>
                     <Icon :padding="5" :icon="item.icon"></Icon>
-                    <span>{{ item.name }}</span>
+                    <span v-show="!collapse">{{ item.name }}</span>
                 </template>
                 <TreeMenu :tree-data="item.children"></TreeMenu>
             </el-sub-menu>
             <el-menu-item v-else :index="item.url">
                 <template #title>
                     <Icon :padding="5" :icon="item.icon"></Icon>
-                    <span>{{ item.name }}</span>
+                    <span v-show="!collapse">{{ item.name }}</span>
                 </template>
             </el-menu-item>
         </template>
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import Icon from '@/components/icon/Icon.vue'
     defineProps({
         treeData: {
@@ -34,8 +37,11 @@
             default: function () {
                 return []
             }
+        },
+        collapse: {
+            type: Boolean
         }
     })
 </script>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

@@ -8,7 +8,7 @@
             :default-active="activeRouter"
             router
         >
-            <TreeMenu :tree-data='list'></TreeMenu>
+            <TreeMenu :tree-data='list' :collapse="isCollapse"></TreeMenu>
         </el-menu>
     </el-scrollbar>
 </template>
