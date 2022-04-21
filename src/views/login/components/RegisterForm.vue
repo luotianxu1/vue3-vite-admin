@@ -52,7 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { reactive, ref } from 'vue'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { registerApi } from '@/api/system/userApi'

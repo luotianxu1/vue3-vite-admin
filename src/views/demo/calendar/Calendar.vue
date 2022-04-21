@@ -101,14 +101,6 @@
 </template>
 
 <script>
-    import {
-        defineComponent,
-        onMounted,
-        reactive,
-        ref,
-        toRefs,
-        watch
-    } from 'vue'
     import { getDateInfoApi, getHistoryApi } from '@/api/demo/calendarApi'
 
     export default defineComponent({

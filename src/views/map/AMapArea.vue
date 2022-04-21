@@ -3,7 +3,6 @@
 </template>
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { onMounted, shallowRef } from 'vue'
     import { ElMessage } from 'element-plus'
 
     const nationStroke = 'rgba(20, 20, 120, 0.6)'

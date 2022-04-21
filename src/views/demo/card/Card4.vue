@@ -21,7 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { computed, onMounted } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
 

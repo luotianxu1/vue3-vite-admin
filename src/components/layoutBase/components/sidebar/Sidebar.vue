@@ -8,13 +8,12 @@
             :default-active="activeRouter"
             router
         >
-            <TreeMenu :tree-data='list' :collapse="isCollapse"></TreeMenu>
+            <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
         </el-menu>
     </el-scrollbar>
 </template>
 
 <script lang="ts" setup>
-    import { computed, onMounted, ref, watch } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import router from '@/router'

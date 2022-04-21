@@ -206,7 +206,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { reactive, ref, shallowReadonly, watch } from 'vue'
     import { getUserListApi, deleteUserApi } from '@/api/system/userApi'
     import {
         Search,

@@ -36,7 +36,6 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { onMounted, shallowRef, ref, watch } from 'vue'
 
     const map = shallowRef()
 

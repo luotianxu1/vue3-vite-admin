@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { shallowRef } from 'vue'
 
     const map = shallowRef()
 
@@ -52,13 +51,13 @@
         }
 
         .btn {
-		        padding: 10px;
-		        display: flex;
-		        flex-direction: column;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
 
-		        .el-button {
-				        margin: 0 0 5px 0;
-		        }
+            .el-button {
+                margin: 0 0 5px 0;
+            }
         }
     }
 </style>

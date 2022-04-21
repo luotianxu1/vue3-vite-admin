@@ -9,7 +9,9 @@
                 ></el-input>
             </div>
             <div class="query-item">
-                <el-button type="primary" :icon="Search" @click="getMenuList">查询</el-button>
+                <el-button type="primary" :icon="Search" @click="getMenuList">
+                    查询
+                </el-button>
             </div>
         </template>
         <template #fr>
@@ -69,7 +71,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { computed, onMounted, reactive } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import { getUserPageList } from '@/api/system/userApi'

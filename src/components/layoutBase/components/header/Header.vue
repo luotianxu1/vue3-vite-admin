@@ -23,7 +23,6 @@
     import Setting from './components/Setting.vue'
     import ScreenFull from './components/Screenfull.vue'
     import BreadCrumb from './components/BreadCrumb.vue'
-    import { ref } from 'vue'
 
     // 图标
     const url = ref(

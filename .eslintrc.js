@@ -23,7 +23,8 @@ module.exports = {
         "plugin:vue/vue3-essential",
         "plugin:vue/vue3-recommended",
         "prettier",
-        '@vue/standard'
+        '@vue/standard',
+        'vue-global-api'
     ],
     rules: {
         // 'plugin:vue/vue3-essential',

@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { onMounted, ref } from 'vue'
-
     const counter = ref()
     let num = ref(0)
     onMounted(() => {

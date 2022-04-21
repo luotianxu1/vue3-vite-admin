@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
     import { ElMessage } from 'element-plus'
-    import { onMounted, onBeforeUnmount, ref } from 'vue'
     import screenfull from 'screenfull'
 
     const sf = screenfull

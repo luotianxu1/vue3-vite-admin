@@ -22,7 +22,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { shallowReadonly } from 'vue'
     import { useStore } from 'vuex'
     import { Key } from '@/store'
     import { useI18n } from 'vue-i18n'

@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { onMounted, ref, shallowRef, watch } from 'vue'
 
     const map = shallowRef()
     const trafficLayer = shallowRef()
@@ -79,12 +78,12 @@
             position: absolute;
             top: 20px;
             left: 20px;
-		        width: 200px;
-		        height: 30px;
-		        display: flex;
-		        align-content: center;
-		        justify-content: center;
-		        background-color: #fff;
+            width: 200px;
+            height: 30px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            background-color: #fff;
         }
     }
 </style>
