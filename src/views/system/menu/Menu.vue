@@ -19,44 +19,42 @@
                 <el-button type="success" :icon="CirclePlus">新增</el-button>
             </div>
         </template>
-        <template #table>
-            <el-table
-                ref="table"
-                :data="tableData.data"
-                row-key="id"
-                stripe
-                :border="true"
-                highlight-current-row
-                empty-text="暂无数据"
-                height="100%"
-            >
-                <template #empty>
-                    <el-empty description="暂无数据"></el-empty>
+        <el-table
+            ref="table"
+            :data="tableData.data"
+            row-key="id"
+            stripe
+            :border="true"
+            highlight-current-row
+            empty-text="暂无数据"
+            height="100%"
+        >
+            <template #empty>
+                <el-empty description="暂无数据"></el-empty>
+            </template>
+            <el-table-column prop="id" align="center" label="ID" />
+            <el-table-column prop="name" align="center" label="名称" />
+            <el-table-column prop="icon" align="center" label="图标">
+                <template #default="scope">
+                    <Icon :icon="scope.row.icon"></Icon>
                 </template>
-                <el-table-column prop="id" align="center" label="ID" />
-                <el-table-column prop="name" align="center" label="名称" />
-                <el-table-column prop="icon" align="center" label="图标">
-                    <template #default="scope">
-                        <Icon :icon="scope.row.icon"></Icon>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="url" align="center" label="链接" />
-                <el-table-column prop="show" align="center" label="隐藏" />
-                <el-table-column align="center" label="操作" width="300">
-                    <template #default="scope">
-                        <el-button
-                            v-if="scope.row.children"
-                            type="success"
-                            :icon="CirclePlus"
-                        >
-                            新增
-                        </el-button>
-                        <el-button type="info" :icon="Edit">修改</el-button>
-                        <el-button type="danger" :icon="Delete">删除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </template>
+            </el-table-column>
+            <el-table-column prop="url" align="center" label="链接" />
+            <el-table-column prop="show" align="center" label="隐藏" />
+            <el-table-column align="center" label="操作" width="300">
+                <template #default="scope">
+                    <el-button
+                        v-if="scope.row.children"
+                        type="success"
+                        :icon="CirclePlus"
+                    >
+                        新增
+                    </el-button>
+                    <el-button type="info" :icon="Edit">修改</el-button>
+                    <el-button type="danger" :icon="Delete">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
         <template #footer>
             <div class="query-item">
                 <el-pagination
