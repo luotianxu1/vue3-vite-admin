@@ -1,5 +1,6 @@
 <template>
     <el-table
+        v-loading="tableData.loading"
         :data="tableData.data"
         :stripe="stripe"
         :border="border"
