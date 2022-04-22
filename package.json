@@ -12,6 +12,8 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^0.2.4",
+    "@wangeditor/editor": "^5.0.1",
+    "@wangeditor/editor-for-vue": "^5.1.10",
     "axios": "^0.26.1",
     "dayjs": "^1.11.0",
     "driver.js": "^0.9.8",
@@ -24,7 +26,6 @@
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0",
-    "wangeditor": "^4.7.15",
     "xlsx": "^0.17.0"
   },
   "devDependencies": {

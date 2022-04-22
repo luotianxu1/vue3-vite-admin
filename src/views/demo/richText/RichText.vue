@@ -1,5 +1,5 @@
 <template>
-    <TextEditorSrc v-model="text"></TextEditorSrc>
+    <TextEditor v-model="text" :disable="false"></TextEditor>
     {{ text }}
 </template>
 
