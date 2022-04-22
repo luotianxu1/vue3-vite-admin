@@ -192,7 +192,7 @@
     })
     const data = ref([
         { label: 'ID', prop: 'id', width: '70' },
-        { label: '姓名', prop: 'name', width: '100' },
+        { label: '姓名', prop: 'name', width: '70' },
         {
             label: '头像',
             prop: 'img',
@@ -216,8 +216,8 @@
             width: '110'
         },
         { label: '手机号', prop: 'phone', width: '150' },
-        { label: '邮箱', prop: 'email' },
-        { label: '城市', prop: 'city' },
+        { label: '邮箱', prop: 'email', showOverflowTooltip: true },
+        { label: '城市', prop: 'city', showOverflowTooltip: true },
         {
             label: '状态',
             prop: 'status',

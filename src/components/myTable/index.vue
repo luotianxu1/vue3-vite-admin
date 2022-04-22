@@ -8,6 +8,7 @@
         :empty-text="emptyText"
         style="width: 100%"
         height="100%"
+        :size="size"
         @selection-change="handleSelectionChange"
     >
         <template v-if="props.data" #empty>
@@ -17,8 +18,16 @@
             v-if="checkBox"
             type="selection"
             width="50"
+            :fixed="fixedCheck"
+            :align="align"
         ></el-table-column>
-        <el-table-column v-if="index" type="index" width="60"></el-table-column>
+        <el-table-column
+            v-if="index"
+            type="index"
+            width="60"
+            :fixed="fixedIndex"
+            :align="align"
+        ></el-table-column>
 
         <template v-for="(item, itemIndex) in column" :key="itemIndex">
             <el-table-column
@@ -26,8 +35,10 @@
                 :label="item.label"
                 :prop="item.prop"
                 :width="item.width"
-                :align="item.align"
+                :fixed="item.fixed"
                 :sortable="item.sortable"
+                :align="align"
+                :show-overflow-tooltip="item.showOverflowTooltip"
             >
                 <template #default="scope">
                     <slot :name="item.slot_name" :data="scope.row"></slot>
@@ -38,8 +49,10 @@
                 :label="item.label"
                 :prop="item.prop"
                 :width="item.width"
-                :align="item.align"
+                :fixed="item.fixed"
                 :sortable="item.sort"
+                :align="align"
+                :show-overflow-tooltip="item.showOverflowTooltip"
             ></el-table-column>
         </template>
     </el-table>
@@ -70,6 +83,22 @@
         highlightCurrentRow: {
             type: Boolean,
             default: () => true
+        },
+        size: {
+            type: String,
+            default: () => 'default'
+        },
+        align: {
+            type: String,
+            default: () => 'center'
+        },
+        fixedIndex: {
+            type: Boolean,
+            default: () => false
+        },
+        fixedCheck: {
+            type: Boolean,
+            default: () => false
         },
         emptyText: {
             type: String,
@@ -102,9 +131,9 @@
     })
     const emit = defineEmits(['onLoad'])
     const tableData = reactive({
-        data: [],
         total: 0,
-        loading: false
+        loading: false,
+        data: []
     })
 
     watch(
