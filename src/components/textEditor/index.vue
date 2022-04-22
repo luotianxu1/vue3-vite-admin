@@ -13,6 +13,7 @@
             mode="default"
             @onCreated="handleCreated"
             @onChange="handleChange"
+            @onMaxLength="maxLength"
         />
     </div>
 </template>
@@ -25,6 +26,7 @@
         IEditorConfig,
         IToolbarConfig
     } from '@wangeditor/editor'
+    import { ElMessage } from 'element-plus'
 
     i18nChangeLanguage('zh-CN')
 
@@ -36,9 +38,19 @@
         disable: {
             type: Boolean,
             default: false
+        },
+        autoFocus: {
+            type: Boolean,
+            default: false
+        },
+        text: {
+            type: Boolean,
+            default: false
+        },
+        max: {
+            type: Number
         }
     })
-
     const emit = defineEmits(['update:model-value'])
 
     watch(
@@ -72,7 +84,18 @@
         // ]
     }
     const editorConfig: Partial<IEditorConfig> = {
-        placeholder: '请输入内容...'
+        placeholder: '请输入内容...',
+        maxLength: props.max,
+        autoFocus: props.autoFocus,
+        MENU_CONF: {
+            codeSelectLang: {
+                codeLangs: [
+                    { text: 'CSS', value: 'css' },
+                    { text: 'HTML', value: 'html' },
+                    { text: 'XML', value: 'xml' }
+                ]
+            }
+        }
     }
 
     // 组件销毁时，也及时销毁编辑器
@@ -86,16 +109,19 @@
 
     const handleCreated = (editor) => {
         editorRef.value = editor // 记录 editor 实例，重要！
-		    if (props.modelValue) {
-						valueHtml.value = props.modelValue
-		    }
+        if (props.modelValue) {
+            valueHtml.value = props.modelValue
+        }
         isDisable(props.disable)
     }
 
-		const handleChange = () => {
-				console.log(editorRef.value.getHtml())
-				emit('update:model-value',editorRef.value.getHtml())
-		}
+    const handleChange = () => {
+        if (props.text) {
+            emit('update:model-value', editorRef.value.getText())
+        } else {
+            emit('update:model-value', editorRef.value.getHtml())
+        }
+    }
 
     const isDisable = (val) => {
         if (val) {
@@ -103,6 +129,10 @@
         } else {
             editorRef.value.enable()
         }
+    }
+
+    const maxLength = () => {
+        ElMessage.warning(`最多输入${props.max}个文字！`)
     }
 </script>
 
