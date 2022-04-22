@@ -1,5 +1,5 @@
 <template>
-    <LayoutQuery :loading="tableData.loading">
+    <LayoutQuery ref="loginRef" :loading="tableData.loading">
         <template #fl>
             <div class="query-item">
                 <el-input
@@ -34,11 +34,7 @@
                 ></el-date-picker>
             </div>
             <div class="query-item">
-                <el-button
-                    :icon="Search"
-                    type="primary"
-                    @click="getNewsInfo(1)"
-                >
+                <el-button :icon="Search" type="primary" @click="search">
                     查询
                 </el-button>
                 <el-button :icon="Download" type="primary" @click="exportExcel">
@@ -60,138 +56,60 @@
                 <el-button type="danger" :icon="Delete">多选删除</el-button>
             </div>
         </template>
-        <template #table>
-            <el-table
-                ref="table"
-                :data="tableData.data"
-                stripe
-                border
-                highlight-current-row
-                empty-text="暂无数据"
-                height="100%"
-            >
-                <template #empty>
-                    <el-empty description="暂无数据"></el-empty>
-                </template>
-                <el-table-column type="selection" align="center" width="40" />
-                <el-table-column
-                    prop="id"
-                    align="center"
-                    label="ID"
-                    width="60"
-                />
-                <el-table-column
-                    prop="name"
-                    align="center"
-                    label="姓名"
-                    width="100"
-                />
-                <el-table-column
-                    prop="name"
-                    align="center"
-                    label="头像"
-                    width="80"
-                >
-                    <template #default="scope">
-                        <el-avatar :src="scope.row.img"></el-avatar>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    prop="age"
-                    align="center"
-                    label="年龄"
-                    width="60"
-                />
-                <el-table-column
-                    prop="sex"
-                    align="center"
-                    label="性别"
-                    width="60"
-                >
-                    <template #default="scope">
-                        {{ Number(scope.row.sex) === 1 ? '男' : '女' }}
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    prop="type"
-                    align="center"
-                    label="角色"
-                    width="110"
-                >
-                    <template #default="scope">
-                        <el-tag v-if="scope.row.type === 0" type="danger">
-                            超级管理员
-                        </el-tag>
-                        <el-tag v-if="scope.row.type === 1" type="warning">
-                            管理员
-                        </el-tag>
-                        <el-tag v-if="scope.row.type === 2" type="success">
-                            用户
-                        </el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    prop="phone"
-                    align="center"
-                    label="手机号"
-                    width="150"
-                />
-                <el-table-column prop="email" align="center" label="邮箱" />
-                <el-table-column prop="city" align="center" label="城市" />
-                <el-table-column
-                    prop="status"
-                    align="center"
-                    label="状态"
-                    width="70"
-                >
-                    <template #default="scope">
-                        <el-switch
-                            v-model="scope.row.status"
-                            :active-value="1"
-                            active-color="#13ce66"
-                            inactive-color="#ff4949"
-                            inline-prompt
-                            active-text="启"
-                            inactive-text="禁"
-                        ></el-switch>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    prop="add_time"
-                    align="center"
-                    label="添加时间"
-                    width="120"
-                />
-                <el-table-column
-                    prop="edit_time"
-                    align="center"
-                    label="修改时间"
-                    width="120"
-                />
-                <el-table-column
-                    prop="id"
-                    align="center"
-                    fixed="right"
-                    label="操作"
-                    width="120"
-                >
-                    <template #default="scope">
-                        <el-button
-                            type="info"
-                            :icon="Edit"
-                            circle
-                            @click="deleteInfo(scope.row.id)"
-                        ></el-button>
-                        <el-button
-                            type="danger"
-                            :icon="Delete"
-                            circle
-                            @click="deleteInfo(scope.row.id)"
-                        ></el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </template>
+        <MyTable
+            ref="myTableRef"
+            :column="data"
+            :data="tableData.data"
+            check-box
+            api="getUserListApi"
+            :params="params"
+            :init-request="true"
+            :on-load="true"
+            :format="formatData"
+            :index="true"
+            @onLoad="onLoad"
+        >
+            <template #operation="row">
+                <el-button
+                    type="info"
+                    :icon="Edit"
+                    circle
+                    @click="deleteInfo(row.data.id)"
+                ></el-button>
+                <el-button
+                    type="danger"
+                    :icon="Delete"
+                    circle
+                    @click="deleteInfo(row.data)"
+                ></el-button>
+            </template>
+            <template #img="row">
+                <el-avatar :src="row.data.img"></el-avatar>
+            </template>
+            <template #sex="row">
+                {{ Number(row.data.sex) === 1 ? '男' : '女' }}
+            </template>
+            <template #type="row">
+                <el-tag v-if="row.data.type === 0" type="danger">
+                    超级管理员
+                </el-tag>
+                <el-tag v-if="row.data.type === 1" type="warning">
+                    管理员
+                </el-tag>
+                <el-tag v-if="row.data.type === 2" type="success">用户</el-tag>
+            </template>
+            <template #status="row">
+                <el-switch
+                    v-model="row.data.status"
+                    :active-value="1"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949"
+                    inline-prompt
+                    active-text="启"
+                    inactive-text="禁"
+                ></el-switch>
+            </template>
+        </MyTable>
         <template #footer>
             <div class="query-item">
                 <el-pagination
@@ -206,7 +124,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { getUserListApi, deleteUserApi } from '@/api/system/userApi'
+    import { deleteUserApi } from '@/api/system/userApi'
     import {
         Search,
         Edit,
@@ -231,7 +149,6 @@
             label: '用户'
         }
     ])
-
     const shortcuts = ref([
         {
             text: '上周',
@@ -261,8 +178,8 @@
             }
         }
     ])
+
     // 查询列表
-    const table = ref()
     const tableData = reactive({
         name: '',
         type: '',
@@ -273,43 +190,84 @@
         data: [],
         loading: false
     })
-    const getNewsInfo = async (pageIndex?: number) => {
-        if (pageIndex) {
-            tableData.pageIndex = pageIndex
+    const data = ref([
+        { label: 'ID', prop: 'id', width: '70' },
+        { label: '姓名', prop: 'name', width: '100' },
+        {
+            label: '头像',
+            prop: 'img',
+            type: 'slot',
+            slot_name: 'img',
+            width: '80'
+        },
+        { label: '年龄', prop: 'age', width: '80', sort: true },
+        {
+            label: '性别',
+            prop: 'sex',
+            type: 'slot',
+            slot_name: 'sex',
+            width: '60'
+        },
+        {
+            label: '角色',
+            prop: 'type',
+            type: 'slot',
+            slot_name: 'type',
+            width: '110'
+        },
+        { label: '手机号', prop: 'phone', width: '150' },
+        { label: '邮箱', prop: 'email' },
+        { label: '城市', prop: 'city' },
+        {
+            label: '状态',
+            prop: 'status',
+            type: 'slot',
+            slot_name: 'status',
+            width: '70'
+        },
+        { label: '添加时间', prop: 'addTime', width: '120' },
+        { label: '修改时间', prop: 'editTime', width: '120' },
+        {
+            label: '操作',
+            prop: 'operation',
+            type: 'slot',
+            slot_name: 'operation',
+            width: '120'
         }
-        tableData.loading = true
-        const res = await getUserListApi({
-            id: 123
-        })
-        if (res.data && res.data.total && res.data.list) {
-            tableData.data = res.data?.list
-            tableData.total = res.data?.total
-            tableData.loading = false
-        } else {
-            ElMessage.warning('暂无数据！')
-        }
+    ])
+    const loginRef = ref()
+    const myTableRef = ref()
+    const params = reactive({
+        id: '123'
+    })
+
+    const search = () => {
+        console.log(loginRef.value)
+        // table.value.getTableList()
     }
 
-    watch(
-        () => tableData.pageIndex,
-        (value) => {
-            tableData.pageIndex = value
-            getNewsInfo()
-        }
-    )
+    const formatData = (val) => {
+        console.log(val, 'val1')
+        return val
+    }
+
+    const onLoad = (val) => {
+        console.log(val, 'val')
+    }
 
     // 删除用户
-    const deleteInfo = (id: any) => {
-        ElMessageBox.confirm('是否确认删除?', '提示', {
+    const deleteInfo = (val: any) => {
+        console.log(val)
+        ElMessageBox.confirm(`是否确认删除${val.name}?`, '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'error'
         })
             .then(async () => {
-                const res = await deleteUserApi({ id: id })
+                const res = await deleteUserApi({ id: val.id })
                 if (res.status === 200) {
                     ElMessage.success('删除成功!')
-                    await getNewsInfo()
+                    // await getNewsInfo()
                 }
             })
             .catch(() => {

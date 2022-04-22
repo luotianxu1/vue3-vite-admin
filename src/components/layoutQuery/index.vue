@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="table">
-            <slot name="table"></slot>
+            <slot></slot>
         </div>
         <div class="footer">
             <slot name="footer"></slot>
