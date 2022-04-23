@@ -1,16 +1,16 @@
 <template>
-    <LayoutQuery :loading="tableData.loading">
+    <LayoutQuery>
         <template #fl>
             <div class="query-item">
                 <el-input
-                    v-model="tableData.name"
+                    v-model="params.name"
                     placeholder="请输入用户姓名"
                     clearable
                 ></el-input>
             </div>
             <div class="query-item">
                 <el-select
-                    v-model="tableData.type"
+                    v-model="params.type"
                     placeholder="请选择用户角色"
                     clearable
                 >
@@ -24,7 +24,7 @@
             </div>
             <div class="query-item">
                 <el-date-picker
-                    v-model="tableData.time"
+                    v-model="params.time"
                     type="datetimerange"
                     range-separator="至"
                     start-placeholder="开始时间"
@@ -138,14 +138,18 @@
     const options = shallowReadonly([
         {
             value: '0',
-            label: '超级管理员'
+            label: '全部'
         },
         {
             value: '1',
-            label: '管理员'
+            label: '超级管理员'
         },
         {
             value: '2',
+            label: '管理员'
+        },
+        {
+            value: '3',
             label: '用户'
         }
     ])
@@ -179,18 +183,20 @@
         }
     ])
 
+    const myTableRef = ref()
     // 查询列表
     const tableData = reactive({
-        name: '',
-        type: '',
-        time: '',
         pageIndex: 1,
         pageSize: 25,
         total: 0,
-        data: [],
-        loading: false
+        data: []
     })
-    const data = ref([
+    const params = reactive({
+        name: '',
+        type: '0',
+        time: ''
+    })
+    const data = shallowReadonly([
         { label: 'ID', prop: 'id', width: '70' },
         { label: '姓名', prop: 'name', width: '70' },
         {
@@ -235,10 +241,6 @@
             width: '120'
         }
     ])
-    const myTableRef = ref()
-    const params = reactive({
-        id: '123'
-    })
 
     const search = () => {
         myTableRef.value.getTableList()
@@ -249,7 +251,7 @@
     }
 
     const onLoad = (val) => {
-        console.log(val, 'val')
+        tableData.data = val
     }
 
     // 删除用户
@@ -264,7 +266,7 @@
                 const res = await deleteUserApi({ id: val.id })
                 if (res.status === 200) {
                     ElMessage.success('删除成功!')
-                    // await getNewsInfo()
+                    await search()
                 }
             })
             .catch(() => {

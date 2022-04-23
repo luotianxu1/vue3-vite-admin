@@ -148,6 +148,7 @@
         }
     })
     const getTableList = async () => {
+        console.log(props.params,'params')
         tableData.loading = true
         const res = await api[props.api]({
             ...props.params
