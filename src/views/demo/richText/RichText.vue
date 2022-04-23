@@ -14,7 +14,7 @@
             </div>
         </template>
         <TextEditor
-            ref="textModel"
+            ref="editor"
             v-model="text"
             :disable="disable"
             auto-focus
@@ -25,11 +25,11 @@
 
 <script setup lang="ts">
     const text = ref('')
-
     const disable = ref(false)
+    const editor = ref()
 
     setTimeout(() => {
-        text.value = '<h1>1234</h1>'
+        editor.value.setValue('<h1>1234</h1>')
     }, 2000)
 </script>
 

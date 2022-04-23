@@ -60,14 +60,6 @@
         }
     )
 
-    const unWatch = watch(
-        () => props.modelValue,
-        (val) => {
-            valueHtml.value = val
-            unWatch() // 取消监视
-        }
-    )
-
     // 编辑器实例，必须用 shallowRef
     const editorRef = shallowRef()
 
@@ -131,6 +123,7 @@
         }
     }
 
+    // 是否禁用
     const isDisable = (val) => {
         if (val) {
             editorRef.value.disable()
@@ -139,9 +132,19 @@
         }
     }
 
+    // 限制字数
     const maxLength = () => {
         ElMessage.warning(`最多输入${props.max}个文字！`)
     }
+
+    // 设置值
+    const setValue = (val) => {
+        valueHtml.value = val
+    }
+
+    defineExpose({
+        setValue
+    })
 </script>
 
 <style scoped lang="scss"></style>
