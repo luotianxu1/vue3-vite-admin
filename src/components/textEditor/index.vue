@@ -1,5 +1,5 @@
 <template>
-    <div style="border: 1px solid #ccc; margin: 20px">
+    <div style="border: 1px solid #ccc">
         <Toolbar
             style="border-bottom: 1px solid #ccc"
             :editor="editorRef"
@@ -57,6 +57,14 @@
         () => props.disable,
         (val) => {
             isDisable(val)
+        }
+    )
+
+    const unWatch = watch(
+        () => props.modelValue,
+        (val) => {
+            valueHtml.value = val
+            unWatch() // 取消监视
         }
     )
 
