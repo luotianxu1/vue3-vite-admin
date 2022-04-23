@@ -14,7 +14,7 @@
                 </el-icon>
             </span>
             <template #dropdown>
-                <el-dropdown-menu class="down">
+                <el-dropdown-menu>
                     <el-dropdown-item command="userCenter">
                         个人中心
                     </el-dropdown-item>

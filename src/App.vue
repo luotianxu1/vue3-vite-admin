@@ -3,6 +3,7 @@
         :z-index="3000"
         :locale="localLanguage"
         :message="config"
+        :size="size"
     >
         <router-view></router-view>
     </el-config-provider>
@@ -30,6 +31,8 @@
     const config = reactive({
         max: 3
     })
+
+    const size = ref<'large' | 'default' | 'small'>('default')
 </script>
 
 <style></style>

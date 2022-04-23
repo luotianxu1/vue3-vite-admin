@@ -14,10 +14,10 @@
             type: Array as PropType<any>,
             default: () => []
         },
-		    options: {
-						type: Object as PropType<Sortable.Options>,
-				    default: () => {}
-		    }
+        options: {
+            type: Object as PropType<Sortable.Options>,
+            default: () => {}
+        }
     })
 
     const emit = defineEmits(['update:model-value'])

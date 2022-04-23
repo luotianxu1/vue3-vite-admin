@@ -1,5 +1,5 @@
 <template>
-    <LayoutQuery ref="loginRef" :loading="tableData.loading">
+    <LayoutQuery :loading="tableData.loading">
         <template #fl>
             <div class="query-item">
                 <el-input
@@ -63,7 +63,7 @@
             check-box
             api="getUserListApi"
             :params="params"
-            :init-request="true"
+            :init-request="false"
             :on-load="true"
             :format="formatData"
             :index="true"
@@ -149,7 +149,7 @@
             label: '用户'
         }
     ])
-    const shortcuts = ref([
+    const shortcuts = shallowReadonly([
         {
             text: '上周',
             value: () => {
@@ -235,19 +235,16 @@
             width: '120'
         }
     ])
-    const loginRef = ref()
     const myTableRef = ref()
     const params = reactive({
         id: '123'
     })
 
     const search = () => {
-        console.log(loginRef.value)
-        // table.value.getTableList()
+        myTableRef.value.getTableList()
     }
 
     const formatData = (val) => {
-        console.log(val, 'val1')
         return val
     }
 

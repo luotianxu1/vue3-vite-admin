@@ -74,41 +74,41 @@
         },
         stripe: {
             type: Boolean,
-            default: () => true
+            default: true
         },
         border: {
             type: Boolean,
-            default: () => true
+            default: true
         },
         highlightCurrentRow: {
             type: Boolean,
-            default: () => true
+            default: true
         },
         size: {
             type: String,
-            default: () => 'default'
+            default: 'default'
         },
         align: {
             type: String,
-            default: () => 'center'
+            default: 'center'
         },
         fixedIndex: {
             type: Boolean,
-            default: () => false
+            default: false
         },
         fixedCheck: {
             type: Boolean,
-            default: () => false
+            default: false
         },
         emptyText: {
             type: String,
-            default: () => '暂无数据！'
+            default: '暂无数据！'
         },
         checkBox: Boolean,
         index: Boolean,
         api: {
             type: String,
-            default: () => ''
+            default: ''
         },
         params: {
             type: Object,
@@ -171,6 +171,10 @@
     const handleSelectionChange = (val) => {
         console.log(val)
     }
+
+    defineExpose({
+        getTableList
+    })
 </script>
 
 <style scoped lang="scss"></style>
