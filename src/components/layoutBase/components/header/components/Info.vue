@@ -1,9 +1,7 @@
 <template>
     <div class="info">
         <el-popover placement="bottom" :width="400" trigger="click">
-            <slot>
-                <List></List>
-            </slot>
+            123
             <template #reference>
                 <el-badge :value="12">
                     <i class="iconfont xiaoxi"></i>
