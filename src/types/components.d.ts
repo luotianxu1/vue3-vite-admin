@@ -51,8 +51,9 @@ declare module 'vue' {
     LayoutQuery: typeof import('./../components/layoutQuery/index.vue')['default']
     List: typeof import('./../components/list/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
+    MyDraggable: typeof import('./../components/myDraggable/index.vue')['default']
     MyTable: typeof import('./../components/myTable/index.vue')['default']
-    TextEditor: typeof import('./../components/textEditor/index.vue')['default']
+    MyTextEditor: typeof import('./../components/myTextEditor/index.vue')['default']
   }
 }
 

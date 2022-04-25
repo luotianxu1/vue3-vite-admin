@@ -1,4 +1,5 @@
 import request from '@/api/request'
+import { ResponseData } from '@/api/type'
 
 interface LoginParams {
     password: string,
@@ -17,12 +18,6 @@ interface LoginData {
     img: string,
     addTime: string,
     editTime: string
-}
-
-interface ResponseData<T> {
-    status: number,
-    message: string,
-    data?: T | null
 }
 
 interface RegisterParams extends LoginParams{

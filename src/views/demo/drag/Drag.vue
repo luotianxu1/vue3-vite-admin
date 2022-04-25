@@ -1,14 +1,14 @@
 <template>
-    <Draggable v-model="activities">
+    <MyDraggable v-model="activities">
         <el-tag
-            v-for="(item, index) in activities"
-            :key="index"
+            v-for="item in activities"
+            :key="item.type"
             :type="item.type"
             effect="dark"
         >
             {{ item.name }}
         </el-tag>
-    </Draggable>
+    </MyDraggable>
 		{{activities}}
 </template>
 

@@ -13,13 +13,13 @@
                 {{text}}
             </div>
         </template>
-        <TextEditor
+        <MyTextEditor
             ref="editor"
             v-model="text"
             :disable="disable"
             auto-focus
             text
-        ></TextEditor>
+        ></MyTextEditor>
     </LayoutQuery>
 </template>
 
