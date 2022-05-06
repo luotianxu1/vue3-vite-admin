@@ -35,6 +35,7 @@
         text-align: center;
         font-size: 24px;
         line-height: 100px;
+        margin: 10px;
     }
     .widget-list {
         width: 200px;
