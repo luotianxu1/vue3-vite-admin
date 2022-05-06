@@ -11,8 +11,8 @@
             <TreeMenu :tree-data="item.children"></TreeMenu>
         </el-sub-menu>
         <el-menu-item v-else :index="item.url">
+            <Icon :padding="5" :icon="item.icon"></Icon>
             <template #title>
-                <Icon :padding="5" :icon="item.icon"></Icon>
                 <span>{{ item.name }}</span>
             </template>
         </el-menu-item>
