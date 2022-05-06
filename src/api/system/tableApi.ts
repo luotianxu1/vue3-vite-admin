@@ -10,4 +10,4 @@ interface UserList {
     total: number
 }
 
-export const getUserPageList = (data: PageListParams): Promise<ResponseData<UserList>> => request.post('/api/pageListV2', data)
+export const getUserPageList = (data: PageListParams): Promise<ResponseData<UserList>> => request.post('/api/userList', data)

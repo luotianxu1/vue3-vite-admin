@@ -148,11 +148,11 @@
         }
     })
     const getTableList = async () => {
-        console.log(props.params,'params')
         tableData.loading = true
         const res = await api[props.api]({
             ...props.params
         })
+        console.log(res)
         if (res.data && res.data.total && res.data.list) {
             if (props.format && typeof props.format === 'function') {
                 tableData.data = props.format(res.data.list)

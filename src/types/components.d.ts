@@ -5,15 +5,11 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ChangeLanguage: typeof import('./../components/changeLanguage/index.vue')['default']
-    Dialog: typeof import('./../components/dialog/index.vue')['default']
-    Draggable: typeof import('./../components/draggable/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
@@ -51,7 +47,6 @@ declare module 'vue' {
     LayoutBaseComponentsSidebarSidebar: typeof import('./../components/layoutBase/components/sidebar/Sidebar.vue')['default']
     LayoutOpen: typeof import('./../components/layoutOpen/index.vue')['default']
     LayoutQuery: typeof import('./../components/layoutQuery/index.vue')['default']
-    List: typeof import('./../components/list/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     MyDialog: typeof import('./../components/myDialog/index.vue')['default']
     MyDraggable: typeof import('./../components/myDraggable/index.vue')['default']

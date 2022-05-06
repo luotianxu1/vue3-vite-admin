@@ -61,7 +61,7 @@
             :column="data"
             :data="tableData.data"
             check-box
-            api="getUserListApi"
+            api="getUserPageList"
             :params="params"
             :init-request="false"
             :on-load="true"
