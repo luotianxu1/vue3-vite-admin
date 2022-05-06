@@ -9,7 +9,7 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <Icon icon="yonghu" :width="800" :font="22"></Icon>
+                            <MyIcon icon="yonghu" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">用户</span>
                     </span>
@@ -21,7 +21,7 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <Icon icon="caidan1" :width="800" :font="22"></Icon>
+                            <MyIcon icon="caidan1" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">菜单</span>
                     </span>
@@ -33,7 +33,7 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <Icon icon="rili" :width="800" :font="22"></Icon>
+                            <MyIcon icon="rili" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">日历</span>
                     </span>
@@ -45,7 +45,7 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <Icon icon="gongju" :width="800" :font="22"></Icon>
+                            <MyIcon icon="gongju" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">工具</span>
                     </span>
@@ -57,7 +57,7 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <Icon icon="ditu" :width="800" :font="22"></Icon>
+                            <MyIcon icon="ditu" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">地图</span>
                     </span>

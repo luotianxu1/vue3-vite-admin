@@ -5,13 +5,13 @@
             :index="item.url"
         >
             <template #title>
-                <Icon :padding="5" :icon="item.icon"></Icon>
+                <MyIcon :padding="5" :icon="item.icon"></MyIcon>
                 <span>{{ item.name }}</span>
             </template>
             <TreeMenu :tree-data="item.children"></TreeMenu>
         </el-sub-menu>
         <el-menu-item v-else :index="item.url">
-            <Icon :padding="5" :icon="item.icon"></Icon>
+            <MyIcon :padding="5" :icon="item.icon"></MyIcon>
             <template #title>
                 <span>{{ item.name }}</span>
             </template>

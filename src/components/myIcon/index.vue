@@ -5,7 +5,7 @@
         :style="{
             fontSize: fontSize,
             color: props.color,
-            fontWeight: width,
+            fontWeight: props.width,
             padding: paddingNum
         }"
     ></i>

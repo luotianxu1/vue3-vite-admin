@@ -36,7 +36,7 @@
             <el-table-column prop="name" align="center" label="名称" />
             <el-table-column prop="icon" align="center" label="图标">
                 <template #default="scope">
-                    <Icon :icon="scope.row.icon"></Icon>
+                    <MyIcon :icon="scope.row.icon"></MyIcon>
                 </template>
             </el-table-column>
             <el-table-column prop="url" align="center" label="链接" />

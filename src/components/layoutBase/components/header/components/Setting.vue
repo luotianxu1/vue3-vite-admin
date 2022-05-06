@@ -1,7 +1,7 @@
 <template>
     <div class="systemSetting">
         <el-tooltip content="系统设置" placement="bottom" effect="light">
-            <Icon icon="setting" :font="25"></Icon>
+            <MyIcon icon="setting" :font="25"></MyIcon>
         </el-tooltip>
     </div>
 </template>

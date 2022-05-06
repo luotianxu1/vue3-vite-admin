@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div class="counter-container">
-            <Icon icon="bilibili" :font="48"></Icon>
+            <MyIcon icon="bilibili" :font="48"></MyIcon>
             <div ref="counter" class="counter" data-num="500">{{ num }}</div>
             <span>粉丝数</span>
         </div>

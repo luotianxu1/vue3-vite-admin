@@ -15,10 +15,10 @@
             />
         </router-view>
         <div class="sidebarBox" @click="changAside">
-            <Icon
+            <MyIcon
                 :icon="isCollapse ? 'xiangyou' : 'xiangzuo'"
                 :font="14"
-            ></Icon>
+            ></MyIcon>
         </div>
     </div>
 </template>
