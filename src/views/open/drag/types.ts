@@ -5,11 +5,19 @@ export interface List {
     w: number
     h: number
     label: string
-    component: string
+    component: string,
+    data: any,
+    focused: Boolean
 }
 
+// 组件列表
 export interface WidgetList {
     type: string
     label: string
     components: string
+    default: {
+        w: number,
+        h: number,
+        data: any
+    }
 }

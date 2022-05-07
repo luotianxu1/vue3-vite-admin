@@ -1,30 +1,22 @@
+import * as defaultData from './default'
 // 组件列表配置项
 export const WIDGET_LIST = [
     {
         type: 'area-chart',
         components: 'AreaChart',
         label: '面积图',
-        default: {
-            w: 150,
-            h: 150
-        }
+        default: defaultData.AREA_CHART
     },
     {
         type: 'bar-chart',
         components: 'BarChart',
         label: '柱状图',
-        default: {
-            w: 300,
-            h: 150
-        }
+        default: defaultData.BAR_CHART
     },
     {
         type: 'text',
-        components: 'AreaChart',
+        components: 'CustomText',
         label: '文字',
-        default: {
-            w: 200,
-            h: 50
-        }
+        default: defaultData.TEXT
     }
 ]

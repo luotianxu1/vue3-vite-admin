@@ -12,11 +12,13 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^0.2.4",
+    "@types/echarts": "^4.9.15",
     "@wangeditor/editor": "^5.0.1",
     "@wangeditor/editor-for-vue": "^5.1.10",
     "axios": "^0.26.1",
     "dayjs": "^1.11.0",
     "driver.js": "^0.9.8",
+    "echarts": "^5.3.2",
     "element-plus": "^2.1.11",
     "nprogress": "^1.0.0-0",
     "screenfull": "^5.1.0",
