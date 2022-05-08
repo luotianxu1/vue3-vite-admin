@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" @click='closeContentMenu'>
         <WidgetListBox
             :list="widgetList"
             @onWidgetMouseDown="onWidgetMouseDown"
@@ -16,12 +16,23 @@
                 :style="`transform: translate(${item.x}px,${item.y}px)`"
                 :draggable="true"
                 :resizable="true"
+                @contextmenu.prevent="onButtonClick($event)"
             >
                 <component
                     :is="componentsList[item.component]"
                     :data="item.data"
                 ></component>
             </Vue3DraggableResizable>
+        </div>
+        <div
+            v-if="show"
+            class="menu"
+            :style="{ left: options.w + 'px', top: options.h + 'px' }"
+        >
+            <ul>
+                <li>置于顶层</li>
+                <li>置于底层</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -78,6 +89,21 @@
             focused: true
         })
     }
+
+    // 右键菜单
+    const show = ref(false)
+    const options = reactive({
+        w: 0,
+        h: 0
+    })
+    const onButtonClick = (e: MouseEvent) => {
+        options.w = e.clientX
+        options.h = e.clientY
+        show.value = true
+    }
+    const closeContentMenu = () => {
+        show.value = false
+    }
 </script>
 
 <style scoped lang="scss">
@@ -95,6 +121,10 @@
 
     .box {
         outline: 1px solid blue;
+        position: absolute;
+    }
+
+    .menu {
         position: absolute;
     }
 </style>

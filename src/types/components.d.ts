@@ -47,6 +47,7 @@ declare module 'vue' {
     LayoutOpen: typeof import('./../components/layoutOpen/index.vue')['default']
     LayoutQuery: typeof import('./../components/layoutQuery/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
+    MyContentMenu: typeof import('./../components/myContentMenu/index.vue')['default']
     MyDialog: typeof import('./../components/myDialog/index.vue')['default']
     MyDraggable: typeof import('./../components/myDraggable/index.vue')['default']
     MyIcon: typeof import('./../components/myIcon/index.vue')['default']
