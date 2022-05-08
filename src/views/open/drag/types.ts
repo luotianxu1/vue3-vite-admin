@@ -4,6 +4,7 @@ export interface List {
     y: number
     w: number
     h: number
+    z: number
     label: string
     component: string,
     data: any,

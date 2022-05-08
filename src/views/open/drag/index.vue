@@ -1,5 +1,5 @@
 <template>
-    <div class="main" @click='closeContentMenu'>
+    <div class="main" @click="closeContentMenu">
         <WidgetListBox
             :list="widgetList"
             @onWidgetMouseDown="onWidgetMouseDown"
@@ -10,13 +10,16 @@
                 v-for="item in list"
                 :key="item.id"
                 v-model:active="item.focused"
-                class="box"
+                v-model:x="item.x"
+                v-model:y="item.y"
                 :init-w="item.w"
                 :init-h="item.h"
-                :style="`transform: translate(${item.x}px,${item.y}px)`"
+                class="box"
                 :draggable="true"
                 :resizable="true"
-                @contextmenu.prevent="onButtonClick($event)"
+                :style="{ zIndex: item.z }"
+                @contextmenu.prevent="onButtonClick($event, item)"
+                @click="onFocus(item)"
             >
                 <component
                     :is="componentsList[item.component]"
@@ -30,8 +33,8 @@
             :style="{ left: options.w + 'px', top: options.h + 'px' }"
         >
             <ul>
-                <li>置于顶层</li>
-                <li>置于底层</li>
+                <li @click.prevent.stop="onLayerTop">置顶</li>
+                <li @click.prevent.stop="onLayerBottom">置底</li>
             </ul>
         </div>
     </div>
@@ -46,6 +49,7 @@
     import AreaChart from './components/content/arra-chart/index.vue'
     import BarChart from './components/content/bar-chart/index.vue'
     import CustomText from './components/content/custom-text/index.vue'
+    import { ElMessage } from 'element-plus'
 
     // 动态组件列表
     const componentsList = {
@@ -74,20 +78,20 @@
         if (!currentWidget.value) {
             return
         }
-        for (const item of list.value) {
-            item.focused = false
-        }
-        list.value.push({
+        const newItem = {
             id: currentId++,
             x: e.offsetX - widgetX.value,
             y: e.offsetY - widgetY.value,
             w: currentWidget.value.default.w,
             h: currentWidget.value.default.h,
+            z: list.value.length === 0 ? 0 : (Math.max(...list.value.map(item => item.z)) || 0) + 1,
             label: currentWidget.value.label,
             component: currentWidget.value.components,
             data: currentWidget.value.default.data,
             focused: true
-        })
+        }
+        list.value.push(newItem)
+        onFocus(newItem)
     }
 
     // 右键菜单
@@ -96,13 +100,47 @@
         w: 0,
         h: 0
     })
-    const onButtonClick = (e: MouseEvent) => {
+    // 组件点击右键
+    const onButtonClick = (e: MouseEvent, item: List) => {
         options.w = e.clientX
         options.h = e.clientY
         show.value = true
+        onFocus(item)
     }
+    // 当前选中的id
+    const chooseId = ref<number>()
+    // 当前项获取焦点，其他项取消焦点
+    const onFocus = (currentItem) => {
+        chooseId.value = currentItem.id
+    }
+    // 关闭右键弹窗
     const closeContentMenu = () => {
         show.value = false
+    }
+
+    // 操作图层
+    const onLayerTop = () => {
+
+    }
+    const onLayerBottom = () => {
+        const currentItem = list.value.find(item => item.id === chooseId.value)
+        if (!currentItem) {
+            return
+        }
+        const minZ = Math.min(...list.value.map(item => item.z)) || 0
+        if (currentItem.z === minZ) {
+            ElMessage.warning('已经是最底层了')
+            return
+        }
+        if (minZ - 1 < 0) {
+            list.value = list.value.map(item => {
+                item.z -= minZ - 1
+                return item
+            })
+            currentItem.z = 0
+        } else {
+            currentItem.z = minZ - 1
+        }
     }
 </script>
 
@@ -126,5 +164,6 @@
 
     .menu {
         position: absolute;
+        z-index: 999999;
     }
 </style>
