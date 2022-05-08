@@ -35,6 +35,9 @@
             <ul>
                 <li @click.prevent.stop="onLayerTop">置顶</li>
                 <li @click.prevent.stop="onLayerBottom">置底</li>
+                <li @click.prevent.stop="onLayerUp">上移图层</li>
+                <li @click.prevent.stop="onLayerDown">下移图层</li>
+                <li @click.prevent.stop="onLayerRemove">删除图层</li>
             </ul>
         </div>
     </div>
@@ -120,20 +123,23 @@
 
     // 操作图层
     const onLayerTop = () => {
-
-    }
-    const onLayerBottom = () => {
-        const currentItem = list.value.find(item => item.id === chooseId.value)
-        if (!currentItem) {
+        closeContentMenu()
+        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const maxZ = findTopLayer(currentItem)
+        if (!currentItem || !maxZ) {
             return
         }
-        const minZ = Math.min(...list.value.map(item => item.z)) || 0
-        if (currentItem.z === minZ) {
-            ElMessage.warning('已经是最底层了')
+        currentItem.z = maxZ + 1
+    }
+    const onLayerBottom = () => {
+        closeContentMenu()
+        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const minZ = findBottomLayer(currentItem)
+        if (!currentItem || minZ === false) {
             return
         }
         if (minZ - 1 < 0) {
-            list.value = list.value.map(item => {
+            list.value = list.value.map((item) => {
                 item.z -= minZ - 1
                 return item
             })
@@ -141,6 +147,48 @@
         } else {
             currentItem.z = minZ - 1
         }
+    }
+    const onLayerUp = () => {
+        closeContentMenu()
+        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        if (!currentItem || !findTopLayer(currentItem)) {
+            return
+        }
+        currentItem.z ++
+        const upstairs = list.value.find(item => item.z === currentItem.z)
+        upstairs && (upstairs.z--)
+    }
+    const onLayerDown = () => {
+        closeContentMenu()
+        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        if (!currentItem || findBottomLayer(currentItem) === false) {
+            return
+        }
+        currentItem.z --
+        const downstairs = list.value.find(item => item.z === currentItem.z)
+        downstairs && (downstairs.z++)
+    }
+    const onLayerRemove = () => {
+        closeContentMenu()
+        list.value = list.value.filter(item => item.id !== chooseId.value)
+    }
+    // 判断最底层
+    const findBottomLayer = (currentItem) => {
+        const minZ = Math.min(...list.value.map((item) => item.z)) || 0
+        if (currentItem.z === minZ) {
+            ElMessage.warning('已经是最底层了')
+            return false
+        }
+        return minZ
+    }
+    // 判断最顶层
+    const findTopLayer = (currentItem) => {
+        const maxZ = Math.max(...list.value.map((item) => item.z)) || 0
+        if (currentItem.z === maxZ) {
+            ElMessage.warning('已经是最顶层了')
+            return
+        }
+        return maxZ
     }
 </script>
 
