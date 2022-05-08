@@ -68,7 +68,6 @@
     const widgetY = ref(0)
     const currentWidget = ref<WidgetList>()
     const onWidgetMouseDown = (e: MouseEvent, widget: WidgetList) => {
-        widgetX.value = e.offsetX
         widgetY.value = e.offsetY
         currentWidget.value = widget
     }
@@ -154,9 +153,9 @@
         if (!currentItem || !findTopLayer(currentItem)) {
             return
         }
-        currentItem.z ++
-        const upstairs = list.value.find(item => item.z === currentItem.z)
+        const upstairs = list.value.find(item => item.z === currentItem.z + 1)
         upstairs && (upstairs.z--)
+        currentItem.z ++
     }
     const onLayerDown = () => {
         closeContentMenu()
@@ -164,9 +163,9 @@
         if (!currentItem || findBottomLayer(currentItem) === false) {
             return
         }
-        currentItem.z --
-        const downstairs = list.value.find(item => item.z === currentItem.z)
+        const downstairs = list.value.find(item => item.z === currentItem.z - 1)
         downstairs && (downstairs.z++)
+        currentItem.z --
     }
     const onLayerRemove = () => {
         closeContentMenu()
