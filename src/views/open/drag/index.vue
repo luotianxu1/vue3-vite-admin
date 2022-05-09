@@ -1,9 +1,20 @@
 <template>
     <div class="main" @click="closeContentMenu">
-        <WidgetListBox
-            :list="widgetList"
-            @onWidgetMouseDown="onWidgetMouseDown"
-        ></WidgetListBox>
+		    <el-tabs v-model="sidebarType" class="sidebar">
+				    <el-tab-pane label="图层列表" name="layer">
+						    <ul>
+								    <li v-for="item in list" :key="item.id">
+										    {{ item.label }}
+								    </li>
+						    </ul>
+				    </el-tab-pane>
+				    <el-tab-pane label="组件列表" name="widget">
+						    <WidgetListBox
+								    :list="widgetList"
+								    @onWidgetMouseDown="onWidgetMouseDown"
+						    ></WidgetListBox>
+				    </el-tab-pane>
+		    </el-tabs>
         <!--操作面板-->
         <div class="panel" @dragover="(e) => e.preventDefault()" @drop="onDrop">
             <Vue3DraggableResizable
@@ -61,6 +72,8 @@
         CustomText: CustomText
     }
 
+    const sidebarType = ref('widget')
+
     // 组件列表
     const widgetList = ref<Array<WidgetList>>(CONFIG.WIDGET_LIST)
     // 小组件鼠标落下
@@ -86,7 +99,7 @@
             y: e.offsetY - widgetY.value,
             w: currentWidget.value.default.w,
             h: currentWidget.value.default.h,
-            z: list.value.length === 0 ? 0 : (Math.max(...list.value.map(item => item.z)) || 0) + 1,
+            z: list.value.length === 0 ? 0 : (Math.max(...list.value.map((item) => item.z)) || 0) + 1,
             label: currentWidget.value.label,
             component: currentWidget.value.components,
             data: currentWidget.value.default.data,
@@ -94,6 +107,7 @@
         }
         list.value.push(newItem)
         onFocus(newItem)
+		    sortList()
     }
 
     // 右键菜单
@@ -123,17 +137,22 @@
     // 图层置顶
     const onLayerTop = () => {
         closeContentMenu()
-        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const currentItem = list.value.find(
+            (item) => item.id === chooseId.value
+        )
         const maxZ = findTopLayer(currentItem)
         if (!currentItem || !maxZ) {
             return
         }
         currentItem.z = maxZ + 1
+		    sortList()
     }
-		// 图层置底
+    // 图层置底
     const onLayerBottom = () => {
         closeContentMenu()
-        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const currentItem = list.value.find(
+            (item) => item.id === chooseId.value
+        )
         const minZ = findBottomLayer(currentItem)
         if (!currentItem || minZ === false) {
             return
@@ -147,33 +166,43 @@
         } else {
             currentItem.z = minZ - 1
         }
+		    sortList()
     }
-		// 上移图层
+    // 上移图层
     const onLayerUp = () => {
         closeContentMenu()
-        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const currentItem = list.value.find(
+            (item) => item.id === chooseId.value
+        )
         if (!currentItem || !findTopLayer(currentItem)) {
             return
         }
-        const upstairs = list.value.find(item => item.z === currentItem.z + 1)
-        upstairs && (upstairs.z--)
-        currentItem.z ++
+        const upstairs = list.value.find((item) => item.z === currentItem.z + 1)
+        upstairs && upstairs.z--
+        currentItem.z++
+		    sortList()
     }
-		// 下移图层
+    // 下移图层
     const onLayerDown = () => {
         closeContentMenu()
-        const currentItem = list.value.find((item) => item.id === chooseId.value)
+        const currentItem = list.value.find(
+            (item) => item.id === chooseId.value
+        )
         if (!currentItem || findBottomLayer(currentItem) === false) {
             return
         }
-        const downstairs = list.value.find(item => item.z === currentItem.z - 1)
-        downstairs && (downstairs.z++)
-        currentItem.z --
+        const downstairs = list.value.find(
+            (item) => item.z === currentItem.z - 1
+        )
+        downstairs && downstairs.z++
+        currentItem.z--
+		    sortList()
     }
-		// 删除图层
+    // 删除图层
     const onLayerRemove = () => {
         closeContentMenu()
-        list.value = list.value.filter(item => item.id !== chooseId.value)
+        list.value = list.value.filter((item) => item.id !== chooseId.value)
+		    sortList()
     }
     // 判断最底层
     const findBottomLayer = (currentItem) => {
@@ -193,6 +222,10 @@
         }
         return maxZ
     }
+		// 更新图层顺序
+		const sortList = () => {
+				list.value.sort((a,b) => b.z - a.z)
+		}
 </script>
 
 <style scoped lang="scss">
@@ -200,6 +233,11 @@
         display: flex;
         height: 100vh;
         width: 100vw;
+    }
+
+    .sidebar {
+		    width: 200px;
+		    background-color: #e9e9e9;
     }
 
     .panel {

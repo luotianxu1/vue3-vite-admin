@@ -1,6 +1,6 @@
 <template>
     <!--组件列表-->
-    <div class="widget-list">
+    <div>
         <div
             v-for="widget in props.list"
             :key="widget.type"
@@ -36,9 +36,5 @@
         font-size: 24px;
         line-height: 100px;
         margin: 10px;
-    }
-    .widget-list {
-        width: 200px;
-        background-color: #e9e9e9;
     }
 </style>
