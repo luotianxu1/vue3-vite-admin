@@ -120,7 +120,7 @@
         show.value = false
     }
 
-    // 操作图层
+    // 图层置顶
     const onLayerTop = () => {
         closeContentMenu()
         const currentItem = list.value.find((item) => item.id === chooseId.value)
@@ -130,6 +130,7 @@
         }
         currentItem.z = maxZ + 1
     }
+		// 图层置底
     const onLayerBottom = () => {
         closeContentMenu()
         const currentItem = list.value.find((item) => item.id === chooseId.value)
@@ -147,6 +148,7 @@
             currentItem.z = minZ - 1
         }
     }
+		// 上移图层
     const onLayerUp = () => {
         closeContentMenu()
         const currentItem = list.value.find((item) => item.id === chooseId.value)
@@ -157,6 +159,7 @@
         upstairs && (upstairs.z--)
         currentItem.z ++
     }
+		// 下移图层
     const onLayerDown = () => {
         closeContentMenu()
         const currentItem = list.value.find((item) => item.id === chooseId.value)
@@ -167,6 +170,7 @@
         downstairs && (downstairs.z++)
         currentItem.z --
     }
+		// 删除图层
     const onLayerRemove = () => {
         closeContentMenu()
         list.value = list.value.filter(item => item.id !== chooseId.value)

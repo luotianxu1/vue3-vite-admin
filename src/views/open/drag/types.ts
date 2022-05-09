@@ -8,7 +8,7 @@ export interface List {
     label: string
     component: string,
     data: any,
-    focused: Boolean
+    focused: boolean
 }
 
 // 组件列表
