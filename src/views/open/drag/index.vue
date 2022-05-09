@@ -15,29 +15,40 @@
                 ></WidgetListBox>
             </el-tab-pane>
         </el-tabs>
-        <!--操作面板-->
-        <div class="panel" @dragover="(e) => e.preventDefault()" @drop="onDrop">
-            <Vue3DraggableResizable
-                v-for="item in list"
-                :key="item.id"
-                v-model:active="item.focused"
-                v-model:x="item.x"
-                v-model:y="item.y"
-                :init-w="item.w"
-                :init-h="item.h"
-                class="box"
-                :draggable="true"
-                :resizable="true"
-                :style="{ zIndex: item.z }"
-                @contextmenu.prevent="onButtonClick($event, item)"
-                @click="onFocus(item)"
+        <div class="center">
+            <el-button type="primary" @click="withDraw">撤回</el-button>
+            <el-button type="primary" @click="withDrawR">反撤回</el-button>
+            <!--操作面板-->
+            <div
+                class="panel"
+                @dragover="(e) => e.preventDefault()"
+                @drop="onDrop"
             >
-                <component
-                    :is="componentsList[item.component]"
-                    :data="item.data"
-                ></component>
-            </Vue3DraggableResizable>
+                <Vue3DraggableResizable
+                    v-for="item in list"
+                    :key="item.id"
+                    v-model:active="item.focused"
+                    v-model:x="item.x"
+                    v-model:y="item.y"
+                    :init-w="item.w"
+                    :init-h="item.h"
+                    class="box"
+                    :draggable="true"
+                    :resizable="true"
+                    :style="{ zIndex: item.z }"
+                    @drag-end="dragEndHandle"
+                    @resize-end="resizeEndHandle"
+                    @contextmenu.prevent="onButtonClick($event, item)"
+                    @click="onFocus(item)"
+                >
+                    <component
+                        :is="componentsList[item.component]"
+                        :data="item.data"
+                    ></component>
+                </Vue3DraggableResizable>
+            </div>
         </div>
+
         <div
             v-if="show"
             class="menu"
@@ -106,6 +117,7 @@
         list.value.push(newItem)
         onFocus(newItem)
         sortList()
+        record()
     }
 
     // 右键菜单
@@ -144,6 +156,7 @@
         }
         currentItem.z = maxZ + 1
         sortList()
+        record()
     }
     // 图层置底
     const onLayerBottom = () => {
@@ -165,6 +178,7 @@
             currentItem.z = minZ - 1
         }
         sortList()
+        record()
     }
     // 上移图层
     const onLayerUp = () => {
@@ -179,6 +193,7 @@
         upstairs && upstairs.z--
         currentItem.z++
         sortList()
+        record()
     }
     // 下移图层
     const onLayerDown = () => {
@@ -189,18 +204,18 @@
         if (!currentItem || findBottomLayer(currentItem) === false) {
             return
         }
-        const downstairs = list.value.find(
-            (item) => item.z === currentItem.z - 1
-        )
+        const downstairs = list.value.find((item) => item.z === currentItem.z - 1)
         downstairs && downstairs.z++
         currentItem.z--
         sortList()
+        record()
     }
     // 删除图层
     const onLayerRemove = () => {
         closeContentMenu()
         list.value = list.value.filter((item) => item.id !== chooseId.value)
         sortList()
+        record()
     }
     // 判断最底层
     const findBottomLayer = (currentItem) => {
@@ -234,6 +249,40 @@
             item.z = len - i
         })
     }
+
+    const recordList: any[] = []
+    const recordListR: any[] = []
+    // 记录历时数据
+    const record = () => {
+        if (list.value) {
+            recordList.push(JSON.parse(JSON.stringify(list.value)))
+        }
+    }
+    // 撤回
+    const withDraw = () => {
+		    if (recordList.length === 0) {
+						return ElMessage.warning('撤回到底了！')
+		    }
+		    const idx = recordList.length - 2
+		    if (idx === -1) {
+						list.value = []
+		    } else {
+				    list.value = recordList[idx]
+		    }
+		    const tmp = recordList.pop()
+		    recordListR.push(tmp)
+    }
+		// 反撤回
+		const withDrawR = () => {
+				list.value = recordListR.pop()
+				record()
+		}
+    const dragEndHandle = () => {
+        record()
+    }
+    const resizeEndHandle = () => {
+        record()
+    }
 </script>
 
 <style scoped lang="scss">
@@ -241,17 +290,22 @@
         display: flex;
         height: 100vh;
         width: 100vw;
-    }
 
-    .sidebar {
-        width: 200px;
-        background-color: #e9e9e9;
-    }
+        .center {
+            width: 100%;
+        }
 
-    .panel {
-        flex: 1;
-        background-color: #f6f6f6;
-        position: relative;
+        .sidebar {
+            width: 200px;
+            background-color: #e9e9e9;
+        }
+
+        .panel {
+            width: 100%;
+            height: 100%;
+            background-color: #f6f6f6;
+            position: relative;
+        }
     }
 
     .box {
