@@ -1,20 +1,20 @@
 <template>
     <div class="main" @click="closeContentMenu">
-		    <el-tabs v-model="sidebarType" class="sidebar">
-				    <el-tab-pane label="图层列表" name="layer">
-						    <ul>
-								    <li v-for="item in list" :key="item.id">
-										    {{ item.label }}
-								    </li>
-						    </ul>
-				    </el-tab-pane>
-				    <el-tab-pane label="组件列表" name="widget">
-						    <WidgetListBox
-								    :list="widgetList"
-								    @onWidgetMouseDown="onWidgetMouseDown"
-						    ></WidgetListBox>
-				    </el-tab-pane>
-		    </el-tabs>
+        <el-tabs v-model="sidebarType" class="sidebar">
+            <el-tab-pane label="图层列表" name="layer">
+                <MyDraggable v-model="list" @change="change">
+                    <div v-for="item in list" :key="item.id">
+                        {{ item.label }}
+                    </div>
+                </MyDraggable>
+            </el-tab-pane>
+            <el-tab-pane label="组件列表" name="widget">
+                <WidgetListBox
+                    :list="widgetList"
+                    @onWidgetMouseDown="onWidgetMouseDown"
+                ></WidgetListBox>
+            </el-tab-pane>
+        </el-tabs>
         <!--操作面板-->
         <div class="panel" @dragover="(e) => e.preventDefault()" @drop="onDrop">
             <Vue3DraggableResizable
@@ -72,8 +72,6 @@
         CustomText: CustomText
     }
 
-    const sidebarType = ref('widget')
-
     // 组件列表
     const widgetList = ref<Array<WidgetList>>(CONFIG.WIDGET_LIST)
     // 小组件鼠标落下
@@ -107,7 +105,7 @@
         }
         list.value.push(newItem)
         onFocus(newItem)
-		    sortList()
+        sortList()
     }
 
     // 右键菜单
@@ -145,7 +143,7 @@
             return
         }
         currentItem.z = maxZ + 1
-		    sortList()
+        sortList()
     }
     // 图层置底
     const onLayerBottom = () => {
@@ -166,7 +164,7 @@
         } else {
             currentItem.z = minZ - 1
         }
-		    sortList()
+        sortList()
     }
     // 上移图层
     const onLayerUp = () => {
@@ -180,7 +178,7 @@
         const upstairs = list.value.find((item) => item.z === currentItem.z + 1)
         upstairs && upstairs.z--
         currentItem.z++
-		    sortList()
+        sortList()
     }
     // 下移图层
     const onLayerDown = () => {
@@ -196,13 +194,13 @@
         )
         downstairs && downstairs.z++
         currentItem.z--
-		    sortList()
+        sortList()
     }
     // 删除图层
     const onLayerRemove = () => {
         closeContentMenu()
         list.value = list.value.filter((item) => item.id !== chooseId.value)
-		    sortList()
+        sortList()
     }
     // 判断最底层
     const findBottomLayer = (currentItem) => {
@@ -222,10 +220,20 @@
         }
         return maxZ
     }
-		// 更新图层顺序
-		const sortList = () => {
-				list.value.sort((a,b) => b.z - a.z)
-		}
+    // 更新图层顺序
+    const sortList = () => {
+        list.value.sort((a, b) => b.z - a.z)
+    }
+
+    // 图层列表
+    const sidebarType = ref('widget')
+    // 拖动
+    const change = () => {
+        const len = list.value.length
+        list.value.forEach((item, i) => {
+            item.z = len - i
+        })
+    }
 </script>
 
 <style scoped lang="scss">
@@ -236,8 +244,8 @@
     }
 
     .sidebar {
-		    width: 200px;
-		    background-color: #e9e9e9;
+        width: 200px;
+        background-color: #e9e9e9;
     }
 
     .panel {

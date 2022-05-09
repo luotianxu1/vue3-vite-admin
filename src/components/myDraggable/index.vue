@@ -20,7 +20,7 @@
         }
     })
 
-    const emit = defineEmits(['update:model-value'])
+    const emit = defineEmits(['update:model-value','change'])
 
     onMounted(() => {
         initDraggable()
@@ -32,7 +32,7 @@
         if (!draggableContainer.value) {
             return ElMessage.error('容器不能为空！')
         }
-        const sortable = Sortable.create(draggableContainer.value, {
+        Sortable.create(draggableContainer.value, {
             animation: 300,
             onUpdate(e) {
                 // 删除拖拽的元素
@@ -41,9 +41,9 @@
                 // 然后把删除的元素放到新的索引位置
                 list.splice(e.newIndex, 0, item)
                 emit('update:model-value', list)
+		            emit('change', list)
             }
         })
-        console.log(sortable)
     }
 </script>
 
