@@ -44,12 +44,13 @@
                     <component
                         :is="componentsList[item.component]"
                         :data="item.data"
+                        :styles='item.style'
                     ></component>
                 </Vue3DraggableResizable>
             </div>
         </div>
 
-		    <StyleListBox :current="chooseItem" :form="chooseForm"></StyleListBox>
+        <StyleListBox :current="chooseItem" :form="chooseForm"></StyleListBox>
 
         <div
             v-if="show"
@@ -116,8 +117,8 @@
             component: currentWidget.value.components,
             data: currentWidget.value.default.data,
             focused: true,
-		        type: currentWidget.value.type,
-		        style: currentWidget.value.styles
+            type: currentWidget.value.type,
+            style: currentWidget.value.styles
         }
         list.value.push(newItem)
         onFocus(newItem)
@@ -142,15 +143,16 @@
     const chooseId = ref<number>()
     // 当前选中的小组件
     const chooseItem = computed(() => {
-		    return list.value.find(
-				    (item) => item.id === chooseId.value
-		    )
+        return list.value.find((item) => item.id === chooseId.value)
     })
+    // 选中组件的样式
     const chooseForm = computed(() => {
-				if (!chooseItem.value) {
-						return []
-				}
-		    return CONFIG.WIDGET_LIST.find(item => chooseItem.value?.type === item.type)?.styleForm
+        if (!chooseItem.value) {
+            return []
+        }
+        return CONFIG.WIDGET_LIST.find(
+            (item) => chooseItem.value?.type === item.type
+        )?.styleForm
     })
     // 当前项获取焦点，其他项取消焦点
     const onFocus = (currentItem) => {
@@ -221,7 +223,9 @@
         if (!currentItem || findBottomLayer(currentItem) === false) {
             return
         }
-        const downstairs = list.value.find((item) => item.z === currentItem.z - 1)
+        const downstairs = list.value.find(
+            (item) => item.z === currentItem.z - 1
+        )
         downstairs && downstairs.z++
         currentItem.z--
         sortList()
@@ -277,23 +281,23 @@
     }
     // 撤回
     const withDraw = () => {
-		    if (recordList.length === 0) {
-						return ElMessage.warning('撤回到底了！')
-		    }
-		    const idx = recordList.length - 2
-		    if (idx === -1) {
-						list.value = []
-		    } else {
-				    list.value = recordList[idx]
-		    }
-		    const tmp = recordList.pop()
-		    recordListR.push(tmp)
+        if (recordList.length === 0) {
+            return ElMessage.warning('撤回到底了！')
+        }
+        const idx = recordList.length - 2
+        if (idx === -1) {
+            list.value = []
+        } else {
+            list.value = recordList[idx]
+        }
+        const tmp = recordList.pop()
+        recordListR.push(tmp)
     }
-		// 反撤回
-		const withDrawR = () => {
-				list.value = recordListR.pop()
-				record()
-		}
+    // 反撤回
+    const withDrawR = () => {
+        list.value = recordListR.pop()
+        record()
+    }
     const dragEndHandle = () => {
         record()
     }

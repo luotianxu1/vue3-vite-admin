@@ -10,7 +10,8 @@ export interface List {
     component: string,
     data: any,
     focused: boolean,
-    type: string
+    type: string,
+    style:any
 }
 
 // 组件列表
