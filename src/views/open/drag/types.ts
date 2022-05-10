@@ -1,3 +1,4 @@
+
 export interface List {
     id: number
     x: number
@@ -8,17 +9,20 @@ export interface List {
     label: string
     component: string,
     data: any,
-    focused: boolean
+    focused: boolean,
+    type: string
 }
 
 // 组件列表
 export interface WidgetList {
     type: string
-    label: string
     components: string
+    label: string
     default: {
-        w: number,
-        h: number,
+        w: number
+        h: number
         data: any
     }
+    styles: any
+    styleForm: any
 }

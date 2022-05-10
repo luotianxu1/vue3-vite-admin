@@ -49,6 +49,8 @@
             </div>
         </div>
 
+		    <StyleListBox :current="chooseItem" :form="chooseForm"></StyleListBox>
+
         <div
             v-if="show"
             class="menu"
@@ -66,7 +68,8 @@
 </template>
 
 <script setup lang="ts">
-    import WidgetListBox from './components/WidgetList.vue'
+    import WidgetListBox from './components/widgetList/index.vue'
+    import StyleListBox from './components/styleList/index.vue'
     import { WidgetList, List } from '@/views/open/drag/types'
     import * as CONFIG from './constants/config'
     import Vue3DraggableResizable from 'vue3-draggable-resizable'
@@ -112,7 +115,9 @@
             label: currentWidget.value.label,
             component: currentWidget.value.components,
             data: currentWidget.value.default.data,
-            focused: true
+            focused: true,
+		        type: currentWidget.value.type,
+		        style: currentWidget.value.styles
         }
         list.value.push(newItem)
         onFocus(newItem)
@@ -135,6 +140,18 @@
     }
     // 当前选中的id
     const chooseId = ref<number>()
+    // 当前选中的小组件
+    const chooseItem = computed(() => {
+		    return list.value.find(
+				    (item) => item.id === chooseId.value
+		    )
+    })
+    const chooseForm = computed(() => {
+				if (!chooseItem.value) {
+						return []
+				}
+		    return CONFIG.WIDGET_LIST.find(item => chooseItem.value?.type === item.type)?.styleForm
+    })
     // 当前项获取焦点，其他项取消焦点
     const onFocus = (currentItem) => {
         chooseId.value = currentItem.id

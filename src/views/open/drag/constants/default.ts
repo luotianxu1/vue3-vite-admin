@@ -1,5 +1,5 @@
 // 饼图默认数据
-export const AREA_CHART = {
+export const AREA_CHART_DATA = {
     w: 150,
     h: 150,
     data: [
@@ -17,9 +17,13 @@ export const AREA_CHART = {
         }
     ]
 }
+// 饼图默认样式
+export const AREA_CHART_STYLE = {
+
+}
 
 // 柱状图默认数据
-export const BAR_CHART = {
+export const BAR_CHART_DATA = {
     w: 300,
     h: 150,
     data: [
@@ -37,10 +41,19 @@ export const BAR_CHART = {
         }
     ]
 }
+// 柱状图默认样式
+export const BAR_CHART_STYLE = {
+
+}
 
 // 文字默认数据
-export const TEXT = {
+export const TEXT_DATA = {
     w: 200,
     h: 50,
     data: '文字1234'
+}
+// 文字默认样式
+export const TEXT_STYLE = {
+    color: '#000000',
+    fontSize: 24
 }
