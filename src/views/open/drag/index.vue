@@ -75,7 +75,7 @@
     import * as CONFIG from './constants/config'
     import Vue3DraggableResizable from 'vue3-draggable-resizable'
     import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css'
-    import AreaChart from './components/content/arra-chart/index.vue'
+    import AreaChart from './components/content/area-chart/index.vue'
     import BarChart from './components/content/bar-chart/index.vue'
     import CustomText from './components/content/custom-text/index.vue'
     import { ElMessage } from 'element-plus'
@@ -106,15 +106,15 @@
         if (!currentWidget.value) {
             return
         }
-				let current:WidgetList = JSON.parse(JSON.stringify(currentWidget.value))
+				let current: WidgetList = JSON.parse(JSON.stringify(currentWidget.value))
         const newItem = {
             id: currentId++,
             x: e.offsetX - widgetX.value,
             y: e.offsetY - widgetY.value,
-            w: current.default.w,
-            h: current.default.h,
+            w: currentWidget.value.default.w,
+            h: currentWidget.value.default.h,
             z: list.value.length === 0 ? 0 : (Math.max(...list.value.map((item) => item.z)) || 0) + 1,
-            label: current.label,
+            label: currentWidget.value.label,
             component: current.components,
             data: current.default.data,
             focused: true,

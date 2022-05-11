@@ -36,15 +36,21 @@
     const initChart = () => {
         let myChart = echarts.init(chart.value)
         let option: EChartsOption = {
-            series: [
-                {
-                    labelLine: {
-                        show: false
-                    },
-                    data: props.data as [],
-                    type: 'pie'
-                }
-            ]
+		        xAxis: {
+				        type: 'category',
+				        boundaryGap: false,
+				        data: props.data?.map((item) => item.name)
+		        },
+		        yAxis: {
+				        type: 'value'
+		        },
+		        series: [
+				        {
+						        data: props.data?.map((item) => item.value),
+						        type: 'line',
+						        areaStyle: {}
+				        }
+		        ]
         }
 
         option && myChart.setOption(option)

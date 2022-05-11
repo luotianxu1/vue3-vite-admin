@@ -19,7 +19,9 @@ export const AREA_CHART_DATA = {
 }
 // 饼图默认样式
 export const AREA_CHART_STYLE = {
-
+    areaColor: '#ff0000',
+    lineColor: '#0000ff',
+    xAxisVisible: false
 }
 
 // 柱状图默认数据

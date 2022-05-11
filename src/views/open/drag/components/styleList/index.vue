@@ -3,7 +3,7 @@
         <div>{{ props.current.label }}</div>
         <el-form
             v-if="Object.keys(props.current).length"
-            label-width="80px"
+            label-width="100px"
             :model="styles"
         >
             <el-form-item
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-    import { ElInputNumber, ElColorPicker } from 'element-plus'
+    import { ElInputNumber, ElColorPicker, ElSwitch } from 'element-plus'
 
     const props = defineProps({
         current: {
@@ -40,7 +40,8 @@
 
     const componentsList = {
         'input-number': ElInputNumber,
-        'color-picker': ElColorPicker
+        'color-picker': ElColorPicker,
+        'switch': ElSwitch
     }
 
     const styles = ref()
