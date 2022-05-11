@@ -106,19 +106,20 @@
         if (!currentWidget.value) {
             return
         }
+				let current:WidgetList = JSON.parse(JSON.stringify(currentWidget.value))
         const newItem = {
             id: currentId++,
             x: e.offsetX - widgetX.value,
             y: e.offsetY - widgetY.value,
-            w: currentWidget.value.default.w,
-            h: currentWidget.value.default.h,
+            w: current.default.w,
+            h: current.default.h,
             z: list.value.length === 0 ? 0 : (Math.max(...list.value.map((item) => item.z)) || 0) + 1,
-            label: currentWidget.value.label,
-            component: currentWidget.value.components,
-            data: currentWidget.value.default.data,
+            label: current.label,
+            component: current.components,
+            data: current.default.data,
             focused: true,
-            type: currentWidget.value.type,
-            style: currentWidget.value.styles
+            type: current.type,
+            style: current.styles
         }
         list.value.push(newItem)
         onFocus(newItem)
