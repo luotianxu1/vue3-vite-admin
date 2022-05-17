@@ -67,9 +67,7 @@
                                 // 海岸线
                                 //'coastline-stroke': '',
                                 'fill': function (data) {
-                                    return data.SOC === SOC
-                                        ? nationFill
-                                        : 'white'
+                                    return data.SOC === SOC ? nationFill : 'white'
                                 }
                             })
                             updateInfo(props)
