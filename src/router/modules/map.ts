@@ -7,7 +7,7 @@ const mapRouter: RouteRecordRaw[] = [
         component: LayoutBase,
         name: '地图',
         meta: { title: '地图' },
-        redirect: '/map/aMapDefaultLayer',
+        redirect: '/map/aMapStatus',
         children: [
             {
                 path: 'aMapLife',
@@ -18,11 +18,6 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapStatus',
                 name: '地图状态',
                 component: () => import('@/views/map/AMapStatus.vue')
-            },
-            {
-                path: 'aMapDefaultLayer',
-                name: '标准地图',
-                component: () => import('@/views/map/AMapDefaultLayer.vue')
             },
             {
                 path: 'aMapLiveLayer',

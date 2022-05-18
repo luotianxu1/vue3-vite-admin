@@ -2,7 +2,7 @@
     <div class="container">
         <div class="btn">
             实时路况:
-            <el-switch v-model="isOpen" class="mb-2" />
+            <el-switch v-model="isOpen" />
         </div>
         <div id="map" class="map"></div>
     </div>
@@ -26,6 +26,7 @@
             .then((AMap) => {
                 map.value = new AMap.Map('map', {
                     viewMode: '3D',
+		                terrain: true, // 开启地形图
                     zoom: 5,
                     zooms: [2, 22],
                     center: [105.602725, 37.076636]
