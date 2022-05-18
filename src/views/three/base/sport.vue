@@ -4,7 +4,6 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import dat from 'dat.gui'
     onMounted(() => {
         init()
     })

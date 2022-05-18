@@ -28,7 +28,7 @@ const baseRouter: AppRouteRecordRaw[] = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/views/login/Login.vue')
+        component: () => import('@/views/system/login/Login.vue')
     }
 ]
 
