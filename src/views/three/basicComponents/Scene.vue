@@ -1,11 +1,15 @@
 <template>
-    <div id="webgl" class="webgl"></div>
+    <div class="page">
+        <div class="form"></div>
+        <div id="webgl" class="webgl"></div>
+    </div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
     import CameraControls from 'camera-controls'
     import Stats from 'stats.js'
+
     onMounted(() => {
         init()
     })
@@ -18,7 +22,7 @@
     scene.add(axes)
 
     // 创建平面并定义平面大小
-    const planeGeometry = new THREE.PlaneGeometry(60, 20)
+    const planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1)
     // 创建平面材质
     const planeMaterial = new THREE.MeshLambertMaterial({
         color: 0xffffff
@@ -32,46 +36,28 @@
     plane.receiveShadow = true
     scene.add(plane)
 
-    // 创建球体
-    const cubeGeometry = new THREE.BoxGeometry(4, 4, 4)
-    const cubeMaterial = new THREE.MeshLambertMaterial({
-        color: 0xff0000
-    })
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
-    cube.position.set(-4, 3, 0)
-    cube.castShadow = true
-    scene.add(cube)
-
-    // 创建方块
-    const sphereGeometry = new THREE.SphereGeometry(4, 20, 20)
-    const sphereMaterial = new THREE.MeshLambertMaterial({
-        color: 0x7777ff
-    })
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    sphere.position.set(20, 4, 2)
-    sphere.castShadow = true
-    scene.add(sphere)
-
     // 创建相机
     const camera = new THREE.PerspectiveCamera(
         45,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000
+        100
     )
     camera.position.set(-30, 40, 30)
     camera.lookAt(scene.position)
 
     // 添加光源
-    const spotLight = new THREE.SpotLight(0xffffff)
-    spotLight.position.set(-40, 40, -15)
+    const ambientLight = new THREE.AmbientLight(0x3c3c3c)
+    scene.add(ambientLight)
+    const spotLight = new THREE.SpotLight(0xffffff, 1.2, 150, 120)
+    spotLight.position.set(-40, 60, -10)
     spotLight.castShadow = true
-    spotLight.shadow.mapSize = new THREE.Vector2(1024, 1024)
-    spotLight.shadow.camera.far = 130
-    spotLight.shadow.camera.near = 40
     scene.add(spotLight)
 
+    // 创建渲染器
     const renderer = new THREE.WebGLRenderer()
+    renderer.setClearColor(new THREE.Color(0x000000))
+    renderer.shadowMap.enabled = true
 
     CameraControls.install({ THREE })
     const cameraControls = new CameraControls(camera, renderer.domElement)
@@ -79,7 +65,6 @@
     const clock = new THREE.Clock()
 
     let stats
-
     const initStats = (el: HTMLElement) => {
         stats = new Stats()
         stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
@@ -97,22 +82,13 @@
         // 创建渲染器
         const width = body.offsetWidth
         const height = body.offsetHeight
-        renderer.setClearColor(new THREE.Color(0x000000))
         renderer.setSize(width, height)
-        renderer.shadowMap.enabled = true
         body.appendChild(renderer.domElement)
         initStats(body)
         renderScene()
     }
 
-    let step = 0
     const renderScene = () => {
-        cube.rotation.x += 0.02
-        cube.rotation.y += 0.02
-        cube.rotation.z += 0.02
-        step += 0.04
-        sphere.position.x = 20 + 10 * (Math.cos(step))
-        sphere.position.y = 2 + 10 * Math.abs(Math.sin(step))
         const delta = clock.getDelta()
         cameraControls.update(delta)
         stats.update()
@@ -122,8 +98,18 @@
 </script>
 
 <style scoped lang="scss">
-    .webgl {
+    .page {
         width: 100%;
-        height: 100vh;
+        height: 100%;
+        display: flex;
+
+        .form {
+            width: 200px;
+        }
+
+        .webgl {
+            flex: 1;
+            position: relative;
+        }
     }
 </style>
