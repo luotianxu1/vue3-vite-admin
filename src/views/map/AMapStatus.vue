@@ -1,6 +1,8 @@
 <template>
     <div class="container">
         <div class="btn">
+            <el-button @click="initMap">创建地图</el-button>
+            <el-button @click="delMap">销毁地图</el-button>
             <el-button @click="setMapZoom">随机设置地图层级</el-button>
             <el-button @click="getMapZoom">获取地图层级</el-button>
             <el-button @click="setMapCenter">随机设置地图中心点</el-button>
@@ -35,6 +37,13 @@
                     <el-button :icon="Search" @click="setCity"></el-button>
                 </template>
             </el-input>
+            <el-button @click="addMarker">添加Marker</el-button>
+            <el-button @click="deleteMarker">删除Marker</el-button>
+            <el-switch
+                v-model="isShowCondition"
+                active-text="显示路况"
+                inactive-text="不显示路况"
+            />
         </div>
         <div id="map" class="map"></div>
     </div>
@@ -50,6 +59,7 @@
     let marker1
     let marker2
     let polyline
+    const trafficLayer = shallowRef()
 
     onMounted(() => {
         initMap()
@@ -94,6 +104,12 @@
                 })
                 map.value.add(marker1)
                 map.value.add(marker2)
+                //实时路况图层
+                trafficLayer.value = new Map.value.TileLayer.Traffic({
+                    zooms: [7, 22]
+                })
+                trafficLayer.value.setMap(map.value)
+                trafficLayer.value.hide()
             })
             .catch((e) => {
                 console.log(e)
@@ -208,6 +224,35 @@
 
     const changeMap = () => {
         map.value.setMapStyle('amap://styles/dark')
+    }
+
+    let marker
+    const addMarker = () => {
+        marker = new Map.value.Marker({
+            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+            position: [116.405467, 39.907761],
+            anchor: 'bottom-center'
+        })
+        map.value.add(marker)
+        map.value.setFitView()
+    }
+
+    const deleteMarker = () => {
+        map.value.remove(marker)
+    }
+
+    const isShowCondition = ref(false)
+    watch(isShowCondition, (val) => {
+        console.log(val)
+        if (val) {
+            trafficLayer.value.show()
+        } else {
+            trafficLayer.value.hide()
+        }
+    })
+
+    const delMap = () => {
+        map.value.destroy()
     }
 </script>
 

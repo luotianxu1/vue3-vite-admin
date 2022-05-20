@@ -10,29 +10,14 @@ const mapRouter: RouteRecordRaw[] = [
         redirect: '/map/aMapStatus',
         children: [
             {
-                path: 'aMapLife',
-                name: '生命周期',
-                component: () => import('@/views/map/AMapLife.vue')
-            },
-            {
                 path: 'aMapStatus',
                 name: '地图状态',
                 component: () => import('@/views/map/AMapStatus.vue')
             },
             {
-                path: 'aMapLiveLayer',
-                name: '实时路况',
-                component: () => import('@/views/map/AMapLiveLayer.vue')
-            },
-            {
                 path: 'aMapSatelliteLayer',
                 name: '卫星图',
                 component: () => import('@/views/map/AMapSatelliteLayer.vue')
-            },
-            {
-                path: 'aMapLayer',
-                name: '图层管理',
-                component: () => import('@/views/map/AMapLayer.vue')
             },
             {
                 path: 'aMapAdministrative',
