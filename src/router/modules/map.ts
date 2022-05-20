@@ -15,11 +15,6 @@ const mapRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/map/AMapStatus.vue')
             },
             {
-                path: 'aMapSatelliteLayer',
-                name: '卫星图',
-                component: () => import('@/views/map/AMapSatelliteLayer.vue')
-            },
-            {
                 path: 'aMapAdministrative',
                 name: '简易行政区',
                 component: () => import('@/views/map/AMapAdministrative.vue')

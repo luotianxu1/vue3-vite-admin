@@ -44,6 +44,20 @@
                 active-text="显示路况"
                 inactive-text="不显示路况"
             />
+            <el-select
+                v-model="mapType"
+                class="m-2"
+                placeholder="选择图层"
+                size="large"
+                @change="changeMapType"
+            >
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                />
+            </el-select>
         </div>
         <div id="map" class="map"></div>
     </div>
@@ -59,7 +73,9 @@
     let marker1
     let marker2
     let polyline
-    const trafficLayer = shallowRef()
+    let satelliteLayer
+    let roadNetLayer
+    let trafficLayer
 
     onMounted(() => {
         initMap()
@@ -68,17 +84,43 @@
     const initMap = () => {
         AMapLoader.load({
             key: '859d831539bf9e53715e7908aefc19db',
-            version: '2.0'
+            version: '2.0',
+            plugins: ['AMap.Scale','AMap.HawkEye','AMap.ToolBar','AMap.ControlBar']
         })
             .then((AMap) => {
                 Map.value = AMap
                 map.value = new AMap.Map('map', {
-                    viewMode: '3D',
+                    viewMode: '3D',//开启3D视图,默认为关闭
+		                // rotation: 45, // 旋转角度
+		                // rotateEnable: false, // 禁止旋转
+		                // pitchEnable: false, // 禁止俯仰角度调整
+		                // pitch: 65, // 俯仰角度
                     terrain: true,
                     zoom: 5,
-                    center: [105.602725, 37.076636]
+                    center: [105.602725, 37.076636],
+		                features: ['bg', 'road', 'building', 'point'], // 地图显示要素
+		                showLabel: true //显示地图文字标记
                 })
-
+                const scale = new AMap.Scale()
+                const toolBar = new AMap.ToolBar({
+                    position: {
+                        top: '110px',
+                        right: '40px'
+                    }
+                })
+                const controlBar = new AMap.ControlBar({
+                    position: {
+                        top: '10px',
+                        right: '10px'
+                    }
+                })
+                const overView = new AMap.HawkEye({
+                    opened: false
+                })
+                map.value.addControl(scale)
+                map.value.addControl(toolBar)
+                map.value.addControl(controlBar)
+                map.value.addControl(overView)
                 const path = [
                     new AMap.LngLat('116.368904', '39.913423'),
                     new AMap.LngLat('116.382122', '39.901176'),
@@ -105,11 +147,19 @@
                 map.value.add(marker1)
                 map.value.add(marker2)
                 //实时路况图层
-                trafficLayer.value = new Map.value.TileLayer.Traffic({
+                trafficLayer = new Map.value.TileLayer.Traffic({
                     zooms: [7, 22]
                 })
-                trafficLayer.value.setMap(map.value)
-                trafficLayer.value.hide()
+                trafficLayer.setMap(map.value)
+                trafficLayer.hide()
+
+                // 构造官方卫星、路网图层
+                satelliteLayer = new Map.value.TileLayer.Satellite()
+                roadNetLayer = new Map.value.TileLayer.RoadNet()
+                //批量添加图层
+                map.value.add([satelliteLayer, roadNetLayer])
+                satelliteLayer.hide()
+                roadNetLayer.hide()
             })
             .catch((e) => {
                 console.log(e)
@@ -245,14 +295,35 @@
     watch(isShowCondition, (val) => {
         console.log(val)
         if (val) {
-            trafficLayer.value.show()
+            trafficLayer.show()
         } else {
-            trafficLayer.value.hide()
+            trafficLayer.hide()
         }
     })
 
     const delMap = () => {
         map.value.destroy()
+    }
+
+    const options = [
+        {
+            value: '0',
+            label: '普通图层'
+        },
+        {
+            value: '1',
+            label: '卫星图层'
+        }
+    ]
+    const mapType = ref('0')
+    const changeMapType = (val) => {
+        if (val === '0') {
+            satelliteLayer.hide()
+            roadNetLayer.hide()
+        } else {
+            satelliteLayer.show()
+            roadNetLayer.show()
+        }
     }
 </script>
 
