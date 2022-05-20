@@ -78,6 +78,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'drag',
                 name: '拖拽组件',
                 component: () => import('@/views/demo/drag/Draggable.vue')
+            },
+            {
+                path: 'gradient',
+                name: '渐变背景',
+                component: () => import('@/views/demo/gradient/Gradient.vue')
             }
         ]
     }
