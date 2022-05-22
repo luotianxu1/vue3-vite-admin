@@ -32,6 +32,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '场景',
                 meta: { title: '场景'},
                 component: () => import('@/views/three/basicComponents/Scene.vue')
+            },
+            {
+                path: 'ambientLight',
+                name: '基本光源',
+                meta: { title: '基本光源'},
+                component: () => import('@/views/three/light/AmbientLight.vue')
+            },
+            {
+                path: 'spotLight',
+                name: '聚光灯光源',
+                meta: { title: '聚光灯光源'},
+                component: () => import('@/views/three/light/SpotLight.vue')
             }
         ]
     }

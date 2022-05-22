@@ -1,6 +1,21 @@
 <template>
     <div class="page">
-        <div class="form"></div>
+        <div class="form">
+            <div class="form-item">
+                <el-button type="primary" @click="addCube">添加物体</el-button>
+            </div>
+            <div class="form-item">
+                <el-button type="primary" @click="logLastCube">
+                    根据名称打印物体
+                </el-button>
+            </div>
+            <div class="form-item">
+                <el-button type="primary" @click="delCube">删除物体</el-button>
+            </div>
+            <div class="form-item">
+                <el-button type="primary" @click="overrideMaterial">指定同一属性</el-button>
+            </div>
+        </div>
         <div id="webgl" class="webgl"></div>
     </div>
 </template>
@@ -16,6 +31,8 @@
 
     // 创建场景
     const scene = new THREE.Scene()
+    // scene.fog = new THREE.Fog(0xffffff, 0.015, 100)
+    scene.fog = new THREE.FogExp2(0xffffff, 0.015)
 
     // 创建坐标轴并设置轴线粗细为20
     const axes = new THREE.AxesHelper(20)
@@ -92,8 +109,49 @@
         const delta = clock.getDelta()
         cameraControls.update(delta)
         stats.update()
+        scene.traverse(function(obj) {
+            if (obj instanceof THREE.Mesh && obj !== plane) {
+                obj.rotation.x += cameraControls.dollySpeed
+                obj.rotation.y += cameraControls.dollySpeed
+                obj.rotation.z += cameraControls.dollySpeed
+            }
+        })
         requestAnimationFrame(renderScene)
         renderer.render(scene, camera)
+    }
+
+    const addCube = () => {
+        const cubeSize = Math.ceil(Math.random() * 3)
+        const cubeGeoMetry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
+        const cubeMaterial = new THREE.MeshLambertMaterial({
+            color: Math.random() * 0xffffff
+        })
+        const cube = new THREE.Mesh(cubeGeoMetry, cubeMaterial)
+        cube.castShadow = true
+        cube.name = 'cube-' + (scene.children.length - 3)
+        cube.position.x =
+            -30 + Math.round(Math.random() * planeGeometry.parameters.width)
+        cube.position.y = Math.round(Math.random() * 5)
+        cube.position.z =
+            -20 + Math.round(Math.random() * planeGeometry.parameters.height)
+        scene.add(cube)
+    }
+
+    const delCube = () => {
+        const allChildren = scene.children
+        const lastObject = allChildren[allChildren.length - 1]
+        if (lastObject instanceof THREE.Mesh) {
+            scene.remove(lastObject)
+        }
+    }
+
+    const logLastCube = () => {
+        let nameCube = scene.getObjectByName('cube-1')
+        console.log(nameCube)
+    }
+
+    const overrideMaterial = () => {
+        scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff})
     }
 </script>
 
@@ -105,6 +163,11 @@
 
         .form {
             width: 200px;
+
+            .form-item {
+                text-align: center;
+                margin-top: 5px;
+            }
         }
 
         .webgl {
