@@ -43,6 +43,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapMarker',
                 name: '标记点',
                 component: () => import('@/views/map/mapCover/AMapMarker.vue')
+            },
+            {
+                path: 'aMapTrackPlayback',
+                name: '轨迹回放',
+                component: () => import('@/views/map/mapCover/AMapTrackPlayback.vue')
             }
         ]
     }
