@@ -22,7 +22,19 @@
             <el-button @click="moveCenter">平移中心点</el-button>
             <el-button @click="autoAdjust">自动调整视野</el-button>
             <el-button @click="manualAdjust">自定义调整视野</el-button>
-            <el-button @click="changeMap">改变地图样式</el-button>
+            <el-select
+                v-model="mapStyle"
+                placeholder="选择图层样式"
+                size="large"
+                @change="changeMapStyle"
+            >
+                <el-option
+                    v-for="item in mapStylesOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                />
+            </el-select>
             <el-switch
                 v-model="isLimit"
                 active-text="锁定"
@@ -46,7 +58,6 @@
             />
             <el-select
                 v-model="mapType"
-                class="m-2"
                 placeholder="选择图层"
                 size="large"
                 @change="changeMapType"
@@ -272,10 +283,6 @@
         map.value.setFitView([polyline, marker1])
     }
 
-    const changeMap = () => {
-        map.value.setMapStyle('amap://styles/dark')
-    }
-
     let marker
     const addMarker = () => {
         marker = new Map.value.Marker({
@@ -324,6 +331,54 @@
             satelliteLayer.show()
             roadNetLayer.show()
         }
+    }
+
+    const mapStyle = ref('')
+    const mapStylesOptions = [
+        {
+            value: 'dark',
+            label: '幻影黑'
+        },
+        {
+            value: 'light',
+            label: '月光银'
+        },
+        {
+            value: 'whitesmoke',
+            label: '远山黛'
+        },
+        {
+            value: 'fresh',
+            label: '草色青'
+        },
+        {
+            value: 'grey',
+            label: '雅士灰'
+        },
+        {
+            value: 'graffiti',
+            label: '涂鸦'
+        },
+        {
+            value: 'macaron',
+            label: '马卡龙'
+        },
+        {
+            value: 'blue',
+            label: '靛青蓝'
+        },
+        {
+            value: 'darkblue',
+            label: '极夜蓝'
+        },
+        {
+            value: 'wine',
+            label: '酱籽'
+        }
+    ]
+    const changeMapStyle = (val) => {
+        let styleName = 'amap://styles/' + val
+        map.value.setMapStyle(styleName)
     }
 </script>
 

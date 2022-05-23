@@ -20,14 +20,14 @@ const mapRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/map/AMapAdministrative.vue')
             },
             {
-                path: 'aMapCustom',
-                name: '自定义地图',
-                component: () => import('@/views/map/AMapCustom.vue')
-            },
-            {
                 path: 'aMapArea',
                 name: '世界地图',
                 component: () => import('@/views/map/AMapArea.vue')
+            },
+            {
+                path: 'aMapAreaMask',
+                name: '区域掩模',
+                component: () => import('@/views/map/AMapAreaMask.vue')
             }
         ]
     }
