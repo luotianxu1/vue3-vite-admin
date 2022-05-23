@@ -17,17 +17,32 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapAdministrative',
                 name: '简易行政区',
-                component: () => import('@/views/map/AMapAdministrative.vue')
+                component: () => import('@/views/map/mapType/AMapAdministrative.vue')
             },
             {
                 path: 'aMapArea',
                 name: '世界地图',
-                component: () => import('@/views/map/AMapArea.vue')
+                component: () => import('@/views/map/mapType/AMapArea.vue')
             },
             {
                 path: 'aMapAreaMask',
                 name: '区域掩模',
-                component: () => import('@/views/map/AMapAreaMask.vue')
+                component: () => import('@/views/map/mapType/AMapAreaMask.vue')
+            },
+            {
+                path: 'aMapEvent',
+                name: '地图事件',
+                component: () => import('@/views/map/mapEvent/AMapEvent.vue')
+            },
+            {
+                path: 'aMapCoverEvent',
+                name: '覆盖物事件',
+                component: () => import('@/views/map/mapEvent/AMapCoverEvent.vue')
+            },
+            {
+                path: 'aMapOtherEvent',
+                name: '其他事件',
+                component: () => import('@/views/map/mapEvent/AMapOtherEvent.vue')
             }
         ]
     }

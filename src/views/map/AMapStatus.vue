@@ -69,6 +69,7 @@
                     :value="item.value"
                 />
             </el-select>
+            <el-button @click="setTransparency">设置透明度</el-button>
         </div>
         <div id="map" class="map"></div>
     </div>
@@ -379,6 +380,10 @@
     const changeMapStyle = (val) => {
         let styleName = 'amap://styles/' + val
         map.value.setMapStyle(styleName)
+    }
+
+    const setTransparency = () => {
+        satelliteLayer.setOpacity(0.5)
     }
 </script>
 
