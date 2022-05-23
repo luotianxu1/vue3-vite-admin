@@ -40,9 +40,9 @@ const mapRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/map/mapEvent/AMapCoverEvent.vue')
             },
             {
-                path: 'aMapOtherEvent',
-                name: '其他事件',
-                component: () => import('@/views/map/mapEvent/AMapOtherEvent.vue')
+                path: 'aMapMarker',
+                name: '标记点',
+                component: () => import('@/views/map/mapCover/AMapMarker.vue')
             }
         ]
     }
