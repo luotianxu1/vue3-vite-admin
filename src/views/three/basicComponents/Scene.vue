@@ -111,9 +111,9 @@
         stats.update()
         scene.traverse(function(obj) {
             if (obj instanceof THREE.Mesh && obj !== plane) {
-                obj.rotation.x += cameraControls.dollySpeed
-                obj.rotation.y += cameraControls.dollySpeed
-                obj.rotation.z += cameraControls.dollySpeed
+                obj.rotation.x += 0.1
+                obj.rotation.y += 0.1
+                obj.rotation.z += 0.1
             }
         })
         requestAnimationFrame(renderScene)
@@ -129,11 +129,9 @@
         const cube = new THREE.Mesh(cubeGeoMetry, cubeMaterial)
         cube.castShadow = true
         cube.name = 'cube-' + (scene.children.length - 3)
-        cube.position.x =
-            -30 + Math.round(Math.random() * planeGeometry.parameters.width)
+        cube.position.x = -30 + Math.round(Math.random() * planeGeometry.parameters.width)
         cube.position.y = Math.round(Math.random() * 5)
-        cube.position.z =
-            -20 + Math.round(Math.random() * planeGeometry.parameters.height)
+        cube.position.z = -20 + Math.round(Math.random() * planeGeometry.parameters.height)
         scene.add(cube)
     }
 

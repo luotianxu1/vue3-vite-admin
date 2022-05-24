@@ -44,6 +44,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '聚光灯光源',
                 meta: { title: '聚光灯光源'},
                 component: () => import('@/views/three/light/SpotLight.vue')
+            },
+            {
+                path: 'pointLight',
+                name: '点光源',
+                meta: { title: '点光源'},
+                component: () => import('@/views/three/light/PointLight.vue')
+            },
+            {
+                path: 'directionLight',
+                name: '平行光',
+                meta: { title: '平行光'},
+                component: () => import('@/views/three/light/DirectionalLight.vue')
             }
         ]
     }
