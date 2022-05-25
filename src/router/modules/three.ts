@@ -56,6 +56,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '平行光',
                 meta: { title: '平行光'},
                 component: () => import('@/views/three/light/DirectionalLight.vue')
+            },
+            {
+                path: 'hemisphereLight',
+                name: '半球光光源',
+                meta: { title: '半球光光源'},
+                component: () => import('@/views/three/light/HemisphereLight.vue')
+            },
+            {
+                path: 'lensFlare',
+                name: '光晕',
+                meta: { title: '光晕'},
+                component: () => import('@/views/three/light/LensFlare.vue')
             }
         ]
     }
