@@ -63,6 +63,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapMassPointMarkers',
                 name: '海量点',
                 component: () => import('@/views/map/mapCover/AMapMassPointMarkers.vue')
+            },
+            {
+                path: 'aMapMassMarkers',
+                name: '海量点2',
+                component: () => import('@/views/map/mapCover/AMapMassMarkers.vue')
             }
         ]
     }

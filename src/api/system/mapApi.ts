@@ -9,3 +9,6 @@ export const getEpidemic= (): Promise<ResponseData<any>> => request.post('/api/e
 
 // 海量点标记
 export const getMassPointMarkers= (): Promise<ResponseData<any>> => request.post('/api/position')
+
+// 海量点
+export const getMassMarkers= (): Promise<ResponseData<any>> => request.post('/api/mass')
