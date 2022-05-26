@@ -56,8 +56,13 @@ const mapRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'aMapTextMarker',
-                name: '测试',
+                name: '文字标注',
                 component: () => import('@/views/map/mapCover/AMapTextMarker.vue')
+            },
+            {
+                path: 'aMapMassPointMarkers',
+                name: '海量点',
+                component: () => import('@/views/map/mapCover/AMapMassPointMarkers.vue')
             }
         ]
     }

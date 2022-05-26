@@ -6,3 +6,6 @@ export const getCitys = (): Promise<ResponseData<any>> => request.post('/api/cit
 
 // 疫情数据
 export const getEpidemic= (): Promise<ResponseData<any>> => request.post('/api/epidemic')
+
+// 海量点标记
+export const getMassPointMarkers= (): Promise<ResponseData<any>> => request.post('/api/position')
