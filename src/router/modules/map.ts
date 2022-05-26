@@ -53,6 +53,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapAvoidLayers',
                 name: '避让图层',
                 component: () => import('@/views/map/mapCover/AMapAvoidLayers.vue')
+            },
+            {
+                path: 'aMapTextMarker',
+                name: '测试',
+                component: () => import('@/views/map/mapCover/AMapTextMarker.vue')
             }
         ]
     }
