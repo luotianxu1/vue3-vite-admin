@@ -73,6 +73,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapPointAggregation',
                 name: '点聚合',
                 component: () => import('@/views/map/mapCover/AMapPointAggregation.vue')
+            },
+            {
+                path: 'aMapPointAggregation2',
+                name: '按索引点聚合',
+                component: () => import('@/views/map/mapCover/AMapPointAggregation2.vue')
             }
         ]
     }

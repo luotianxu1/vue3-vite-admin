@@ -53,7 +53,6 @@
     let count
     const getInfo = async () => {
         const res = await getMassMarkers()
-        console.log(res)
         points = res.data
         count = res.data.length
     }

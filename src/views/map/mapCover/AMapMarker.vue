@@ -223,24 +223,24 @@
         }
     }
 
-    ::v-deep .amap-icon img,
-    ::v-deep .amap-marker-content img{
+    ::v-deep(.amap-icon img),
+    ::v-deep(.amap-marker-content img){
         width: 25px;
         height: 34px;
     }
 
-    ::v-deep .custom-content-marker {
+    ::v-deep(.custom-content-marker) {
         position: relative;
         width: 25px;
         height: 34px;
     }
 
-    ::v-deep .custom-content-marker img {
+    ::v-deep(.custom-content-marker img) {
         width: 100%;
         height: 100%;
     }
 
-    ::v-deep .custom-content-marker .close-btn {
+    ::v-deep(.custom-content-marker .close-btn) {
         position: absolute;
         top: -6px;
         right: -8px;
