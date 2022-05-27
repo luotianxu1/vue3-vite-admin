@@ -156,7 +156,7 @@
     }
 
     const addCircle = () => {
-        const circleMarker: AMap.CircleMarker = new AMap.CircleMarker({
+        const circleMarker: AMap.CircleMarker = new Map.value.CircleMarker({
             center: new Map.value.LngLat(116.407394, 39.904211),
             radius: 10 + Math.random() * 10, //3D视图下，CircleMarker半径不要超过64px
             strokeColor: 'white',
@@ -181,7 +181,7 @@
             </div>`
 
         customMarker = new Map.value.Marker({
-            position: new AMap.LngLat(116.397428, 39.90923),
+            position: new Map.value.LngLat(116.397428, 39.90923),
             content: markerContent,
             offset: new Map.value.Pixel(-13, -30),
             size: new Map.value.Size(25, 34),
@@ -191,7 +191,7 @@
         })
         customMarker.setLabel({
             direction: 'right',
-            offset: new AMap.Pixel(10, 0), //设置文本标注偏移量
+            offset: new Map.value.Pixel(10, 0), //设置文本标注偏移量
             content: '<div class=\'info\'>我是 marker 的 label 标签</div>' //设置文本标注内容
         })
         if (map.value) {
