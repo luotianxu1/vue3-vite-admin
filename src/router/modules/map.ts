@@ -83,6 +83,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapVectorGraphics',
                 name: '矢量图形',
                 component: () => import('@/views/map/mapCover/AMapVectorGraphics.vue')
+            },
+            {
+                path: 'aMapMenu',
+                name: '右键菜单',
+                component: () => import('@/views/map/mapCover/AMapMenu.vue')
             }
         ]
     }

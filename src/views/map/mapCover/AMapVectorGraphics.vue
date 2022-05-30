@@ -56,7 +56,10 @@
                 mouseTool = new AMap.MouseTool(map.value)
                 mouseTool.on('draw', function (event) {
                     ElMessage.success('覆盖物对象绘制完成')
-                    console.log(event.obj)
+                    // console.log(event.obj)
+                    // console.log(event.obj.getPath())
+                    mouseTool.close()
+                    // console.log(map.value.getAllOverlays('polygon'))
                 })
             })
             .catch((e) => {
@@ -300,7 +303,7 @@
     }
 
     const drawCircle = () => {
-        mouseTool.circle({
+        const res = mouseTool.circle({
             strokeColor: '#FF33FF',
             strokeWeight: 6,
             strokeOpacity: 0.2,
