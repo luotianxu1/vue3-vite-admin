@@ -88,6 +88,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapMenu',
                 name: '右键菜单',
                 component: () => import('@/views/map/mapCover/AMapMenu.vue')
+            },
+            {
+                path: 'aMapInfoWindow',
+                name: '信息窗体',
+                component: () => import('@/views/map/mapCover/AMapInfoWindow.vue')
             }
         ]
     }

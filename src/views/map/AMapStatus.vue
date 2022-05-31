@@ -97,7 +97,7 @@
         AMapLoader.load({
             key: '859d831539bf9e53715e7908aefc19db',
             version: '2.0',
-            plugins: ['AMap.Scale','AMap.HawkEye','AMap.ToolBar','AMap.ControlBar']
+            plugins: ['AMap.Scale','AMap.HawkEye','AMap.ToolBar','AMap.ControlBar','AMap.MapType']
         })
             .then((AMap) => {
                 Map.value = AMap
@@ -129,6 +129,12 @@
                 const overView = new AMap.HawkEye({
                     opened: false
                 })
+                const type= new AMap.MapType({
+                    defaultType: 0,
+                    position: 'LB',//定位到左下角
+                    offset: [100, 160] //偏移量 x,y轴
+                })
+                map.value.addControl(type)
                 map.value.addControl(scale)
                 map.value.addControl(toolBar)
                 map.value.addControl(controlBar)
