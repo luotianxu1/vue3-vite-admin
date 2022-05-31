@@ -93,6 +93,21 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapInfoWindow',
                 name: '信息窗体',
                 component: () => import('@/views/map/mapCover/AMapInfoWindow.vue')
+            },
+            {
+                path: 'aMapInputHint',
+                name: '输入提示',
+                component: () => import('@/views/map/mapSearch/AMapInputHint.vue')
+            },
+            {
+                path: 'aMapPlanning',
+                name: '驾车路线规划',
+                component: () => import('@/views/map/mapPlanning/AMapPlanning.vue')
+            },
+            {
+                path: 'aMapDragPlanning',
+                name: '拖拽路线规划',
+                component: () => import('@/views/map/mapPlanning/AMapDragPlanning.vue')
             }
         ]
     }
