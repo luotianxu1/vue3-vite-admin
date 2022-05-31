@@ -108,6 +108,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapDragPlanning',
                 name: '拖拽路线规划',
                 component: () => import('@/views/map/mapPlanning/AMapDragPlanning.vue')
+            },
+            {
+                path: 'aMapGeocoding',
+                name: '地理编码',
+                component: () => import('@/views/map/mapOther/AMapGeocoding.vue')
             }
         ]
     }
