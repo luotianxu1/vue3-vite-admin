@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import Stats from 'stats.js'
+import CameraControls from 'camera-controls'
 
 function addHouseAndTree(scene) {
     createBoundingWall(scene)
@@ -174,4 +176,57 @@ function addGroundPlane(scene) {
     return plane
 }
 
-export { addHouseAndTree, addDefaultCubeAndSphere, addGroundPlane }
+// 初始化相机
+const initCamera = (initialPosition?) => {
+    let position
+    if (!initialPosition) {
+        position = new THREE.Vector3(-30, 40, 30)
+    } else {
+        position = initialPosition
+    }
+
+    const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    )
+    camera.position.copy(position)
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+    return camera
+}
+
+// 初始化坐标轴
+const initAxes = (scene) => {
+    const axes = new THREE.AxesHelper(20)
+    scene.add(axes)
+}
+
+// 初始化帧率
+const initStats = (el: HTMLElement) => {
+    const stats = new Stats()
+    stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+    stats.dom.style.position = 'absolute'
+    stats.dom.style.left = '0px'
+    stats.dom.style.top = '0px'
+    el && el.appendChild(stats.dom)
+    return stats
+}
+
+const initCameraControl = (camera, domElement) => {
+    CameraControls.install({ THREE })
+    const cameraControls = new CameraControls(camera, domElement)
+    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
+    return cameraControls
+}
+
+export {
+    addHouseAndTree,
+    addDefaultCubeAndSphere,
+    addGroundPlane,
+    initCamera,
+    initAxes,
+    initStats,
+    initCameraControl
+}

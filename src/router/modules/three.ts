@@ -68,6 +68,12 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '光晕',
                 meta: { title: '光晕'},
                 component: () => import('@/views/three/light/LensFlare.vue')
+            },
+            {
+                path: 'meshBasicMaterial',
+                name: '网格基础材质',
+                meta: { title: 'MeshBasicMaterial'},
+                component: () => import('@/views/three/material/MeshBasicMaterial.vue')
             }
         ]
     }
