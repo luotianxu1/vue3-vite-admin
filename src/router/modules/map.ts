@@ -113,6 +113,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapGeocoding',
                 name: '地理编码',
                 component: () => import('@/views/map/mapOther/AMapGeocoding.vue')
+            },
+            {
+                path: 'aMapAdministrativeArea',
+                name: '行政区查询',
+                component: () => import('@/views/map/mapOther/AMapAdministrativeArea.vue')
             }
         ]
     }
