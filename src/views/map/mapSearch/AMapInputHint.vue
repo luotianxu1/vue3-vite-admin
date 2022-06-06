@@ -83,7 +83,6 @@
             setTimeout(() => {
                 loading.value = false
                 autoComplete.search(query, function (status, result) {
-                    console.log(result)
                     options.value = result.tips.map((item) => {
                         return {
                             value: `${item.name}`,

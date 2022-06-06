@@ -118,6 +118,11 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapLocation',
                 name: '定位',
                 component: () => import('@/views/map/mapOther/AMapLocation.vue')
+            },
+            {
+                path: 'aMapAdministrativeArea',
+                name: '行政区查询',
+                component: () => import('@/views/map/mapOther/AMapAdministrativeArea.vue')
             }
         ]
     }
