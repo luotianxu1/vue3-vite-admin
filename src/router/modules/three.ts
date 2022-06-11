@@ -80,6 +80,12 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '网格深度材质',
                 meta: { title: 'MeshBasicMaterial'},
                 component: () => import('@/views/three/material/MeshDepthMaterial.vue')
+            },
+            {
+                path: 'multiMaterialObject',
+                name: '联合材质',
+                meta: { title: 'multiMaterialObject'},
+                component: () => import('@/views/three/material/MultiMaterialObject.vue')
             }
         ]
     }
