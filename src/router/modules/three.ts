@@ -86,6 +86,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '联合材质',
                 meta: { title: 'multiMaterialObject'},
                 component: () => import('@/views/three/material/MultiMaterialObject.vue')
+            },
+            {
+                path: 'meshNormalMaterial',
+                name: '网格法向材质',
+                meta: { title: 'meshNormalMaterial'},
+                component: () => import('@/views/three/material/MeshNormalMaterial.vue')
+            },
+            {
+                path: 'meshFaceMaterial',
+                name: '多种材质',
+                meta: { title: 'meshFaceMaterial'},
+                component: () => import('@/views/three/material/MeshFaceMaterial.vue')
             }
         ]
     }
