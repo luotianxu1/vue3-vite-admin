@@ -57,7 +57,7 @@
     const webGLRenderer = new THREE.WebGLRenderer()
     webGLRenderer.setClearColor(new THREE.Color(0x000000))
     webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMapEnabled = true
+    webGLRenderer.shadowMap.enabled = true
 
     const ambientLight = new THREE.AmbientLight(0x0c0c0c)
     scene.add(ambientLight)

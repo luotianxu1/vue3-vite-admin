@@ -98,6 +98,30 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '多种材质',
                 meta: { title: 'meshFaceMaterial'},
                 component: () => import('@/views/three/material/MeshFaceMaterial.vue')
+            },
+            {
+                path: 'meshLambertMaterial',
+                name: '网格Lambert材质',
+                meta: { title: 'meshLambertMaterial'},
+                component: () => import('@/views/three/material/MeshLambertMaterial.vue')
+            },
+            {
+                path: 'meshPhongMaterial',
+                name: '网格Phong材质',
+                meta: { title: 'meshPhongMaterial'},
+                component: () => import('@/views/three/material/MeshPhongMaterial.vue')
+            },
+            {
+                path: 'meshStandardMaterial',
+                name: '网格标准材质',
+                meta: { title: 'meshStandardMaterial'},
+                component: () => import('@/views/three/material/MeshStandardMaterial.vue')
+            },
+            {
+                path: 'meshPhysicalMaterial',
+                name: '网格物理材质',
+                meta: { title: 'meshPhysicalMaterial'},
+                component: () => import('@/views/three/material/MeshPhysicalMaterial.vue')
             }
         ]
     }
