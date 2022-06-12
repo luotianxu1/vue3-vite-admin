@@ -122,6 +122,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '网格物理材质',
                 meta: { title: 'meshPhysicalMaterial'},
                 component: () => import('@/views/three/material/MeshPhysicalMaterial.vue')
+            },
+            {
+                path: 'lineBasicMaterial',
+                name: '直线基础材质',
+                meta: { title: 'lineBasicMaterial'},
+                component: () => import('@/views/three/material/LineBasicMaterial.vue')
+            },
+            {
+                path: 'lineDashedMaterial',
+                name: '虚线材质',
+                meta: { title: 'lineDashedMaterial'},
+                component: () => import('@/views/three/material/LineDashedMaterial.vue')
             }
         ]
     }
