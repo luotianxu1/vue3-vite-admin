@@ -10,12 +10,31 @@
     const map = shallowRef<AMap.Map>()
     const Map = shallowRef()
     let marker
-    let polyline
+    let polygon
     let path = [
-        [116.368904, 39.913423],
-        [116.382122, 39.901176],
-        [116.387271, 39.912501],
-        [116.398258, 39.9046]
+        [116.169465, 39.93267],
+        [116.16026, 39.924492],
+        [116.186138, 39.879817],
+        [116.150625, 39.710019],
+        [116.183198, 39.70992],
+        [116.22695, 39.777616],
+        [116.421078, 39.810771],
+        [116.442621, 39.799892],
+        [116.463478, 39.790066],
+        [116.588276, 39.809551],
+        [116.536091, 39.808859],
+        [116.573856, 39.839643],
+        [116.70638, 39.91674],
+        [116.657285, 39.934545],
+        [116.600293, 39.93777],
+        [116.540039, 39.937968],
+        [116.514805, 39.982375],
+        [116.499935, 40.01371],
+        [116.54652, 40.030443],
+        [116.687668, 40.129961],
+        [116.539697, 40.080659],
+        [116.50339, 40.058474],
+        [116.4688, 40.052578]
     ]
     onMounted(() => {
         initMap()
@@ -35,52 +54,32 @@
                 if (!map.value) {
                     return
                 }
-                polyline = new AMap.Polyline({
+                polygon = new AMap.Polygon({
                     map: map.value,
-                    path: path,
-                    strokeColor: '#80d8ff',
-                    strokeWeight: 5
+                    fillOpacity: 0.4,
+                    path: path
                 })
-
-                // 创建marker
                 marker = new AMap.Marker({
                     map: map.value,
                     draggable: true,
-                    position: [116.377904, 39.915423]
+                    position: [116.566298, 40.014179]
                 })
-                pointOnSegment()
-                map.value.setFitView([polyline,marker])
-                marker.on('dragging',pointOnSegment)
+                compute()
+                marker.on('dragging', compute)
+                map.value.setFitView([polygon, marker])
             })
             .catch((e) => {
                 console.log(e)
             })
     }
 
-    const pointOnSegment = () => {
-        if (!map.value) {
-            return
-        }
-        let pos = marker.getPosition()
-        // mp = getResolution() 获取指定位置的地图分辨率，单位：米/像素
-        let mp = map.value.getResolution()
-        // m 为Polyline宽度的米数
-        let m = 5 * mp
-        // 判断 marker 是否在线段上，最后一个参数为 m米 的误差
-        let inLine = Map.value.GeometryUtil.isPointOnSegment(
-            pos,
-            path[0],
-            path[1],
-            m
-        )
-        let text = '点不在第一条线段上'
-        if (inLine) {
-            text = '点在第一条线段上'
-        }
+    const compute = () => {
+        let point = marker.getPosition()
+        let isPointInRing = Map.value.GeometryUtil.isPointInRing(point, path)
         marker.setLabel({
             direction: '',
-            offset: new Map.value.Pixel(20, 20),
-            content: text
+            content: isPointInRing ? '内部' : '外部',
+            offset: new Map.value.Pixel(20, 0)
         })
     }
 </script>

@@ -153,6 +153,16 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapIsOnLine',
                 name: '点是否在线上',
                 component: () => import('@/views/map/mapCalculate/AMapIsOnLine.vue')
+            },
+            {
+                path: 'aMapIsOnPolygon',
+                name: '点是否在多边形内',
+                component: () => import('@/views/map/mapCalculate/AMapIsOnPolygon.vue')
+            },
+            {
+                path: 'aMapGeometricRelationship',
+                name: '几何关系',
+                component: () => import('@/views/map/mapCalculate/AMapGeometricRelationship.vue')
             }
         ]
     }
