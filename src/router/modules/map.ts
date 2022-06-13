@@ -123,6 +123,36 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapAdministrativeArea',
                 name: '行政区查询',
                 component: () => import('@/views/map/mapOther/AMapAdministrativeArea.vue')
+            },
+            {
+                path: 'aMapWeather',
+                name: '天气预报',
+                component: () => import('@/views/map/mapOther/AMapWeather.vue')
+            },
+            {
+                path: 'aMapPointCalculate',
+                name: '两点间距离',
+                component: () => import('@/views/map/mapCalculate/AMapPointCalculate.vue')
+            },
+            {
+                path: 'aMapLineCalculate',
+                name: '点到线间距离',
+                component: () => import('@/views/map/mapCalculate/AMapLineCalculate.vue')
+            },
+            {
+                path: 'aMapPathLength',
+                name: '路径长度',
+                component: () => import('@/views/map/mapCalculate/AMapPathLength.vue')
+            },
+            {
+                path: 'aMapAreaNum',
+                name: '面积',
+                component: () => import('@/views/map/mapCalculate/AMapArea.vue')
+            },
+            {
+                path: 'aMapIsOnLine',
+                name: '点是否在线上',
+                component: () => import('@/views/map/mapCalculate/AMapIsOnLine.vue')
             }
         ]
     }

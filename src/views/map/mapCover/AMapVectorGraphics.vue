@@ -15,6 +15,7 @@
             <el-button @click="overlay">批处理(折线)</el-button>
             <el-button @click="measureArea">面积测量</el-button>
             <el-button @click="measureRule">测距</el-button>
+            <el-button @click="closeMeasure">关闭测量测距</el-button>
             <el-button @click="rectZoomIn">拉框放大</el-button>
             <el-button @click="measureOut">拉框缩小</el-button>
         </div>
@@ -56,7 +57,7 @@
                 mouseTool = new AMap.MouseTool(map.value)
                 mouseTool.on('draw', function (event) {
                     ElMessage.success('覆盖物对象绘制完成')
-                    // console.log(event.obj)
+                    console.log(event.obj)
                     // console.log(event.obj.getPath())
                     mouseTool.close()
                     // console.log(map.value.getAllOverlays('polygon'))
@@ -313,6 +314,9 @@
             // 线样式还支持 'dashed'
             // strokeDasharray: [30,10],
         })
+        if (res) {
+            console.log(res)
+        }
     }
 
     const overlay = () => {
@@ -333,6 +337,10 @@
 
     const measureRule = () => {
         mouseTool.rule()
+    }
+
+    const closeMeasure = () => {
+        mouseTool.close(true)
     }
 
     const rectZoomIn = () => {
