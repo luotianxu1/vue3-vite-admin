@@ -15,3 +15,5 @@ export const getBeijingInfo = (): Promise<ResponseData<any>> => request.post('/a
 export const getBeijingHouse = (): Promise<ResponseData<any>> => request.post('/api/beijingHouse')
 // 上海位置
 export const getShanghai = (): Promise<ResponseData<any>> => request.post('/api/shanghai')
+// 北京交通事故
+export const trafficAccident = (): Promise<ResponseData<any>> => request.post('/api/trafficaccident')

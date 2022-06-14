@@ -198,6 +198,26 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'lineLayer',
                 name: '线图层',
                 component: () => import('@/views/map/mapVisualization/LineLayer.vue')
+            },
+            {
+                path: 'iconLayer',
+                name: '图标图层',
+                component: () => import('@/views/map/mapVisualization/IconLayer.vue')
+            },
+            {
+                path: 'postLocation',
+                name: '贴地点',
+                component: () => import('@/views/map/mapVisualization/PostLocation.vue')
+            },
+            {
+                path: 'prismLayer',
+                name: '棱柱图层',
+                component: () => import('@/views/map/mapVisualization/PrismLayer.vue')
+            },
+            {
+                path: 'dotLayer',
+                name: '圆点图层',
+                component: () => import('@/views/map/mapVisualization/DotLayer.vue')
             }
         ]
     }
