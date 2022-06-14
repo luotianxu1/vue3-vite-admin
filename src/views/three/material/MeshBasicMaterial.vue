@@ -88,7 +88,7 @@
     const webGLRenderer = new THREE.WebGLRenderer()
     webGLRenderer.setClearColor(new THREE.Color(0x000000))
     webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMapEnabled = true
+    webGLRenderer.shadowMap.enabled = true
 
     const groundGeom = new THREE.PlaneGeometry(100, 100, 4, 4)
     const groundMesh = new THREE.Mesh(

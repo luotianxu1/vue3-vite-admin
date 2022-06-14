@@ -134,6 +134,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '虚线材质',
                 meta: { title: 'lineDashedMaterial'},
                 component: () => import('@/views/three/material/LineDashedMaterial.vue')
+            },
+            {
+                path: 'planeGeometry',
+                name: '平面',
+                meta: { title: 'planeGeometry'},
+                component: () => import('@/views/three/geometry/PlaneGeometry.vue')
+            },
+            {
+                path: 'circleGeometry',
+                name: '圆形',
+                meta: { title: 'circleGeometry'},
+                component: () => import('@/views/three/geometry/CircleGeometry.vue')
             }
         ]
     }

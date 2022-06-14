@@ -157,7 +157,6 @@ function addDefaultCubeAndSphere(scene) {
 }
 
 function addGroundPlane(scene) {
-    // create the ground plane
     const planeGeometry = new THREE.PlaneGeometry(60, 20, 120, 120)
     const planeMaterial = new THREE.MeshPhongMaterial({
         color: 0xffffff
@@ -165,14 +164,12 @@ function addGroundPlane(scene) {
     const plane = new THREE.Mesh(planeGeometry, planeMaterial)
     plane.receiveShadow = true
 
-    // rotate and position the plane
     plane.rotation.x = -0.5 * Math.PI
     plane.position.x = 15
     plane.position.y = 0
     plane.position.z = 0
 
     scene.add(plane)
-
     return plane
 }
 
@@ -219,6 +216,38 @@ const initCameraControl = (camera, domElement) => {
     const cameraControls = new CameraControls(camera, domElement)
     cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
     return cameraControls
+}
+
+const initLargeGroundPlane = (scene) => {
+    const planeGeometry = new THREE.PlaneGeometry(10000, 10000)
+    const planeMaterial = new THREE.MeshPhongMaterial({
+        color: 0xffffff
+    })
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+    plane.receiveShadow = true
+    plane.rotation.x = -0.5 * Math.PI
+    plane.position.x = 0
+    plane.position.y = 0
+    plane.position.z = 0
+    scene.add(plane)
+    return plane
+}
+
+const initDefaultLighting = (scene, initialPosition?) => {
+    const position = initialPosition || new THREE.Vector3(-10, 30, 40)
+    const spotLight = new THREE.SpotLight(0xffffff)
+    spotLight.position.copy(position)
+    spotLight.shadow.mapSize.width = 2048
+    spotLight.shadow.mapSize.height = 2048
+    spotLight.shadow.camera.fov = 15
+    spotLight.castShadow = true
+    spotLight.decay = 2
+    spotLight.penumbra = 0.05
+    spotLight.name = 'spotLight'
+    scene.add(spotLight)
+    const ambientLight = new THREE.AmbientLight(0x343434)
+    ambientLight.name = 'ambientLight'
+    scene.add(ambientLight)
 }
 
 const gosper = (a, b) => {
@@ -341,5 +370,7 @@ export {
     initAxes,
     initStats,
     initCameraControl,
-    gosper
+    gosper,
+    initLargeGroundPlane,
+    initDefaultLighting
 }
