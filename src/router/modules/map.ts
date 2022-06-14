@@ -218,6 +218,16 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'dotLayer',
                 name: '圆点图层',
                 component: () => import('@/views/map/mapVisualization/DotLayer.vue')
+            },
+            {
+                path: 'signagePoint',
+                name: '标牌点',
+                component: () => import('@/views/map/mapVisualization/SignagePoint.vue')
+            },
+            {
+                path: 'pathTracing',
+                name: '路径跟踪',
+                component: () => import('@/views/map/mapVisualization/PathTracing.vue')
             }
         ]
     }
