@@ -163,6 +163,41 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'aMapGeometricRelationship',
                 name: '几何关系',
                 component: () => import('@/views/map/mapCalculate/AMapGeometricRelationship.vue')
+            },
+            {
+                path: 'cellularHeatmap',
+                name: '蜂窝热力图',
+                component: () => import('@/views/map/mapVisualization/CellularHeatmap.vue')
+            },
+            {
+                path: 'gridHeatmap',
+                name: '网格热力图',
+                component: () => import('@/views/map/mapVisualization/GridHeatmap.vue')
+            },
+            {
+                path: 'heatmap',
+                name: '热力图',
+                component: () => import('@/views/map/mapVisualization/Heatmap.vue')
+            },
+            {
+                path: 'pulseLine',
+                name: '脉冲线',
+                component: () => import('@/views/map/mapVisualization/PulseLine.vue')
+            },
+            {
+                path: 'flyingLine',
+                name: '飞线',
+                component: () => import('@/views/map/mapVisualization/FlyingLine.vue')
+            },
+            {
+                path: 'connectingLine',
+                name: '连接线',
+                component: () => import('@/views/map/mapVisualization/ConnectingLine.vue')
+            },
+            {
+                path: 'lineLayer',
+                name: '线图层',
+                component: () => import('@/views/map/mapVisualization/LineLayer.vue')
             }
         ]
     }
