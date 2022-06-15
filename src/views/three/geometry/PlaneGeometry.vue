@@ -92,7 +92,7 @@
     })
     let plane = new THREE.Mesh(planeGeometry, planeMaterial)
     plane.castShadow = true
-    plane.position.set(15,5,0)
+    plane.position.set(0,0,0)
     scene.add(plane)
 
     watch(form, (val) => {

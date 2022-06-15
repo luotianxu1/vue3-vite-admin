@@ -167,7 +167,7 @@
         }
 
         .btn {
-            width: 320px;
+            width: 100px;
             padding: 10px;
             display: flex;
             flex-direction: column;

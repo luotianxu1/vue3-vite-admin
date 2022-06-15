@@ -92,7 +92,7 @@
     })
     let circle = new THREE.Mesh(CircleGeometry, planeMaterial)
     circle.castShadow = true
-    circle.position.set(15,5,0)
+    circle.position.set(0,0,0)
     scene.add(circle)
 
     watch(form, (val) => {
