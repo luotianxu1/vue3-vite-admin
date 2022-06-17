@@ -39,8 +39,18 @@
 <style scoped lang="scss">
     .main {
         height: 100%;
-        overflow: hidden;
         position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px;
+        overflow: auto;
+        overflow-x: hidden !important;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+        &::-webkit-scrollbar {
+            background-color: white;
+        }
 
         .sidebarBox {
             width: 10px;
