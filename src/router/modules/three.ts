@@ -149,7 +149,7 @@ const systemRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'ringGeometry',
-                name: '圆环',
+                name: '环形',
                 meta: { title: 'ringGeometry'},
                 component: () => import('@/views/three/geometry/RingGeometry.vue')
             },
@@ -182,6 +182,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '圆锥体',
                 meta: { title: 'coneGeometry'},
                 component: () => import('@/views/three/geometry/ConeGeometry.vue')
+            },
+            {
+                path: 'torusGeometry',
+                name: '圆环',
+                meta: { title: 'torusGeometry'},
+                component: () => import('@/views/three/geometry/TorusGeometry.vue')
+            },
+            {
+                path: 'torusKnotGeometry',
+                name: '环状扭结',
+                meta: { title: 'torusKnotGeometry'},
+                component: () => import('@/views/three/geometry/TorusKnotGeometry.vue')
             }
         ]
     }
