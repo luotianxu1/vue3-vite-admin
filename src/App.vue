@@ -10,22 +10,15 @@
 </template>
 
 <script setup lang="ts">
+    import { GlobalStore } from '@/store'
     import zhCn from 'element-plus/lib/locale/lang/zh-cn'
     import en from 'element-plus/lib/locale/lang/en'
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
 
-    const store = useStore(Key)
-    const languages = computed(() => store.state.system?.SYSTEM_LANGUAGE)
-    const localLanguage = computed(() => {
-        switch (languages.value) {
-            case 'en':
-                return en
-            case 'zh':
-                return zhCn
-            default:
-                return zhCn
-        }
+    const globalStore = GlobalStore()
+    const localLanguage = computed((): any => {
+        if (globalStore.SYSTEM_LANGUAGE && globalStore.SYSTEM_LANGUAGE === 'zh') { return zhCn }
+        if (globalStore.SYSTEM_LANGUAGE === 'en') { return en }
+        return ''
     })
 
     const config = reactive({

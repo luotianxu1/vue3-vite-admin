@@ -6,14 +6,14 @@
         <el-container>
             <el-header>
                 <Header></Header>
-                <!--                    <Tabs></Tabs>-->
+                <!-- <Tabs></Tabs>-->
             </el-header>
             <el-main>
                 <Connect></Connect>
             </el-main>
-            <el-footer>
-                <Footer></Footer>
-            </el-footer>
+<!--            <el-footer>-->
+<!--                <Footer></Footer>-->
+<!--            </el-footer>-->
         </el-container>
     </el-container>
 </template>

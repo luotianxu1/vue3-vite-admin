@@ -1,27 +1,28 @@
-import { createStore, Store } from 'vuex'
-import { InjectionKey } from 'vue'
-import system, { SystemStateType } from '@/store/modules/system'
-import user, { UserSate } from '@/store/modules/user'
-import createPersistedState from 'vuex-persistedstate'
+import { defineStore , createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { GlobalState } from './interface'
+import piniaPersistConfig from '@/config/piniaPersist'
 
-export type State = {
-    user?: UserSate
-    system?: SystemStateType
-}
-
-// eslint-disable-next-line symbol-description
-export const Key: InjectionKey<Store<State>> = Symbol()
-
-const store = createStore({
-    plugins: [
-        createPersistedState({
-            key: 'vue3-vite-admin'
-        })
-    ],
-    modules: {
-        system,
-        user
-    }
+export const GlobalStore = defineStore({
+    // id: 必须的，在所有 Store 中唯一
+    id: 'GlobalState',
+    state: (): GlobalState => ({
+        // 系统语言
+        SYSTEM_LANGUAGE: 'zh',
+        // 是否收缩侧边栏
+        SYSTEM_COLLAPSE: false,
+        // 当前页面路由
+        SYSTEM_ACTIVE_ROUTER: '',
+        // 历史路由
+        SYSTEM_ROUTER: []
+    }),
+    getters: {},
+    actions: {
+    },
+    persist: piniaPersistConfig('GlobalState')
 })
 
-export default store
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+
+export default pinia

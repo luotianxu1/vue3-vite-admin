@@ -3,25 +3,25 @@
         <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
                 <span class="user">
-                    <el-avatar :size="40" :src="userInfo?.img"></el-avatar>
+                    <el-avatar :size="40" :src="USER_INFO?.img"></el-avatar>
                     <span class="userInfo">
-                        <span>{{ userInfo?.name }}</span>
-                        <span>{{ userStatus[userInfo?.type as number] }}</span>
+                        <span>{{ USER_INFO?.name }}</span>
+                        <span>{{ userStatus[USER_INFO.type] }}</span>
                     </span>
                 </span>
-                <el-icon class="el-icon--right">
+                <el-icon class='el-icon--right'>
                     <ArrowDown />
                 </el-icon>
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item command="userCenter">
+                    <el-dropdown-item command='userCenter'>
                         个人中心
                     </el-dropdown-item>
-                    <el-dropdown-item command="taskCenter">
+                    <el-dropdown-item command='taskCenter'>
                         任务中心
                     </el-dropdown-item>
-                    <el-dropdown-item command="quit" divided>
+                    <el-dropdown-item command='quit' divided>
                         退出登录
                     </el-dropdown-item>
                 </el-dropdown-menu>
@@ -30,10 +30,10 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang='ts' setup>
     import { useRouter } from 'vue-router'
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
+    import { UserStore } from '@/store/modules/user'
+    import { storeToRefs } from 'pinia'
     import { ArrowDown } from '@element-plus/icons-vue'
 
     const userStatus = shallowReadonly({
@@ -42,8 +42,8 @@
         2: '用户'
     })
     const router = useRouter()
-    const store = useStore(Key)
-    const userInfo = computed(() => store.state.user?.USER_INFO)
+    const userStore = UserStore()
+    const { USER_INFO } = storeToRefs(userStore)
 
     const logout = () => {
         router.push('/login')
@@ -67,7 +67,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang='scss'>
     .avatar {
         cursor: pointer;
     }

@@ -22,11 +22,9 @@
 </template>
 
 <script lang="ts" setup>
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
+    import { GlobalStore } from '@/store'
     import { useI18n } from 'vue-i18n'
     const { locale } = useI18n()
-    const store = useStore(Key)
 
     const options = shallowReadonly([
         {
@@ -38,14 +36,10 @@
             label: 'English'
         }
     ])
-
-    const handleCommand = (command: string | number | object) => {
-        selectLanguage(command)
-    }
-
-    function selectLanguage(val) {
-        store.commit('system/SET_SYSTEM_LANGUAGE', val) // 存储
-        locale.value = val
+    const globalStore = GlobalStore()
+    const handleCommand = (command: string) => {
+        globalStore.SYSTEM_LANGUAGE = command
+        locale.value = command
     }
 </script>
 

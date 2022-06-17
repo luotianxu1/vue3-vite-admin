@@ -11,7 +11,7 @@
             unique-opened
             :collapse-transition="true"
             class="el-menu-vertical-demo"
-            :default-active="activeRouter"
+            :default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
             router
         >
             <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
@@ -20,42 +20,42 @@
 </template>
 
 <script lang="ts" setup>
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
     import router from '@/router'
+    import { GlobalStore } from '@/store'
+    import { UserStore } from '@/store/modules/user'
     import { getUserPageList } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
     import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'
-
-    const store = useStore(Key)
 
     // 图标
     const url = ref(
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
     )
 
+    const globalStore = GlobalStore()
     // 监听路由
     watch(
         () => router.currentRoute.value.path,
         (newValue) => {
-            store.commit('system/SET_SYSTEM_ACTIVE_ROUTER', newValue)
+            globalStore.SYSTEM_ACTIVE_ROUTER = newValue
         },
         { immediate: true }
     )
 
     // 是否收缩侧边栏
-    const isCollapse = computed(() => store.state.system?.SYSTEM_COLLAPSE)
+    const isCollapse = ref(false)
     // 图标
     const list = ref()
-    const user = computed(() => store.state.user?.USER_INFO)
+    // const user = computed(() => store.state.user?.USER_INFO)
 
     // 获取菜单列表
     onMounted(() => {
         getList()
     })
 
+    const userStore = UserStore()
     const getList = async () => {
-        const res = await getUserPageList({ id: user.value?.id as number })
+        const res = await getUserPageList({ id: userStore.USER_INFO.id as number })
         if (res.status === 200) {
             list.value = res.data?.list
         } else {
@@ -63,11 +63,6 @@
             await router.push('/login')
         }
     }
-
-    // 当前页面
-    const activeRouter = computed(
-        () => store.state.system?.SYSTEM_ACTIVE_ROUTER
-    )
 </script>
 
 <style scoped lang="scss">

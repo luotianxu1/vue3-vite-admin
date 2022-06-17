@@ -69,14 +69,10 @@
 </template>
 
 <script lang="ts" setup>
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
+    import { UserStore } from '@/store/modules/user'
     import { getUserPageList } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
     import { ElMessage } from 'element-plus'
-
-    const store = useStore(Key)
-    const userInfo = computed(() => store.state.user?.USER_INFO)
 
     const tableData = reactive({
         name: '',
@@ -87,12 +83,13 @@
         loading: false
     })
 
+    const userStore = UserStore()
     async function getMenuList() {
         tableData.loading = true
         let res
-        if (userInfo.value) {
+        if ( userStore.USER_INFO) {
             res = await getUserPageList({
-                id: userInfo.value.id as number
+                id: userStore.USER_INFO.id as number
             })
         }
         if (res.data && res.data.total && res.data.list) {

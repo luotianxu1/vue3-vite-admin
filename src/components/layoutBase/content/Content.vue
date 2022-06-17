@@ -24,15 +24,15 @@
 </template>
 
 <script lang="ts" setup>
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
-    import { computed } from 'vue'
+    // import { useStore } from 'vuex'
+    // import { Key } from '@/store'
+    // import { computed } from 'vue'
 
-    const store = useStore(Key)
-    const isCollapse = computed(() => store.state.system?.SYSTEM_COLLAPSE)
+    // const store = useStore(Key)
+    const isCollapse = ref(false)
 
     const changAside = () => {
-        store.commit('system/SET_SYSTEM_COLLAPSE', !isCollapse.value)
+        // store.commit('system/SET_SYSTEM_COLLAPSE', !isCollapse.value)
     }
 </script>
 

@@ -40,19 +40,18 @@
 </template>
 
 <script lang="ts" setup>
+    import { useRouter } from 'vue-router'
+    import { useI18n } from 'vue-i18n'
+    import { UserStore } from '@/store/modules/user'
+    import { UserState } from '@/store/interface/user'
+    import { ElMessage } from 'element-plus'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { loginApi } from '@/api/system/userApi'
-    import { ElMessage } from 'element-plus'
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
-    import { useRouter } from 'vue-router'
     import { setToken, setTokenTime } from '@/utils/auth'
-    import { useI18n } from 'vue-i18n'
+
     const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])
-
-    const store = useStore(Key)
     const router = useRouter()
 
     const loginRef = ref()
@@ -92,6 +91,7 @@
         loginRef.value.style.transform = 'rotateY(180deg)'
     }
 
+    const userStore = UserStore()
     const loginSubmit = () => {
         if (!loginFormRef.value) {
             return
@@ -105,7 +105,7 @@
                 ElMessage.success('登录成功！')
                 setToken('123')
                 setTokenTime()
-                store.commit('user/SET_USER_INFO', res.data)
+                userStore.USER_INFO = res.data as UserState['USER_INFO']
                 await router.push('/system/user')
             } else {
                 return false

@@ -1,33 +1,15 @@
-export type UserSate = {
-    USER_INFO: {
-        id?: number,
-        name?: string,
-        sex?: number,
-        age?: number,
-        type?: number,
-        phone?: number,
-        email?: string,
-        city?: string,
-        status?: number,
-        img?: string,
-        addTime?: string,
-        editTime?: string
-    }
-}
+import { defineStore } from 'pinia'
+import { UserState } from '../interface/user'
+import piniaPersistConfig from '@/config/piniaPersist'
 
-const userSate: UserSate = {
-  // 用户信息
-  USER_INFO: {}
-}
-
-export default {
-  namespaced: true,
-  state: userSate,
-  mutations: {
-    SET_USER_INFO(state: UserSate, data) {
-      state.USER_INFO = data
-    }
-  },
-  actions: {},
-  modules: {}
-}
+export const UserStore = defineStore({
+    id: 'UserState',
+    state: (): UserState => ({
+        USER_INFO: {}
+    }),
+    getters: {
+    },
+    actions: {
+    },
+    persist: piniaPersistConfig('UserState')
+})
