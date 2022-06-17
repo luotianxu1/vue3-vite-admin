@@ -7,6 +7,5 @@ export const TABS_BLACK_LIST: string[] = [
     '/404',
     '/500',
     '/layout',
-    '/login',
-    '/dataScreen'
+    '/login'
 ]
