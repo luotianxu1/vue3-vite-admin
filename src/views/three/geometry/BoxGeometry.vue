@@ -17,24 +17,40 @@
                     <el-form-item label="高度">
                         <el-slider
                             v-model="form.height"
-                            :min="0"
+                            :min="3"
                             :max="40"
                             :step="1"
                         />
                     </el-form-item>
-                    <el-form-item label="宽度段数">
+                    <el-form-item label="深度">
+                        <el-slider
+                            v-model="form.depth"
+                            :min="0"
+                            :max="20"
+                            :step="1"
+                        />
+                    </el-form-item>
+                    <el-form-item label="宽度">
                         <el-slider
                             v-model="form.widthSegments"
                             :min="1"
-                            :max="40"
+                            :max="20"
                             :step="1"
                         />
                     </el-form-item>
-                    <el-form-item label="高度段数">
+                    <el-form-item label="高度">
                         <el-slider
                             v-model="form.heightSegments"
                             :min="1"
-                            :max="40"
+                            :max="20"
+                            :step="1"
+                        />
+                    </el-form-item>
+                    <el-form-item label="深度">
+                        <el-slider
+                            v-model="form.depthSegments"
+                            :min="1"
+                            :max="20"
                             :step="1"
                         />
                     </el-form-item>
@@ -81,26 +97,32 @@
 
     const form = reactive({
         wireframe: false,
-        width: 20,
-        height: 20,
-        widthSegments: 1,
-        heightSegments: 1
+        width: 4,
+        height: 10,
+        depth: 10,
+        widthSegments: 4,
+        heightSegments: 4,
+        depthSegments: 4
     })
-    const planeGeometry = new THREE.PlaneGeometry(20,20)
-    const planeMaterial = new THREE.MeshNormalMaterial({
+    const BoxGeometry = new THREE.BoxGeometry(form.width, form.height, form.depth, Math.round(
+        form.widthSegments), Math.round(form.heightSegments), Math.round(
+        form.depthSegments))
+    const BoxMaterial = new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     })
-    let plane = new THREE.Mesh(planeGeometry, planeMaterial)
-    plane.castShadow = true
-    plane.position.set(0,0,0)
-    scene.add(plane)
+    let box = new THREE.Mesh(BoxGeometry, BoxMaterial)
+    box.castShadow = true
+    box.position.set(0,0,0)
+    scene.add(box)
 
     watch(form, (val) => {
-        planeMaterial.wireframe = val.wireframe
-        let newPlaneGeometry = new THREE.PlaneGeometry(form.width,form.height,form.widthSegments,form.heightSegments)
-        scene.remove(plane)
-        plane = new THREE.Mesh(newPlaneGeometry, planeMaterial)
-        scene.add(plane)
+        BoxMaterial.wireframe = val.wireframe
+        let newBoxGeometry = new THREE.BoxGeometry(form.width, form.height, form.depth, Math.round(
+            form.widthSegments), Math.round(form.heightSegments), Math.round(
+            form.depthSegments))
+        scene.remove(box)
+        box = new THREE.Mesh(newBoxGeometry, BoxMaterial)
+        scene.add(box)
     })
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
@@ -120,12 +142,10 @@
         renderScene()
     }
 
-    let step = 0
     const renderScene = () => {
         const delta = clock.getDelta()
         cameraControls.update(delta)
         stats.update()
-        plane.rotation.y = step+=0.01
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)
     }

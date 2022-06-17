@@ -6,10 +6,10 @@
                     <el-form-item label="wireframe">
                         <el-checkbox v-model="form.wireframe" size="small"/>
                     </el-form-item>
-                    <el-form-item label="宽度">
+                    <el-form-item label="底部">
                         <el-slider
-                            v-model="form.width"
-                            :min="0"
+                            v-model="form.radius"
+                            :min="-40"
                             :max="40"
                             :step="1"
                         />
@@ -22,20 +22,39 @@
                             :step="1"
                         />
                     </el-form-item>
-                    <el-form-item label="宽度段数">
+                    <el-form-item label="半径分段">
                         <el-slider
-                            v-model="form.widthSegments"
+                            v-model="form.radialSegments"
                             :min="1"
-                            :max="40"
+                            :max="20"
                             :step="1"
                         />
                     </el-form-item>
-                    <el-form-item label="高度段数">
+                    <el-form-item label="高度分段">
                         <el-slider
                             v-model="form.heightSegments"
                             :min="1"
-                            :max="40"
+                            :max="20"
                             :step="1"
+                        />
+                    </el-form-item>
+                    <el-form-item label="是否封闭">
+                        <el-checkbox v-model="form.openEnded" size="small"/>
+                    </el-form-item>
+                    <el-form-item label="开始">
+                        <el-slider
+                            v-model="form.thetaStart"
+                            :min="1"
+                            :max="2 * Math.PI"
+                            :step="0.1"
+                        />
+                    </el-form-item>
+                    <el-form-item label="长度">
+                        <el-slider
+                            v-model="form.thetaLength"
+                            :min="1"
+                            :max="2 * Math.PI"
+                            :step="0.1"
                         />
                     </el-form-item>
                 </el-form>
@@ -81,26 +100,35 @@
 
     const form = reactive({
         wireframe: false,
-        width: 20,
+        radius: 20,
         height: 20,
-        widthSegments: 1,
-        heightSegments: 1
+        radialSegments: 8,
+        heightSegments: 8,
+        openEnded: false,
+        thetaStart: 0,
+        thetaLength: 2 * Math.PI
     })
-    const planeGeometry = new THREE.PlaneGeometry(20,20)
-    const planeMaterial = new THREE.MeshNormalMaterial({
+    const ConeGeometry = new THREE.ConeGeometry(form.radius,
+        form.height, form.radialSegments, form.heightSegments, form.openEnded,
+        form.thetaStart, form.thetaLength
+    )
+    const ConeMaterial = new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     })
-    let plane = new THREE.Mesh(planeGeometry, planeMaterial)
-    plane.castShadow = true
-    plane.position.set(0,0,0)
-    scene.add(plane)
+    let cone = new THREE.Mesh(ConeGeometry, ConeMaterial)
+    cone.castShadow = true
+    cone.position.set(0,0,0)
+    scene.add(cone)
 
     watch(form, (val) => {
-        planeMaterial.wireframe = val.wireframe
-        let newPlaneGeometry = new THREE.PlaneGeometry(form.width,form.height,form.widthSegments,form.heightSegments)
-        scene.remove(plane)
-        plane = new THREE.Mesh(newPlaneGeometry, planeMaterial)
-        scene.add(plane)
+        ConeMaterial.wireframe = val.wireframe
+        let newConeGeometry = new THREE.ConeGeometry(form.radius,
+            form.height, form.radialSegments, form.heightSegments, form.openEnded,
+            form.thetaStart, form.thetaLength
+        )
+        scene.remove(cone)
+        cone = new THREE.Mesh(newConeGeometry, ConeMaterial)
+        scene.add(cone)
     })
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
@@ -120,12 +148,10 @@
         renderScene()
     }
 
-    let step = 0
     const renderScene = () => {
         const delta = clock.getDelta()
         cameraControls.update(delta)
         stats.update()
-        plane.rotation.y = step+=0.01
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)
     }

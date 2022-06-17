@@ -146,6 +146,42 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '圆形',
                 meta: { title: 'circleGeometry'},
                 component: () => import('@/views/three/geometry/CircleGeometry.vue')
+            },
+            {
+                path: 'ringGeometry',
+                name: '圆环',
+                meta: { title: 'ringGeometry'},
+                component: () => import('@/views/three/geometry/RingGeometry.vue')
+            },
+            {
+                path: 'shapeGeometry',
+                name: '任意图形',
+                meta: { title: 'shapeGeometry'},
+                component: () => import('@/views/three/geometry/ShapeGeometry.vue')
+            },
+            {
+                path: 'boxGeometry',
+                name: '长方体',
+                meta: { title: 'boxGeometry'},
+                component: () => import('@/views/three/geometry/BoxGeometry.vue')
+            },
+            {
+                path: 'sphereGeometry',
+                name: '球体',
+                meta: { title: 'sphereGeometry'},
+                component: () => import('@/views/three/geometry/SphereGeometry.vue')
+            },
+            {
+                path: 'cylinderGeometry',
+                name: '圆柱体',
+                meta: { title: 'cylinderGeometry'},
+                component: () => import('@/views/three/geometry/CylinderGeometry.vue')
+            },
+            {
+                path: 'coneGeometry',
+                name: '圆锥体',
+                meta: { title: 'coneGeometry'},
+                component: () => import('@/views/three/geometry/ConeGeometry.vue')
             }
         ]
     }
