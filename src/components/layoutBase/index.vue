@@ -6,25 +6,26 @@
         <el-container>
             <el-header>
                 <Header></Header>
-                <!-- <Tabs></Tabs>-->
+                <Tabs></Tabs>
             </el-header>
             <el-main>
                 <Connect></Connect>
             </el-main>
-<!--            <el-footer>-->
-<!--                <Footer></Footer>-->
-<!--            </el-footer>-->
+            <!--            <el-footer>-->
+            <!--                <Footer></Footer>-->
+            <!--            </el-footer>-->
         </el-container>
     </el-container>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import Header from './header/Header.vue'
     import Sidebar from './sidebar/Sidebar.vue'
     import Connect from './content/Content.vue'
+    import Tabs from './tabs/index.vue'
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
     .el-container {
         display: flex;
         width: 100%;
@@ -46,5 +47,4 @@
             background: #f0f2f5;
         }
     }
-
 </style>

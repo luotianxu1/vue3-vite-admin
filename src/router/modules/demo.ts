@@ -66,7 +66,7 @@ const demoRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'driver',
-                name: 'Driver',
+                name: '引导页',
                 component: () => import('@/views/demo/driver/Driver.vue')
             },
             {

@@ -1,13 +1,15 @@
 <template>
-    <el-scrollbar height="100%" style="border-right: 1px solid #e4e4e4">
+    <el-scrollbar class="scrollbar">
         <div class="logo">
             <div class="top item">
                 <el-avatar :size="40" :src="url"></el-avatar>
-                <span v-show='!isCollapse' class="title">管理系统模板</span>
+                <span v-show="!globalStore.SYSTEM_COLLAPSE" class="title">
+                    管理系统模板
+                </span>
             </div>
         </div>
         <el-menu
-            :collapse="isCollapse"
+            :collapse="globalStore.SYSTEM_COLLAPSE"
             unique-opened
             :collapse-transition="true"
             class="el-menu-vertical-demo"
@@ -16,6 +18,12 @@
         >
             <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
         </el-menu>
+        <div class='sidebarBox' @click='changAside'>
+            <MyIcon
+                :icon="globalStore.SYSTEM_COLLAPSE ? 'xiangyou' : 'xiangzuo'"
+                :font='14'
+            ></MyIcon>
+        </div>
     </el-scrollbar>
 </template>
 
@@ -46,7 +54,6 @@
     const isCollapse = ref(false)
     // 图标
     const list = ref()
-    // const user = computed(() => store.state.user?.USER_INFO)
 
     // 获取菜单列表
     onMounted(() => {
@@ -55,7 +62,9 @@
 
     const userStore = UserStore()
     const getList = async () => {
-        const res = await getUserPageList({ id: userStore.USER_INFO.id as number })
+        const res = await getUserPageList({
+            id: userStore.USER_INFO.id as number
+        })
         if (res.status === 200) {
             list.value = res.data?.list
         } else {
@@ -63,39 +72,58 @@
             await router.push('/login')
         }
     }
+
+    const changAside = () => {
+        globalStore.SYSTEM_COLLAPSE = !globalStore.SYSTEM_COLLAPSE
+    }
 </script>
 
 <style scoped lang="scss">
-    .logo {
-        display: flex;
-        align-items: center;
+    .scrollbar {
+        height: 100%;
+        border-right: 1px solid #e4e4e4;
 
-        .top {
+        .logo {
             display: flex;
             align-items: center;
 
-            .title {
-                font-weight: 600;
-                margin-left: 10px;
-                letter-spacing: 3px;
-                position: absolute;
-                left: 50px;
+            .top {
+                display: flex;
+                align-items: center;
+
+                .title {
+                    font-weight: 600;
+                    margin-left: 10px;
+                    letter-spacing: 3px;
+                    position: absolute;
+                    left: 50px;
+                }
+            }
+
+            .item {
+                padding: 0 10px;
             }
         }
 
-        .item {
-            padding: 0 10px;
+        .sidebarBox {
+            width: 10px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: #dadbe0;
         }
     }
+
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
-    }
-
-    .aside {
-        height: 100%;
-        background-color: #fff;
-        position: relative;
-        z-index: 3;
     }
 
     .el-menu {

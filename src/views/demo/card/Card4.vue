@@ -21,17 +21,12 @@
 </template>
 
 <script lang="ts" setup>
-    import { useStore } from 'vuex'
-    import { Key } from '@/store'
-
-    const store = useStore(Key)
-
-    const num = computed(() => {
-        if (store.state.system?.SYSTEM_COLLAPSE) {
-            return 24
-        }
-        return 200
-    })
+    // const num = computed(() => {
+    //     if (store.state.system?.SYSTEM_COLLAPSE) {
+    //         return 24
+    //     }
+    //     return 200
+    // })
 
     onMounted(() => {
         let lis = document.querySelectorAll('.list')
@@ -45,7 +40,7 @@
                         e.pageX -
                         list.offsetLeft -
                         light.offsetWidth / 2 -
-                        num.value
+                        200
                     let y = e.pageY - list.offsetTop - light.offsetWidth / 2
                     light.style.left = x + 'px'
                     light.style.top = y + 'px'

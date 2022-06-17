@@ -1,23 +1,73 @@
-import { defineStore , createPinia } from 'pinia'
+import { defineStore, createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { GlobalState } from './interface'
 import piniaPersistConfig from '@/config/piniaPersist'
+import { GlobalState } from './interface'
+import { HOME_URL, TABS_BLACK_LIST } from '@/config/config'
+import router from '@/router/index'
 
 export const GlobalStore = defineStore({
     // id: 必须的，在所有 Store 中唯一
     id: 'GlobalState',
     state: (): GlobalState => ({
-        // 系统语言
         SYSTEM_LANGUAGE: 'zh',
-        // 是否收缩侧边栏
         SYSTEM_COLLAPSE: false,
-        // 当前页面路由
-        SYSTEM_ACTIVE_ROUTER: '',
-        // 历史路由
-        SYSTEM_ROUTER: []
+        SYSTEM_ACTIVE_ROUTER: HOME_URL,
+        SYSTEM_ROUTER_LIST: [
+            { title: '首页', path: HOME_URL, icon: 'home-filled', close: false }
+        ]
     }),
     getters: {},
     actions: {
+        // 添加tab
+        addTabs(tabItem: Menu.MenuOptions) {
+            if (TABS_BLACK_LIST.includes(tabItem.path)) {
+                return
+            }
+            const tabInfo: Menu.MenuOptions = {
+                title: tabItem.title,
+                path: tabItem.path,
+                close: tabItem.close
+            }
+            if (this.SYSTEM_ROUTER_LIST.every((item) => item.path !== tabItem.path)) {
+                this.SYSTEM_ROUTER_LIST.push(tabInfo)
+            }
+            this.setTabsMenuValue(tabItem.path)
+            router.push(tabItem.path)
+        },
+        // 删除tab
+        async removeTabs(tabPath: string) {
+            let SYSTEM_ACTIVE_ROUTER = this.SYSTEM_ACTIVE_ROUTER
+            const SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST
+            if (SYSTEM_ACTIVE_ROUTER === tabPath) {
+                SYSTEM_ROUTER_LIST.forEach((item, index) => {
+                    if (item.path !== tabPath) { return }
+                    const nextTab =
+                        SYSTEM_ROUTER_LIST[index + 1] || SYSTEM_ROUTER_LIST[index - 1]
+                    if (!nextTab) { return }
+                    SYSTEM_ACTIVE_ROUTER = nextTab.path
+                    router.push(nextTab.path)
+                })
+            }
+            this.SYSTEM_ACTIVE_ROUTER = SYSTEM_ACTIVE_ROUTER
+            this.SYSTEM_ROUTER_LIST = SYSTEM_ROUTER_LIST.filter(
+                (item) => item.path !== tabPath
+            )
+        },
+        // 设置当前路由
+        async setTabsMenuValue(SYSTEM_ACTIVE_ROUTER: string) {
+            this.SYSTEM_ACTIVE_ROUTER = SYSTEM_ACTIVE_ROUTER
+        },
+        // 关闭其他
+        async closeMultipleTab(tabsMenuValue?: string) {
+            this.SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST.filter(item => {
+                return item.path === tabsMenuValue || item.path === HOME_URL
+            })
+        },
+        // 关闭所有
+        async goHome() {
+            router.push(HOME_URL)
+            this.SYSTEM_ACTIVE_ROUTER = HOME_URL
+        }
     },
     persist: piniaPersistConfig('GlobalState')
 })

@@ -6,5 +6,5 @@ export interface GlobalState {
     // 当前页面路由
     SYSTEM_ACTIVE_ROUTER: string,
     // 历史路由
-    SYSTEM_ROUTER: []
+    SYSTEM_ROUTER_LIST: any
 }
