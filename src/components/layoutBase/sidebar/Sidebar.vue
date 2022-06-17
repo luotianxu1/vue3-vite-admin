@@ -1,5 +1,11 @@
 <template>
     <el-scrollbar height="100%" style="border-right: 1px solid #e4e4e4">
+        <div class="logo">
+            <div class="top item">
+                <el-avatar :size="40" :src="url"></el-avatar>
+                <span v-show='!isCollapse' class="title">管理系统模板</span>
+            </div>
+        </div>
         <el-menu
             :collapse="isCollapse"
             unique-opened
@@ -19,9 +25,14 @@
     import router from '@/router'
     import { getUserPageList } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
-    import TreeMenu from '@/components/layoutBase/components/sidebar/components/TreeMenu.vue'
+    import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'
 
     const store = useStore(Key)
+
+    // 图标
+    const url = ref(
+        'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+    )
 
     // 监听路由
     watch(
@@ -60,6 +71,27 @@
 </script>
 
 <style scoped lang="scss">
+    .logo {
+        display: flex;
+        align-items: center;
+
+        .top {
+            display: flex;
+            align-items: center;
+
+            .title {
+                font-weight: 600;
+                margin-left: 10px;
+                letter-spacing: 3px;
+                position: absolute;
+                left: 50px;
+            }
+        }
+
+        .item {
+            padding: 0 10px;
+        }
+    }
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
     }
