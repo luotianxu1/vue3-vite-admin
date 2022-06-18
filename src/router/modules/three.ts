@@ -194,6 +194,12 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '环状扭结',
                 meta: { title: 'torusKnotGeometry'},
                 component: () => import('@/views/three/geometry/TorusKnotGeometry.vue')
+            },
+            {
+                path: 'polyhedron',
+                name: '多面体',
+                meta: { title: 'polyhedron'},
+                component: () => import('@/views/three/geometry/Polyhedron.vue')
             }
         ]
     }
