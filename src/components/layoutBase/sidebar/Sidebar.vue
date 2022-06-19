@@ -90,6 +90,8 @@
             .top {
                 display: flex;
                 align-items: center;
+                position: relative;
+                width: 100%;
 
                 .title {
                     font-weight: 600;

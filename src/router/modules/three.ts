@@ -200,6 +200,36 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '多面体',
                 meta: { title: 'polyhedron'},
                 component: () => import('@/views/three/geometry/Polyhedron.vue')
+            },
+            {
+                path: 'convexGeometry',
+                name: '凸包几何体',
+                meta: { title: 'convexGeometry'},
+                component: () => import('@/views/three/geometry/ConvexGeometry.vue')
+            },
+            {
+                path: 'latheGeometry',
+                name: '车削缓冲几何体',
+                meta: { title: 'latheGeometry'},
+                component: () => import('@/views/three/geometry/LatheGeometry.vue')
+            },
+            {
+                path: 'extrudeGeometry',
+                name: '挤压缓冲几何体',
+                meta: { title: 'extrudeGeometry'},
+                component: () => import('@/views/three/geometry/ExtrudeGeometry.vue')
+            },
+            {
+                path: 'tubeGeometry',
+                name: '管道缓冲几何体',
+                meta: { title: 'tubeGeometry'},
+                component: () => import('@/views/three/geometry/TubeGeometry.vue')
+            },
+            {
+                path: 'Test',
+                name: 'Test',
+                meta: { title: 'Test'},
+                component: () => import('@/views/three/geometry/Test.vue')
             }
         ]
     }
