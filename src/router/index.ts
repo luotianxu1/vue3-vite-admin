@@ -5,6 +5,7 @@ import mapRouter from '@/router/modules/map'
 import openRouter from '@/router/modules/open'
 import threeRouter from '@/router/modules/three'
 import functionRouter from '@/router/modules/function'
+import errorRouter from '@/router/modules/error'
 import NProgress from 'nprogress'
 import 'nprogress/css/nprogress.css'
 NProgress.configure({ showSpinner: false })
@@ -15,7 +16,8 @@ export const asyncRouterList: Array<RouteRecordRaw> = [
     ...mapRouter,
     ...openRouter,
     ...threeRouter,
-    ...functionRouter
+    ...functionRouter,
+    ...errorRouter
 ]
 
 export type AppRouteRecordRaw = RouteRecordRaw & {
@@ -31,6 +33,11 @@ const baseRouter: AppRouteRecordRaw[] = [
         path: '/login',
         name: 'Login',
         component: () => import('@/views/system/login/Login.vue')
+    },
+    {
+        // 找不到路由重定向到404页面
+        path: '/:pathMatch(.*)',
+        redirect: { name: '404' }
     }
 ]
 
@@ -38,7 +45,11 @@ const routes: RouteRecordRaw[] = [...baseRouter, ...asyncRouterList]
 
 const router = createRouter({
     routes: routes,
-    history: createWebHashHistory()
+    history: createWebHashHistory(),
+    scrollBehavior() {
+        // 始终滚动到顶部
+        return { top: 0 }
+    }
 })
 
 router.beforeEach((to, from, next) => {
