@@ -1,15 +1,18 @@
 <template>
-    <MyDraggable v-model="activities">
-        <el-tag
-            v-for="item in activities"
-            :key="item.type"
-            :type="item.type"
-            effect="dark"
-        >
-            {{ item.name }}
-        </el-tag>
-    </MyDraggable>
-		{{activities}}
+    <div>
+        <MyDraggable v-model="activities">
+            <el-tag
+                v-for="item in activities"
+                :key="item.type"
+                :type="item.type"
+                effect="dark"
+            >
+                {{ item.name }}
+            </el-tag>
+        </MyDraggable>
+        {{activities}}
+    </div>
+
 </template>
 
 <script lang="ts" setup>
