@@ -1,9 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import systemRouter from '@/router/modules/system'
-import demoRouter from '@/router/modules/demo'
+import demoRouter from '@/router/modules/style'
 import mapRouter from '@/router/modules/map'
 import openRouter from '@/router/modules/open'
 import threeRouter from '@/router/modules/three'
+import functionRouter from '@/router/modules/function'
 import NProgress from 'nprogress'
 import 'nprogress/css/nprogress.css'
 NProgress.configure({ showSpinner: false })
@@ -13,7 +14,8 @@ export const asyncRouterList: Array<RouteRecordRaw> = [
     ...demoRouter,
     ...mapRouter,
     ...openRouter,
-    ...threeRouter
+    ...threeRouter,
+    ...functionRouter
 ]
 
 export type AppRouteRecordRaw = RouteRecordRaw & {

@@ -187,7 +187,7 @@
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
     import Driver from 'driver.js'
     import 'driver.js/dist/driver.min.css'
-    import { steps } from '@/views/demo/driver/setup'
+    import { steps } from '@/views/function/driver/setup'
 
     const options = shallowReadonly([
         {
