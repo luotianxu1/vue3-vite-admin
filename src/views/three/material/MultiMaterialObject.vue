@@ -133,7 +133,7 @@
         display: flex;
 
         .form {
-            width: 300px;
+            width: 200px;
             margin-right: 10px;
 
             .form-item {

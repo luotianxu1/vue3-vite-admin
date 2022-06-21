@@ -17,7 +17,7 @@
                             :step="0.1"
                         />
                     </el-form-item>
-                    <el-form-item label="shadowDebug">
+                    <el-form-item label="shadowDebug" label-width='110px'>
                         <el-checkbox v-model="form.shadowDebug" size="large" />
                     </el-form-item>
                     <el-form-item label="指向">

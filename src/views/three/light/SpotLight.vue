@@ -2,7 +2,7 @@
     <div class="page">
         <div class="form">
             <div class="form-item">
-                <el-form :model="form" label-width="80px">
+                <el-form :model="form" label-width="100px">
                     <el-form-item label="环境光">
                         <el-color-picker v-model="form.ambientLightColor" />
                     </el-form-item>
@@ -41,7 +41,7 @@
                             :step="0.1"
                         />
                     </el-form-item>
-                    <el-form-item label="shadowDebug">
+                    <el-form-item label="shadowDebug" label-width='110px'>
                         <el-checkbox v-model="form.shadowDebug" size="large" />
                     </el-form-item>
                     <el-form-item label="阴影">

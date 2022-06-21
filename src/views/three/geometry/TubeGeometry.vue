@@ -2,7 +2,7 @@
     <div class="page">
         <div class="form">
             <div class="form-item">
-                <el-form :model="form" label-width="110px">
+                <el-form :model="form" label-width="120px">
                     <el-form-item label="segments">
                         <el-slider
                             v-model="form.segments"

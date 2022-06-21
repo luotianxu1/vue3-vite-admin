@@ -2,7 +2,7 @@
     <div class="page">
         <div class="form">
             <div class="form-item">
-                <el-form :model="form" label-width='70px'>
+                <el-form :model="form" label-width='80px'>
                     <el-form-item label="wireframe">
                         <el-checkbox v-model="form.wireframe" size="small"/>
                     </el-form-item>
