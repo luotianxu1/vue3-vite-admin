@@ -19,7 +19,7 @@ export const GlobalStore = defineStore({
     getters: {},
     actions: {
         // 添加tab
-        addTabs(tabItem: Menu.MenuOptions) {
+        async addTabs(tabItem: Menu.MenuOptions) {
             if (TABS_BLACK_LIST.includes(tabItem.path)) {
                 return
             }
@@ -32,7 +32,7 @@ export const GlobalStore = defineStore({
                 this.SYSTEM_ROUTER_LIST.push(tabInfo)
             }
             this.setTabsMenuValue(tabItem.path)
-            router.push(tabItem.path)
+            await router.push(tabItem.path)
         },
         // 删除tab
         async removeTabs(tabPath: string) {
@@ -65,7 +65,7 @@ export const GlobalStore = defineStore({
         },
         // 关闭所有
         async goHome() {
-            router.push(HOME_URL)
+            await router.push(HOME_URL)
             this.SYSTEM_ACTIVE_ROUTER = HOME_URL
         }
     },
