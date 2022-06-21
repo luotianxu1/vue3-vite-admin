@@ -1,6 +1,6 @@
 <template>
     <div
-        v-loading.fullscreen.lock="props.loading"
+        v-loading="props.loading"
         element-loading-text="加载中..."
         class="layout"
     >
@@ -49,11 +49,19 @@
 
 <style scoped lang="scss">
     .layout {
-        width: 100%;
-        height: 100%;
+        height: calc(100% - 20px);
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+        margin: 10px 13px;
+        padding: 20px;
+
+        &::-webkit-scrollbar {
+            background-color: white;
+        }
 
         .query {
             display: block;

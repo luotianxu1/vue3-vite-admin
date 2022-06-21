@@ -41,10 +41,10 @@
             padding: 0;
         }
         .el-main {
+            padding: 0;
             box-sizing: border-box;
-            padding: 10px 13px;
-            overflow-x: hidden;
             background: #f0f2f5;
+            overflow: hidden;
         }
     }
 </style>
