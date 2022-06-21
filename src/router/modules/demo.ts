@@ -7,12 +7,12 @@ const demoRouter: RouteRecordRaw[] = [
         component: LayoutBase,
         name: 'demo',
         meta: { title: 'demo' },
-        redirect: '/demo/lottery1',
+        redirect: '/demo/lottery',
         children: [
             {
-                path: 'lottery1',
-                name: '抽奖1',
-                component: () => import('@/views/demo/lottery/Lottery1.vue')
+                path: 'lottery',
+                name: '抽奖',
+                component: () => import('@/views/demo/lottery/Lottery.vue')
             },
             {
                 path: 'calendar',
@@ -83,6 +83,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'gradient',
                 name: '渐变背景',
                 component: () => import('@/views/demo/gradient/Gradient.vue')
+            },
+            {
+                path: 'embedded',
+                name: '内嵌页面',
+                component: () => import('@/views/demo/embedded/index.vue')
             }
         ]
     }
