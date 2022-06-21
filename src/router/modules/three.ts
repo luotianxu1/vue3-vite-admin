@@ -226,6 +226,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/geometry/TubeGeometry.vue')
             },
             {
+                path: 'parametricGeometry',
+                name: '参数化缓冲几何体',
+                meta: { title: 'parametricGeometry'},
+                component: () => import('@/views/three/geometry/ParametricGeometry.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test'},
