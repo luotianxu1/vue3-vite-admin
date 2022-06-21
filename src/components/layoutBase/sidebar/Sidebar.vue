@@ -1,22 +1,20 @@
 <template>
-    <el-scrollbar class="scrollbar">
-        <div class="logo">
-            <div class="top item">
-                <el-avatar :size="40" :src="url"></el-avatar>
-                <span v-show="!globalStore.SYSTEM_COLLAPSE" class="title">
-                    管理系统模板
-                </span>
-            </div>
-        </div>
+    <div class='top'>
+        <el-avatar :size='40' :src='url'></el-avatar>
+        <span v-show='!globalStore.SYSTEM_COLLAPSE' class='title'>
+            管理系统模板
+        </span>
+    </div>
+    <el-scrollbar class='scrollbar'>
         <el-menu
-            :collapse="globalStore.SYSTEM_COLLAPSE"
+            :collapse='globalStore.SYSTEM_COLLAPSE'
             unique-opened
-            :collapse-transition="true"
-            class="el-menu-vertical-demo"
-            :default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
+            :collapse-transition='true'
+            class='el-menu-vertical-demo'
+            :default-active='globalStore.SYSTEM_ACTIVE_ROUTER'
             router
         >
-            <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
+            <TreeMenu :tree-data='list' :collapse='isCollapse'></TreeMenu>
         </el-menu>
         <div class='sidebarBox' @click='changAside'>
             <MyIcon
@@ -27,7 +25,7 @@
     </el-scrollbar>
 </template>
 
-<script lang="ts" setup>
+<script lang='ts' setup>
     import router from '@/router'
     import { GlobalStore } from '@/store'
     import { UserStore } from '@/store/modules/user'
@@ -78,34 +76,27 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang='scss'>
+    .top {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 50px;
+        padding: 0 10px;
+
+        .title {
+            font-weight: 600;
+            margin-left: 10px;
+            letter-spacing: 3px;
+            position: absolute;
+            left: 50px;
+        }
+    }
+
     .scrollbar {
         height: 100%;
         border-right: 1px solid #e4e4e4;
-
-        .logo {
-            display: flex;
-            align-items: center;
-
-            .top {
-                display: flex;
-                align-items: center;
-                position: relative;
-                width: 100%;
-
-                .title {
-                    font-weight: 600;
-                    margin-left: 10px;
-                    letter-spacing: 3px;
-                    position: absolute;
-                    left: 50px;
-                }
-            }
-
-            .item {
-                padding: 0 10px;
-            }
-        }
 
         .sidebarBox {
             width: 10px;
