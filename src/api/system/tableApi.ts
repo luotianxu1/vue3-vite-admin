@@ -1,5 +1,5 @@
 import request from '@/api/request'
-import { ResponseData } from '@/api/type'
+import { ResponseData } from '@/api/interface/type'
 
 interface PageListParams {
     id: number

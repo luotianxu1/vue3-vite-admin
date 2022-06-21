@@ -99,9 +99,6 @@
         loginFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
                 const res = await loginApi(loginInfo)
-                if (res.status !== 200) {
-                    return ElMessage.warning(res.message)
-                }
                 ElMessage.success('登录成功！')
                 setToken('123')
                 setTokenTime()

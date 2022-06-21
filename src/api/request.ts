@@ -1,15 +1,15 @@
-import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { checkStatus } from './checkStatus'
 // import { diffTokenTime, getToken } from '@/utils/auth'
 
-const request = axios.create({
+const request:AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_URL as string,
     timeout: 10000
 })
 
 // 请求拦截器
 request.interceptors.request.use(
-    (config) => {
+    (config:AxiosRequestConfig) => {
         // if (getToken()) {
         //     if (diffTokenTime()) {
         //         return Promise.reject(new Error('请重新登录！'))
@@ -17,21 +17,22 @@ request.interceptors.request.use(
         // }
         return config
     },
-    (error) => {
+    (error:AxiosError) => {
         return Promise.reject(error)
     }
 )
 
-// 请求拦截器
+// 响应拦截器
 request.interceptors.response.use(
-    (result) => {
-        if (result.data.status && result.data.status !== 200) {
-            ElMessage.error(result.data.msg || '请求失败，请稍后重试！')
-            return Promise.reject(result.data)
+    (result:AxiosResponse) => {
+        const { data } = result
+        if (data.status && data.status !== 200) {
+            checkStatus(data.status)
+            return Promise.reject(data)
         }
-        return result.data
+        return data
     },
-    (error) => {
+    (error:AxiosError) => {
         return Promise.reject(error)
     }
 )

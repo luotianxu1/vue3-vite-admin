@@ -1,5 +1,5 @@
 import request from '@/api/request'
-import { ResponseData } from '@/api/type'
+import { ResponseData } from '@/api/interface/type'
 
 // 全国城市信息
 export const getCitys = (): Promise<ResponseData<any>> => request.post('/api/city')
