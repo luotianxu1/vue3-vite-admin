@@ -250,6 +250,12 @@ const initDefaultLighting = (scene, initialPosition?) => {
     scene.add(ambientLight)
 }
 
+const initAmbientLight = (scene) => {
+    const ambientLight = new THREE.AmbientLight(0x343434)
+    ambientLight.name = 'ambientLight'
+    scene.add(ambientLight)
+}
+
 const gosper = (a, b) => {
     let turtle = [0, 0, 0]
     let points: any = []
@@ -372,5 +378,6 @@ export {
     initCameraControl,
     gosper,
     initLargeGroundPlane,
-    initDefaultLighting
+    initDefaultLighting,
+    initAmbientLight
 }
