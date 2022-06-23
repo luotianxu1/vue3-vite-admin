@@ -20,7 +20,7 @@
         }
     })
 
-    const emit = defineEmits(['update:model-value','change'])
+    const emit = defineEmits(['update:model-value', 'change'])
 
     onMounted(() => {
         initDraggable()
@@ -41,7 +41,7 @@
                 // 然后把删除的元素放到新的索引位置
                 list.splice(e.newIndex, 0, item)
                 emit('update:model-value', list)
-		            emit('change', list)
+                emit('change', list)
             }
         })
     }

@@ -10,9 +10,9 @@ const demoRouter: RouteRecordRaw[] = [
         redirect: '/style/lottery',
         children: [
             {
-                path: 'content',
+                path: 'navigation',
                 name: '目录',
-                component: () => import('@/views/style/content/Content.vue')
+                component: () => import('@/views/style/navigation/Navigation.vue')
             },
             {
                 path: 'card1',
@@ -35,6 +35,16 @@ const demoRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/style/card/Card4.vue')
             },
             {
+                path: 'card5',
+                name: '卡片5',
+                component: () => import('@/views/style/card/Card5.vue')
+            },
+            {
+                path: 'card6',
+                name: '卡片6',
+                component: () => import('@/views/style/card/Card6.vue')
+            },
+            {
                 path: 'button1',
                 name: '按钮1',
                 component: () => import('@/views/style/button/Button1.vue')
@@ -53,6 +63,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'gradient',
                 name: '渐变背景',
                 component: () => import('@/views/style/gradient/Gradient.vue')
+            },
+            {
+                path: 'input',
+                name: '动态输入框',
+                component: () => import('@/views/style/input/input.vue')
             }
         ]
     }
