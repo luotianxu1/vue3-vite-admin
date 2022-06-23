@@ -66,8 +66,13 @@ const demoRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'loading1',
-                name: 'Loading1',
+                name: '加载图标1',
                 component: () => import('@/views/style/loading/Loading1.vue')
+            },
+            {
+                path: 'loading2',
+                name: '加载图标2',
+                component: () => import('@/views/style/loading/Loading2.vue')
             },
             {
                 path: 'gradient',
