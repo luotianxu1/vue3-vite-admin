@@ -9,7 +9,7 @@
                 </p>
                 <a href="#">立即购买</a>
             </div>
-            <img src="../../../assets/img/demo/instantNoodles.png" alt="img" />
+            <img src='../../../assets/img/style/card/card7.png' alt="img" />
         </div>
     </div>
 </template>

@@ -7,7 +7,7 @@
                     <p>Web Designer</p>
                     <div class="image">
                         <img
-                            src="../../../assets/img/demo/person.jpeg"
+                            src='../../../assets/img/style/card/card7.jpeg'
                             alt=""
                         />
                     </div>
@@ -69,34 +69,6 @@
                 transform: scale(1, 0);
                 transform-origin: bottom;
                 transition: transform 500ms ease;
-            }
-
-            .circle {
-                &:before {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    width: 153px;
-                    height: 117px;
-                    background-image: url('../../../assets/img/demo/team-circle-1-1.png');
-                    transform: perspective(200px) scaleX(0) scaleY(0);
-                    transition: transform 500ms ease, opacity 500ms ease;
-                    opacity: 0;
-                    transform-origin: right top;
-                }
-
-                &:after {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 153px;
-                    height: 117px;
-                    background-image: url('../../../assets/img/demo/team-circle-1-1.png');
-                    transform: perspective(200px) scaleX(0) scaleY(0);
-                    transition: transform 500ms ease, opacity 500ms ease;
-                    opacity: 0;
-                    transform-origin: right top;
-                }
             }
 
             &:hover {

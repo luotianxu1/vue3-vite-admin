@@ -333,7 +333,7 @@
         height: 100%;
         overflow: hidden;
         position: relative;
-        background-image: url('../../../assets/img/background.png');
+        background-image: url('../../../assets/img/function/lottery/background.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
 
@@ -355,7 +355,7 @@
                     line-height: 7.6vh;
                     margin-top: 1%;
                     text-align: center;
-                    background-image: url('../../../assets/img/roll.png');
+                    background-image: url('../../../assets/img/function/lottery/roll.png');
                     background-repeat: no-repeat;
                     background-size: 100% 100%;
                     overflow: hidden;
@@ -414,7 +414,7 @@
                     justify-content: space-around;
 
                     button {
-                        background-image: url('../../../assets/img/button.png');
+                        background-image: url('../../../assets/img/function/lottery/button.png');
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-position-x: -4px;
