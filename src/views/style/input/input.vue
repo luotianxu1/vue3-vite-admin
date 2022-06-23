@@ -41,17 +41,18 @@
                     font-size: 17px;
                     border-bottom: 2px solid #c0c0c0;
 
-                    &:focus ~ label,
-                    &:valid ~ label {
-                        border: none;
-                        transform: translateY(-25px);
-                        font-size: 15px;
-                        color: #2c6fdb;
-                    }
+                    &:focus,
+                    &:valid {
+                        ~ label {
+                            border: none;
+                            transform: translateY(-25px);
+                            font-size: 15px;
+                            color: #2c6fdb;
+                        }
 
-                    &:focus ~ .underline,
-                    &:valid ~ .underline {
-                        transform: scaleX(1);
+                        ~ .underline {
+                            transform: scaleX(1);
+                        }
                     }
                 }
 

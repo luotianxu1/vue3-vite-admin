@@ -86,7 +86,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
+        min-height: 100%;
         background-color: #222327;
 
         .navigation {
