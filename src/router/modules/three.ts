@@ -232,16 +232,28 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/geometry/ParametricGeometry.vue')
             },
             {
-                path: 'spriteMaterial',
-                name: '点精灵材质',
+                path: 'spriteMaterial1',
+                name: '点精灵材质1',
                 meta: { title: 'parametricGeometry'},
-                component: () => import('@/views/three/particle/SpriteMaterial.vue')
+                component: () => import('@/views/three/particle/SpriteMaterial1.vue')
             },
             {
-                path: 'pointsMaterial',
-                name: '点材质',
-                meta: { title: 'pointsMaterial'},
-                component: () => import('@/views/three/particle/PointsMaterial.vue')
+                path: 'spriteMaterial2',
+                name: '点精灵材质2',
+                meta: { title: 'parametricGeometry'},
+                component: () => import('@/views/three/particle/SpriteMaterial2.vue')
+            },
+            {
+                path: 'pointsMaterial1',
+                name: '点材质1',
+                meta: { title: 'pointsMaterial1'},
+                component: () => import('@/views/three/particle/PointsMaterial1.vue')
+            },
+            {
+                path: 'pointsMaterial2',
+                name: '点材质2',
+                meta: { title: 'pointsMaterial2'},
+                component: () => import('@/views/three/particle/PointsMaterial2.vue')
             },
             {
                 path: 'Test',
