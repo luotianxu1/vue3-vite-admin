@@ -45,7 +45,6 @@
         initCamera,
         initCameraControl,
         initAmbientLight,
-        initLargeGroundPlane,
         initStats
     } from '@/utils/three/util'
 
@@ -68,9 +67,6 @@
     webGLRenderer.shadowMap.enabled = true
     // 创建灯光
     initAmbientLight(scene)
-    // 创建平面
-    const groundPlane = initLargeGroundPlane(scene)
-    groundPlane.position.y = -10
 
     const form = reactive({
         size:4,
