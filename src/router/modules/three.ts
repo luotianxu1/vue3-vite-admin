@@ -232,6 +232,18 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/geometry/ParametricGeometry.vue')
             },
             {
+                path: 'group',
+                name: '对象组合',
+                meta: { title: 'group'},
+                component: () => import('@/views/three/geometry/Group.vue')
+            },
+            {
+                path: 'merge',
+                name: '合并网络',
+                meta: { title: 'merge'},
+                component: () => import('@/views/three/geometry/Merge.vue')
+            },
+            {
                 path: 'spriteMaterial1',
                 name: '点精灵材质1',
                 meta: { title: 'parametricGeometry'},
@@ -258,7 +270,7 @@ const systemRouter: RouteRecordRaw[] = [
             {
                 path: 'pointsMaterial3',
                 name: '点材质3',
-                meta: { title: 'pointsMaterial2'},
+                meta: { title: 'pointsMaterial3'},
                 component: () => import('@/views/three/particle/PointsMaterial3.vue')
             },
             {
