@@ -173,6 +173,32 @@ function addGroundPlane(scene) {
     return plane
 }
 
+const addLargeGroundPlane = (scene, useTexture?) => {
+
+    const withTexture = (useTexture !== null) ? useTexture : false
+
+    const planeGeometry = new THREE.PlaneGeometry(10000, 10000)
+    const planeMaterial = new THREE.MeshPhongMaterial({
+        color: 0xffffff
+    })
+    if (withTexture) {
+        const textureLoader = new THREE.TextureLoader()
+        planeMaterial.map = textureLoader.load('src/assets/img/three/texture/general/floor-wood.jpg')
+        planeMaterial.map.wrapS = THREE.RepeatWrapping
+        planeMaterial.map.wrapT = THREE.RepeatWrapping
+        planeMaterial.map.repeat.set(80,80)
+    }
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+    plane.receiveShadow = true
+
+    plane.rotation.x = -0.5 * Math.PI
+    plane.position.x = 0
+    plane.position.y = 0
+    plane.position.z = 0
+    scene.add(plane)
+    return plane
+}
+
 // 初始化相机
 const initCamera = (initialPosition?) => {
     let position
@@ -254,6 +280,19 @@ const initAmbientLight = (scene) => {
     const ambientLight = new THREE.AmbientLight(0x343434)
     ambientLight.name = 'ambientLight'
     scene.add(ambientLight)
+}
+
+const addGeometry = (scene, geom, name, texture) => {
+    const mat = new THREE.MeshStandardMaterial(
+        {
+            map: texture,
+            metalness: 0.2,
+            roughness: 0.07
+        })
+    const mesh = new THREE.Mesh(geom, mat)
+    mesh.castShadow = true
+    scene.add(mesh)
+    return mesh
 }
 
 const gosper = (a, b) => {
@@ -433,5 +472,7 @@ export {
     initLargeGroundPlane,
     initDefaultLighting,
     initAmbientLight,
-    createGhostTexture
+    createGhostTexture,
+    addGeometry,
+    addLargeGroundPlane
 }
