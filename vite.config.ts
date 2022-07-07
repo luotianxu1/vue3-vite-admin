@@ -17,7 +17,7 @@ export default defineConfig({
         Components({
             resolvers: [ElementPlusResolver()],
             dirs: ['src/components'],
-            directoryAsNamespace: true,
+            // directoryAsNamespace: true,
             dts: 'src/types/components.d.ts',
             deep: true
         })
