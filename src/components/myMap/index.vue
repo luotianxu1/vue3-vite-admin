@@ -1,19 +1,23 @@
 <template>
-    <div id="map" class="map"></div>
+    <div class="baseMap">
+        <div id="map" class="map"></div>
+    </div>
 </template>
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { PropType } from 'vue'
+    type Tplugin = 'ToolBar' | 'Scale' | 'HawkEye' | 'Geolocation'
 
-    const props = defineProps({
-        options: {
-            type: Object as PropType<AMap.MapOptions>,
-            default: () => {
-                return {
-                    zoom: 10
-                }
-            }
+    interface Props {
+        options?: AMap.MapOptions,
+        plugin?: [Tplugin?,Tplugin?,Tplugin?,Tplugin?]
+    }
+    const props = withDefaults(defineProps<Props>(), {
+        options: () => {
+            return {}
+        },
+        plugin:() => {
+            return ['ToolBar']
         }
     })
 
@@ -29,6 +33,8 @@
                         ...props.options
                     })
 
+                    console.log(props.plugin)
+
                     //地图绘制成功
                     map.value.on('complete', () => {
                         resolve(map.value)
@@ -41,14 +47,27 @@
         })
     }
 
+    watch(
+        () => props.plugin,
+        (val) => {
+            console.log(val)
+        }
+    )
+
     defineExpose({
-        initMap,
+        initMap
     })
 </script>
 
 <style scoped lang="scss">
-    .map {
+    .baseMap {
         width: 100%;
         height: 100%;
+        position: relative;
+
+        .map {
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

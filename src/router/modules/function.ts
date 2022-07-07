@@ -15,11 +15,6 @@ const functionRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/function/lottery/Lottery.vue')
             },
             {
-                path: 'calendar',
-                name: '日历',
-                component: () => import('@/views/function/calendar/Calendar.vue')
-            },
-            {
                 path: 'number',
                 name: '数字',
                 component: () => import('@/views/function/number/Number.vue')

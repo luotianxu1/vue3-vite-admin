@@ -1,5 +1,5 @@
 <template>
-    <Map ref="mapRef"></Map>
+    <Map ref="mapRef" ></Map>
 </template>
 
 <script lang="ts" setup>
@@ -10,6 +10,7 @@
     let map: AMap.Map
     onMounted(async () => {
         map = await mapRef.value.initMap()
+        console.log(map)
     })
 </script>
 
