@@ -8,7 +8,10 @@
             :rules="rules"
         >
             <el-form-item label="姓名：" prop="name">
-                <el-input v-model="form.name" placeholder="姓名" />
+                <el-input v-model="form.name" placeholder="请输入姓名" />
+            </el-form-item>
+            <el-form-item label="歌曲名称：" prop="song">
+                <el-input v-model="form.song" placeholder="请输入歌曲名称" />
             </el-form-item>
             <el-form-item label="得分：" prop="value">
                 <el-input-number
@@ -34,6 +37,7 @@
         <el-table :data="tableData" border stripe style="width: 100%">
             <el-table-column type="index" />
             <el-table-column prop="name" label="姓名" />
+            <el-table-column prop="song" label="歌曲名称" />
             <el-table-column prop="value" label="得分" sortable />
         </el-table>
     </div>
@@ -48,7 +52,8 @@
         value: [
             { required: true, message: '请输入得分', trigger: 'blur' },
             { type: 'number', message: '必须为数字' }
-        ]
+        ],
+        song: [{ required: true, message: '请输入歌曲名称', trigger: 'blur' }]
     })
 
     onMounted(() => {
@@ -61,6 +66,7 @@
     const form = reactive({
         name: '',
         value: 0,
+        song: '',
         index: null
     })
 
@@ -80,6 +86,7 @@
                 localStorage.setItem('list', JSON.stringify(tableData.value))
                 form.name = ''
                 form.value = 0
+                form.song = ''
             } else {
                 console.log('error submit!')
                 return false
