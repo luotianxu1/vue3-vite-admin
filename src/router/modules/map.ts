@@ -228,11 +228,6 @@ const mapRouter: RouteRecordRaw[] = [
                 path: 'pathTracing',
                 name: '路径跟踪',
                 component: () => import('@/views/map/mapVisualization/PathTracing.vue')
-            },
-            {
-                path: 'aMap',
-                name: '地图封装',
-                component: () => import('@/views/map/Amap.vue')
             }
         ]
     }

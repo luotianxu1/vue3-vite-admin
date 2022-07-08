@@ -18,6 +18,16 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'drag',
                 name: '拖拽',
                 component: () => import('@/views/open/drag/index.vue')
+            },
+            {
+                path: 'rankedList',
+                name: '排名列表',
+                component: () => import('@/views/open/ranking/List.vue')
+            },
+            {
+                path: 'rankedManage',
+                name: '排名管理',
+                component: () => import('@/views/open/ranking/Manage.vue')
             }
         ]
     }

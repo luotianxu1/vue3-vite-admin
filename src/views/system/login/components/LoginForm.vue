@@ -44,7 +44,6 @@
     import { useI18n } from 'vue-i18n'
     import { UserStore } from '@/store/modules/user'
     import { UserState } from '@/store/interface/user'
-    import { ElMessage } from 'element-plus'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { loginApi } from '@/api/system/userApi'
