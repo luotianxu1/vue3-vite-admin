@@ -7,7 +7,7 @@
             <div>得分</div>
         </div>
         <transition-group name="list" tag="p">
-            <div v-for="(item, index) in list" :key="item" class="list-item">
+            <div v-for="(item, index) in list" :key="item" class="list-item font">
                 <div>
                     {{ index + 1 }}
                 </div>
@@ -79,6 +79,12 @@
 
     .title {
        background-color: rgba(0,0,0,0)!important;
+        font-family: XBS;
+        font-size: 4rem;
+    }
+
+    .font {
+        //font-family: FZCYJ;
     }
 
     .list-item {
