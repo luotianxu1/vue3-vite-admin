@@ -68,11 +68,9 @@
     .main {
         width: 100%;
         height: 100%;
-        background: url("src/assets/img/open/background.jpg");
-        background-repeat: no-repeat;
+        background: url("../../../assets/img/open/background.jpg") no-repeat;
         background-size: cover;
-        padding: 0 20%;
-        padding-top: 1%;
+        padding: 1% 20% 0;
         font-size: 3rem;
         overflow: auto;
     }
