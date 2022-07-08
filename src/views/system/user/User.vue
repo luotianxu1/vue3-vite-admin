@@ -132,7 +132,7 @@
         CirclePlus,
         Download
     } from '@element-plus/icons-vue'
-    import { ElMessageBox, ElMessage } from 'element-plus'
+    import { ElMessageBox } from 'element-plus'
     import { jsonToExcel } from '@/utils/excel'
 
     const options = shallowReadonly([

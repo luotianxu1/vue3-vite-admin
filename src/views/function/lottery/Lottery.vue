@@ -87,7 +87,6 @@
 </template>
 
 <script lang="js">
-    import { ElMessage } from 'element-plus'
     export default {
         name: 'lottery1',
         data() {

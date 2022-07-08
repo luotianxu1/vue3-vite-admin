@@ -55,7 +55,6 @@
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { registerApi } from '@/api/system/userApi'
-    import { ElMessage } from 'element-plus'
     import { useI18n } from 'vue-i18n'
     const { t } = useI18n()
     const emit = defineEmits(['changeToLogin'])

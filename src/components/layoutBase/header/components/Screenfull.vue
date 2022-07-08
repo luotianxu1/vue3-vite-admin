@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { ElMessage } from 'element-plus'
     import screenfull from 'screenfull'
 
     const sf = screenfull

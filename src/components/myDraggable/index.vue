@@ -6,7 +6,6 @@
 
 <script lang="ts" setup>
     import Sortable from 'sortablejs'
-    import { ElMessage } from 'element-plus'
     import { PropType } from 'vue'
 
     const props = defineProps({

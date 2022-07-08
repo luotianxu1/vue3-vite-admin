@@ -78,7 +78,6 @@
     import AreaChart from './components/content/area-chart/index.vue'
     import BarChart from './components/content/bar-chart/index.vue'
     import CustomText from './components/content/custom-text/index.vue'
-    import { ElMessage } from 'element-plus'
 
     // 动态组件列表
     const componentsList = {

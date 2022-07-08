@@ -60,7 +60,6 @@
 
 <script lang="ts" setup>
     import * as api from '@/api/system/tableApi'
-    import { ElMessage } from 'element-plus'
 
     const props = defineProps({
         column: {

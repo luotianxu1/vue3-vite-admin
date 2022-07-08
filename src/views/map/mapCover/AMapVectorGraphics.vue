@@ -26,7 +26,6 @@
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
     import { getShanghai } from '@/api/system/mapApi'
-    import { ElMessage } from 'element-plus'
     import axios from 'axios'
 
     const map = shallowRef()

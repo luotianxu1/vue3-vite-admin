@@ -26,7 +26,6 @@
         IEditorConfig,
         IToolbarConfig
     } from '@wangeditor/editor'
-    import { ElMessage } from 'element-plus'
 
     i18nChangeLanguage('zh-CN')
 
