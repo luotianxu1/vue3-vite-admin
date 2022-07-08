@@ -11,11 +11,22 @@
                 <el-input v-model="form.name" placeholder="姓名" />
             </el-form-item>
             <el-form-item label="得分：" prop="value">
-                <el-input v-model.number="form.value" placeholder="得分" />
+                <el-input-number
+                    v-model="form.value"
+                    :precision="2"
+                    :step="0.1"
+                    :min="0"
+                    :max="100"
+                />
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="add(ruleFormRef)">
                     添加
+                </el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="clear()">
+                    清空
                 </el-button>
             </el-form-item>
         </el-form>
@@ -31,36 +42,55 @@
 <script lang="ts" setup>
     import type { FormRules, FormInstance } from 'element-plus'
 
-    const tableData:any = ref([])
+    const tableData: any = ref([])
     const rules = reactive<FormRules>({
         name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
         value: [
             { required: true, message: '请输入得分', trigger: 'blur' },
-            { type: 'number', message: '必须为数字' },
+            { type: 'number', message: '必须为数字' }
         ]
+    })
+
+    onMounted(() => {
+        const data = localStorage.getItem('list')
+        if (data) {
+            tableData.value = JSON.parse(data)
+        }
     })
 
     const form = reactive({
         name: '',
-        value: '',
-		    index: null
+        value: 0,
+        index: null
     })
 
     const ruleFormRef = ref<FormInstance>()
     const add = (formEl: FormInstance | undefined) => {
-        if (!formEl) return
+        if (!formEl) {
+            return
+        }
         formEl.validate((valid) => {
             if (valid) {
-								form.index = tableData.value.length + 1
-		            tableData.value.push(JSON.parse(JSON.stringify(form)))
-		            localStorage.setItem('newItem', JSON.stringify(form))
-		            form.name = ''
-		            form.value = ''
+                if (form.value === 0) {
+                    return ElMessage.error('成绩不能为0！')
+                }
+                form.index = tableData.value.length + 1
+                tableData.value.push(JSON.parse(JSON.stringify(form)))
+                localStorage.setItem('newItem', JSON.stringify(form))
+                localStorage.setItem('list', JSON.stringify(tableData.value))
+                form.name = ''
+                form.value = 0
             } else {
                 console.log('error submit!')
                 return false
             }
         })
+    }
+
+    const clear = () => {
+        tableData.value = []
+        localStorage.removeItem('newItem')
+        localStorage.removeItem('list')
     }
 </script>
 
