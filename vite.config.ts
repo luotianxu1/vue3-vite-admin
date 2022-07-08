@@ -15,10 +15,10 @@ export default defineConfig({
             dts: 'src/types/auto-imports.d.ts'
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [ElementPlusResolver()],
             // dirs: ['src/components'],
             // directoryAsNamespace: true,
-            // dts: 'src/types/components.d.ts'
+            dts: 'src/types/components.d.ts'
             // deep: true
         })
     ],
