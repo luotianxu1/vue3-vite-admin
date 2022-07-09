@@ -174,8 +174,7 @@ function addGroundPlane(scene) {
 }
 
 const addLargeGroundPlane = (scene, useTexture?) => {
-
-    const withTexture = (useTexture !== null) ? useTexture : false
+    const withTexture = useTexture !== null ? useTexture : false
 
     const planeGeometry = new THREE.PlaneGeometry(10000, 10000)
     const planeMaterial = new THREE.MeshPhongMaterial({
@@ -183,10 +182,12 @@ const addLargeGroundPlane = (scene, useTexture?) => {
     })
     if (withTexture) {
         const textureLoader = new THREE.TextureLoader()
-        planeMaterial.map = textureLoader.load('src/assets/img/three/texture/general/floor-wood.jpg')
+        planeMaterial.map = textureLoader.load(
+            'src/assets/img/three/texture/general/floor-wood.jpg'
+        )
         planeMaterial.map.wrapS = THREE.RepeatWrapping
         planeMaterial.map.wrapT = THREE.RepeatWrapping
-        planeMaterial.map.repeat.set(80,80)
+        planeMaterial.map.repeat.set(80, 80)
     }
     const plane = new THREE.Mesh(planeGeometry, planeMaterial)
     plane.receiveShadow = true
@@ -283,12 +284,11 @@ const initAmbientLight = (scene) => {
 }
 
 const addGeometry = (scene, geom, name, texture) => {
-    const mat = new THREE.MeshStandardMaterial(
-        {
-            map: texture,
-            metalness: 0.2,
-            roughness: 0.07
-        })
+    const mat = new THREE.MeshStandardMaterial({
+        map: texture,
+        metalness: 0.2,
+        roughness: 0.07
+    })
     const mesh = new THREE.Mesh(geom, mat)
     mesh.castShadow = true
     scene.add(mesh)
@@ -412,7 +412,7 @@ const createGhostTexture = () => {
     canvas.width = 32
     canvas.height = 32
 
-    let ctx:any = canvas.getContext('2d')
+    let ctx: any = canvas.getContext('2d')
     // the body
     ctx.translate(-81, -84)
 
@@ -439,7 +439,7 @@ const createGhostTexture = () => {
     ctx.bezierCurveTo(87, 103, 88, 106, 91, 106)
     ctx.bezierCurveTo(94, 106, 95, 103, 95, 101)
     ctx.bezierCurveTo(95, 99, 94, 96, 91, 96)
-    ctx.moveTo(103, 96);
+    ctx.moveTo(103, 96)
     ctx.bezierCurveTo(100, 96, 99, 99, 99, 101)
     ctx.bezierCurveTo(99, 103, 100, 106, 103, 106)
     ctx.bezierCurveTo(106, 106, 107, 103, 107, 101)

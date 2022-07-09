@@ -162,7 +162,7 @@
                     label="操作"
                     width="180"
                 >
-                    <template>
+                    <template #default>
                         <el-button type="info" :icon="Edit">修改</el-button>
                         <el-button type="danger" :icon="Delete">删除</el-button>
                     </template>

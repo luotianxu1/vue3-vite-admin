@@ -129,7 +129,7 @@
         }
     })
     const emit = defineEmits(['onLoad'])
-    const tableData = reactive({
+    const tableData:any = reactive({
         total: 0,
         loading: false,
         data: []

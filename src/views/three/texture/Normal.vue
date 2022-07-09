@@ -98,7 +98,7 @@
         } else {
             phase += 0.02
         }
-        sphereLightMesh.position.z = +(21 * Math.sin(phase))
+        sphereLightMesh.position.z = Number(21 * Math.sin(phase))
         sphereLightMesh.position.x = -14 + 14 * Math.cos(phase)
         sphereLightMesh.position.y = 5
         if (invert < 0) {

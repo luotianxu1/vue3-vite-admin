@@ -6,7 +6,7 @@ const piniaPersistConfig = (key: string) => {
 		key,
 		storage: window.localStorage
 		// storage: window.sessionStorage,
-	};
+	}
 	return persist
 }
 

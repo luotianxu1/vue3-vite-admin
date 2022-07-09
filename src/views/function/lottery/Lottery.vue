@@ -88,7 +88,7 @@
 
 <script lang="js">
     export default {
-        name: 'lottery1',
+        name: 'Lottery1',
         data() {
             return {
                 timesOptions: [
@@ -292,11 +292,7 @@
                 })
                 // 7.2单次可供抽取人数
                 this.timesOptions.map((item) => {
-                    if (Number(item.value) > Number(this.maxNum)) {
-                        item.disabled = true
-                    } else {
-                        item.disabled = false
-                    }
+                    item.disabled = Number(item.value) > Number(this.maxNum);
                 })
             }
         }

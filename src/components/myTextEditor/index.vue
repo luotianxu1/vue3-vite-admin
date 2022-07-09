@@ -47,7 +47,8 @@
             default: false
         },
         max: {
-            type: Number
+            type: Number,
+            default:100
         }
     })
     const emit = defineEmits(['update:model-value'])
