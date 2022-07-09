@@ -5,6 +5,9 @@
 </template>
 
 <script lang="ts" setup>
+import polyheTexture from '../../../assets/img/three/texture/general/brick-wall.jpg'
+import sphereTexture from '../../../assets/img/three/texture/general/floor-wood.jpg'
+import cubeTexture from '../../../assets/img/three/texture/general/brick-wall.jpg'
     import * as THREE from 'three'
     import {
         initAxes,
@@ -48,7 +51,7 @@
         polyhedron,
         'polyhedron',
         textureLoader.load(
-            'src/assets/img/three/texture/general/brick-wall.jpg'
+            polyheTexture
         )
     )
     polyhedronMesh.position.x = 20
@@ -58,7 +61,7 @@
         scene,
         sphere,
         'sphere',
-        textureLoader.load('src/assets/img/three/texture/general/floor-wood.jpg')
+        textureLoader.load(sphereTexture)
     )
 
     const cube = new THREE.BoxGeometry(10, 10, 10)
@@ -66,7 +69,7 @@
         scene,
         cube,
         'cube',
-        textureLoader.load('src/assets/img/three/texture/general/brick-wall.jpg')
+        textureLoader.load(cubeTexture)
     )
     cubeMesh.position.x = -20
 

@@ -6,6 +6,8 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
+    import cubeNoMap from '../../../assets/img/three/texture/general/plaster-normal.jpg'
+    import cubeMap from '../../../assets/img/three/texture/general/plaster.jpg'
     import {
         initAxes,
         initCamera,
@@ -52,16 +54,12 @@
 
     const cube = new THREE.BoxGeometry(16, 16, 16)
     const cubeMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(
-            'src/assets/img/three/texture/general/plaster.jpg'
-        ),
+        map: textureLoader.load(cubeMap),
         metalness: 0.2,
         roughness: 0.07
     })
     const cubeMaterialWithNormalMap = cubeMaterial.clone()
-    cubeMaterialWithNormalMap.normalMap = textureLoader.load(
-        'src/assets/img/three/texture/general/plaster-normal.jpg'
-    )
+    cubeMaterialWithNormalMap.normalMap = textureLoader.load(cubeNoMap)
 
     const cube1 = new THREE.Mesh(cube, cubeMaterial)
     cube1.position.x = -17

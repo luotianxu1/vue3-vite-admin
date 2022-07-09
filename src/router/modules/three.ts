@@ -304,6 +304,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/texture/Normal.vue')
             },
             {
+                path: 'displacement',
+                name: '移位贴图',
+                meta: { title: 'displacement'},
+                component: () => import('@/views/three/texture/Displacement.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test'},

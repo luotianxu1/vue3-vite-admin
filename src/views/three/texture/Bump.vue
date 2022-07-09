@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts" setup>
+    import cubeMap from '../../../assets/img/three/texture/general/stone.jpg'
+    import bumpMap from '../../../assets/img/three/texture/general/stone-bump.jpg'
     import * as THREE from 'three'
     import {
         initAxes,
@@ -44,14 +46,14 @@
     const cube = new THREE.BoxGeometry(16, 16, 16)
     const cubeMaterial = new THREE.MeshStandardMaterial({
         map: textureLoader.load(
-            'src/assets/img/three/texture/general/stone.jpg'
+            cubeMap
         ),
         metalness: 0.2,
         roughness: 0.07
     })
     const cubeMaterialWithBumpMap = cubeMaterial.clone()
     cubeMaterialWithBumpMap.bumpMap = textureLoader.load(
-        'src/assets/img/three/texture/general/stone.jpg'
+        bumpMap
     )
 
     const cube1 = new THREE.Mesh(cube, cubeMaterial)
