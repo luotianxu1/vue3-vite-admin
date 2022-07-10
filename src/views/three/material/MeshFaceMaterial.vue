@@ -106,7 +106,7 @@
     let step = 0
     const renderScene = () => {
         const delta = clock.getDelta()
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         group.rotation.y = step += delta
         group.rotation.z = step -= delta

@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Stats from 'stats.js'
-import CameraControls from 'camera-controls'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 function addHouseAndTree(scene) {
     createBoundingWall(scene)
@@ -239,10 +239,9 @@ const initStats = (el: HTMLElement) => {
 }
 
 const initCameraControl = (camera, domElement) => {
-    CameraControls.install({ THREE })
-    const cameraControls = new CameraControls(camera, domElement)
-    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
-    return cameraControls
+    const controls = new OrbitControls(camera, domElement)
+    controls.update()
+    return controls
 }
 
 const initLargeGroundPlane = (scene) => {

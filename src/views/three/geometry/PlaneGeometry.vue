@@ -104,7 +104,7 @@
     })
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -122,8 +122,7 @@
 
     let step = 0
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         plane.rotation.y = step+=0.01
         requestAnimationFrame(renderScene)

@@ -104,7 +104,7 @@
     })
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -121,8 +121,7 @@
     }
 
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)

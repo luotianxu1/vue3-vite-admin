@@ -2,7 +2,7 @@
     <div class="page">
         <div class="form">
             <div class="form-item">
-                <el-form :model="form" label-width='120px'>
+                <el-form :model="form" label-width="120px">
                     <el-form-item label="size">
                         <el-slider
                             v-model="form.size"
@@ -12,7 +12,7 @@
                         />
                     </el-form-item>
                     <el-form-item label="transparent">
-                        <el-checkbox v-model="form.transparent" size="small"/>
+                        <el-checkbox v-model="form.transparent" size="small" />
                     </el-form-item>
                     <el-form-item label="opacity">
                         <el-slider
@@ -26,10 +26,13 @@
                         <el-color-picker v-model="form.color" />
                     </el-form-item>
                     <el-form-item label="sizeAttenuation">
-                        <el-checkbox v-model="form.sizeAttenuation" size="small"/>
+                        <el-checkbox
+                            v-model="form.sizeAttenuation"
+                            size="small"
+                        />
                     </el-form-item>
                     <el-form-item label="rotate">
-                        <el-checkbox v-model="form.rotate" size="small"/>
+                        <el-checkbox v-model="form.rotate" size="small" />
                     </el-form-item>
                 </el-form>
             </div>
@@ -59,7 +62,7 @@
     initAxes(scene)
     // 创建相机
     const camera = initCamera()
-    camera.position.set(-30,40,30)
+    camera.position.set(-30, 40, 30)
 
     // 创建渲染器
     const webGLRenderer = new THREE.WebGLRenderer()
@@ -70,7 +73,7 @@
     initAmbientLight(scene)
 
     const form = reactive({
-        size:4,
+        size: 4,
         transparent: true,
         opacity: 0.6,
         color: '#fff',
@@ -90,7 +93,7 @@
             color: new THREE.Color(form.color)
         })
         const range = 500
-        let positions:any = []
+        let positions: any = []
         for (let i = 0; i < 15000; i++) {
             let x = Math.random() * range - range / 2
             let y = Math.random() * range - range / 2
@@ -115,7 +118,7 @@
     })
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -133,13 +136,12 @@
 
     let step = 0
     const renderScene = () => {
-        const delta = clock.getDelta()
         if (form.rotate) {
             step += 0.01
             cloud.rotation.x = step
             cloud.rotation.z = step
         }
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)

@@ -150,7 +150,7 @@
     scene.add(spotLight)
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -169,8 +169,7 @@
     let step = 0
     let selectedMesh: any = cube
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
+        cameraControls.update()
         selectedMesh.rotation.y = step += 0.01
         stats.update()
         requestAnimationFrame(renderScene)

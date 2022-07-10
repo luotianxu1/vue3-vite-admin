@@ -40,8 +40,7 @@
     import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
     import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-
-    let controls
+    import { initCameraControl } from '@/utils/three/util'
 
     onMounted(() => {
         init()
@@ -148,6 +147,9 @@
         hoodMaterial.clearcoatRoughness = materials[index].value
     }
 
+    // 添加控制器
+    const cameraControls = initCameraControl(camera, renderer.domElement)
+
     const init = () => {
         const body = document.getElementById('webgl')
         if (!body) {
@@ -161,6 +163,7 @@
         scene.background = new THREE.Color('#ccc')
         scene.background = new THREE.Color('#ccc')
         body.appendChild(renderer.domElement)
+
         rendererScene()
 
         // 添加网格地面
@@ -168,10 +171,6 @@
         gridHelper.material.opacity = 0.2
         gridHelper.material.transparent = true
         scene.add(gridHelper)
-
-        // 添加控制器
-        controls = new OrbitControls(camera, renderer.domElement)
-        controls.update()
 
         // 添加gltf汽车模型
         const loader = new GLTFLoader()
@@ -183,23 +182,38 @@
             scene.add(bmw)
             bmw.traverse((child) => {
                 // 判断是否是轮毂
-                if (child instanceof THREE.Mesh && child.name.includes('轮毂')) {
+                if (
+                    child instanceof THREE.Mesh &&
+                    child.name.includes('轮毂')
+                ) {
                     child.material = wheelsMaterial
                 }
                 // 判断是否是车身
-                if (child instanceof THREE.Mesh && child.name.includes('Mesh002')) {
+                if (
+                    child instanceof THREE.Mesh &&
+                    child.name.includes('Mesh002')
+                ) {
                     child.material = bodyMaterial
                 }
                 // 判断是否是前脸
-                if (child instanceof THREE.Mesh && child.name.includes('前脸')) {
+                if (
+                    child instanceof THREE.Mesh &&
+                    child.name.includes('前脸')
+                ) {
                     child.material = frontMaterial
                 }
                 // 判断是否是引擎盖
-                if (child instanceof THREE.Mesh && child.name.includes('引擎盖_1')) {
+                if (
+                    child instanceof THREE.Mesh &&
+                    child.name.includes('引擎盖_1')
+                ) {
                     child.material = hoodMaterial
                 }
                 // 判断是否是挡风玻璃
-                if (child instanceof THREE.Mesh && child.name.includes('挡风玻璃')) {
+                if (
+                    child instanceof THREE.Mesh &&
+                    child.name.includes('挡风玻璃')
+                ) {
                     child.material = glassMaterial
                 }
             })
@@ -208,7 +222,7 @@
 
     const rendererScene = () => {
         requestAnimationFrame(rendererScene)
-        controls && controls.update()
+        cameraControls.update()
         renderer.render(scene, camera)
     }
 </script>

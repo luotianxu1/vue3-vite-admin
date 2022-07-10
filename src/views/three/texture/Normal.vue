@@ -72,7 +72,7 @@
     scene.add(cube2)
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -91,7 +91,6 @@
     let invert = 1
     let phase = 0
     const renderScene = () => {
-        const delta = clock.getDelta()
         if (phase > 2 * Math.PI) {
             invert = invert * -1
             phase -= 2 * Math.PI
@@ -107,7 +106,7 @@
                 invert * (sphereLightMesh.position.x - pivot) + pivot
         }
         pointLight.position.copy(sphereLightMesh.position)
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)

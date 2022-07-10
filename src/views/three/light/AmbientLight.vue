@@ -21,8 +21,8 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import CameraControls from 'camera-controls'
     import Stats from 'stats.js'
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
     import { addHouseAndTree } from '@/utils/three/util'
 
     onMounted(() => {
@@ -63,10 +63,9 @@
     renderer.shadowMap.enabled = true
     renderer.setClearColor(new THREE.Color(0x000000))
 
-    CameraControls.install({ THREE })
-    const cameraControls = new CameraControls(camera, renderer.domElement)
-    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
-    const clock = new THREE.Clock()
+    // 添加控制器
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.update()
 
     let stats
     const initStats = (el: HTMLElement) => {
@@ -93,9 +92,8 @@
     }
 
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
         stats.update()
+        controls.update()
         requestAnimationFrame(renderScene)
         renderer.render(scene, camera)
     }

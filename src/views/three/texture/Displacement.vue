@@ -107,7 +107,7 @@ watch(form, () => {
 })
 
 const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-const clock = new THREE.Clock()
+
 let stats
 const init = () => {
     const body = document.getElementById('webgl')
@@ -124,9 +124,8 @@ const init = () => {
 }
 
 const renderScene = () => {
-    const delta = clock.getDelta()
     sphereMesh.rotation.y += 0.01
-    cameraControls.update(delta)
+    cameraControls.update()
     stats.update()
     requestAnimationFrame(renderScene)
     webGLRenderer.render(scene, camera)

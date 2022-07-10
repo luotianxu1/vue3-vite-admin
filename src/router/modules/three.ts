@@ -280,12 +280,6 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/particle/PointsMaterial3.vue')
             },
             {
-                path: 'baseAnimation',
-                name: '基本动画',
-                meta: { title: 'baseAnimation'},
-                component: () => import('@/views/three/animation/BaseAnimation.vue')
-            },
-            {
                 path: 'baseTexture',
                 name: '贴图',
                 meta: { title: 'baseTexture'},

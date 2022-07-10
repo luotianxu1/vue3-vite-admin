@@ -44,9 +44,9 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import CameraControls from 'camera-controls'
     import Stats from 'stats.js'
     import { addDefaultCubeAndSphere, addGroundPlane } from '@/utils/three/util'
+    import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
     onMounted(() => {
         init()
@@ -110,9 +110,9 @@
     camera.position.set(-30, 40, 30)
     camera.lookAt(scene.position)
 
-    CameraControls.install({ THREE })
-    const cameraControls = new CameraControls(camera, renderer.domElement)
-    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
+    // 添加控制器
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.update()
     const clock = new THREE.Clock()
 
     // 创建坐标轴并设置轴线粗细为20
@@ -146,8 +146,8 @@
     let step = 0
     const renderScene = () => {
         const delta = clock.getDelta()
-        cameraControls.update(delta)
         stats.update()
+        controls.update()
         cube.rotation.x += delta
         cube.rotation.y += delta
         cube.rotation.z += delta

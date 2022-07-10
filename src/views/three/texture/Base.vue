@@ -71,7 +71,7 @@
     cubeMesh.position.x = -20
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -88,11 +88,10 @@
     }
 
     const renderScene = () => {
-        const delta = clock.getDelta()
         polyhedronMesh.rotation.x += 0.01
         sphereMesh.rotation.y += 0.01
         cubeMesh.rotation.z += 0.01
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)

@@ -45,7 +45,7 @@
             scene.remove(spGroup)
         }
 
-        let points:any = []
+        let points: any = []
         for (let i = 0; i < 20; i++) {
             let randomX = -15 + Math.round(Math.random() * 30)
             let randomY = -15 + Math.round(Math.random() * 30)
@@ -81,7 +81,7 @@
     generatePoints()
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-    const clock = new THREE.Clock()
+
     let stats
     const init = () => {
         const body = document.getElementById('webgl')
@@ -98,8 +98,7 @@
     }
 
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
+        cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)

@@ -13,7 +13,9 @@
                 <el-button type="primary" @click="delCube">删除物体</el-button>
             </div>
             <div class="form-item">
-                <el-button type="primary" @click="overrideMaterial">指定同一属性</el-button>
+                <el-button type="primary" @click="overrideMaterial">
+                    指定同一属性
+                </el-button>
             </div>
         </div>
         <div id="webgl" class="webgl"></div>
@@ -22,8 +24,8 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import CameraControls from 'camera-controls'
     import Stats from 'stats.js'
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
     onMounted(() => {
         init()
@@ -76,10 +78,9 @@
     renderer.setClearColor(new THREE.Color(0x000000))
     renderer.shadowMap.enabled = true
 
-    CameraControls.install({ THREE })
-    const cameraControls = new CameraControls(camera, renderer.domElement)
-    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
-    const clock = new THREE.Clock()
+    // 添加控制器
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.update()
 
     let stats
     const initStats = (el: HTMLElement) => {
@@ -106,10 +107,9 @@
     }
 
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
         stats.update()
-        scene.traverse(function(obj) {
+        controls.update()
+        scene.traverse(function (obj) {
             if (obj instanceof THREE.Mesh && obj !== plane) {
                 obj.rotation.x += 0.1
                 obj.rotation.y += 0.1
@@ -129,9 +129,11 @@
         const cube = new THREE.Mesh(cubeGeoMetry, cubeMaterial)
         cube.castShadow = true
         cube.name = 'cube-' + (scene.children.length - 3)
-        cube.position.x = -30 + Math.round(Math.random() * planeGeometry.parameters.width)
+        cube.position.x =
+            -30 + Math.round(Math.random() * planeGeometry.parameters.width)
         cube.position.y = Math.round(Math.random() * 5)
-        cube.position.z = -20 + Math.round(Math.random() * planeGeometry.parameters.height)
+        cube.position.z =
+            -20 + Math.round(Math.random() * planeGeometry.parameters.height)
         scene.add(cube)
     }
 
@@ -149,7 +151,9 @@
     }
 
     const overrideMaterial = () => {
-        scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff})
+        scene.overrideMaterial = new THREE.MeshLambertMaterial({
+            color: 0xffffff
+        })
     }
 </script>
 

@@ -42,9 +42,9 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import CameraControls from 'camera-controls'
     import Stats from 'stats.js'
     import { addHouseAndTree } from '@/utils/three/util'
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
     onMounted(() => {
         init()
@@ -94,14 +94,13 @@
     camera.position.set(-30, 40, 30)
     camera.lookAt(new THREE.Vector3(0, 0, 0))
 
-    CameraControls.install({ THREE })
-    const cameraControls = new CameraControls(camera, renderer.domElement)
-    cameraControls.draggingDampingFactor = 5 // 拖动阻尼惯性
-    const clock = new THREE.Clock()
-
     // 创建坐标轴并设置轴线粗细为20
     const axes = new THREE.AxesHelper(20)
     scene.add(axes)
+
+    // 添加控制器
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.update()
 
     let stats
     const initStats = (el: HTMLElement) => {
@@ -130,9 +129,8 @@
     let invert = 1
     let phase = 0
     const renderScene = () => {
-        const delta = clock.getDelta()
-        cameraControls.update(delta)
         helper.update()
+        controls.update()
         shadowHelper.update()
         stats.update()
         pointLight.position.copy(sphereLightMesh.position)
