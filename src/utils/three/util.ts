@@ -183,7 +183,7 @@ const addLargeGroundPlane = (scene, useTexture?) => {
     if (withTexture) {
         const textureLoader = new THREE.TextureLoader()
         planeMaterial.map = textureLoader.load(
-            'src/assets/img/three/texture/general/floor-wood.jpg'
+            './textures/general/floor-wood.jpg'
         )
         planeMaterial.map.wrapS = THREE.RepeatWrapping
         planeMaterial.map.wrapT = THREE.RepeatWrapping

@@ -304,6 +304,18 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/texture/Displacement.vue')
             },
             {
+                path: 'setalness',
+                name: '金属光泽度贴图',
+                meta: { title: 'setalness'},
+                component: () => import('@/views/three/texture/Metalness.vue')
+            },
+            {
+                path: 'alpha',
+                name: '透明度贴图',
+                meta: { title: 'alpha'},
+                component: () => import('@/views/three/texture/Alpha.vue')
+            },
+            {
                 path: 'car',
                 name: '车',
                 meta: { title: 'car'},
