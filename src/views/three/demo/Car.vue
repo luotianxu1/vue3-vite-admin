@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
     import * as THREE from 'three'
-    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
     import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
     import { initCameraControl } from '@/utils/three/util'
@@ -177,7 +176,7 @@
         const dracoLoader = new DRACOLoader()
         dracoLoader.setDecoderPath('./draco/gltf/')
         loader.setDRACOLoader(dracoLoader)
-        loader.load('./model/bmw01.glb', (gltf) => {
+        loader.load('./model/glb/bmw01.glb', (gltf) => {
             const bmw = gltf.scene
             scene.add(bmw)
             bmw.traverse((child) => {

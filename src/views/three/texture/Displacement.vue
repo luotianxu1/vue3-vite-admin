@@ -2,7 +2,7 @@
     <div class="page">
         <div class="form">
             <div class="form-item">
-                <el-form :model="form" label-width="80px">
+                <el-form :model="form" label-width="140px">
                     <el-form-item label="displacementScale">
                         <el-slider
                             v-model="form.displacementScale"
@@ -139,7 +139,7 @@ const renderScene = () => {
     display: flex;
 
     .form {
-        width: 200px;
+        width: 250px;
         margin-right: 10px;
 
         .form-item {
