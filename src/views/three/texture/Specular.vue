@@ -33,33 +33,21 @@ webGLRenderer.setClearColor(new THREE.Color(0x000000))
 webGLRenderer.setSize(window.innerWidth, window.innerHeight)
 webGLRenderer.shadowMap.enabled = true
 
-const groundPlane = addLargeGroundPlane(scene, true)
-
-groundPlane.position.y = -10
-
 initDefaultLighting(scene)
-scene.add(new THREE.AmbientLight(0x444444))
-
-const textureLoader = new THREE.TextureLoader()
-
-const sphere = new THREE.SphereGeometry(8, 180, 180)
-const alpha = textureLoader.load('./textures/alpha/partial-transparency.png')
-alpha.wrapS = THREE.RepeatWrapping
-alpha.wrapT = THREE.RepeatWrapping
-alpha.repeat.set(8, 8)
-const sphereMaterial = new THREE.MeshStandardMaterial({
-    alphaMap: alpha,
-    metalness: 0.02,
-    roughness: 0.07,
-    color: 0xffffff,
-    alphaTest: 0.5
-})
-
-const cube2 = new THREE.Mesh(sphere, sphereMaterial)
-cube2.castShadow = true
-scene.add(cube2)
 
 const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
+
+const textureLoader = new THREE.TextureLoader()
+const earthMaterial = new THREE.MeshPhongMaterial({
+    map: textureLoader.load('./textures/earth/Earth.png'),
+    normalMap: textureLoader.load('./textures/earth/EarthNormal.png'),
+    specularMap: textureLoader.load('./textures/earth/EarthSpec.png'),
+    normalScale: new THREE.Vector2(6,6)
+})
+const sphere = new THREE.SphereGeometry(9, 50, 50)
+const sphere1 = new THREE.Mesh(sphere,earthMaterial)
+sphere1.rotation.y = 1/6*Math.PI
+scene.add(sphere1)
 
 let stats
 const init = () => {
@@ -77,6 +65,7 @@ const init = () => {
 }
 
 const renderScene = () => {
+    sphere1.rotation.y -= 0.01
     cameraControls.update()
     stats.update()
     requestAnimationFrame(renderScene)

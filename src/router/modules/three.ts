@@ -316,6 +316,24 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/texture/Alpha.vue')
             },
             {
+                path: 'emissive',
+                name: '自发光贴图',
+                meta: { title: 'emissive'},
+                component: () => import('@/views/three/texture/Emissive.vue')
+            },
+            {
+                path: 'specular',
+                name: '高光贴图',
+                meta: { title: 'specular'},
+                component: () => import('@/views/three/texture/Specular.vue')
+            },
+            {
+                path: 'env',
+                name: '环境贴图',
+                meta: { title: 'env'},
+                component: () => import('@/views/three/texture/Env.vue')
+            },
+            {
                 path: 'car',
                 name: '车',
                 meta: { title: 'car'},
