@@ -5,17 +5,12 @@
 </template>
 
 <script lang="ts" setup>
-    import polyheTexture from '../../../assets/img/three/texture/general/brick-wall.jpg'
-    import sphereTexture from '../../../assets/img/three/texture/general/floor-wood.jpg'
     import * as THREE from 'three'
     import {
         initAxes,
         initCamera,
         initCameraControl,
-        initStats,
-        initDefaultLighting,
-        addGeometry,
-        addLargeGroundPlane
+        initStats
     } from '@/utils/three/util'
 
     onMounted(() => {
@@ -28,7 +23,7 @@
     initAxes(scene)
     // 创建相机
     const camera = initCamera()
-    camera.position.set(0, 20, 40)
+    camera.position.set(-30, 40, 30)
 
     // 创建渲染器
     const webGLRenderer = new THREE.WebGLRenderer()
@@ -36,41 +31,17 @@
     webGLRenderer.setSize(window.innerWidth, window.innerHeight)
     webGLRenderer.shadowMap.enabled = true
 
-    const groundPlane = addLargeGroundPlane(scene)
-    groundPlane.position.y = -10
-
-    initDefaultLighting(scene)
-    scene.add(new THREE.AmbientLight(0x444444))
-
-    const textureLoader = new THREE.TextureLoader()
-
-    const polyhedron = new THREE.IcosahedronGeometry(8, 0)
-    const polyhedronMesh = addGeometry(
-        scene,
-        polyhedron,
-        'polyhedron',
-        textureLoader.load(polyheTexture)
-    )
-    polyhedronMesh.position.x = 20
-
-    const sphere = new THREE.SphereGeometry(5, 20, 20)
-    const sphereMesh = addGeometry(
-        scene,
-        sphere,
-        'sphere',
-        textureLoader.load(sphereTexture)
-    )
-
-    const cube = new THREE.BoxGeometry(10, 10, 10)
-    const cubeMesh = addGeometry(
-        scene,
-        cube,
-        'cube',
-        textureLoader.load(polyheTexture)
-    )
-    cubeMesh.position.x = -20
-
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
+
+    const geometry = new THREE.BufferGeometry()
+    const vertices = new Float32Array([
+        -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,
+        1.0, 1.0, -1.0, -1.0, 1.0
+    ])
+    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+    const mesh = new THREE.Mesh(geometry, material)
+    scene.add(mesh)
 
     let stats
     const init = () => {
@@ -88,9 +59,6 @@
     }
 
     const renderScene = () => {
-        polyhedronMesh.rotation.x += 0.01
-        sphereMesh.rotation.y += 0.01
-        cubeMesh.rotation.z += 0.01
         cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
@@ -103,6 +71,16 @@
         width: 100%;
         height: 100%;
         display: flex;
+
+        .form {
+            width: 200px;
+            margin-right: 10px;
+
+            .form-item {
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
 
         .webgl {
             flex: 1;

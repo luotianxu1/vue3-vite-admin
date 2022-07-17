@@ -136,6 +136,18 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/material/LineDashedMaterial.vue')
             },
             {
+                path: 'bufferGeometry',
+                name: '几何体',
+                meta: { title: 'bufferGeometry'},
+                component: () => import('@/views/three/geometry/BufferGeometry.vue')
+            },
+            {
+                path: 'triangle',
+                name: '三角形',
+                meta: { title: 'triangle'},
+                component: () => import('@/views/three/geometry/Triangle.vue')
+            },
+            {
                 path: 'planeGeometry',
                 name: '平面',
                 meta: { title: 'planeGeometry'},
@@ -280,12 +292,6 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/particle/PointsMaterial3.vue')
             },
             {
-                path: 'baseTexture',
-                name: '贴图',
-                meta: { title: 'baseTexture'},
-                component: () => import('@/views/three/texture/Base.vue')
-            },
-            {
                 path: 'bump',
                 name: '凹凸贴图',
                 meta: { title: 'bump'},
@@ -332,6 +338,18 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '环境贴图',
                 meta: { title: 'env'},
                 component: () => import('@/views/three/texture/Env.vue')
+            },
+            {
+                path: 'door',
+                name: '贴图',
+                meta: { title: 'door'},
+                component: () => import('@/views/three/texture/Door.vue')
+            },
+            {
+                path: 'texture',
+                name: '纹理显示',
+                meta: { title: 'texture'},
+                component: () => import('@/views/three/texture/Texture.vue')
             },
             {
                 path: 'car',

@@ -240,6 +240,7 @@ const initStats = (el: HTMLElement) => {
 
 const initCameraControl = (camera, domElement) => {
     const controls = new OrbitControls(camera, domElement)
+    controls.enableDamping = true
     controls.update()
     return controls
 }

@@ -24,7 +24,7 @@ const scene = new THREE.Scene()
 initAxes(scene)
 // 创建相机
 const camera = initCamera()
-camera.position.set(0, 20, 40)
+camera.position.set(0, 0, 5)
 
 // 创建渲染器
 const webGLRenderer = new THREE.WebGLRenderer()
@@ -37,39 +37,19 @@ initDefaultLighting(scene)
 const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
 
 const textureLoader = new THREE.TextureLoader()
-const urls = [
-    './textures/cubemap/flowers/right.png',
-    './textures/cubemap/flowers/left.png',
-    './textures/cubemap/flowers/top.png',
-    './textures/cubemap/flowers/bottom.png',
-    './textures/cubemap/flowers/front.png',
-    './textures/cubemap/flowers/back.png'
-]
-const cubeLoader = new THREE.CubeTextureLoader()
-const texture = cubeLoader.load(urls)
-scene.background = texture
-scene.environment = texture
+const texture = textureLoader.load('./textures/door/minecraft.png')
 
-const cubeMaterial = new THREE.MeshStandardMaterial({
-    // envMap: scene.background,
-    color: 0xffffff,
-    metalness: 1,
-    roughness: 0
+texture.minFilter = THREE.NearestFilter
+texture.magFilter = THREE.NearestFilter
+// texture.minFilter = THREE.LinearFilter
+// texture.magFilter = THREE.LinearFilter
+
+const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+const basicMaterial = new THREE.MeshBasicMaterial({
+    map: texture
 })
-const sphereMaterial = cubeMaterial.clone()
-sphereMaterial.normalMap = textureLoader.load('./textures/engraved/Engraved_Metal_003_NORM.jpg')
-sphereMaterial.aoMap = textureLoader.load('./textures/engraved/Engraved_Metal_003_OCC.jpg')
-
-const cube = new THREE.BoxGeometry(16, 12, 12)
-const cube1 = new THREE.Mesh(cube,cubeMaterial)
-cube1.position.x = -15
-cube1.rotation.y = -1/3*Math.PI
-scene.add(cube1)
-
-const sphere = new THREE.SphereGeometry(10, 50, 50)
-const sphere1 = new THREE.Mesh(sphere,sphereMaterial)
-sphere1.position.x = 15
-scene.add(sphere1)
+const cube = new THREE.Mesh(cubeGeometry, basicMaterial)
+scene.add(cube)
 
 let stats
 const init = () => {
