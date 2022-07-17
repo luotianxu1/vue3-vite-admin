@@ -11,8 +11,7 @@ import {
     initCamera,
     initCameraControl,
     initStats,
-    initDefaultLighting,
-    addLargeGroundPlane
+    initDefaultLighting
 } from '@/utils/three/util'
 
 onMounted(() => {

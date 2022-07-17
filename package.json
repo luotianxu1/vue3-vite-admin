@@ -18,6 +18,7 @@
     "driver.js": "^0.9.8",
     "echarts": "^5.3.2",
     "element-plus": "^2.2.9",
+    "gasp": "0.0.2",
     "nprogress": "^1.0.0-0",
     "pinia": "^2.0.12",
     "pinia-plugin-persistedstate": "^1.6.1",
