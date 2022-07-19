@@ -292,6 +292,18 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/particle/PointsMaterial3.vue')
             },
             {
+                path: 'pointsMaterial4',
+                name: '点材质4',
+                meta: { title: 'pointsMaterial4'},
+                component: () => import('@/views/three/particle/PointsMaterial4.vue')
+            },
+            {
+                path: 'pointsMaterial5',
+                name: '点材质5',
+                meta: { title: 'pointsMaterial5'},
+                component: () => import('@/views/three/particle/PointsMaterial5.vue')
+            },
+            {
                 path: 'bump',
                 name: '凹凸贴图',
                 meta: { title: 'bump'},
