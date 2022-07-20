@@ -262,6 +262,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/geometry/Json.vue')
             },
             {
+                path: 'detect',
+                name: '检测',
+                meta: { title: 'detect'},
+                component: () => import('@/views/three/geometry/Detect.vue')
+            },
+            {
                 path: 'spriteMaterial1',
                 name: '点精灵材质1',
                 meta: { title: 'parametricGeometry'},
