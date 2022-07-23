@@ -382,10 +382,16 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/demo/Car.vue')
             },
             {
-                path: 'physics',
-                name: '物理',
-                meta: { title: 'physics'},
-                component: () => import('@/views/three/physics/Physics.vue')
+                path: 'physics1',
+                name: '小球下落',
+                meta: { title: 'physics1'},
+                component: () => import('@/views/three/physics/Physics1.vue')
+            },
+            {
+                path: 'physics2',
+                name: '碰撞',
+                meta: { title: 'physics2'},
+                component: () => import('@/views/three/physics/Physics2.vue')
             },
             {
                 path: 'Test',
