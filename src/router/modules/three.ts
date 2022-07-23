@@ -394,6 +394,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/physics/Physics2.vue')
             },
             {
+                path: 'webGL',
+                name: 'webGL',
+                meta: { title: 'webGL'},
+                component: () => import('@/views/three/shader/WebGL.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test'},
