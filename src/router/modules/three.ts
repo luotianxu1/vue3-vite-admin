@@ -400,6 +400,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/shader/WebGL.vue')
             },
             {
+                path: 'shader',
+                name: 'shader',
+                meta: { title: 'shader'},
+                component: () => import('@/views/three/shader/Shader.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test'},
