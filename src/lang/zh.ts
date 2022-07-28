@@ -1,6 +1,6 @@
 export default {
   login: {
-    loginTitle: '欢迎回来',
+    loginTitle: '欢迎回来1',
     loginPrompt: '没有账号',
     loginToRegister: '去注册',
     loginUser: '请输入用户名',
