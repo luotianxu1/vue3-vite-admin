@@ -10,6 +10,8 @@
 
     import basicVertexShader from './shader/vertex.glsl?raw'
     import basicFragmentShader from './shader/fragment.glsl?raw'
+
+    import ca from '@/assets/textures/ca.jpeg'
     onMounted(() => {
         init()
     })
@@ -37,14 +39,26 @@
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
 
+    const textureLoader = new THREE.TextureLoader()
+    const texture = textureLoader.load(ca)
+
     // 创建原始着色器材质
     const rawShaderMaterial = new THREE.RawShaderMaterial({
         vertexShader: basicVertexShader,
-        fragmentShader: basicFragmentShader
+        fragmentShader: basicFragmentShader,
+        side: THREE.DoubleSide,
+        uniforms: {
+            uTime: {
+                value: 0
+            },
+            uTexture: {
+                value: texture
+            }
+        }
     })
 
     const floor = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(1, 1),
+        new THREE.PlaneBufferGeometry(1, 1, 64, 64),
         rawShaderMaterial
     )
     scene.add(floor)
@@ -64,7 +78,10 @@
         renderScene()
     }
 
+    const clock = new THREE.Clock()
     const renderScene = () => {
+        const elapsedTime = clock.getElapsedTime()
+        rawShaderMaterial.uniforms.uTime.value = elapsedTime
         cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
