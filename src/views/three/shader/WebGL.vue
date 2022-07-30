@@ -64,11 +64,11 @@
         // 表示数据不会改变
         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
         // 获取顶点着色器中的a_Position变量的位置
-        const a_Position = gl.getAttribLocation(program, 'a_Position')
+        const aPosition = gl.getAttribLocation(program, 'a_Position')
         // 将顶点缓冲区对象分配给a_Position变量
         // 告诉openGL如何解析顶点数据
-        gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0)
-        gl.enableVertexAttribArray(a_Position)
+        gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0)
+        gl.enableVertexAttribArray(aPosition)
         gl.drawArrays(gl.TRIANGLES, 0, 3)
     })
 </script>

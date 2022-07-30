@@ -8,8 +8,8 @@
     import * as THREE from 'three'
     import { initAxes, initCameraControl, initStats } from '@/utils/three/util'
 
-    import basicVertexShader from './Shader/basic/vertex.glsl?raw'
-    import basicFragmentShader from './Shader/basic/fragment.glsl?raw'
+    import basicVertexShader from './shader/vertex.glsl?raw'
+    import basicFragmentShader from './shader/fragment.glsl?raw'
     onMounted(() => {
         init()
     })
@@ -26,7 +26,7 @@
         0.1,
         1000
     )
-    camera.position.set(0, 0, 10)
+    camera.position.set(0, 0, 5)
     camera.lookAt(scene.position)
 
     // 创建渲染器
@@ -37,15 +37,15 @@
 
     const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
 
-    // 创建着色器材质
-    const shaderMaterial = new THREE.ShaderMaterial({
+    // 创建原始着色器材质
+    const rawShaderMaterial = new THREE.RawShaderMaterial({
         vertexShader: basicVertexShader,
         fragmentShader: basicFragmentShader
     })
 
     const floor = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(1, 1, 64, 64),
-        shaderMaterial
+        new THREE.PlaneBufferGeometry(1, 1),
+        rawShaderMaterial
     )
     scene.add(floor)
 
