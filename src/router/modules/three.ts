@@ -449,12 +449,18 @@ const systemRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'rowShaderMaterial',
-                name: 'rowShaderMaterial',
+                name: '原始着色器',
                 meta: { title: 'rowShaderMaterial' },
                 component: () =>
                     import(
                         '@/views/three/shader/rawShaderMaterial/RawShadermaterial.vue'
                     )
+            },
+            {
+                path: 'deep',
+                name: 'deep',
+                meta: { title: 'deep' },
+                component: () => import('@/views/three/shader/deep/Deep.vue')
             },
             {
                 path: 'Test',
