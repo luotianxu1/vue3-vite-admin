@@ -458,9 +458,16 @@ const systemRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'deep',
-                name: 'deep',
+                name: '着色器',
                 meta: { title: 'deep' },
                 component: () => import('@/views/three/shader/deep/Deep.vue')
+            },
+            {
+                path: 'flyLight',
+                name: '孔明灯',
+                meta: { title: 'flyLight' },
+                component: () =>
+                    import('@/views/three/shader/flyLight/FlyLight.vue')
             },
             {
                 path: 'Test',
