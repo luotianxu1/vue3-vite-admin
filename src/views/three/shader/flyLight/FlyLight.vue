@@ -66,7 +66,7 @@
 
     const gltfLoader = new GLTFLoader()
     let LightBox
-    gltfLoader.load('./model/glb/flyLight/flyLight.glb', (gltf) => {
+    gltfLoader.load('./model/glb/flyLight.glb', (gltf) => {
         LightBox = gltf.scene.children[1]
         LightBox.material = shaderMaterial
         for (let i = 0; i < 150; i++) {

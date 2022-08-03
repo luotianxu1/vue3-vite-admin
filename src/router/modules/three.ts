@@ -476,6 +476,13 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/shader/water/Water.vue')
             },
             {
+                path: 'water2',
+                name: '水2',
+                meta: { title: 'water2' },
+                component: () =>
+                    import('@/views/three/shader/water2/Water2.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test' },
