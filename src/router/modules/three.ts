@@ -470,6 +470,12 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/shader/flyLight/FlyLight.vue')
             },
             {
+                path: 'water',
+                name: '水',
+                meta: { title: 'water' },
+                component: () => import('@/views/three/shader/water/Water.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test' },
