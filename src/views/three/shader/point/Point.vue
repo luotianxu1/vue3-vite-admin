@@ -21,13 +21,15 @@
     initAxes(scene)
     // 创建相机
     const camera = new THREE.PerspectiveCamera(
-        45,
+        75,
         window.innerWidth / window.innerHeight,
         0.1,
         1000
     )
-    camera.position.set(0, 0, 10)
-    camera.lookAt(scene.position)
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    camera.position.set(0, 0, 5)
+    scene.add(camera)
 
     // 创建渲染器
     const webGLRenderer = new THREE.WebGLRenderer({ alpha: true })
@@ -44,10 +46,10 @@
     const texture2 = textureLoader.load('./textures/particles/11.png')
 
     const params = {
-        count: 10000,
+        count: 1000,
         size: 0.1,
         radius: 5,
-        branch: 3,
+        branch: 4,
         color: '#ff6030',
         rotateScale: 0.3,
         endColor: '#1b3984'
@@ -69,23 +71,41 @@
         const positions = new Float32Array(params.count * 3)
         // 设置顶点颜色
         const colors = new Float32Array(params.count * 3)
+        const scales = new Float32Array(params.count)
         // 图案属性
         const imgIndex = new Float32Array(params.count)
 
         //   循环生成点
         for (let i = 0; i < params.count; i++) {
             // 当前的点应该在那一条分支的角度上
-            const branchAngel = (i % params.branch) * ((2 * Math.PI) / params.branch)
+            const branchAngel =
+                (i % params.branch) * ((2 * Math.PI) / params.branch)
 
             // 当前点距离圆心的距离
-            const distance = Math.random() * params.radius * Math.pow(Math.random(), 3)
+            const distance =
+                Math.random() * params.radius * Math.pow(Math.random(), 3)
             const current = i * 3
-            const randomX = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            const randomY = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            const randomZ = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            positions[current] = Math.cos(branchAngel + distance * params.rotateScale) * distance + randomX
+            const randomX =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            const randomY =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            const randomZ =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            positions[current] =
+                Math.cos(branchAngel + distance * params.rotateScale) *
+                    distance +
+                randomX
             positions[current + 1] = 0 + randomY
-            positions[current + 2] = Math.sin(branchAngel + distance * params.rotateScale) * distance + randomZ
+            positions[current + 2] =
+                Math.sin(branchAngel + distance * params.rotateScale) *
+                    distance +
+                randomZ
 
             // 混合颜色形成渐变色
             const mixColor = centerColor.clone()
@@ -94,13 +114,24 @@
             colors[current + 1] = mixColor.g
             colors[current + 2] = mixColor.b
 
+            // 顶点的大小
+            scales[current] = Math.random()
+
             // 根据索引值设置不同的图案
-            imgIndex[current] = current % 3
+            imgIndex[current] = i % 3
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+        geometry.setAttribute(
+            'position',
+            new THREE.BufferAttribute(positions, 3)
+        )
+        geometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1))
+
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
-        geometry.setAttribute('imgIndex', new THREE.BufferAttribute(imgIndex, 1))
+        geometry.setAttribute(
+            'imgIndex',
+            new THREE.BufferAttribute(imgIndex, 1)
+        )
 
         //   设置点材质
         material = new THREE.ShaderMaterial({
@@ -119,6 +150,12 @@
                 },
                 uTexture2: {
                     value: texture2
+                },
+                uTime: {
+                    value: 0
+                },
+                uColor: {
+                    value: centerColor
                 }
             }
         })
@@ -144,7 +181,10 @@
         renderScene()
     }
 
+    const clock = new THREE.Clock()
     const renderScene = () => {
+        const elapsedTime = clock.getElapsedTime()
+        material.uniforms.uTime.value = elapsedTime
         cameraControls.update()
         stats.update()
         requestAnimationFrame(renderScene)
