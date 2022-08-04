@@ -483,6 +483,13 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/shader/water2/Water2.vue')
             },
             {
+                path: 'point',
+                name: '点材质',
+                meta: { title: 'point' },
+                component: () =>
+                    import('@/views/three/shader/point/Point.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test' },
