@@ -67,7 +67,7 @@
     const gltfLoader = new GLTFLoader()
     let LightBox
     gltfLoader.load('./model/glb/flyLight.glb', (gltf) => {
-        LightBox = gltf.scene.children[1]
+        LightBox = gltf.scene.children[0]
         LightBox.material = shaderMaterial
         for (let i = 0; i < 150; i++) {
             let fly = gltf.scene.clone(true)

@@ -12,6 +12,7 @@
     import fragmentShader from './shader/fragment.glsl?raw'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
     import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+    import { Water } from 'three/examples/jsm/objects/Water2'
     import Fireworks from '@/utils/three/firework'
     onMounted(() => {
         init()
@@ -19,18 +20,18 @@
     })
 
     // 管理烟花
-    let firWorks:any = []
+    let firWorks: any = []
     // 设置创建烟花函数
     const createFireworks = () => {
         let color = `hsl(${Math.floor(Math.random() * 360)}, 100%, 80%)`
         let position = {
             x: (Math.random() - 0.5) * 40,
-            z: (Math.random() - 0.5) * 40,
-            y: 7 + Math.random() * 25
+            z: -(Math.random() - 0.5) * 40,
+            y: 3 + Math.random() * 15
         }
         // 随机生成颜色和烟花位置
         let fireWork = new Fireworks(color, position)
-        fireWork.addScene(scene,camera)
+        fireWork.addScene(scene)
         firWorks.push(fireWork)
     }
 
@@ -44,7 +45,7 @@
         0.1,
         1000
     )
-    camera.position.set(0, 0, 2)
+    camera.position.set(0, 0, 20)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     scene.add(camera)
@@ -57,10 +58,10 @@
     webGLRenderer.toneMappingExposure = 0.1
 
     const controls = initCameraControl(camera, webGLRenderer.domElement)
-    controls.autoRotate = true
-    controls.autoRotateSpeed = 0.1
-    controls.maxPolarAngle = (Math.PI / 3) * 2
-    controls.minPolarAngle = (Math.PI / 3) * 2
+    // controls.autoRotate = true
+    // controls.autoRotateSpeed = 0.1
+    // controls.maxPolarAngle = (Math.PI / 3) * 2
+    // controls.minPolarAngle = (Math.PI / 3) * 2
 
     // 创建纹理加载器对象
     const rgbeLoader = new RGBELoader()
@@ -82,13 +83,13 @@
     const gltfLoader = new GLTFLoader()
     let LightBox
     gltfLoader.load('./model/glb/flyLight.glb', (gltf) => {
-        LightBox = gltf.scene.children[1]
+        LightBox = gltf.scene.children[0]
         LightBox.material = shaderMaterial
         for (let i = 0; i < 150; i++) {
             let fly = gltf.scene.clone(true)
             let x = (Math.random() - 0.5) * 300
             let z = (Math.random() - 0.5) * 300
-            let y = Math.random() * 60 + 25
+            let y = Math.random() * 60 + 5
             fly.position.set(x, y, z)
             gsap.to(fly.rotation, {
                 y: 2 * Math.PI,
@@ -104,6 +105,21 @@
             })
             scene.add(fly)
         }
+    })
+
+    gltfLoader.load('./model/glb/newyears_min.glb', (gltf) => {
+        scene.add(gltf.scene)
+
+        // 创建水面
+        const waterGeometry = new THREE.PlaneBufferGeometry(100,100)
+        let water = new Water(waterGeometry, {
+            scale: 4,
+            textureHeight: 1024,
+            textureWidth: 1024
+        })
+        water.position.y = 1
+        water.rotation.x = -Math.PI / 2
+        scene.add(water)
     })
 
     let stats
@@ -122,6 +138,12 @@
     }
 
     const renderScene = () => {
+        firWorks.forEach((item, i) => {
+            const type = item.update()
+            if (type === 'remove') {
+                firWorks.splice(i, 1)
+            }
+        })
         controls.update()
         stats.update()
         requestAnimationFrame(renderScene)
