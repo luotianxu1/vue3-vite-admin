@@ -19,6 +19,10 @@
         window.addEventListener('click', createFireworks)
     })
 
+    onUnmounted(() => {
+        window.removeEventListener('click', createFireworks)
+    })
+
     // 管理烟花
     let firWorks: any = []
     // 设置创建烟花函数
@@ -45,7 +49,7 @@
         0.1,
         1000
     )
-    camera.position.set(0, 0, 20)
+    camera.position.set(-20, 10, -20)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     scene.add(camera)
@@ -111,7 +115,7 @@
         scene.add(gltf.scene)
 
         // 创建水面
-        const waterGeometry = new THREE.PlaneBufferGeometry(100,100)
+        const waterGeometry = new THREE.PlaneBufferGeometry(100, 100)
         let water = new Water(waterGeometry, {
             scale: 4,
             textureHeight: 1024,
