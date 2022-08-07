@@ -426,7 +426,8 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'fireWork',
                 name: '烟花',
                 meta: { title: 'fireWork' },
-                component: () => import('@/views/three/demo/firework/FireWork.vue')
+                component: () =>
+                    import('@/views/three/demo/firework/FireWork.vue')
             },
             {
                 path: 'physics1',
@@ -493,6 +494,13 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '点',
                 meta: { title: 'point' },
                 component: () => import('@/views/three/shader/point/Point.vue')
+            },
+            {
+                path: 'customShader',
+                name: '修改Shader',
+                meta: { title: 'customShader' },
+                component: () =>
+                    import('@/views/three/shader/custom/CustomShader.vue')
             },
             {
                 path: 'Test',
