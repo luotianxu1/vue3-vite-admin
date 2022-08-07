@@ -430,6 +430,13 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/demo/firework/FireWork.vue')
             },
             {
+                path: 'homeViewing',
+                name: '全景看房',
+                meta: { title: 'homeViewing' },
+                component: () =>
+                    import('@/views/three/demo/houseViewing/HomeViewing.vue')
+            },
+            {
                 path: 'physics1',
                 name: '小球下落',
                 meta: { title: 'physics1' },
