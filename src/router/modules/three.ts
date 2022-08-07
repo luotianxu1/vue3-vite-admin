@@ -503,6 +503,13 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/shader/custom/CustomShader.vue')
             },
             {
+                path: 'effect',
+                name: '效果合成',
+                meta: { title: 'customShader' },
+                component: () =>
+                    import('@/views/three/shader/effect/Effect.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test' },
