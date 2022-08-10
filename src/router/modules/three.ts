@@ -517,6 +517,12 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/shader/effect/Effect.vue')
             },
             {
+                path: 'moon',
+                name: 'Moon',
+                meta: { title: 'css' },
+                component: () => import('@/views/three/css/moon/Moon.vue')
+            },
+            {
                 path: 'Test',
                 name: 'Test',
                 meta: { title: 'Test' },
