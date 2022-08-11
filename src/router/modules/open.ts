@@ -28,6 +28,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'rankedManage',
                 name: '排名管理',
                 component: () => import('@/views/open/ranking/Manage.vue')
+            },
+            {
+                path: 'smartCity',
+                name: '智慧城市',
+                component: () => import('@/views/open/smartCity/SmartCity.vue')
             }
         ]
     }
