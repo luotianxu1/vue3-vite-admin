@@ -16,6 +16,10 @@
         init()
     })
 
+    onBeforeUnmount(() => {
+        document.body.removeChild(labelRenderer.domElement)
+    })
+
     // 创建场景
     const scene = new THREE.Scene()
 
@@ -152,7 +156,7 @@
     }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
     .page {
         width: 100%;
         height: 100%;
