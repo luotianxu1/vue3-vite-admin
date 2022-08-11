@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import { initAxes, initCameraControl, initStats } from '@/utils/three/util'
+    import { initCameraControl, initStats } from '@/utils/three/util'
     import {
         CSS2DRenderer,
         CSS2DObject
@@ -19,8 +19,6 @@
     // 创建场景
     const scene = new THREE.Scene()
 
-    initAxes(scene)
-
     // 创建相机
     const camera = new THREE.PerspectiveCamera(
         45,
@@ -29,8 +27,6 @@
         200
     )
     camera.position.set(0, 5, -10)
-    camera.aspect = (window.innerWidth - 200) / (window.innerHeight - 90)
-    camera.updateProjectionMatrix()
     scene.add(camera)
 
     // 创建渲染器
@@ -61,6 +57,7 @@
     })
 
     const earth = new THREE.Mesh(earthGeometry, earthMaterial)
+    earth.name = 'earth'
     scene.add(earth)
 
     let moon
@@ -70,6 +67,7 @@
         map: textureLoader.load('./textures/planets/moon_1024.jpg')
     })
     moon = new THREE.Mesh(moonGeometry, moonMaterial)
+    moon.name = 'mooon'
     scene.add(moon)
 
     // 实例化CSS2d渲染器
@@ -83,7 +81,7 @@
 
     // 添加标签
     const earthDiv = document.createElement('div')
-    earthDiv.className = 'label'
+    earthDiv.className = 'label1'
     earthDiv.innerHTML = '地球'
     earthDiv.style.color = '#fff'
     const earthLabel = new CSS2DObject(earthDiv)
@@ -92,21 +90,22 @@
 
     let chinaLabel
     const chinaDiv = document.createElement('div')
-    chinaDiv.className = 'label1'
+    chinaDiv.className = 'label'
     chinaDiv.innerHTML = '中国'
-    chinaDiv.style.color = '#fff'
     chinaLabel = new CSS2DObject(chinaDiv)
     chinaLabel.position.set(-0.3, 0.5, -0.9)
     earth.add(chinaLabel)
-    console.log(chinaLabel)
 
     const moonDiv = document.createElement('div')
-    moonDiv.className = 'label'
+    moonDiv.className = 'label1'
     moonDiv.innerHTML = '月球'
     moonDiv.style.color = '#fff'
     const moonLabel = new CSS2DObject(moonDiv)
     moonLabel.position.set(0, 0.3, 0)
     moon.add(moonLabel)
+
+    // 实例化射线
+    const raycaster = new THREE.Raycaster()
 
     const controls = initCameraControl(camera, labelRenderer.domElement)
 
@@ -125,6 +124,26 @@
     const renderScene = () => {
         const elapsed = clock.getElapsedTime()
         moon.position.set(Math.sin(elapsed) * 5, 0, Math.cos(elapsed) * 5)
+        const chainPosition = chinaLabel.position.clone()
+        // 计算除标签和摄像机之间的距离
+        const labelDistance = chainPosition.distanceTo(camera.position)
+        // 检测射线的碰撞
+        // 向量（坐标）从世界空间投影到相机的标准化设备坐标（NDC）空间
+        chainPosition.project(camera)
+        raycaster.setFromCamera(chainPosition, camera)
+        const intersects = raycaster.intersectObjects(scene.children, true)
+
+        // 如果没有碰撞到任何物体,那么让标签显示
+        if (intersects.length === 0) {
+            chinaLabel.element.classList.add('visible')
+        } else {
+            const minDistane = intersects[0].distance
+            if (minDistane < labelDistance) {
+                chinaLabel.element.classList.remove('visible')
+            } else {
+                chinaLabel.element.classList.add('visible')
+            }
+        }
         controls.update()
         stats.update()
         requestAnimationFrame(renderScene)
@@ -133,7 +152,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang='scss'>
     .page {
         width: 100%;
         height: 100%;
@@ -143,5 +162,15 @@
             flex: 1;
             position: relative;
         }
+    }
+
+    .label {
+        color: #fff;
+        display: none;
+        font-size: 1rem;
+    }
+
+    .visible {
+        display: block;
     }
 </style>
