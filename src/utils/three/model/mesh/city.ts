@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import scene from '@/utils/three/model/scene'
 import modifyCityMaterial from '@/utils/three/modify/modifyCityMaterial'
 import FlyLine from '@/utils/three/model/mesh/flyLine'
+import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
 
 export default function createCity() {
     const gltfLoader = new GLTFLoader()
@@ -23,5 +24,7 @@ export default function createCity() {
         scene.add(flyLine.mesh)
 
         // 添加着色器飞线
+        const flyLineShader = new FlyLineShader()
+        scene.add(flyLineShader.mesh)
     })
 }
