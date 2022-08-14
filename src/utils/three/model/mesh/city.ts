@@ -6,6 +6,7 @@ import FlyLine from '@/utils/three/model/mesh/flyLine'
 import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
 import MeshLine from '@/utils/three/model/mesh/meshLine'
 import LineWall from '@/utils/three/model/mesh/LineWall'
+import LightRadar from '@/utils/three/model/mesh/LightRadar'
 
 export default function createCity() {
     const gltfLoader = new GLTFLoader()
@@ -38,5 +39,9 @@ export default function createCity() {
         // 添加光墙
         const lineWall = new LineWall()
         scene.add(lineWall.mesh)
+
+        // 添加雷达
+        const lightRadar = new LightRadar()
+        scene.add(lightRadar.mesh)
     })
 }
