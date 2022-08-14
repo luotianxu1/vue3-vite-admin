@@ -5,6 +5,7 @@ import modifyCityMaterial from '@/utils/three/modify/modifyCityMaterial'
 import FlyLine from '@/utils/three/model/mesh/flyLine'
 import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
 import MeshLine from '@/utils/three/model/mesh/meshLine'
+import LineWall from '@/utils/three/model/mesh/LineWall'
 
 export default function createCity() {
     const gltfLoader = new GLTFLoader()
@@ -33,5 +34,9 @@ export default function createCity() {
         // 添加着色器飞线
         const flyLineShader = new FlyLineShader()
         scene.add(flyLineShader.mesh)
+
+        // 添加光墙
+        const lineWall = new LineWall()
+        scene.add(lineWall.mesh)
     })
 }
