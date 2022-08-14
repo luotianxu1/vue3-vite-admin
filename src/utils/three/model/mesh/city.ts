@@ -7,6 +7,7 @@ import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
 import MeshLine from '@/utils/three/model/mesh/meshLine'
 import LineWall from '@/utils/three/model/mesh/LineWall'
 import LightRadar from '@/utils/three/model/mesh/LightRadar'
+import AlarmSprite from '@/utils/three/model/mesh/alarmSprite'
 
 export default function createCity() {
     const gltfLoader = new GLTFLoader()
@@ -43,5 +44,12 @@ export default function createCity() {
         // 添加雷达
         const lightRadar = new LightRadar()
         scene.add(lightRadar.mesh)
+
+        // 添加警告标识
+        const alarmSprite = new AlarmSprite()
+        scene.add(alarmSprite.mesh)
+        alarmSprite.onClick(function (e) {
+            console.log('警告', e)
+        })
     })
 }
