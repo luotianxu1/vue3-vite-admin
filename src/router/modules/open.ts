@@ -10,11 +10,6 @@ const openRouter: RouteRecordRaw[] = [
         redirect: '/open/car',
         children: [
             {
-                path: 'car',
-                name: '汽车',
-                component: () => import('@/views/open/car/index.vue')
-            },
-            {
                 path: 'drag',
                 name: '拖拽',
                 component: () => import('@/views/open/drag/index.vue')
