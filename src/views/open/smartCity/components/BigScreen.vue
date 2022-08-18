@@ -1,26 +1,77 @@
 <template>
-    <div id='bigScreen'>
-        <div class='header'>智慧城市</div>
-        <div class='main'>
-            <div class='left'>
-                <div class='cityEvent'>
+    <div id="bigScreen">
+        <div class="header">智慧城市</div>
+        <div class="main">
+            <div class="left">
+                <div
+                    v-for="(item, index) in props.dataInfo"
+                    :key="index"
+                    class="cityEvent"
+                >
                     <h3>
-                        <span>治安事件</span>
+                        <span>{{ item.name }}</span>
                     </h3>
                     <h1>
-                        <img src='../../../../assets/img/open/smartCity/bar.svg' alt='icon'>
-                        <span>1000(台)</span>
+                        <img
+                            src="../../../../assets/img/open/smartCity/bar.svg"
+                            alt="icon"
+                            class='icon'
+                        />
+                        <span>
+                            {{ toFixInt(item.number) }}({{ item.unit }})
+                        </span>
                     </h1>
-                    <div class='footerBoder'>
-
-                    </div>
+                    <div class="footerBoder"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="cityEvent list">
+                    <h3>
+                        <span>事件列表</span>
+                    </h3>
+                    <ul>
+                        <li v-for="(item, i) in props.eventList" :key="i">
+                            <h1>
+                                <div>
+                                    <img
+                                        :src="imgs[item.name]"
+                                        alt="icon"
+                                        class='icon'
+                                    />
+                                    <span>{{ item.name }}</span>
+                                </div>
+                                <span class="time1">{{ item.time }}</span>
+                            </h1>
+                            <p>{{ item.type }}</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
+    const props = defineProps({
+        dataInfo: {
+            type: Object,
+            default: () => {}
+        },
+        eventList: {
+            type: Object,
+            default: () => {}
+        }
+    })
+
+    const imgs = {
+        电力: '/src/assets/img/open/smartCity/dianli.svg',
+        火警: '/src/assets/img/open/smartCity/fire.svg',
+        治安: '/src/assets/img/open/smartCity/jingcha.svg'
+    }
+
+    const toFixInt = (num: number) => {
+        return num.toFixed(0)
+    }
 </script>
 
 <style scoped>
@@ -38,9 +89,6 @@
     }
 
     .header {
-        /* width: 1920px;
-              height: 100px; */
-
         width: 19.2rem;
         height: 1rem;
         background-image: url('../../../../assets/img/open/smartCity/title.png');
@@ -102,7 +150,7 @@
         top: 0;
         border-top: 4px solid rgb(34, 133, 247);
         border-left: 4px solid rgb(34, 133, 247);
-        content: "";
+        content: '';
         display: block;
     }
 
@@ -114,7 +162,7 @@
         top: 0;
         border-top: 4px solid rgb(34, 133, 247);
         border-right: 4px solid rgb(34, 133, 247);
-        content: "";
+        content: '';
         display: block;
     }
     .footerBorder {
@@ -132,7 +180,7 @@
         top: 0;
         border-bottom: 4px solid rgb(34, 133, 247);
         border-left: 4px solid rgb(34, 133, 247);
-        content: "";
+        content: '';
         display: block;
     }
 
@@ -144,7 +192,7 @@
         top: 0;
         border-bottom: 4px solid rgb(34, 133, 247);
         border-right: 4px solid rgb(34, 133, 247);
-        content: "";
+        content: '';
         display: block;
     }
 
@@ -172,7 +220,7 @@
         display: flex;
         align-items: center;
     }
-    h1 span.time {
+    h1 span.time1 {
         font-size: 0.2rem;
         font-weight: normal;
     }
