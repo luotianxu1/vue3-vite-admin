@@ -3,13 +3,25 @@ import gsap from 'gsap'
 import vertex from '@/utils/three/shader/lineWallShader/vertex.glsl?raw'
 import fragment from '@/utils/three/shader/lineWallShader/fragment.glsl?raw'
 
-export default class LineWall {
+export default class LightWall {
     geometry
     material
     mesh
 
-    constructor() {
-        this.geometry = new THREE.CylinderBufferGeometry(5, 5, 2, 32, 1, true)
+    constructor(
+        radius = 5,
+        length = 2,
+        position = { x: 0, z: 0 },
+        color = 0xff0000
+    ) {
+        this.geometry = new THREE.CylinderBufferGeometry(
+            radius,
+            radius,
+            2,
+            32,
+            1,
+            true
+        )
         this.material = new THREE.ShaderMaterial({
             vertexShader: vertex,
             fragmentShader: fragment,
@@ -17,7 +29,7 @@ export default class LineWall {
             side: THREE.DoubleSide
         })
         this.mesh = new THREE.Mesh(this.geometry, this.material)
-        this.mesh.position.set(0, 1, 0)
+        this.mesh.position.set(position.x, 1, position.z)
 
         this.mesh.geometry.computeBoundingBox()
         let { min, max } = this.mesh.geometry.boundingBox
@@ -29,11 +41,18 @@ export default class LineWall {
 
         // 光墙动画
         gsap.to(this.mesh.scale, {
-            x: 2,
-            z: 2,
+            x: length,
+            z: length,
             duration: 1,
             repeat: -1,
             yoyo: true
         })
+    }
+
+    remove() {
+        this.mesh.remove()
+        this.mesh.removeFromParent()
+        this.mesh.geometry.dispose()
+        this.mesh.material.dispose()
     }
 }

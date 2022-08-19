@@ -2,22 +2,21 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import scene from '@/utils/three/model/scene'
 import modifyCityMaterial from '@/utils/three/modify/modifyCityMaterial'
-import FlyLine from '@/utils/three/model/mesh/flyLine'
-import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
 import MeshLine from '@/utils/three/model/mesh/meshLine'
-import LineWall from '@/utils/three/model/mesh/LineWall'
-import LightRadar from '@/utils/three/model/mesh/LightRadar'
-import AlarmSprite from '@/utils/three/model/mesh/alarmSprite'
+// import FlyLine from '@/utils/three/model/mesh/flyLine'
+// import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
+// import LightWall from '@/utils/three/model/mesh/lightWall'
+// import LightRadar from '@/utils/three/model/mesh/lightRadar'
+// import AlarmSprite from '@/utils/three/model/mesh/alarmSprite'
 
 export default function createCity() {
     const gltfLoader = new GLTFLoader()
     gltfLoader.load('./model/glb/city.glb', (gltf) => {
         gltf.scene.traverse((item) => {
             if (item.type === 'Mesh') {
-                const cityMaterial = new THREE.MeshBasicMaterial({
+                (item as THREE.Mesh).material = new THREE.MeshBasicMaterial({
                     color: new THREE.Color(0x0c0e33)
                 })
-                ;(item as THREE.Mesh).material = cityMaterial
                 modifyCityMaterial(item)
                 if (item.name === 'Layerbuildings') {
                     const meshLine = new MeshLine((item as THREE.Mesh).geometry)
@@ -29,27 +28,27 @@ export default function createCity() {
         })
         scene.add(gltf.scene)
 
-        // 添加飞线
-        const flyLine = new FlyLine()
-        scene.add(flyLine.mesh)
-
-        // 添加着色器飞线
-        const flyLineShader = new FlyLineShader()
-        scene.add(flyLineShader.mesh)
-
-        // 添加光墙
-        const lineWall = new LineWall()
-        scene.add(lineWall.mesh)
-
-        // 添加雷达
-        const lightRadar = new LightRadar()
-        scene.add(lightRadar.mesh)
-
-        // 添加警告标识
-        const alarmSprite = new AlarmSprite()
-        scene.add(alarmSprite.mesh)
-        alarmSprite.onClick(function (e) {
-            console.log('警告', e)
-        })
+        // // 添加飞线
+        // const flyLine = new FlyLine()
+        // scene.add(flyLine.mesh)
+        //
+        // // 添加着色器飞线
+        // const flyLineShader = new FlyLineShader()
+        // scene.add(flyLineShader.mesh)
+        //
+        // // 添加光墙
+        // const lineWall = new LineWall()
+        // scene.add(lineWall.mesh)
+        //
+        // // 添加雷达
+        // const lightRadar = new LightRadar()
+        // scene.add(lightRadar.mesh)
+        //
+        // // 添加警告标识
+        // const alarmSprite = new AlarmSprite()
+        // scene.add(alarmSprite.mesh)
+        // alarmSprite.onClick(function (e) {
+        //     console.log('警告', e)
+        // })
     })
 }

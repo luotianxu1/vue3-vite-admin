@@ -1,6 +1,6 @@
 <template>
-    <Scene></Scene>
-    <BigScreen :data-info="dataInfo" :event-list='eventList'></BigScreen>
+    <Scene :event-list="eventList"></Scene>
+    <BigScreen :data-info="dataInfo" :event-list="eventList"></BigScreen>
 </template>
 
 <script lang="ts" setup>
@@ -13,12 +13,17 @@
         getSmartCityInfo
     } from '@/api/open/smartCityApi'
 
+    const interval = ref()
     onMounted(() => {
         getInfo()
-        setInterval(() => {
-            getInfo()
-        },5000)
         getEvent()
+        interval.value = setInterval(() => {
+            getInfo()
+            getEvent()
+        }, 5000)
+    })
+    onBeforeUnmount(() => {
+        clearInterval(interval.value)
     })
 
     const dataInfo = reactive({
@@ -43,7 +48,6 @@
     const getEvent = async () => {
         const res = await getSmartCityEvent()
         eventList.value = res.data
-        console.log(eventList.value)
     }
 </script>
 

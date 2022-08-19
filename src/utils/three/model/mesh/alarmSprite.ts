@@ -9,13 +9,24 @@ export default class AlarmSprite {
     raycaster
     mouse
 
-    constructor() {
+    constructor(type = '火警', position = { x: -1.8, z: 3 }, color = 0xff0000) {
         const textureLoader = new THREE.TextureLoader()
-        const map = textureLoader.load('./textures/alarm/warning.png')
-        this.material = new THREE.SpriteMaterial({ map: map })
+        const typeObj = {
+            火警: './textures/smartCity/fire.svg',
+            治安: './textures/smartCity/jingcha.svg',
+            电力: './textures/smartCity/dianli.svg'
+        }
+        const map = textureLoader.load(typeObj[type])
+        this.material = new THREE.SpriteMaterial({
+            map: map,
+            color: color,
+            // blending: THREE.AdditiveBlending,
+            transparent: true,
+            depthTest: false
+        })
         this.mesh = new THREE.Sprite(this.material)
 
-        this.mesh.position.set(-4.2, 3.5, -1)
+        this.mesh.position.set(position.x, 3.5, position.z)
 
         // 封装点击事件
         this.fns = []
@@ -42,5 +53,12 @@ export default class AlarmSprite {
 
     onClick(fn) {
         this.fns.push(fn)
+    }
+
+    remove() {
+        this.mesh.remove()
+        this.mesh.removeFromParent()
+        this.mesh.geometry.dispose()
+        this.mesh.material.dispose()
     }
 }
