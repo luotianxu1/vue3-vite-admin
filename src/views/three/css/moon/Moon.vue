@@ -171,7 +171,7 @@
     .label {
         color: #fff;
         display: none;
-        font-size: 1rem;
+        font-size: 0.2rem;
     }
 
     .visible {
