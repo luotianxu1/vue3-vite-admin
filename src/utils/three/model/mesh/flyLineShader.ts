@@ -8,6 +8,7 @@ export default class FlyLineShader {
     geometry
     shaderMaterial
     mesh
+    eventListIndex
 
     constructor(position = { x: 0, z: 0 },color=0x00ffff) {
         let linePoints = [

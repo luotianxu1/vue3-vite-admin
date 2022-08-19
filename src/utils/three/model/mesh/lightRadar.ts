@@ -7,6 +7,7 @@ export default class LightRadar {
     geometry
     material
     mesh
+    eventListIndex
 
     constructor(radius = 2, position = { x: 0, z: 0 }, color = 0xff0000) {
         this.geometry = new THREE.PlaneBufferGeometry(radius, radius)

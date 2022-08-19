@@ -7,6 +7,7 @@ export default class LightWall {
     geometry
     material
     mesh
+    eventListIndex
 
     constructor(
         radius = 5,

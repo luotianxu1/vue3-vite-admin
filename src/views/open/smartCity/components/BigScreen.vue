@@ -15,7 +15,7 @@
                         <img
                             src="../../../../assets/img/open/smartCity/bar.svg"
                             alt="icon"
-                            class='icon'
+                            class="icon"
                         />
                         <span>
                             {{ toFixInt(item.number) }}({{ item.unit }})
@@ -30,13 +30,18 @@
                         <span>事件列表</span>
                     </h3>
                     <ul>
-                        <li v-for="(item, i) in props.eventList" :key="i">
+                        <li
+                            v-for="(item, i) in props.eventList"
+                            :key="i"
+                            :class="{ active: currentActive === i }"
+                            @click="toggleEvent(i)"
+                        >
                             <h1>
                                 <div>
                                     <img
                                         :src="imgs[item.name]"
                                         alt="icon"
-                                        class='icon'
+                                        class="icon"
                                     />
                                     <span>{{ item.name }}</span>
                                 </div>
@@ -52,6 +57,8 @@
 </template>
 
 <script lang="ts" setup>
+    import eventHub from '@/utils/eventHub'
+
     const props = defineProps({
         dataInfo: {
             type: Object,
@@ -71,6 +78,17 @@
 
     const toFixInt = (num: number) => {
         return num.toFixed(0)
+    }
+
+    const currentActive = ref(null)
+    eventHub.on('spriteClick', (data) => {
+        console.log(data)
+        currentActive.value = data.i
+    })
+
+    const toggleEvent = (i) => {
+        currentActive.value = i
+        eventHub.emit('eventToggle', i)
     }
 </script>
 

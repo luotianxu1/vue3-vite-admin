@@ -51,7 +51,7 @@ export default class AlarmSprite {
         })
     }
 
-    onClick(fn) {
+    onClick(fn?) {
         this.fns.push(fn)
     }
 
