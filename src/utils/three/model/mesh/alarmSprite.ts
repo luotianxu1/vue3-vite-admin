@@ -8,6 +8,7 @@ export default class AlarmSprite {
     fns
     raycaster
     mouse
+    eventListIndex
 
     constructor(type = '火警', position = { x: -1.8, z: 3 }, color = 0xff0000) {
         const textureLoader = new THREE.TextureLoader()

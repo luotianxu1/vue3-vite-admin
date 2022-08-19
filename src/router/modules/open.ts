@@ -20,6 +20,13 @@ const openRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/open/ranking/List.vue')
             },
             {
+                path: 'homeViewing',
+                name: '全景看房',
+                meta: { title: 'homeViewing' },
+                component: () =>
+                    import('@/views/three/demo/houseViewing/HomeViewing.vue')
+            },
+            {
                 path: 'rankedManage',
                 name: '排名管理',
                 component: () => import('@/views/open/ranking/Manage.vue')
