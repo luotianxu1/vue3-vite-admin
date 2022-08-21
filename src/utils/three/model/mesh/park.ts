@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import eventHub from '@/utils/eventHub'
+import cameraModule from '@/utils/three/model/cameraPark'
 
 export default class City {
     gltf
@@ -65,6 +66,11 @@ export default class City {
                 if (child.name === 'redcar') {
                     this.redcar = child
                 }
+
+                gltf.cameras.forEach((camera) => {
+                    // scene.add(camera);
+                    cameraModule.add(camera.name, camera)
+                })
             })
         })
 

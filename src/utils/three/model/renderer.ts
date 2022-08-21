@@ -7,8 +7,9 @@ const renderer = new THREE.WebGLRenderer({
     // 深度 防止闪烁
     logarithmicDepthBuffer: true
 })
-renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.shadowMap.enabled = true
+renderer.toneMapping = THREE.ACESFilmicToneMapping
+renderer.toneMappingExposure = 1.5
 
 export default renderer

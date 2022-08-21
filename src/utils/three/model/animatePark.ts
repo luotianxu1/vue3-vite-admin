@@ -1,17 +1,17 @@
 import * as THREE from 'three'
-import controls from '@/utils/three/model/controls'
+import controlsModule from '@/utils/three/model/controlsPark'
 import renderer from '@/utils/three/model/renderer'
 import scene from '@/utils/three/model/scenePark'
-import camera from '@/utils/three/model/camera'
+import cameraModule from '@/utils/three/model/cameraPark'
 import { updateMesh } from '@/utils/three/model/createPark'
 
 const clock = new THREE.Clock()
 const animate = () => {
     const time = clock.getDelta()
     updateMesh(time * 2)
-    controls.update()
+    controlsModule.controls.update(time)
     requestAnimationFrame(animate)
-    renderer.render(scene, camera)
+    renderer.render(scene, cameraModule.activeCamera)
 }
 
 export default animate
