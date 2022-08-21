@@ -23,7 +23,7 @@
     import eventHub from '@/utils/eventHub'
     // 导入执行函数
     import animate from '@/utils/three/model/animate'
-    import createMesh from '@/utils/three/model/createMesh'
+    import createCity from '@/utils/three/model/mesh/city'
     import AlarmSprite from '@/utils/three/model/mesh/alarmSprite'
     import LightWall from '@/utils/three/model/mesh/lightWall'
     import FlyLineShader from '@/utils/three/model/mesh/flyLineShader'
@@ -38,7 +38,7 @@
 
     scene.add(camera)
     scene.add(axesHelper)
-    createMesh()
+    createCity()
 
     // 场景元素div
     const sceneDiv = ref()

@@ -42,7 +42,7 @@
     // 创建灯光
     initDefaultLighting(scene)
 
-    const createMesh = (geom) => {
+    const createPark = (geom) => {
         const meshMaterial = new THREE.MeshBasicMaterial({
             wireframe: true,
             wireframeLinewidth: 2,

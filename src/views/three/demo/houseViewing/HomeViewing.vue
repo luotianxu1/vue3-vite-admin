@@ -9,7 +9,7 @@
         <div v-if="progress !== 100" class="progress">
             <span>新房加载中：{{ progress }}%</span>
         </div>
-        <div class="title">老陈VR全景看房</div>
+        <div class="title">VR全景看房</div>
     </div>
 </template>
 

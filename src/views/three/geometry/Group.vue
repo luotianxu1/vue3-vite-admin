@@ -139,7 +139,7 @@
         groupScale: 1
     })
 
-    const createMesh = (geom) => {
+    const createPark = (geom) => {
         const meshMaterial = new THREE.MeshNormalMaterial()
         meshMaterial.side = THREE.DoubleSide
         return new THREE.Mesh(geom, meshMaterial)

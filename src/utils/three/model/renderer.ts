@@ -3,7 +3,9 @@ import * as THREE from 'three'
 
 const renderer = new THREE.WebGLRenderer({
     // 抗锯齿
-    antialias: true
+    antialias: true,
+    // 深度 防止闪烁
+    logarithmicDepthBuffer: true
 })
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
