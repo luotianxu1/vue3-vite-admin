@@ -24,7 +24,7 @@
     const Map = shallowRef()
     const initMap = () => {
         AMapLoader.load({
-            key: '859d831539bf9e53715e7908aefc19db',
+            key: 'cb7590d4af790e30ab7f2e51d9778391',
             version: '2.0'
         })
             .then((AMap) => {
