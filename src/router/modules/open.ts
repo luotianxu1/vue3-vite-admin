@@ -42,6 +42,12 @@ const openRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/open/smartPark/SmartPark.vue')
             },
             {
+                path: 'smartFactory',
+                name: '智慧工厂',
+                component: () =>
+                    import('@/views/open/smartFactory/SmartFactory.vue')
+            },
+            {
                 path: 'map',
                 name: '3D地图',
                 component: () => import('@/views/open/map/Map.vue')
