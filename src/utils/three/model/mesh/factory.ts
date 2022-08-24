@@ -7,8 +7,10 @@ import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 export default class Factory {
     scene
     loader
-    mixer
     action
+    floor1Group
+    floor2Group
+    wallGroup
 
     constructor(scene) {
         // 载入模型
@@ -17,18 +19,35 @@ export default class Factory {
         const dracoLoader = new DRACOLoader()
         dracoLoader.setDecoderPath('./draco/')
         this.loader.setDRACOLoader(dracoLoader)
+
+        this.loader.load('./model/glb/floor1.glb', (gltf) => {
+            this.floor1Group = gltf.scene
+            gltf.scene.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.emissiveIntensity = 5
+                }
+            })
+            scene.add(this.floor1Group)
+        })
+
         this.loader.load('./model/glb/floor2.glb', (gltf) => {
-            console.log(gltf)
-            scene.add(gltf.scene)
+            this.floor2Group = gltf.scene
             gltf.scene.traverse((child) => {
                 if (child.isMesh) {
                     child.material.emissiveIntensity = 5
                 }
 
                 if (child.type === 'Object3D' && child.children.length === 0) {
-                    this.createTag(child)
+                    const css3dObject = this.createTag(child)
+                    this.floor2Group.add(css3dObject)
                 }
             })
+            scene.add(this.floor2Group)
+        })
+
+        this.loader.load('./model/glb/wall.glb', (gltf) => {
+            this.wallGroup = gltf.scene
+            scene.add(this.wallGroup)
         })
     }
 
@@ -46,6 +65,7 @@ export default class Factory {
         const objectCSS3D = new CSS3DObject(element)
         objectCSS3D.scale.set(0.2, 0.2, 0.2)
         objectCSS3D.position.copy(object3d.position)
-        this.scene.add(objectCSS3D)
+        // this.scene.add(objectCSS3D)
+        return objectCSS3D
     }
 }

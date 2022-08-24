@@ -1,110 +1,119 @@
 <template>
     <div id="bigScreen">
-        <div class="header">智慧城市管理系统平台</div>
+        <div class="header">老陈智慧工厂系统管理平台</div>
         <div class="main">
             <div class="left">
-                <div class="cityEvent">
+                <div class="cityEvent" @click="showWall">
                     <h3>
-                        <span>热气球控制</span>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>厂房外形展示</span>
                     </h3>
-                    <h1 @click="toggleAction(0)">
-                        <img
-                            class="icon"
-                            src="../../../../assets/img/open/smartPark/bar.svg"
-                            alt=""
-                        />
-                        <span>设置热气球以横穿园区的动画显示</span>
-                    </h1>
-                    <h1 @click="toggleAction(1)">
-                        <img
-                            class="icon"
-                            src="../../../../assets/img/open/smartPark/bar.svg"
-                            alt=""
-                        />
-                        <span>设置热气球以环绕园区进行运动</span>
-                    </h1>
 
                     <div class="footerBorder"></div>
                 </div>
-
-                <div class="cityEvent">
+                <div class="cityEvent" @click="showAll">
                     <h3>
-                        <span>相机控制</span>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>厂房分层展开</span>
                     </h3>
-                    <h1 @click="toggleCamera('default')">
+
+                    <div class="footerBorder"></div>
+                </div>
+                <div class="cityEvent" @click="showFloor1">
+                    <h3>
                         <img
                             class="icon"
-                            src="../../../../assets/img/open/smartPark/bar.svg"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
                             alt=""
                         />
-                        <span>默认的相机视角</span>
-                    </h1>
-                    <h1 @click="toggleCamera('carcamera_Orientation')">
+                        <span>展示第一层楼</span>
+                    </h3>
+
+                    <div class="footerBorder"></div>
+                </div>
+                <div class="cityEvent" @click="showFloor2">
+                    <h3>
                         <img
                             class="icon"
-                            src="../../../../assets/img/open/smartPark/bar.svg"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
                             alt=""
                         />
-                        <span>设置相机追随汽车导览园区</span>
-                    </h1>
-                    <h1 @click="toggleCamera('rightcamera_Orientation')">
-                        <img
-                            class="icon"
-                            src="../../../../assets/img/open/smartPark/bar.svg"
-                            alt=""
-                        />
-                        <span>查看汽车司机视角</span>
-                    </h1>
+                        <span>展示第二层楼</span>
+                    </h3>
 
                     <div class="footerBorder"></div>
                 </div>
             </div>
             <div class="right">
-                <div class="cityEvent list">
+                <div class="cityEvent" @click="flatFighter">
                     <h3>
-                        <span>切换园区观览模式</span>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>展开飞机</span>
                     </h3>
-                    <ul>
-                        <li @click="toggleControls('Orbit')">
-                            <h1>
-                                <div>
-                                    <img
-                                        class="icon"
-                                        src="../../../../assets/img/open/smartPark/dianli.svg"
-                                        alt=""
-                                    />
-                                    <span>轨道观览</span>
-                                </div>
-                            </h1>
-                            <p>可以锁定目标建筑和园区进行轨道式360°查看</p>
-                        </li>
-                        <li @click="toggleControls('Fly')">
-                            <h1>
-                                <div>
-                                    <img
-                                        class="icon"
-                                        src="../../../../assets/img/open/smartPark/dianli.svg"
-                                        alt=""
-                                    />
-                                    <span>飞行观览</span>
-                                </div>
-                            </h1>
-                            <p>可以使用飞行模式进行园区进行观览</p>
-                        </li>
-                        <li @click="toggleControls('FirstPerson')">
-                            <h1>
-                                <div>
-                                    <img
-                                        class="icon"
-                                        src="../../../../assets/img/open/smartPark/dianli.svg"
-                                        alt=""
-                                    />
-                                    <span>第一人称</span>
-                                </div>
-                            </h1>
-                            <p>可以使用第一人称模式进行园区进行观览</p>
-                        </li>
-                    </ul>
+
+                    <div class="footerBorder"></div>
+                </div>
+
+                <div class="cityEvent" @click="recoverFighter">
+                    <h3>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>恢复飞机</span>
+                    </h3>
+
+                    <div class="footerBorder"></div>
+                </div>
+
+                <div class="cityEvent" @click="pointsFighter">
+                    <h3>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>粒子特效</span>
+                    </h3>
+
+                    <div class="footerBorder"></div>
+                </div>
+
+                <div class="cityEvent" @click="pointsBlast">
+                    <h3>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>粒子爆炸</span>
+                    </h3>
+
+                    <div class="footerBorder"></div>
+                </div>
+
+                <div class="cityEvent" @click="pointsBack">
+                    <h3>
+                        <img
+                            class="icon"
+                            src="../../../../assets/img/open/smarkFactory/bar.svg"
+                            alt=""
+                        />
+                        <span>粒子复原</span>
+                    </h3>
 
                     <div class="footerBorder"></div>
                 </div>
@@ -113,25 +122,49 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
     import eventHub from '@/utils/eventHub'
 
-    const currentActive = ref(null)
-
-    eventHub.on('spriteClick', (i) => {
-        currentActive.value = i
-    })
-
-    const toggleAction = (i) => {
-        eventHub.emit('actionClick', i)
+    const showWall = () => {
+        eventHub.emit('showWall')
     }
 
-    const toggleCamera = (name) => {
-        eventHub.emit('toggleCamera', name)
+    const showFloor1 = () => {
+        eventHub.emit('showFloor1')
     }
 
-    const toggleControls = (name) => {
-        eventHub.emit('toggleControls', name)
+    const showFloor2 = () => {
+        eventHub.emit('showFloor2')
+    }
+    let open = false
+    const showAll = () => {
+        if (open) {
+            eventHub.emit('hideAll')
+            open = false
+        } else {
+            eventHub.emit('showAll')
+            open = true
+        }
+    }
+
+    const flatFighter = () => {
+        eventHub.emit('flatFighter')
+    }
+
+    const recoverFighter = () => {
+        eventHub.emit('recoverFighter')
+    }
+
+    const pointsFighter = () => {
+        eventHub.emit('pointsFighter')
+    }
+
+    const pointsBlast = () => {
+        eventHub.emit('pointsBlast')
+    }
+
+    const pointsBack = () => {
+        eventHub.emit('pointsBack')
     }
 </script>
 
@@ -155,7 +188,7 @@
 
         width: 19.2rem;
         height: 1rem;
-        background-image: url('../../../../assets/img/open/smartPark/title.png');
+        background-image: url('../../../../assets/img/open/smarkFactory/title.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -174,7 +207,7 @@
     .left {
         width: 4rem;
         /* background-color: rgb(255,255,255,0.5); */
-        background-image: url('../../../../assets/img/open/smartPark/line_img.png');
+        background-image: url('../../../../assets/img/open/smarkFactory/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: right center;
@@ -187,7 +220,7 @@
     .right {
         width: 4rem;
         /* background-color: rgb(255,255,255,0.5); */
-        background-image: url('../../../../assets/img/open/smartPark/line_img.png');
+        background-image: url('../../../../assets/img/open/smarkFactory/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left center;
@@ -202,7 +235,7 @@
         width: 3.5rem;
         /* height: 3rem; */
         margin-bottom: 0.5rem;
-        background-image: url('../../../../assets/img/open/smartPark/bg_img03.png');
+        background-image: url('../../../../assets/img/open/smarkFactory/bg_img03.png');
         background-repeat: repeat;
         pointer-events: auto;
     }
@@ -232,7 +265,6 @@
     }
     .footerBorder {
         position: absolute;
-        bottom: 0;
         bottom: 0;
         width: 3.5rem;
         height: 0.4rem;
@@ -266,37 +298,30 @@
         height: 40px;
     }
 
-    .cityEvent h1 span {
-        flex: 1;
-    }
-
     h1 {
         color: #fff;
         display: flex;
         align-items: center;
         padding: 0 0.3rem 0.3rem;
         justify-content: space-between;
-        font-size: 0.25rem;
+        font-size: 0.3rem;
     }
     h3 {
         color: #fff;
         display: flex;
         align-items: center;
         padding: 0.3rem 0.3rem;
+        text-shadow: 0 0 5px #000;
     }
 
     h1 > div {
         display: flex;
         align-items: center;
     }
-    h1 span.time {
-        font-size: 0.2rem;
-        font-weight: normal;
-    }
 
     .cityEvent li > p {
         color: #eee;
-        padding: 0rem 0.3rem 0.3rem;
+        padding: 0 0.3rem 0.3rem;
     }
     .list h1 {
         padding: 0.1rem 0.3rem;
