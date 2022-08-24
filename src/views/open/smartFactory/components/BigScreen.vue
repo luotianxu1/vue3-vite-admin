@@ -1,6 +1,6 @@
 <template>
     <div id="bigScreen">
-        <div class="header">老陈智慧工厂系统管理平台</div>
+        <div class="header">智慧工厂系统管理平台</div>
         <div class="main">
             <div class="left">
                 <div class="cityEvent" @click="showWall">
