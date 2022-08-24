@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import eventHub from '@/utils/eventHub'
+import camera from '@/utils/three/model/cameraFactory'
 
 export default class Factory {
     scene
@@ -13,6 +14,9 @@ export default class Factory {
     floor2Group
     floor2Tags: any = []
     wallGroup
+    fighterGroup
+    mouse
+    raycaster
 
     constructor(scene) {
         // 载入模型
@@ -56,6 +60,53 @@ export default class Factory {
             scene.add(this.wallGroup)
         })
 
+        this.loader.load('./model/glb/Fighter1.glb', (gltf) => {
+            this.fighterGroup = gltf.scene
+
+            this.fighterGroup.visible = false
+            scene.add(this.fighterGroup)
+            this.fighterGroup.position.set(3, 42, 68)
+            this.fighterGroup.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.emissiveIntensity = 15
+                    child.position2 = child.position.clone()
+                }
+            })
+            this.mouse = new THREE.Vector2()
+            this.raycaster = new THREE.Raycaster()
+            // 事件监听
+            window.addEventListener('click', (event: any) => {
+                //   对时间对象进行加工
+                // event.mesh = this
+                // 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
+                this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+                this.mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
+
+                //通过摄像机和鼠标位置更新射线
+                this.raycaster.setFromCamera(this.mouse, camera)
+
+                //进行检测
+                const intersects = this.raycaster.intersectObject(
+                    this.fighterGroup
+                )
+                if (intersects.length > 0) {
+                    if (this.floor2Group.visible) {
+                        this.floor2Group.visible = false
+                        this.floor2Tags.forEach((tag) => {
+                            tag.visible = false
+                        })
+                    } else {
+                        this.floor2Group.visible = true
+                        this.floor2Tags.forEach((tag) => {
+                            tag.visible = true
+                        })
+                    }
+                }
+            })
+
+            // this.showFighter()
+        })
+
         this.initEvent()
     }
 
@@ -82,6 +133,7 @@ export default class Factory {
 
     showFloor2() {
         this.floor2Group.visible = true
+        this.fighterGroup.visible = true
         this.floor2Tags.forEach((tag) => {
             tag.visible = true
         })
@@ -93,6 +145,7 @@ export default class Factory {
 
     hideFloor2() {
         this.floor2Group.visible = false
+        this.fighterGroup.visible = false
         this.floor2Tags.forEach((tag) => {
             tag.visible = false
         })
@@ -136,5 +189,64 @@ export default class Factory {
                 delay: 1
             })
         })
+        eventHub.on('hideAll', () => {
+            gsap.to(this.wallGroup.position, {
+                y: 0,
+                duration: 1,
+                delay: 1,
+                onComplete: () => {
+                    this.hideFloor1()
+                    this.hideFloor2()
+                }
+            })
+            gsap.to(this.floor2Group.position, {
+                y: 0,
+                duration: 1
+            })
+        })
+        eventHub.on('flatFighter', () => {
+            // 将飞机展成立方体
+            // 获取立方体点的位置
+            const positions: Array<THREE.Vector3> = []
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    positions.push(new THREE.Vector3(i * 2 - 2, j * 2 - 2, 0))
+                }
+            }
+
+            let n = 0
+            this.fighterGroup.traverse((child) => {
+                if (child.isMesh) {
+                    positions[n].multiplyScalar(10)
+
+                    gsap.to(child.position, {
+                        x: '+=' + positions[n].x,
+                        y: '+=' + positions[n].y,
+                        z: '+=' + positions[n].z,
+                        duration: 1
+                    })
+                    n++
+                }
+            })
+        })
+        eventHub.on('recoverFighter', () => {
+            this.fighterGroup.traverse((child) => {
+                if (child.isMesh) {
+                    gsap.to(child.position, {
+                        x: child.position2.x,
+                        y: child.position2.y,
+                        z: child.position2.z,
+                        duration: 1
+                    })
+                }
+            })
+        })
+    }
+
+    showFighter() {
+        this.floor1Group && (this.floor1Group.visible = false)
+        this.floor2Group && (this.floor2Group.visible = false)
+        this.wallGroup && (this.wallGroup.visible = false)
+        this.fighterGroup.visible = true
     }
 }

@@ -46,7 +46,7 @@ export default class SpriteCanvas {
         this.mouse = new THREE.Vector2()
 
         // 事件的监听
-        window.addEventListener('click', (event) => {
+        window.addEventListener('click', (event: any) => {
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             this.mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
 
