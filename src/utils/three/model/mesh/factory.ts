@@ -5,6 +5,8 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import eventHub from '@/utils/eventHub'
 import camera from '@/utils/three/model/cameraFactory'
+import vertexShader from '@/utils/three/shader/fighter/vertexShader.glsl?raw'
+import fragmentShader from '@/utils/three/shader/fighter/fragmentShader.glsl?raw'
 
 export default class Factory {
     scene
@@ -17,6 +19,7 @@ export default class Factory {
     fighterGroup
     mouse
     raycaster
+    fighterPointsGroup
 
     constructor(scene) {
         // 载入模型
@@ -77,7 +80,6 @@ export default class Factory {
             // 事件监听
             window.addEventListener('click', (event: any) => {
                 //   对时间对象进行加工
-                // event.mesh = this
                 // 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
                 this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
                 this.mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
@@ -241,6 +243,15 @@ export default class Factory {
                 }
             })
         })
+        eventHub.on('pointsFighter', () => {
+            this.createPoints(this.fighterGroup)
+        })
+        eventHub.on('pointsBlast', () => {
+            this.pointsBlast()
+        })
+        eventHub.on('pointsBack', () => {
+            this.pointsBack()
+        })
     }
 
     showFighter() {
@@ -248,5 +259,104 @@ export default class Factory {
         this.floor2Group && (this.floor2Group.visible = false)
         this.wallGroup && (this.wallGroup.visible = false)
         this.fighterGroup.visible = true
+    }
+
+    createPoints(object3d) {
+        if (!this.fighterPointsGroup) {
+            this.fighterPointsGroup = this.transformPoints(object3d)
+            this.scene.add(this.fighterPointsGroup)
+        }
+    }
+
+    transformPoints(object3d) {
+        // 创建纹理图像
+        const texture = new THREE.TextureLoader().load(
+            './textures/particles/1.png'
+        )
+        const group = new THREE.Group()
+
+        function createPoints(object, newObject3d) {
+            if (object.children.length > 0) {
+                object.children.forEach((child) => {
+                    if (child.isMesh) {
+                        // 随机生成颜色
+                        const color = new THREE.Color(
+                            Math.random(),
+                            Math.random(),
+                            Math.random()
+                        )
+
+                        const material = new THREE.ShaderMaterial({
+                            uniforms: {
+                                uColor: { value: color },
+                                uTexture: { value: texture },
+                                uTime: {
+                                    value: 0
+                                }
+                            },
+                            vertexShader: vertexShader,
+                            fragmentShader: fragmentShader,
+                            blending: THREE.AdditiveBlending,
+                            transparent: true,
+                            depthTest: false
+                        })
+                        const points = new THREE.Points(
+                            child.geometry,
+                            material
+                        )
+                        points.position.copy(child.position)
+                        points.rotation.copy(child.rotation)
+                        points.scale.copy(child.scale)
+                        newObject3d.add(points)
+                        createPoints(child, points)
+                    }
+                })
+            }
+        }
+
+        createPoints(object3d, group)
+        return group
+    }
+
+    pointsBlast() {
+        this.fighterPointsGroup.traverse((child) => {
+            if (child.isPoints) {
+                let randomPositionArray = new Float32Array(
+                    child.geometry.attributes.position.count * 3
+                )
+                for (
+                    let i = 0;
+                    i < child.geometry.attributes.position.count;
+                    i++
+                ) {
+                    randomPositionArray[i * 3] = (Math.random() * 2 - 1) * 10
+                    randomPositionArray[i * 3 + 1] =
+                        (Math.random() * 2 - 1) * 10
+                    randomPositionArray[i * 3 + 2] =
+                        (Math.random() * 2 - 1) * 10
+                }
+
+                child.geometry.setAttribute(
+                    'aPosition',
+                    new THREE.BufferAttribute(randomPositionArray, 3)
+                )
+
+                gsap.to(child.material.uniforms.uTime, {
+                    value: 10,
+                    duration: 10
+                })
+            }
+        })
+    }
+
+    pointsBack() {
+        this.fighterPointsGroup.traverse((child) => {
+            if (child.isPoints) {
+                gsap.to(child.material.uniforms.uTime, {
+                    value: 0,
+                    duration: 10
+                })
+            }
+        })
     }
 }
