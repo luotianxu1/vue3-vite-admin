@@ -168,7 +168,7 @@
     }
 </script>
 
-<style>
+<style lang='scss' scoped>
     #bigScreen {
         width: 100vw;
         height: 100vh;
