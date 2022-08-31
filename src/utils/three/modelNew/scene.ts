@@ -1,9 +1,5 @@
 import * as THREE from 'three'
 
-export default class Scene {
-    scene
-
-    constructor() {
-        this.scene = new THREE.Scene()
-    }
+export default function Scene() {
+    return new THREE.Scene()
 }
