@@ -13,18 +13,10 @@
         getSmartCityInfo
     } from '@/api/open/smartCityApi'
 
-    // const interval = ref()
     onMounted(() => {
         getInfo()
         getEvent()
-        // interval.value = setInterval(() => {
-        //     getInfo()
-        //     getEvent()
-        // }, 15000)
     })
-    // onBeforeUnmount(() => {
-    //     clearInterval(interval.value)
-    // })
 
     const dataInfo = reactive({
         iot: { number: 0, name: '', unit: '' },
