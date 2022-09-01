@@ -3,11 +3,13 @@ import PerspectiveCamera from '@/utils/three/modelNew/perspectiveCamera'
 import AmbientLight from '@/utils/three/modelNew/ambientLight'
 import DirectionalLight from '@/utils/three/modelNew/directionLight'
 import PointLight from '@/utils/three/modelNew/pointLight'
-import SportLight from '@/utils/three/modelNew/sportLight'
+import SportLight from '@/utils/three/modelNew/spotLight'
 import Renderer from '@/utils/three/modelNew/renderer'
 import AxesHelper from '@/utils/three/modelNew/axesHelper'
 import Controls from '@/utils/three/modelNew/controls'
 import Stats from 'three/examples/jsm/libs/stats.module'
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+import * as THREE from 'three'
 
 export default class WebGl {
     domElement
@@ -16,11 +18,14 @@ export default class WebGl {
     ambientLight
     directionalLight
     pointLight
-    sportLight
+    spotLight
     renderer
     axesHelper
     controls
     stats
+    gui
+    cameraHelper
+    spotLightHelper
 
     constructor(domElement) {
         this.domElement = domElement
@@ -54,7 +59,7 @@ export default class WebGl {
      * @param color 颜色
      * @param intensity 光照的强度
      */
-    addAmbientLight(color:string | number = 0xffffff, intensity = 1) {
+    addAmbientLight(color: string | number = 0xffffff, intensity = 1) {
         this.ambientLight = AmbientLight(color, intensity)
         this.scene.add(this.ambientLight)
     }
@@ -113,12 +118,17 @@ export default class WebGl {
         x = 100,
         y = 100,
         z = 100,
-        color = 0xffffff,
+        color: number | string = 0xffffff,
         intensity = 1,
         isCastShadow = true
     ) {
-        this.sportLight = SportLight(x, y, z, color, intensity, isCastShadow)
-        this.scene.add(this.sportLight)
+        this.spotLight = SportLight(x, y, z, color, intensity, isCastShadow)
+        this.scene.add(this.spotLight)
+    }
+
+    addSpotLightHelper(light) {
+        this.spotLightHelper = new THREE.SpotLightHelper(light)
+        this.scene.add(this.spotLightHelper)
     }
 
     addStats() {
@@ -128,5 +138,27 @@ export default class WebGl {
         this.stats.dom.style.left = '0px'
         this.stats.dom.style.top = '0px'
         this.domElement.appendChild(this.stats.dom)
+    }
+
+    addDebugCamera(light) {
+        this.cameraHelper = new THREE.CameraHelper(light.shadow.camera)
+        this.scene.add(this.cameraHelper)
+    }
+
+    addGUI() {
+        this.gui = new GUI()
+        console.log(this.domElement.getBoundingClientRect())
+        console.log(window.innerWidth)
+        this.gui.domElement.style.position = 'absolute'
+        this.gui.domElement.style.right =
+            window.innerWidth -
+            this.domElement.getBoundingClientRect().right +
+            'px'
+        this.gui.domElement.style.top =
+            this.domElement.getBoundingClientRect().top + 'px'
+    }
+
+    remove() {
+        this.gui.destroy()
     }
 }

@@ -10,11 +10,11 @@ import * as THREE from 'three'
  * @param isCastShadow 阴影
  * @constructor
  */
-export default function SportLight(
+export default function SpotLight(
     x = 100,
     y = 100,
     z = 100,
-    color = 0xffffff,
+    color:number | string = 0xffffff,
     intensity = 1,
     isCastShadow = true
 ) {
