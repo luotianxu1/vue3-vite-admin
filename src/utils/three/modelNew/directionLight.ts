@@ -10,10 +10,10 @@ import * as THREE from 'three'
  * @param isCastShadow 是否产生阴影
  */
 export default function DirectionLight(
-    color = 0xffffff,
     x = 50,
     y = 1500,
     z = 50,
+    color = 0xffffff,
     intensity = 1,
     isCastShadow = true
 ) {

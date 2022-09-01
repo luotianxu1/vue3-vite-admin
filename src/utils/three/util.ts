@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import Stats from 'stats.js'
+import Stats from 'three/examples/jsm/libs/stats.module'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 function addHouseAndTree(scene) {
@@ -229,7 +229,7 @@ const initAxes = (scene) => {
 
 // 初始化帧率
 const initStats = (el: HTMLElement) => {
-    const stats = new Stats()
+    const stats = Stats()
     stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
     stats.dom.style.position = 'absolute'
     stats.dom.style.left = '0px'

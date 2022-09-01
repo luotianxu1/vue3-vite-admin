@@ -13,9 +13,9 @@ import * as THREE from 'three'
  * @param far 摄像机视锥体远端面
  */
 export default function OrthographicCamera(
-    x,
-    y,
-    z,
+    x = 50,
+    y = 50,
+    z = 50,
     left,
     right,
     top,

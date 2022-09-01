@@ -74,7 +74,8 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import Stats from 'stats.js'
+    // import Stats from 'stats.js'
+    import Stats from 'three/examples/jsm/libs/stats.module'
     import { addDefaultCubeAndSphere, addGroundPlane } from '@/utils/three/util'
     import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
@@ -155,7 +156,7 @@
 
     let stats
     const initStats = (el: HTMLElement) => {
-        stats = new Stats()
+        stats = Stats()
         stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
         stats.dom.style.position = 'absolute'
         stats.dom.style.left = '0px'

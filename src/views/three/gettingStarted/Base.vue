@@ -1,26 +1,24 @@
 <template>
-    <div id="webgl" class="webgl"></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
+    import WebGl from '@/utils/three/modelNew/webGl'
     import * as THREE from 'three'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-
-        // 创建场景
-        const scene = new THREE.Scene()
-
-        // 创建坐标轴并设置轴线粗细为20
-        const axes = new THREE.AxesHelper(20)
-        scene.add(axes)
+        web = new WebGl(webGl.value)
+        web.addAxesHelper(20)
 
         // 创建平面并定义平面大小
         const planeGeometry = new THREE.PlaneGeometry(60, 20)
@@ -34,7 +32,7 @@
         plane.rotation.x = Math.PI * -0.5
         // 设置平面位置
         plane.position.set(15, 0, 0)
-        scene.add(plane)
+        web.scene.add(plane)
 
         // 创建球体
         const cubeGeometry = new THREE.BoxGeometry(4, 4, 4)
@@ -44,7 +42,7 @@
         })
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
         cube.position.set(-4, 3, 0)
-        scene.add(cube)
+        web.scene.add(cube)
 
         // 创建方块
         const sphereGeometry = new THREE.SphereGeometry(4, 20, 20)
@@ -54,32 +52,23 @@
         })
         const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
         sphere.position.set(20, 4, 2)
-        scene.add(sphere)
+        web.scene.add(sphere)
 
-        // 创建相机
-        const camera = new THREE.PerspectiveCamera(
-            45,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        )
-        camera.position.set(-30, 40, 30)
-        camera.lookAt(scene.position)
+        web.camera.position.set(-30, 40, 30)
+        web.camera.lookAt(web.scene.position)
 
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        const renderer = new THREE.WebGLRenderer()
-        renderer.setClearColor(new THREE.Color(0x000000))
-        renderer.setSize(width, height)
-        body.appendChild(renderer.domElement)
-        renderer.render(scene, camera)
+        render()
+    }
+
+    const render = () => {
+        requestAnimationFrame(render)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .webgl {
+    .webGl {
         width: 100%;
-        height: 100vh;
+        height: 100%;
     }
 </style>

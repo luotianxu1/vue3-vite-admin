@@ -14,9 +14,9 @@ import * as THREE from 'three'
 export default function PerspectiveCamera(
     width,
     height,
-    x = 150,
-    y = 150,
-    z = 150,
+    x = 50,
+    y = 50,
+    z = 50,
     fov = 45,
     near = 0.1,
     far = 1000
