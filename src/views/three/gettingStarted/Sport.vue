@@ -52,7 +52,7 @@
         web = new WebGl(webGl.value)
         web.addAxesHelper(20)
         web.addStats()
-        web.addSportLight(-40, 40, -15, 0xffffff, 1, true)
+        web.addSpotLight(-40, 40, -15, 0xffffff, 1, true)
 
         web.scene.add(plane)
         web.scene.add(cube)

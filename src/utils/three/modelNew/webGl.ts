@@ -3,13 +3,14 @@ import PerspectiveCamera from '@/utils/three/modelNew/perspectiveCamera'
 import AmbientLight from '@/utils/three/modelNew/ambientLight'
 import DirectionalLight from '@/utils/three/modelNew/directionLight'
 import PointLight from '@/utils/three/modelNew/pointLight'
-import SportLight from '@/utils/three/modelNew/spotLight'
+import SpotLight from '@/utils/three/modelNew/spotLight'
 import Renderer from '@/utils/three/modelNew/renderer'
 import AxesHelper from '@/utils/three/modelNew/axesHelper'
 import Controls from '@/utils/three/modelNew/controls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import * as THREE from 'three'
+import HemisphereLight from '@/utils/three/modelNew/hemisphereLight'
 
 export default class WebGl {
     domElement
@@ -19,6 +20,7 @@ export default class WebGl {
     directionalLight
     pointLight
     spotLight
+    hemisphereLight
     renderer
     axesHelper
     controls
@@ -26,6 +28,7 @@ export default class WebGl {
     gui
     cameraHelper
     spotLightHelper
+    pointLightHelper
 
     constructor(domElement) {
         this.domElement = domElement
@@ -77,7 +80,7 @@ export default class WebGl {
         x = 50,
         y = 100,
         z = 50,
-        color = 0xffffff,
+        color: number | string = 0xffffff,
         intensity = 1,
         isCastShadow = true
     ) {
@@ -100,9 +103,20 @@ export default class WebGl {
      * @param color 颜色
      * @param intensity 光照强度
      */
-    addPointLight(x = 0, y = 300, z = 300, color = 0xffffff, intensity = 1) {
+    addPointLight(
+        x = 0,
+        y = 300,
+        z = 300,
+        color: number | string = 0xffffff,
+        intensity = 1
+    ) {
         this.pointLight = PointLight(x, y, z, color, intensity)
         this.scene.add(this.pointLight)
+    }
+
+    addPointLightHelper(light) {
+        this.pointLightHelper = new THREE.PointLightHelper(light)
+        this.scene.add(this.pointLightHelper)
     }
 
     /**
@@ -114,7 +128,7 @@ export default class WebGl {
      * @param intensity 强度
      * @param isCastShadow 阴影
      */
-    addSportLight(
+    addSpotLight(
         x = 100,
         y = 100,
         z = 100,
@@ -122,13 +136,41 @@ export default class WebGl {
         intensity = 1,
         isCastShadow = true
     ) {
-        this.spotLight = SportLight(x, y, z, color, intensity, isCastShadow)
+        this.spotLight = SpotLight(x, y, z, color, intensity, isCastShadow)
         this.scene.add(this.spotLight)
     }
 
     addSpotLightHelper(light) {
         this.spotLightHelper = new THREE.SpotLightHelper(light)
         this.scene.add(this.spotLightHelper)
+    }
+
+    /**
+     * 半球光
+     * @param x
+     * @param y
+     * @param z
+     * @param skyColor 空中发出光线的颜色
+     * @param groundColor 地面发出光线的颜色
+     * @param intensity 强度
+     */
+    addHemisphereLight(
+        x,
+        y,
+        z,
+        skyColor = 0x0000ff,
+        groundColor = ((0x00ff00)),
+        intensity = 1
+    ) {
+        this.hemisphereLight = HemisphereLight(
+            x,
+            y,
+            z,
+            skyColor,
+            groundColor,
+            intensity
+        )
+        this.scene.add(this.hemisphereLight)
     }
 
     addStats() {

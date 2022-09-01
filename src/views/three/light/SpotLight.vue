@@ -18,12 +18,12 @@
     })
 
     const form = reactive({
-        ambientLightColor: '#1c1c1c',
         spotColor: '#ffffff',
-        angle: 0.4,
         intensity: 0.5,
-        penumbra: 0,
         distance: 0,
+        angle: 0.4,
+        penumbra: 0,
+        decy: 1,
         castShadow: true,
         movingLight: true,
         target: 'Plane'
@@ -40,17 +40,17 @@
             return
         }
         web = new WebGl(webGl.value)
-        web.addAmbientLight(form.ambientLightColor, 2)
-        web.addSportLight(-40, 20, -10, form.spotColor, form.intensity)
-
-        web.spotLight.shadow.camera.near = 1
-        web.spotLight.shadow.camera.far = 100
+        web.addAmbientLight('#1c1c1c', 3)
+        web.addSpotLight(-40, 20, -10, form.spotColor, form.intensity)
         web.spotLight.distance = form.distance
         web.spotLight.angle = form.angle
-        web.spotLight.shadow.camera.fov = 120
+        web.spotLight.penumbra = form.penumbra
+        web.spotLight.decy = form.decy
 
         web.addSpotLightHelper(web.spotLight)
+
         web.addGUI()
+        web.addStats()
 
         // 创建物体
         const cubeAndSphere = addDefaultCubeAndSphere(web.scene)
@@ -74,12 +74,12 @@
             'Cube': cube
         }
 
-        web.gui.addColor(form, 'ambientLightColor')
         web.gui.addColor(form, 'spotColor')
-        web.gui.add(form, 'angle', 0, Math.PI * 2)
+        web.gui.add(form, 'angle', 0, Math.PI / 2)
         web.gui.add(form, 'intensity', 0, 5)
         web.gui.add(form, 'penumbra', 0, 1)
         web.gui.add(form, 'distance', 0, 200)
+        web.gui.add(form, 'decy', 0, 2)
         web.gui.add(form, 'castShadow')
         web.gui.add(form, 'target', ['Plane', 'Sphere', 'Cube'])
 
@@ -87,13 +87,12 @@
     }
 
     watch(form, (val) => {
-        console.log(val)
-        web.ambientLight.color = new THREE.Color(val.ambientLightColor)
         web.spotLight.color = new THREE.Color(val.spotColor)
         web.spotLight.angle = val.angle
         web.spotLight.intensity = val.intensity
         web.spotLight.penumbra = form.penumbra
         web.spotLight.distance = form.distance
+        web.spotLight.decy = form.decy
         web.spotLight.castShadow = form.castShadow
         web.spotLight.target = targetList[form.target]
     })
@@ -129,6 +128,8 @@
             web.spotLight.position.copy(sphereLightMesh.position)
         }
         web.spotLightHelper.update()
+        web.stats.update()
+
         requestAnimationFrame(render)
         web.renderer.render(web.scene, web.camera)
     }

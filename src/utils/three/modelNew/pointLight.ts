@@ -12,7 +12,7 @@ export default function PointLight(
     x = 0,
     y = 300,
     z = 300,
-    color = 0xffffff,
+    color: number | string = 0xffffff,
     intensity = 1
 ) {
     const pointLight = new THREE.PointLight(color, intensity)

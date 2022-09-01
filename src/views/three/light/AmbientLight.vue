@@ -1,8 +1,8 @@
 <template>
-    <div ref='webGl' class='webGl'></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import WebGl from '@/utils/three/modelNew/webGl'
     import * as THREE from 'three'
     import { addHouseAndTree } from '@/utils/three/util'
@@ -29,9 +29,9 @@
             return
         }
         web = new WebGl(webGl.value)
-        web.addAmbientLight('#606008', 1)
-        web.addSportLight(-30, 40, -10, 0xffffff)
+        web.addAmbientLight(form.color, form.intensity)
         web.addGUI()
+        web.addStats()
 
         web.gui.addColor(form, 'color')
         web.gui.add(form, 'intensity', 0, 3)
@@ -42,6 +42,7 @@
     }
 
     const render = () => {
+        web.stats.update()
         requestAnimationFrame(render)
         web.renderer.render(web.scene, web.camera)
     }
@@ -49,11 +50,11 @@
     watch(form, (val) => {
         web.ambientLight.intensity = val.intensity
         web.ambientLight.color = new THREE.Color(val.color)
-        web.spotLight.visible = !val.disabled
+        web.ambientLight.visible = !val.disabled
     })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .webGl {
         width: 100%;
         height: 100%;
