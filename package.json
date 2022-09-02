@@ -16,7 +16,6 @@
     "axios": "^0.26.1",
     "cannon-es": "^0.19.0",
     "d3": "^7.6.1",
-    "dat.gui": "^0.7.9",
     "dayjs": "^1.11.0",
     "driver.js": "^0.9.8",
     "echarts": "^5.3.2",
@@ -38,7 +37,6 @@
   "devDependencies": {
     "@amap/amap-jsapi-types": "0.0.8",
     "@types/d3": "^7.4.0",
-    "@types/dat.gui": "^0.7.7",
     "@types/echarts": "^4.9.15",
     "@types/node": "^17.0.5",
     "@types/nprogress": "^0.2.0",
