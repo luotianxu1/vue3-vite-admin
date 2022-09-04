@@ -1,110 +1,24 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-form :model="form" label-width='80px'>
-                    <el-form-item label="wireframe">
-                        <el-checkbox v-model="form.wireframe" size="small"/>
-                    </el-form-item>
-                    <el-form-item label="顶部">
-                        <el-slider
-                            v-model="form.radiusTop"
-                            :min="-40"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="底部">
-                        <el-slider
-                            v-model="form.radiusBottom"
-                            :min="-40"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="高度">
-                        <el-slider
-                            v-model="form.height"
-                            :min="0"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="半径分段">
-                        <el-slider
-                            v-model="form.radialSegments"
-                            :min="1"
-                            :max="20"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="高度分段">
-                        <el-slider
-                            v-model="form.heightSegments"
-                            :min="1"
-                            :max="20"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="是否封闭">
-                        <el-checkbox v-model="form.openEnded" size="small"/>
-                    </el-form-item>
-                    <el-form-item label="开始">
-                        <el-slider
-                            v-model="form.thetaStart"
-                            :min="1"
-                            :max="2 * Math.PI"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="长度">
-                        <el-slider
-                            v-model="form.thetaLength"
-                            :min="1"
-                            :max="2 * Math.PI"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
+    import WebGl from '@/utils/three/modelNew/webGl'
     import {
-        initAxes,
-        initCamera,
-        initCameraControl,
         initDefaultLighting,
-        initLargeGroundPlane,
-        initStats
+        initLargeGroundPlane
     } from '@/utils/three/util'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(-30,40,30)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-    // 创建灯光
-    initDefaultLighting(scene)
-    // 创建平面
-    const groundPlane = initLargeGroundPlane(scene)
-    groundPlane.position.y = -10
+    onUnmounted(() => {
+        web.remove()
+    })
 
     const form = reactive({
         wireframe: false,
@@ -117,73 +31,82 @@
         thetaStart: 0,
         thetaLength: 2 * Math.PI
     })
-    const CylinderGeometry = new THREE.CylinderGeometry(form.radiusTop, form.radiusBottom,
-        form.height, form.radialSegments, form.heightSegments, form.openEnded,
-        form.thetaStart, form.thetaLength
+    const CylinderGeometry = new THREE.CylinderGeometry(
+        form.radiusTop,
+        form.radiusBottom,
+        form.height,
+        form.radialSegments,
+        form.heightSegments,
+        form.openEnded,
+        form.thetaStart,
+        form.thetaLength
     )
     const CylinderMaterial = new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     })
     let cylinder = new THREE.Mesh(CylinderGeometry, CylinderMaterial)
     cylinder.castShadow = true
-    cylinder.position.set(0,0,0)
-    scene.add(cylinder)
+    cylinder.position.set(0, 0, 0)
 
-    watch(form, (val) => {
-        CylinderMaterial.wireframe = val.wireframe
-        let newCylinderGeometry = new THREE.CylinderGeometry(form.radiusTop, form.radiusBottom,
-            form.height, form.radialSegments, form.heightSegments, form.openEnded,
-            form.thetaStart, form.thetaLength
-        )
-        scene.remove(cylinder)
-        cylinder = new THREE.Mesh(newCylinderGeometry, CylinderMaterial)
-        scene.add(cylinder)
-    })
-
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+
+        // 创建灯光
+        initDefaultLighting(web.scene)
+        // 创建平面
+        const groundPlane = initLargeGroundPlane(web.scene)
+        groundPlane.position.y = -10
+        web.scene.add(cylinder)
+
+        web.addGUI()
+        web.gui.add(form, 'wireframe')
+        web.gui.add(form, 'radiusTop', -40, 40)
+        web.gui.add(form, 'radiusBottom', -40, 40)
+        web.gui.add(form, 'height', 0, 40)
+        web.gui.add(form, 'radialSegments', 1, 20)
+        web.gui.add(form, 'heightSegments', 1, 20)
+        web.gui.add(form, 'openEnded')
+        web.gui.add(form, 'thetaStart', 0, 2 * Math.PI)
+        web.gui.add(form, 'thetaLength', 0, 2 * Math.PI)
+
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
+
+    watch(form, (val) => {
+        CylinderMaterial.wireframe = val.wireframe
+        let newCylinderGeometry = new THREE.CylinderGeometry(
+            form.radiusTop,
+            form.radiusBottom,
+            form.height,
+            form.radialSegments,
+            form.heightSegments,
+            form.openEnded,
+            form.thetaStart,
+            form.thetaLength
+        )
+        web.scene.remove(cylinder)
+        cylinder = new THREE.Mesh(newCylinderGeometry, CylinderMaterial)
+        web.scene.add(cylinder)
+    })
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

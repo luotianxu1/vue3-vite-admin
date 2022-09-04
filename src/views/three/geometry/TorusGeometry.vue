@@ -1,91 +1,23 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-form :model="form" label-width='80px'>
-                    <el-form-item label="wireframe">
-                        <el-checkbox v-model="form.wireframe" size="small"/>
-                    </el-form-item>
-                    <el-form-item label="尺寸">
-                        <el-slider
-                            v-model="form.radius"
-                            :min="0"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="半径">
-                        <el-slider
-                            v-model="form.tube"
-                            :min="0"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="长度段数">
-                        <el-slider
-                            v-model="form.radialSegments"
-                            :min="1"
-                            :max="40"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="宽度段数">
-                        <el-slider
-                            v-model="form.tubularSegments"
-                            :min="1"
-                            :max="20"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="结束">
-                        <el-slider
-                            v-model="form.arc"
-                            :min="1"
-                            :max="2 * Math.PI"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
+    import WebGl from '@/utils/three/modelNew/webGl'
     import {
-        initAxes,
-        initCamera,
-        initCameraControl,
-        initDefaultLighting,
-        initLargeGroundPlane,
-        initStats
+        initDefaultLighting
     } from '@/utils/three/util'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(-30,40,30)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-    // 创建灯光
-    initDefaultLighting(scene)
-    // 创建平面
-    const groundPlane = initLargeGroundPlane(scene)
-    groundPlane.position.y = -10
+    onUnmounted(() => {
+        web.remove()
+    })
 
     const form = reactive({
         wireframe: false,
@@ -95,69 +27,70 @@
         tubularSegments: 6,
         arc: 2 * Math.PI
     })
-    const TorusGeometry = new THREE.TorusGeometry(form.radius, form.tube, Math.round(form.radialSegments),
-        Math.round(form.tubularSegments), form.arc)
+    const TorusGeometry = new THREE.TorusGeometry(
+        form.radius,
+        form.tube,
+        Math.round(form.radialSegments),
+        Math.round(form.tubularSegments),
+        form.arc
+    )
     const TorusMaterial = new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     })
     let torus = new THREE.Mesh(TorusGeometry, TorusMaterial)
     torus.castShadow = true
-    torus.position.set(0,0,0)
-    scene.add(torus)
+    torus.position.set(0, 0, 0)
 
-    watch(form, (val) => {
-        TorusMaterial.wireframe = val.wireframe
-        let newTorusGeometry = new THREE.TorusGeometry(form.radius, form.tube, Math.round(form.radialSegments),
-            Math.round(form.tubularSegments), form.arc)
-        scene.remove(torus)
-        torus = new THREE.Mesh(newTorusGeometry, TorusMaterial)
-        scene.add(torus)
-    })
-
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+
+        // 创建灯光
+        initDefaultLighting(web.scene)
+        web.scene.add(torus)
+
+        web.addGUI()
+        web.gui.add(form, 'wireframe')
+        web.gui.add(form, 'radius', 0, 40)
+        web.gui.add(form, 'tube', 0, 40)
+        web.gui.add(form, 'radialSegments', 0, 40)
+        web.gui.add(form, 'tubularSegments', 1, 20)
+        web.gui.add(form, 'arc', 0, 2 * Math.PI)
+
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
+
+    watch(form, (val) => {
+        TorusMaterial.wireframe = val.wireframe
+        let newTorusGeometry = new THREE.TorusGeometry(
+            form.radius,
+            form.tube,
+            Math.round(form.radialSegments),
+            Math.round(form.tubularSegments),
+            form.arc
+        )
+        web.scene.remove(torus)
+        torus = new THREE.Mesh(newTorusGeometry, TorusMaterial)
+        web.scene.add(torus)
+    })
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>
