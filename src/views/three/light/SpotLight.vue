@@ -115,7 +115,7 @@
                 invert = invert * -1
                 phase -= 2 * Math.PI
             } else {
-                phase += 0.01
+                phase += delta
             }
             sphereLightMesh.position.z = +(7 * Math.sin(phase))
             sphereLightMesh.position.x = +(14 * Math.cos(phase))

@@ -1,76 +1,21 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-form :model="form" label-width="120px">
-                    <el-form-item label="size">
-                        <el-slider
-                            v-model="form.size"
-                            :min="0"
-                            :max="10"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="transparent">
-                        <el-checkbox v-model="form.transparent" size="small" />
-                    </el-form-item>
-                    <el-form-item label="opacity">
-                        <el-slider
-                            v-model="form.opacity"
-                            :min="0"
-                            :max="1"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="color">
-                        <el-color-picker v-model="form.color" />
-                    </el-form-item>
-                    <el-form-item label="sizeAttenuation">
-                        <el-checkbox
-                            v-model="form.sizeAttenuation"
-                            size="small"
-                        />
-                    </el-form-item>
-                    <el-form-item label="rotate">
-                        <el-checkbox v-model="form.rotate" size="small" />
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import {
-        initAxes,
-        initCamera,
-        initCameraControl,
-        initAmbientLight,
-        initStats,
-        createGhostTexture
-    } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
+    import { createGhostTexture } from '@/utils/three/util'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(-30, 40, 30)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-    // 创建灯光
-    initAmbientLight(scene)
+    onUnmounted(() => {
+        web.remove()
+    })
 
     const form = reactive({
         size: 4,
@@ -105,68 +50,57 @@
             new THREE.Float32BufferAttribute(positions, 3)
         )
         cloud = new THREE.Points(geometry, material)
-        scene.add(cloud)
+        web.scene.add(cloud)
     }
-
-    createParticles()
 
     watch(form, () => {
         if (cloud) {
-            scene.remove(cloud)
+            web.scene.remove(cloud)
         }
         createParticles()
     })
 
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+        createParticles()
+
+        web.addGUI()
+        web.gui.add(form, 'size', 0, 10)
+        web.gui.add(form, 'transparent')
+        web.gui.add(form, 'opacity', 0, 10)
+        web.gui.addColor(form, 'color')
+        web.gui.add(form, 'sizeAttenuation')
+        web.gui.add(form, 'rotate')
+
         renderScene()
     }
 
     let step = 0
+    const clock = new THREE.Clock()
     const renderScene = () => {
+        const time = clock.getDelta()
         if (form.rotate) {
-            step += 0.01
+            step += time
             cloud.rotation.x = step
             cloud.rotation.z = step
         }
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

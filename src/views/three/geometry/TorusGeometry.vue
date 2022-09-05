@@ -5,9 +5,6 @@
 <script lang="ts" setup>
     import * as THREE from 'three'
     import WebGl from '@/utils/three/modelNew/webGl'
-    import {
-        initDefaultLighting
-    } from '@/utils/three/util'
 
     const webGl = ref()
 
@@ -50,8 +47,6 @@
         web.addStats()
         web.addAxesHelper()
 
-        // 创建灯光
-        initDefaultLighting(web.scene)
         web.scene.add(torus)
 
         web.addGUI()

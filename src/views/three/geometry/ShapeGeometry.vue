@@ -5,10 +5,6 @@
 <script lang="ts" setup>
     import * as THREE from 'three'
     import WebGl from '@/utils/three/modelNew/webGl'
-    import {
-        initDefaultLighting,
-        initLargeGroundPlane
-    } from '@/utils/three/util'
 
     onMounted(() => {
         init()
@@ -53,12 +49,6 @@
         web.addStats()
         web.addAxesHelper()
         web.scene.add(shape)
-
-        // 创建灯光
-        initDefaultLighting(web.scene)
-        // 创建平面
-        const groundPlane = initLargeGroundPlane(web.scene)
-        groundPlane.position.y = -10
 
         renderScene()
     }

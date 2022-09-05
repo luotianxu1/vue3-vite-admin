@@ -1,72 +1,20 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-form :model="form" label-width="70px">
-                    <el-form-item label="分段">
-                        <el-slider
-                            v-model="form.segments"
-                            :min="0"
-                            :max="50"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="开始">
-                        <el-slider
-                            v-model="form.phiStart"
-                            :min="0"
-                            :max="2 * Math.PI"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="结束">
-                        <el-slider
-                            v-model="form.phiLength"
-                            :min="0"
-                            :max="2 * Math.PI"
-                            :step="0.1"
-                        />
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import {
-        initAxes,
-        initCamera,
-        initCameraControl,
-        initDefaultLighting,
-        initLargeGroundPlane,
-        initStats
-    } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(-30, 40, 30)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-    // 创建灯光
-    initDefaultLighting(scene)
-    // 创建平面
-    const groundPlane = initLargeGroundPlane(scene)
-    groundPlane.position.y = -10
+    onUnmounted(() => {
+        web.remove()
+    })
 
     const form = reactive({
         segments: 12,
@@ -81,7 +29,7 @@
 
     const generatePoints = (segments, phiStart, phiLength) => {
         if (spGroup) {
-            scene.remove(spGroup)
+            web.scene.remove(spGroup)
         }
 
         let points: any = []
@@ -108,7 +56,7 @@
 
             spGroup.add(spMesh)
         })
-        scene.add(spGroup)
+        web.scene.add(spGroup)
 
         let latheGeometry = new THREE.LatheGeometry(
             points,
@@ -119,56 +67,41 @@
         let latheMaterial = new THREE.MeshNormalMaterial({
             side: THREE.DoubleSide
         })
-        const lathe = new THREE.Mesh(latheGeometry,latheMaterial)
+        const lathe = new THREE.Mesh(latheGeometry, latheMaterial)
         spGroup.add(lathe)
     }
 
-    generatePoints(form.segments,form.phiStart, form.phiLength)
-
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+
+        generatePoints(form.segments, form.phiStart, form.phiLength)
+
+        web.addGUI()
+        web.gui.add(form, 'segments', 1, 50)
+        web.gui.add(form, 'phiStart', 0, 2 * Math.PI)
+        web.gui.add(form, 'phiLength', 0, 2 * Math.PI)
+
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

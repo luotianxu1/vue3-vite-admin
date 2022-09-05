@@ -65,12 +65,14 @@
         render()
     }
 
+    const clock = new THREE.Clock()
     const render = () => {
+        const time = clock.getDelta()
         web.scene.traverse(function (obj) {
             if (obj instanceof THREE.Mesh && obj !== plane) {
-                obj.rotation.x += 0.1
-                obj.rotation.y += 0.1
-                obj.rotation.z += 0.1
+                obj.rotation.x += time
+                obj.rotation.y += time
+                obj.rotation.z += time
             }
         })
         web.stats.update()

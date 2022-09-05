@@ -1,88 +1,20 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-form :model="form" label-width="130px">
-                    <el-form-item label="bevelThickness">
-                        <el-slider
-                            v-model="form.bevelThickness"
-                            :min="0"
-                            :max="10"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="bevelSize">
-                        <el-slider
-                            v-model="form.bevelSize"
-                            :min="0"
-                            :max="10"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="bevelSegments">
-                        <el-slider
-                            v-model="form.bevelSegments"
-                            :min="0"
-                            :max="30"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="curveSegments">
-                        <el-slider
-                            v-model="form.curveSegments"
-                            :min="1"
-                            :max="30"
-                            :step="1"
-                        />
-                    </el-form-item>
-                    <el-form-item label="steps">
-                        <el-slider
-                            v-model="form.steps"
-                            :min="1"
-                            :max="5"
-                            :step="1"
-                        />
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import {
-        initAxes,
-        initCamera,
-        initCameraControl,
-        initDefaultLighting,
-        initLargeGroundPlane,
-        initStats
-    } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
 
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(-30, 40, 30)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-    // 创建灯光
-    initDefaultLighting(scene)
-    // 创建平面
-    const groundPlane = initLargeGroundPlane(scene)
-    groundPlane.position.y = -10
+    onUnmounted(() => {
+        web.remove()
+    })
 
     const form = reactive({
         bevelThickness: 2,
@@ -129,11 +61,10 @@
     })
     let shape = new THREE.Mesh(ExtrudeGeometry, ExtrudeMaterial)
     shape.castShadow = true
-    scene.add(shape)
 
     watch(form, (val) => {
         if (shape) {
-            scene.remove(shape)
+            web.scene.remove(shape)
         }
         const newExtrudeGeometry = new THREE.ExtrudeGeometry(drawShape(), {
             bevelThickness: val.bevelThickness,
@@ -145,53 +76,42 @@
         })
         shape = new THREE.Mesh(newExtrudeGeometry, ExtrudeMaterial)
         shape.castShadow = true
-        scene.add(shape)
+        web.scene.add(shape)
     })
 
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+
+        web.scene.add(shape)
+
+        web.addGUI()
+        web.gui.add(form, 'bevelThickness', 0, 10)
+        web.gui.add(form, 'bevelSize', 0, 10)
+        web.gui.add(form, 'bevelSegments', 0, 30)
+        web.gui.add(form, 'curveSegments', 0, 30)
+        web.gui.add(form, 'steps', 0, 5)
+
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 250px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

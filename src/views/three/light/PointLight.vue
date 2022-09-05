@@ -58,14 +58,16 @@
 
     let invert = 1
     let phase = 0
+    const clock = new THREE.Clock()
     const renderScene = () => {
+        const time = clock.getDelta()
         web.pointLight.position.copy(sphereLightMesh.position)
 
         if (phase > 2 * Math.PI) {
             invert = invert * -1
             phase -= 2 * Math.PI
         } else {
-            phase += 0.01
+            phase += time
         }
         sphereLightMesh.position.z = +(25 * Math.sin(phase))
         sphereLightMesh.position.x = +(14 * Math.cos(phase))

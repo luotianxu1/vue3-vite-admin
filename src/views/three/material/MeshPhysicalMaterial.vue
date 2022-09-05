@@ -87,9 +87,11 @@
     }
 
     let step = 0
+    const clock = new THREE.Clock()
     let selectedMesh: any = cube
     const renderScene = () => {
-        selectedMesh.rotation.y = step += 0.01
+        const time = clock.getDelta()
+        selectedMesh.rotation.y = step += time
         web.stats.update()
         web.controls.update()
         requestAnimationFrame(renderScene)
