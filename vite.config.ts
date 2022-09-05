@@ -33,7 +33,7 @@ export default defineConfig({
         proxy: {
             // 开发环境代理配置
             [config.VITE_APP_BASE_URL + '/api']: {
-                target: 'https://mock.apipost.cn/app/mock/project/d5c047b0-0e83-4778-a6b1-edae4f63dfbf',
+                target: 'https://mock.apifox.cn/m1/1566639-0-default',
                 changeOrigin: true,
                 rewrite: (serverPath) =>
                     serverPath.replace(config.VITE_APP_BASE_URL + '/api', '')
