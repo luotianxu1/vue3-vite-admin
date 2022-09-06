@@ -1,88 +1,60 @@
 <template>
-    <div class="page">
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-import * as THREE from 'three'
-import {
-    initAxes,
-    initCamera,
-    initCameraControl,
-    initStats,
-    initDefaultLighting
-} from '@/utils/three/util'
+    import * as THREE from 'three'
+    import WebGl from '@/utils/three/modelNew/webGl'
 
-onMounted(() => {
-    init()
-})
+    const webGl = ref()
 
-// 创建场景
-const scene = new THREE.Scene()
-// 创建坐标轴并设置轴线粗细为20
-initAxes(scene)
-// 创建相机
-const camera = initCamera()
-camera.position.set(0, 0, 5)
+    onMounted(() => {
+        init()
+    })
 
-// 创建渲染器
-const webGLRenderer = new THREE.WebGLRenderer()
-webGLRenderer.setClearColor(new THREE.Color(0x000000))
-webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-webGLRenderer.shadowMap.enabled = true
+    const textureLoader = new THREE.TextureLoader()
+    const texture = textureLoader.load('./textures/door/minecraft.png')
 
-initDefaultLighting(scene)
+    texture.minFilter = THREE.NearestFilter
+    texture.magFilter = THREE.NearestFilter
+    // texture.minFilter = THREE.LinearFilter
+    // texture.magFilter = THREE.LinearFilter
 
-const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
+    const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+    const basicMaterial = new THREE.MeshBasicMaterial({
+        map: texture
+    })
+    const cube = new THREE.Mesh(cubeGeometry, basicMaterial)
 
-const textureLoader = new THREE.TextureLoader()
-const texture = textureLoader.load('./textures/door/minecraft.png')
+    let web
+    const init = () => {
+        if (!webGl.value) {
+            return
+        }
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
 
-texture.minFilter = THREE.NearestFilter
-texture.magFilter = THREE.NearestFilter
-// texture.minFilter = THREE.LinearFilter
-// texture.magFilter = THREE.LinearFilter
+        web.addAmbientLight(0x444444)
+        web.addSpotLight(-10, 30, 40, 0xffffff)
+        web.camera.position.set(0, 0, 5)
+        web.scene.add(cube)
 
-const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
-const basicMaterial = new THREE.MeshBasicMaterial({
-    map: texture
-})
-const cube = new THREE.Mesh(cubeGeometry, basicMaterial)
-scene.add(cube)
-
-let stats
-const init = () => {
-    const body = document.getElementById('webgl')
-    if (!body) {
-        return
+        renderScene()
     }
-    // 创建渲染器
-    const width = body.offsetWidth
-    const height = body.offsetHeight
-    webGLRenderer.setSize(width, height)
-    body.appendChild(webGLRenderer.domElement)
-    stats = initStats(body)
-    renderScene()
-}
 
-const renderScene = () => {
-    cameraControls.update()
-    stats.update()
-    requestAnimationFrame(renderScene)
-    webGLRenderer.render(scene, camera)
-}
+    const renderScene = () => {
+        web.stats.update()
+        web.controls.update()
+        requestAnimationFrame(renderScene)
+        web.renderer.render(web.scene, web.camera)
+    }
 </script>
 
 <style scoped lang="scss">
-.page {
-    width: 100%;
-    height: 100%;
-    display: flex;
-
-    .webgl {
-        flex: 1;
+    .webGl {
+        width: 100%;
+        height: 100%;
         position: relative;
     }
-}
 </style>

@@ -1,41 +1,18 @@
 <template>
-    <div class="page">
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import { initAxes, initCameraControl, initStats } from '@/utils/three/util'
-
     import basicVertexShader from './basic/vertex.glsl?raw'
     import basicFragmentShader from './basic/fragment.glsl?raw'
+    import WebGl from '@/utils/three/modelNew/webGl'
+
+    const webGl = ref()
+
     onMounted(() => {
         init()
     })
-
-    // 创建场景
-    const scene = new THREE.Scene()
-
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = new THREE.PerspectiveCamera(
-        45,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-    )
-    camera.position.set(0, 0, 10)
-    camera.lookAt(scene.position)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
 
     // 创建着色器材质
     const shaderMaterial = new THREE.ShaderMaterial({
@@ -47,40 +24,32 @@
         new THREE.PlaneBufferGeometry(1, 1, 64, 64),
         shaderMaterial
     )
-    scene.add(floor)
 
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+        web.camera.position.set(0, 0, 10)
+        web.scene.add(floor)
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

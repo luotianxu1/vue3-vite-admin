@@ -1,41 +1,17 @@
 <template>
-    <div class="page">
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import {
-        initAxes,
-        initCamera,
-        initCameraControl,
-        initStats,
-        initDefaultLighting
-    } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
     import gsap from 'gsap'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
     })
-
-    // 创建场景
-    const scene = new THREE.Scene()
-    // 创建坐标轴并设置轴线粗细为20
-    initAxes(scene)
-    // 创建相机
-    const camera = initCamera()
-    camera.position.set(0, 20, 40)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setClearColor(new THREE.Color(0x000000))
-    webGLRenderer.setSize(window.innerWidth, window.innerHeight)
-    webGLRenderer.shadowMap.enabled = true
-
-    initDefaultLighting(scene)
-
-    const cameraControls = initCameraControl(camera, webGLRenderer.domElement)
 
     const textureLoader = new THREE.TextureLoader()
     const earthMaterial = new THREE.MeshPhongMaterial({
@@ -47,41 +23,36 @@
     const sphere = new THREE.SphereGeometry(9, 50, 50)
     const sphere1 = new THREE.Mesh(sphere, earthMaterial)
     sphere1.rotation.y = (1 / 6) * Math.PI
-    scene.add(sphere1)
 
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        webGLRenderer.setSize(width, height)
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+        web.addAmbientLight(0x444444)
+        web.addSpotLight(-10, 30, 40, 0xffffff)
+        web.camera.position.set(0,20,40)
+        web.scene.add(sphere1)
+
         renderScene()
     }
 
     gsap.to(sphere1.rotation, { y: 2 * Math.PI, duration: 5, repeat: -1 })
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(renderScene)
-        webGLRenderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>
