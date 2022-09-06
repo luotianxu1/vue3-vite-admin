@@ -1,25 +1,5 @@
 <template>
-    <div class="page">
-        <div class="form">
-            <div class="form-item">
-                <el-button type="primary" @click="addCube">添加物体</el-button>
-            </div>
-            <div class="form-item">
-                <el-button type="primary" @click="logLastCube">
-                    根据名称打印物体
-                </el-button>
-            </div>
-            <div class="form-item">
-                <el-button type="primary" @click="delCube">删除物体</el-button>
-            </div>
-            <div class="form-item">
-                <el-button type="primary" @click="overrideMaterial">
-                    指定同一属性
-                </el-button>
-            </div>
-        </div>
-        <div ref="webGl" class="webGl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
@@ -30,6 +10,10 @@
 
     onMounted(() => {
         init()
+    })
+
+    onUnmounted(() => {
+        web.remove()
     })
 
     // 创建平面并定义平面大小
@@ -46,6 +30,41 @@
     plane.position.set(15, 0, 0)
     plane.receiveShadow = true
 
+    const form = reactive({
+        添加: function () {
+            const cubeSize = Math.ceil(Math.random() * 3)
+            const cubeGeoMetry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
+            const cubeMaterial = new THREE.MeshLambertMaterial({
+                color: Math.random() * 0xffffff
+            })
+            const cube = new THREE.Mesh(cubeGeoMetry, cubeMaterial)
+            cube.castShadow = true
+            cube.name = 'cube-' + (web.scene.children.length - 4)
+            cube.position.x =
+                -30 + Math.round(Math.random() * planeGeometry.parameters.width)
+            cube.position.y = Math.round(Math.random() * 5)
+            cube.position.z =
+                -20 + Math.round(Math.random() * planeGeometry.parameters.height)
+            web.scene.add(cube)
+        },
+        根据名称打印物体: function() {
+            let nameCube = web.scene.getObjectByName('cube-1')
+            console.log(nameCube)
+        },
+        删除物体: function() {
+            const allChildren = web.scene.children
+            const lastObject = allChildren[allChildren.length - 1]
+            if (lastObject instanceof THREE.Mesh) {
+                web.scene.remove(lastObject)
+            }
+        },
+        指定同一属性: function() {
+            web.scene.overrideMaterial = new THREE.MeshLambertMaterial({
+                color: 0xffffff
+            })
+        }
+    })
+
     let web
     const init = () => {
         if (!webGl.value) {
@@ -61,6 +80,12 @@
 
         // scene.fog = new THREE.Fog(0xffffff, 0.015, 100)
         web.scene.fog = new THREE.FogExp2(0xffffff, 0.015)
+
+        web.addGUI()
+        web.gui.add(form, '添加')
+        web.gui.add(form, '根据名称打印物体')
+        web.gui.add(form, '删除物体')
+        web.gui.add(form, '指定同一属性')
 
         render()
     }
@@ -79,62 +104,12 @@
         requestAnimationFrame(render)
         web.renderer.render(web.scene, web.camera)
     }
-
-    const addCube = () => {
-        const cubeSize = Math.ceil(Math.random() * 3)
-        const cubeGeoMetry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
-        const cubeMaterial = new THREE.MeshLambertMaterial({
-            color: Math.random() * 0xffffff
-        })
-        const cube = new THREE.Mesh(cubeGeoMetry, cubeMaterial)
-        cube.castShadow = true
-        cube.name = 'cube-' + (web.scene.children.length - 4)
-        cube.position.x =
-            -30 + Math.round(Math.random() * planeGeometry.parameters.width)
-        cube.position.y = Math.round(Math.random() * 5)
-        cube.position.z =
-            -20 + Math.round(Math.random() * planeGeometry.parameters.height)
-        web.scene.add(cube)
-    }
-
-    const delCube = () => {
-        const allChildren = web.scene.children
-        const lastObject = allChildren[allChildren.length - 1]
-        if (lastObject instanceof THREE.Mesh) {
-            web.scene.remove(lastObject)
-        }
-    }
-
-    const logLastCube = () => {
-        let nameCube = web.scene.getObjectByName('cube-1')
-        console.log(nameCube)
-    }
-
-    const overrideMaterial = () => {
-        web.scene.overrideMaterial = new THREE.MeshLambertMaterial({
-            color: 0xffffff
-        })
-    }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webGl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

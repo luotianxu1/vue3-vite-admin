@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Stats from 'three/examples/jsm/libs/stats.module'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 function addHouseAndTree(scene) {
     createBoundingWall(scene)
@@ -283,18 +283,6 @@ const initAmbientLight = (scene) => {
     scene.add(ambientLight)
 }
 
-const addGeometry = (scene, geom, name, texture) => {
-    const mat = new THREE.MeshStandardMaterial({
-        map: texture,
-        metalness: 0.2,
-        roughness: 0.07
-    })
-    const mesh = new THREE.Mesh(geom, mat)
-    mesh.castShadow = true
-    scene.add(mesh)
-    return mesh
-}
-
 const gosper = (a, b) => {
     let turtle = [0, 0, 0]
     let points: any = []
@@ -473,6 +461,5 @@ export {
     initDefaultLighting,
     initAmbientLight,
     createGhostTexture,
-    addGeometry,
     addLargeGroundPlane
 }

@@ -1,41 +1,11 @@
 <template>
-    <div class="page">
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
     import * as d3 from 'd3'
-    import { initAxes, initCameraControl, initStats } from '@/utils/three/util'
-
-    const scene = new THREE.Scene()
-
-    initAxes(scene)
-
-    const webGLRender = new THREE.WebGLRenderer()
-    webGLRender.setClearColor(new THREE.Color(0x000000))
-    webGLRender.setSize(window.innerWidth, window.innerHeight)
-    webGLRender.shadowMap.enabled = true
-
-    const camera = new THREE.PerspectiveCamera(
-        90,
-        window.innerHeight / window.innerHeight,
-        0.1,
-        100000
-    )
-    camera.position.set(0, 0, 150)
-    camera.updateProjectionMatrix()
-    scene.add(camera)
-
-    const cameraControls = initCameraControl(camera, webGLRender.domElement)
-
-    // 载入JSON文件
-    const loader = new THREE.FileLoader()
-    loader.load('./json/china.json', (data) => {
-        const jsonData = JSON.parse(data as string)
-        operationData(jsonData)
-    })
+    import WebGl from '@/utils/three/modelNew/webGl'
 
     const map = new THREE.Object3D()
     const operationData = (jsonData) => {
@@ -71,7 +41,7 @@
 
             map.add(province)
         })
-        scene.add(map)
+        web.scene.add(map)
     }
     const projection = d3
         .geoMercator()
@@ -107,7 +77,7 @@
     const createLine = (polygon) => {
         const lineGeometry = new THREE.BufferGeometry()
         const pointsArray: any = []
-        polygon.forEach((row, i) => {
+        polygon.forEach((row) => {
             const [longitude, latitude] = projection(row)
             pointsArray.push(new THREE.Vector3(longitude, -latitude, 10))
         })
@@ -135,7 +105,7 @@
         mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
         // 获取鼠标点击位置
         const raycaster = new THREE.Raycaster()
-        raycaster.setFromCamera(mouse, camera)
+        raycaster.setFromCamera(mouse, web.camera)
         const intersects = raycaster.intersectObjects(map.children)
         if (intersects.length > 0) {
             if (lastPick) {
@@ -149,48 +119,41 @@
         }
     }
 
+    const webGl = ref()
+
     onMounted(() => {
         init()
     })
 
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        body.appendChild(webGLRender.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.camera.position.set(0, 0, 150)
+
+        // 载入JSON文件
+        const loader = new THREE.FileLoader()
+        loader.load('./json/china.json', (data) => {
+            const jsonData = JSON.parse(data as string)
+            operationData(jsonData)
+        })
+
         renderScene()
     }
 
     const renderScene = () => {
-        cameraControls.update()
-        stats.update()
-        webGLRender.render(scene, camera)
+        web.controls.update()
         requestAnimationFrame(renderScene)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

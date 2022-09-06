@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <div id="webgl" class="webgl"></div>
+        <div ref="webGl" class="webGl"></div>
         <div class="home-content">
             <div class="home-content-title">
                 <h1>汽车展示与选配</h1>
@@ -39,57 +39,12 @@
     import * as THREE from 'three'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
     import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-    import { initCameraControl } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
-    })
-
-    // 创建场景
-    const scene = new THREE.Scene()
-
-    // 创建相机
-    const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-    )
-    camera.position.set(-3, 2, 1)
-
-    // 添加灯光
-    const light1 = new THREE.DirectionalLight(0xffffff, 1)
-    light1.position.set(0, 0, 10)
-    scene.add(light1)
-    const light2 = new THREE.DirectionalLight(0xffffff, 1)
-    light2.position.set(0, 0, -10)
-    scene.add(light2)
-    const light3 = new THREE.DirectionalLight(0xffffff, 1)
-    light3.position.set(10, 0, 0)
-    scene.add(light3)
-    const light4 = new THREE.DirectionalLight(0xffffff, 1)
-    light4.position.set(-10, 0, 0)
-    scene.add(light4)
-    const light5 = new THREE.DirectionalLight(0xffffff, 1)
-    light5.position.set(0, 10, 0)
-    scene.add(light5)
-    const light6 = new THREE.DirectionalLight(0xffffff, 0.3)
-    light6.position.set(5, 10, 0)
-    scene.add(light6)
-    const light7 = new THREE.DirectionalLight(0xffffff, 0.3)
-    light7.position.set(0, 10, 5)
-    scene.add(light7)
-    const light8 = new THREE.DirectionalLight(0xffffff, 0.3)
-    light8.position.set(0, 10, -5)
-    scene.add(light8)
-    const light9 = new THREE.DirectionalLight(0xffffff, 0.3)
-    light9.position.set(-5, 10, 0)
-    scene.add(light9)
-
-    //创建渲染器
-    const renderer = new THREE.WebGLRenderer({
-        // 抗锯齿
-        antialias: true
     })
 
     // 创建材质
@@ -146,30 +101,53 @@
         hoodMaterial.clearcoatRoughness = materials[index].value
     }
 
-    // 添加控制器
-    const cameraControls = initCameraControl(camera, renderer.domElement)
-
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        // 创建渲染器
-        const width = body.offsetWidth
-        const height = body.offsetHeight
-        renderer.setSize(width, height)
-        renderer.setClearColor('#000')
-        scene.background = new THREE.Color('#ccc')
-        scene.background = new THREE.Color('#ccc')
-        body.appendChild(renderer.domElement)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.camera.position.set(-3, 2, 1)
 
-        rendererScene()
+        web.renderer.setClearColor('#000')
+        web.scene.background = new THREE.Color('#ccc')
+        web.scene.background = new THREE.Color('#ccc')
+
+        // 添加灯光
+        const light1 = new THREE.DirectionalLight(0xffffff, 1)
+        light1.position.set(0, 0, 10)
+        web.scene.add(light1)
+        const light2 = new THREE.DirectionalLight(0xffffff, 1)
+        light2.position.set(0, 0, -10)
+        web.scene.add(light2)
+        const light3 = new THREE.DirectionalLight(0xffffff, 1)
+        light3.position.set(10, 0, 0)
+        web.scene.add(light3)
+        const light4 = new THREE.DirectionalLight(0xffffff, 1)
+        light4.position.set(-10, 0, 0)
+        web.scene.add(light4)
+        const light5 = new THREE.DirectionalLight(0xffffff, 1)
+        light5.position.set(0, 10, 0)
+        web.scene.add(light5)
+        const light6 = new THREE.DirectionalLight(0xffffff, 0.3)
+        light6.position.set(5, 10, 0)
+        web.scene.add(light6)
+        const light7 = new THREE.DirectionalLight(0xffffff, 0.3)
+        light7.position.set(0, 10, 5)
+        web.scene.add(light7)
+        const light8 = new THREE.DirectionalLight(0xffffff, 0.3)
+        light8.position.set(0, 10, -5)
+        web.scene.add(light8)
+        const light9 = new THREE.DirectionalLight(0xffffff, 0.3)
+        light9.position.set(-5, 10, 0)
+        web.scene.add(light9)
 
         // 添加网格地面
         const gridHelper = new THREE.GridHelper(10, 10)
         gridHelper.material.opacity = 0.2
         gridHelper.material.transparent = true
-        scene.add(gridHelper)
+        web.scene.add(gridHelper)
 
         // 添加gltf汽车模型
         const loader = new GLTFLoader()
@@ -178,7 +156,7 @@
         loader.setDRACOLoader(dracoLoader)
         loader.load('./model/glb/bmw01.glb', (gltf) => {
             const bmw = gltf.scene
-            scene.add(bmw)
+            web.scene.add(bmw)
             bmw.traverse((child) => {
                 // 判断是否是轮毂
                 if (
@@ -217,12 +195,15 @@
                 }
             })
         })
+
+        rendererScene()
     }
 
     const rendererScene = () => {
+        web.stats.update()
+        web.controls.update()
         requestAnimationFrame(rendererScene)
-        cameraControls.update()
-        renderer.render(scene, camera)
+        web.renderer.render(web.scene, web.camera)
     }
 </script>
 
@@ -233,7 +214,7 @@
         display: flex;
         position: relative;
 
-        .webgl {
+        .webGl {
             flex: 1;
             position: relative;
         }
