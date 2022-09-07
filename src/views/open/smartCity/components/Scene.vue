@@ -1,28 +1,13 @@
 <template>
-    <div ref="sceneDiv" class="scene"></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
     import gsap from 'gsap'
-    // 导入场景
-    import scene from '@/utils/three/model/scene'
-    // 导入相机
-    import camera from '@/utils/three/model/camera'
-    // 导入gui
-    import gui from '@/utils/three/model/gui'
-    // 导入渲染器
-    import renderer from '@/utils/three/model/renderer'
-    // 导入坐标轴
-    import axesHelper from '@/utils/three/model/axesHelper'
-    // 导入控制器
-    import controls from '@/utils/three/model/controls'
-    // 初始化屏幕调整
-    import '@/utils/three/model/init'
+    import WebGl from '@/utils/three/modelNew/webGl'
     // 事件总线
     import eventHub from '@/utils/eventHub'
-    // 导入执行函数
-    import animate from '@/utils/three/model/animate'
     import createCity from '@/utils/three/model/mesh/city'
     import AlarmSprite from '@/utils/three/model/mesh/alarmSprite'
     import LightWall from '@/utils/three/model/mesh/lightWall'
@@ -36,17 +21,38 @@
         }
     })
 
-    scene.add(camera)
-    scene.add(axesHelper)
-    createCity()
+    const webGl = ref()
 
-    // 场景元素div
-    const sceneDiv = ref()
-
+    let web
     onMounted(() => {
-        sceneDiv.value.appendChild(renderer.domElement)
-        animate()
+        if (!webGl.value) {
+            return
+        }
+        web = new WebGl(webGl.value)
+        web.camera.position.set(20, 20, 20)
+
+        // 场景天空盒
+        const textureCubeLoader = new THREE.CubeTextureLoader()
+        const textureCube = textureCubeLoader.load([
+            './textures/environmentMaps/4/1.jpg',
+            './textures/environmentMaps/4/2.jpg',
+            './textures/environmentMaps/4/3.jpg',
+            './textures/environmentMaps/4/4.jpg',
+            './textures/environmentMaps/4/5.jpg',
+            './textures/environmentMaps/4/6.jpg'
+        ])
+        web.scene.background = textureCube
+        web.scene.environment = textureCube
+
+        createCity(web.scene)
+
+        render()
     })
+
+    const render = () => {
+        web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(render)
+    }
 
     const eventListMesh: any = []
     let mapFn = {
@@ -54,7 +60,7 @@
         火警: (position, i) => {
             const lightWall = new LightWall(1, 2, position)
             lightWall.eventListIndex = i
-            scene.add(lightWall.mesh)
+            web.scene.add(lightWall.mesh)
             eventListMesh.push(lightWall)
         },
         // 飞线
@@ -67,7 +73,7 @@
             ).getHex()
             const flyLineShader = new FlyLineShader(position, color)
             flyLineShader.eventListIndex = i
-            scene.add(flyLineShader.mesh)
+            web.scene.add(flyLineShader.mesh)
             eventListMesh.push(flyLineShader)
         },
         // 雷达
@@ -79,7 +85,7 @@
             ).getHex()
             const lightRadar = new LightRadar(2, position, color)
             lightRadar.eventListIndex = i
-            scene.add(lightRadar.mesh)
+            web.scene.add(lightRadar.mesh)
             eventListMesh.push(lightRadar)
         }
     }
@@ -93,7 +99,7 @@
             y: 0,
             z: props.eventList[i].position.y / 5 - 10
         }
-        gsap.to(controls.target, {
+        gsap.to(web.controls.target, {
             duration: 1,
             x: position.x,
             y: position.y,
@@ -113,7 +119,7 @@
                     z: item.position.y / 5 - 10
                 }
                 const alarmSprite = new AlarmSprite(item.name, position)
-                scene.add(alarmSprite.mesh)
+                web.scene.add(alarmSprite.mesh)
                 alarmSprite.onClick(() => {
                     eventHub.emit('spriteClick', { event: item, i })
                 })
@@ -129,7 +135,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .scene {
+    .webGl {
         width: 100vw;
         height: 100vh;
         position: absolute;

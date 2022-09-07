@@ -1,10 +1,9 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
-import scene from '@/utils/three/model/scene'
 import modifyCityMaterial from '@/utils/three/modify/modifyCityMaterial'
 import MeshLine from '@/utils/three/model/mesh/meshLine'
 
-export default function createCity() {
+export default function createCity(scene) {
     const gltfLoader = new GLTFLoader()
     gltfLoader.load('./model/glb/city.glb', (gltf) => {
         gltf.scene.traverse((item) => {
