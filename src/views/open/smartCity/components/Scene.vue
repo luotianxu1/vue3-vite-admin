@@ -118,7 +118,11 @@
                     x: item.position.x / 5 - 10,
                     z: item.position.y / 5 - 10
                 }
-                const alarmSprite = new AlarmSprite(item.name, position)
+                const alarmSprite = new AlarmSprite(
+                    web.camera,
+                    item.name,
+                    position
+                )
                 web.scene.add(alarmSprite.mesh)
                 alarmSprite.onClick(() => {
                     eventHub.emit('spriteClick', { event: item, i })

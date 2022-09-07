@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import camera from '@/utils/three/model/camera'
 
 export default class AlarmSprite {
     geometry
@@ -10,7 +9,12 @@ export default class AlarmSprite {
     mouse
     eventListIndex
 
-    constructor(type = '火警', position = { x: -1.8, z: 3 }, color = 0xff0000) {
+    constructor(
+        camera,
+        type = '火警',
+        position = { x: -1.8, z: 3 },
+        color = 0xff0000
+    ) {
         const textureLoader = new THREE.TextureLoader()
         const typeObj = {
             火警: './textures/smartCity/fire.svg',
