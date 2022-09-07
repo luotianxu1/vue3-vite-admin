@@ -1,16 +1,19 @@
 <template>
     <div class="page">
-        <div id="webgl" class="webgl"></div>
+        <div id="webgl" ref="webGl" class="webGl"></div>
     </div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import { initCameraControl, initStats } from '@/utils/three/util'
+    import WebGl from '@/utils/three/modelNew/webGl'
     import {
         CSS2DRenderer,
         CSS2DObject
     } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
+    const webGl = ref()
 
     onMounted(() => {
         init()
@@ -19,29 +22,6 @@
     onBeforeUnmount(() => {
         document.body.removeChild(labelRenderer.domElement)
     })
-
-    // 创建场景
-    const scene = new THREE.Scene()
-
-    // 创建相机
-    const camera = new THREE.PerspectiveCamera(
-        45,
-        (window.innerWidth - 200) / (window.innerHeight - 90),
-        0.1,
-        200
-    )
-    camera.position.set(0, 5, -10)
-    scene.add(camera)
-
-    // 创建渲染器
-    const webGLRenderer = new THREE.WebGLRenderer()
-    webGLRenderer.setSize(window.innerWidth - 200, window.innerHeight - 90)
-
-    const dirLight = new THREE.DirectionalLight(0xffffff)
-    dirLight.position.set(0, 0, 1)
-    scene.add(dirLight)
-    const light = new THREE.AmbientLight(0xffffff, 0.5) // soft white light
-    scene.add(light)
 
     const textureLoader = new THREE.TextureLoader()
     const EARTH_RADIUS = 1
@@ -62,7 +42,6 @@
 
     const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     earth.name = 'earth'
-    scene.add(earth)
 
     let moon
     const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 16, 16)
@@ -72,16 +51,10 @@
     })
     moon = new THREE.Mesh(moonGeometry, moonMaterial)
     moon.name = 'mooon'
-    scene.add(moon)
 
     // 实例化CSS2d渲染器
     const labelRenderer = new CSS2DRenderer()
-    labelRenderer.setSize(window.innerWidth - 200, window.innerHeight - 90)
-    document.body.appendChild(labelRenderer.domElement)
-    labelRenderer.domElement.style.position = 'fixed'
-    labelRenderer.domElement.style.top = '90px'
-    labelRenderer.domElement.style.left = '200px'
-    labelRenderer.domElement.style.zIndex = '10'
+    let controls
 
     // 添加标签
     const earthDiv = document.createElement('div')
@@ -111,16 +84,35 @@
     // 实例化射线
     const raycaster = new THREE.Raycaster()
 
-    const controls = initCameraControl(camera, labelRenderer.domElement)
-
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        body.appendChild(webGLRenderer.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+        web.camera.position.set(0, 5, -10)
+
+        const dirLight = new THREE.DirectionalLight(0xffffff)
+        dirLight.position.set(0, 0, 1)
+        web.scene.add(dirLight)
+        const light = new THREE.AmbientLight(0xffffff, 0.5) // soft white light
+        web.scene.add(light)
+
+        web.scene.add(earth)
+        web.scene.add(moon)
+
+        labelRenderer.setSize(webGl.value.offsetWidth, webGl.value.offsetHeight)
+        document.body.appendChild(labelRenderer.domElement)
+        labelRenderer.domElement.style.position = 'fixed'
+        labelRenderer.domElement.style.top = '90px'
+        labelRenderer.domElement.style.left = '200px'
+        labelRenderer.domElement.style.zIndex = '10'
+
+        controls = new OrbitControls(web.camera, labelRenderer.domElement)
+        controls.enableDamping = true
+
         renderScene()
     }
 
@@ -130,12 +122,12 @@
         moon.position.set(Math.sin(elapsed) * 5, 0, Math.cos(elapsed) * 5)
         const chainPosition = chinaLabel.position.clone()
         // 计算除标签和摄像机之间的距离
-        const labelDistance = chainPosition.distanceTo(camera.position)
+        const labelDistance = chainPosition.distanceTo(web.camera.position)
         // 检测射线的碰撞
         // 向量（坐标）从世界空间投影到相机的标准化设备坐标（NDC）空间
-        chainPosition.project(camera)
-        raycaster.setFromCamera(chainPosition, camera)
-        const intersects = raycaster.intersectObjects(scene.children, true)
+        chainPosition.project(web.camera)
+        raycaster.setFromCamera(chainPosition, web.camera)
+        const intersects = raycaster.intersectObjects(web.scene.children, true)
 
         // 如果没有碰撞到任何物体,那么让标签显示
         if (intersects.length === 0) {
@@ -148,11 +140,13 @@
                 chinaLabel.element.classList.add('visible')
             }
         }
+        labelRenderer.render(web.scene, web.camera)
+
         controls.update()
-        stats.update()
+        web.stats.update()
+        web.controls.update()
+        web.renderer.render(web.scene, web.camera)
         requestAnimationFrame(renderScene)
-        labelRenderer.render(scene, camera)
-        webGLRenderer.render(scene, camera)
     }
 </script>
 
@@ -162,7 +156,7 @@
         height: 100%;
         display: flex;
 
-        .webgl {
+        .webGl {
             flex: 1;
             position: relative;
         }
