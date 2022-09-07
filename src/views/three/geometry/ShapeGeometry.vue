@@ -10,6 +10,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const webGl = ref()
 
     const drawShape = () => {

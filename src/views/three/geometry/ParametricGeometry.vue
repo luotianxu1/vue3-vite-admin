@@ -22,16 +22,6 @@
         stacks: 50,
         type: 'radialWave'
     })
-    const options = [
-        {
-            value: 'radialWave',
-            label: 'radialWave'
-        },
-        {
-            value: 'klein',
-            label: 'klein'
-        }
-    ]
 
     const radialWave = function (u, v, optionalTarget) {
         const result = optionalTarget || new THREE.Vector3()

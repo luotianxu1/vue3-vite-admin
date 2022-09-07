@@ -93,6 +93,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     let web
     const init = () => {
         if (!webGl.value) {

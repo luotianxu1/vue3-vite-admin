@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const geometry = new THREE.BufferGeometry()
     const vertices = new Float32Array([
         -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,

@@ -13,6 +13,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
     const earthMaterial = new THREE.MeshPhongMaterial({
         map: textureLoader.load('./textures/earth/Earth.png'),

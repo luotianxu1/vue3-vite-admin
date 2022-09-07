@@ -14,6 +14,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     // 导入纹理
     const textureLoader = new THREE.TextureLoader()
     const texture = textureLoader.load('./textures/particles/9.png')

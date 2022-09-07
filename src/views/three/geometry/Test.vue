@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const material = new THREE.MeshBasicMaterial()
     const texture = new THREE.TextureLoader().load(
         'src/assets/img/three/texture/test.jpg'

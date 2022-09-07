@@ -22,6 +22,7 @@
 
     onUnmounted(() => {
         window.removeEventListener('click', createFireworks)
+        web.remove()
     })
 
     // 管理烟花

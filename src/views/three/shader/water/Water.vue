@@ -14,6 +14,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const shadermaterial = new THREE.ShaderMaterial({
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,

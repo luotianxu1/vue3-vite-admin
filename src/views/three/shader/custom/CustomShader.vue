@@ -13,6 +13,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     // 添加环境纹理
     const cubeTextureLoader = new THREE.CubeTextureLoader()
     const envMapTexture = cubeTextureLoader.load([

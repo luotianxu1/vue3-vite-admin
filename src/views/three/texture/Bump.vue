@@ -15,6 +15,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
 
     const cube = new THREE.BoxGeometry(16, 16, 16)

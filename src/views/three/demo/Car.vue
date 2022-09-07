@@ -47,6 +47,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     // 创建材质
     const bodyMaterial = new THREE.MeshPhysicalMaterial({
         color: 0xff0000,

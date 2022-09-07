@@ -110,6 +110,7 @@
     })
 
     onUnmounted(() => {
+        web.remove()
         window.removeEventListener('click', createCube)
     })
 

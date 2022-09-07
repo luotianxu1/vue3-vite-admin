@@ -14,6 +14,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     // 创建着色器材质
     const shaderMaterial = new THREE.ShaderMaterial({
         vertexShader: basicVertexShader,

@@ -15,6 +15,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
     const texture = textureLoader.load(ca)
 

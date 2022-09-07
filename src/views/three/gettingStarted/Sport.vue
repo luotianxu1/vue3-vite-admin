@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     // 创建平面并定义平面大小
     const planeGeometry = new THREE.PlaneGeometry(60, 20)
     // 创建平面材质

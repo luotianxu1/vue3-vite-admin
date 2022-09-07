@@ -13,6 +13,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
     const sphere = new THREE.SphereGeometry(8, 180, 180)
     const alpha = textureLoader.load(

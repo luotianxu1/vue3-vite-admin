@@ -22,28 +22,6 @@
         detail: 0,
         type: 'Icosahedron'
     })
-    const options = [
-        {
-            value: 'Icosahedron',
-            label: '二十面体'
-        },
-        {
-            value: 'Tetrahedron',
-            label: '四面体'
-        },
-        {
-            value: 'Octahedron',
-            label: '八面体'
-        },
-        {
-            value: 'Dodecahedron',
-            label: '十二面体'
-        },
-        {
-            value: 'polyhedron',
-            label: '多面体'
-        }
-    ]
     const Geometry = new THREE.IcosahedronGeometry(form.radius, form.detail)
     const Material = new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide

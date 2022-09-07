@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const urls = [
         './textures/cubemap/flowers/right.png',
         './textures/cubemap/flowers/left.png',

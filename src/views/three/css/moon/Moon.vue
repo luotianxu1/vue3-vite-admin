@@ -19,6 +19,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     onBeforeUnmount(() => {
         document.body.removeChild(labelRenderer.domElement)
     })

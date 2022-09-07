@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const loader = new THREE.TextureLoader()
     let particlesTexture = loader.load(`./public/textures/particles/1.png`)
 

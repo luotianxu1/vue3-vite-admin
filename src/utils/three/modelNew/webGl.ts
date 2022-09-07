@@ -45,6 +45,10 @@ export default class WebGl {
 
         this.controls = Controls(this.camera, this.renderer)
         this.controls.update()
+
+        window.addEventListener('resize', () => {
+            this.resize(domElement)
+        })
     }
 
     /**
@@ -159,7 +163,7 @@ export default class WebGl {
         y,
         z,
         skyColor = 0x0000ff,
-        groundColor = ((0x00ff00)),
+        groundColor = 0x00ff00,
         intensity = 1
     ) {
         this.hemisphereLight = HemisphereLight(
@@ -189,8 +193,6 @@ export default class WebGl {
 
     addGUI() {
         this.gui = new GUI()
-        console.log(this.domElement.getBoundingClientRect())
-        console.log(window.innerWidth)
         this.gui.domElement.style.position = 'absolute'
         this.gui.domElement.style.right =
             window.innerWidth -
@@ -200,7 +202,22 @@ export default class WebGl {
             this.domElement.getBoundingClientRect().top + 'px'
     }
 
+    // 监听页面变化
+    resize(domElement) {
+        this.camera.aspect = domElement.offsetWidth / domElement.offsetHeight
+        this.camera.updateProjectionMatrix()
+        this.renderer.setSize(
+            this.domElement.offsetWidth,
+            this.domElement.offsetHeight
+        )
+        this.renderer.setPixelRatio(window.devicePixelRatio)
+    }
+
+    // 销毁
     remove() {
-        this.gui.destroy()
+        if (this.gui) {
+            this.gui.destroy()
+        }
+        window.removeEventListener('resize', this.resize)
     }
 }

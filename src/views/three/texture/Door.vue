@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
     const doorColorTexture = textureLoader.load('./textures/door/color.jpg')
     // doorColorTexture.offset.x = 0.5

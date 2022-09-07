@@ -17,6 +17,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureGrass = new THREE.TextureLoader().load(
         '../../src/assets/img/three/ground/grasslight-big.jpg'
     )

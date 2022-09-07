@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const sphereLight = new THREE.SphereGeometry(0.2)
     const sphereLightMaterial = new THREE.MeshStandardMaterial({
         color: 0xff5808

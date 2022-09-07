@@ -13,6 +13,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const points = gosper(4, 60)
     const lines = new THREE.BufferGeometry()
     lines.setFromPoints(points)

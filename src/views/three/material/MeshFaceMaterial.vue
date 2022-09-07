@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     let group = new THREE.Mesh()
     let mats: any = []
     mats.push(

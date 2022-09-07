@@ -13,6 +13,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const textureLoader = new THREE.TextureLoader()
     const cubeMaterial = new THREE.MeshStandardMaterial({
         emissive: 0xffffff,

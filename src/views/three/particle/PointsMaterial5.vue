@@ -12,6 +12,10 @@
         init()
     })
 
+    onUnmounted(() => {
+        web.remove()
+    })
+
     const creatPoints = (url, size = 0.5) => {
         const textureLoader = new THREE.TextureLoader()
         const texture = textureLoader.load(

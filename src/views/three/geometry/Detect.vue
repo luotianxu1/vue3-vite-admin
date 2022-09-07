@@ -13,6 +13,7 @@
     })
 
     onUnmounted(() => {
+        web.remove()
         window.removeEventListener('mousemove',detect)
     })
 
@@ -51,7 +52,7 @@
         web = new WebGl(webGl.value)
         web.addStats()
         web.addAxesHelper()
-        web.camera.position.set(0, 0, 10)
+        web.camera.position.set(0, 0, 20)
         web.addAmbientLight(0x343434)
 
         for (let i = -5; i < 5; i++) {
