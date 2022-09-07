@@ -197,8 +197,8 @@
         }
         cameraControls.update()
         stats.update()
-        requestAnimationFrame(renderScene)
         webGLRenderer.render(scene, camera)
+        requestAnimationFrame(renderScene)
     }
 </script>
 

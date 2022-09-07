@@ -81,8 +81,8 @@
 
         web.stats.update()
         web.pointLightHelper.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 
     watch(form, (val) => {

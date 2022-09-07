@@ -81,8 +81,8 @@
         group.rotation.y = step += delta
         group.rotation.z = step -= delta
         group.rotation.x = step += delta
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 </script>
 

@@ -88,8 +88,8 @@
         selectedMesh.rotation.y = step += time
         web.stats.update()
         web.controls.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 
     watch(form, (val) => {

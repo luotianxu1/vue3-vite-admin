@@ -78,8 +78,8 @@
     const renderScene = () => {
         web.stats.update()
         web.controls.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 </script>
 

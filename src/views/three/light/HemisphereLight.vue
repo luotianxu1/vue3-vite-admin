@@ -101,8 +101,8 @@
         sphere.position.x = 20 + 10 * Math.cos(step)
         sphere.position.y = 2 + 10 * Math.abs(Math.sin(step))
         web.stats.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 
     watch(form, (val) => {

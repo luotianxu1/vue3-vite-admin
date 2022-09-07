@@ -54,13 +54,15 @@
         renderScene()
     }
 
+    const clock = new THREE.Clock()
     const renderScene = () => {
-        cube1.rotation.y += 0.01
-        sphere1.rotation.y -= 0.01
+        const time = clock.getDelta()
+        cube1.rotation.y += time
+        sphere1.rotation.y -= time
         web.stats.update()
         web.controls.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 </script>
 

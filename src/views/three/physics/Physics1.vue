@@ -1,39 +1,16 @@
 <template>
-    <div class="page">
-        <div id="webgl" class="webgl"></div>
-    </div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
     import * as THREE from 'three'
     import * as CANNON from 'cannon-es'
-    import { initAxes, initCameraControl, initStats } from '@/utils/three/util'
-
-    const scene = new THREE.Scene()
-
-    initAxes(scene)
-
-    const webGLRender = new THREE.WebGLRenderer()
-    webGLRender.setClearColor(new THREE.Color(0x000000))
-    webGLRender.setSize(window.innerWidth, window.innerHeight)
-    webGLRender.shadowMap.enabled = true
-
-    const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        300
-    )
-    camera.position.set(0, 0, 18)
-    scene.add(camera)
-
-    const cameraControls = initCameraControl(camera, webGLRender.domElement)
+    import WebGl from '@/utils/three/modelNew/webGl'
 
     const sphereGeometry = new THREE.SphereGeometry(1, 20, 20)
     const sphereMaterial = new THREE.MeshStandardMaterial()
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
     sphere.castShadow = true
-    scene.add(sphere)
 
     const floor = new THREE.Mesh(
         new THREE.PlaneBufferGeometry(20, 20),
@@ -42,13 +19,6 @@
     floor.position.set(0, -5, 0)
     floor.rotation.x = -Math.PI / 2
     floor.receiveShadow = true
-    scene.add(floor)
-
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-    scene.add(ambientLight)
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.5)
-    scene.add(dirLight)
-    dirLight.castShadow = true
 
     // 创建物理世界
     const world = new CANNON.World()
@@ -88,12 +58,16 @@
     )
     world.addBody(floorBody)
 
-    const defaultContactMaterial = new CANNON.ContactMaterial(sphereWorldMaterial,floorMaterial,{
-        // 摩擦力
-        friction: 0.1,
-        // 弹性
-        restitution: 0.7
-    })
+    const defaultContactMaterial = new CANNON.ContactMaterial(
+        sphereWorldMaterial,
+        floorMaterial,
+        {
+            // 摩擦力
+            friction: 0.1,
+            // 弹性
+            restitution: 0.7
+        }
+    )
     // 将材质的关联设置添加到物理世界
     world.addContactMaterial(defaultContactMaterial)
     // 设置世界碰撞的默认材料，如果材料没有设置，都用这个
@@ -113,18 +87,27 @@
     }
     shpereBody.addEventListener('collide', HitEvent)
 
+    const webGl = ref()
+
     onMounted(() => {
         init()
     })
 
-    let stats
+    let web
     const init = () => {
-        const body = document.getElementById('webgl')
-        if (!body) {
+        if (!webGl.value) {
             return
         }
-        body.appendChild(webGLRender.domElement)
-        stats = initStats(body)
+        web = new WebGl(webGl.value)
+        web.addStats()
+        web.addAxesHelper()
+        web.addAmbientLight(0xffffff, 0.5)
+        web.addDirectionalLight(50, 100, 50, 0xffffff, 0.5)
+        web.camera.position.set(0, 0, 18)
+
+        web.scene.add(sphere)
+        web.scene.add(floor)
+
         renderScene()
     }
 
@@ -138,32 +121,17 @@
             shpereBody.position.y,
             shpereBody.position.z
         )
-        cameraControls.update()
-        stats.update()
-        webGLRender.render(scene, camera)
+        web.stats.update()
+        web.controls.update()
+        web.renderer.render(web.scene, web.camera)
         requestAnimationFrame(renderScene)
     }
 </script>
 
 <style scoped lang="scss">
-    .page {
+    .webGl {
         width: 100%;
         height: 100%;
-        display: flex;
-
-        .form {
-            width: 200px;
-            margin-right: 10px;
-
-            .form-item {
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-
-        .webgl {
-            flex: 1;
-            position: relative;
-        }
+        position: relative;
     }
 </style>

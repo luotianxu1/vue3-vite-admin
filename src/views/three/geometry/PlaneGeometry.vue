@@ -57,8 +57,8 @@
         plane.rotation.y = step += 0.01
         web.stats.update()
         web.controls.update()
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 
     watch(form, (val) => {

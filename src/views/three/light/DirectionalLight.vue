@@ -95,8 +95,8 @@
         web.cameraHelper.update()
         web.stats.update()
 
-        requestAnimationFrame(renderScene)
         web.renderer.render(web.scene, web.camera)
+        requestAnimationFrame(renderScene)
     }
 
     watch(form, (val) => {
