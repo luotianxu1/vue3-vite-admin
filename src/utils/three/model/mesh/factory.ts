@@ -4,7 +4,6 @@ import gsap from 'gsap'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import eventHub from '@/utils/eventHub'
-import camera from '@/utils/three/model/cameraFactory'
 import vertexShader from '@/utils/three/shader/fighter/vertexShader.glsl?raw'
 import fragmentShader from '@/utils/three/shader/fighter/fragmentShader.glsl?raw'
 
@@ -21,7 +20,7 @@ export default class Factory {
     raycaster
     fighterPointsGroup
 
-    constructor(scene) {
+    constructor(scene, camera) {
         // 载入模型
         this.scene = scene
         this.loader = new GLTFLoader()
@@ -37,7 +36,7 @@ export default class Factory {
                 }
             })
             this.floor1Group.visible = false
-            scene.add(this.floor1Group)
+            this.scene.add(this.floor1Group)
         })
 
         this.loader.load('./model/glb/floor2.glb', (gltf) => {
@@ -55,19 +54,19 @@ export default class Factory {
                 }
             })
             this.floor2Group.visible = false
-            scene.add(this.floor2Group)
+            this.scene.add(this.floor2Group)
         })
 
         this.loader.load('./model/glb/wall.glb', (gltf) => {
             this.wallGroup = gltf.scene
-            scene.add(this.wallGroup)
+            this.scene.add(this.wallGroup)
         })
 
         this.loader.load('./model/glb/Fighter1.glb', (gltf) => {
             this.fighterGroup = gltf.scene
 
             this.fighterGroup.visible = false
-            scene.add(this.fighterGroup)
+            this.scene.add(this.fighterGroup)
             this.fighterGroup.position.set(3, 42, 68)
             this.fighterGroup.traverse((child) => {
                 if (child.isMesh) {
@@ -105,8 +104,6 @@ export default class Factory {
                     }
                 }
             })
-
-            // this.showFighter()
         })
 
         this.initEvent()

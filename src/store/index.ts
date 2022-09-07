@@ -14,7 +14,8 @@ export const GlobalStore = defineStore({
         SYSTEM_ACTIVE_ROUTER: HOME_URL,
         SYSTEM_ROUTER_LIST: [
             { title: '首页', path: HOME_URL, icon: 'home-filled', close: false }
-        ]
+        ],
+        SYSTEM_PAGE_SIZE: 30
     }),
     getters: {},
     actions: {
@@ -28,7 +29,11 @@ export const GlobalStore = defineStore({
                 path: tabItem.path,
                 close: tabItem.close
             }
-            if (this.SYSTEM_ROUTER_LIST.every((item) => item.path !== tabItem.path)) {
+            if (
+                this.SYSTEM_ROUTER_LIST.every(
+                    (item) => item.path !== tabItem.path
+                )
+            ) {
                 this.SYSTEM_ROUTER_LIST.push(tabInfo)
             }
             this.setTabsMenuValue(tabItem.path)
@@ -40,10 +45,15 @@ export const GlobalStore = defineStore({
             const SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST
             if (SYSTEM_ACTIVE_ROUTER === tabPath) {
                 SYSTEM_ROUTER_LIST.forEach((item, index) => {
-                    if (item.path !== tabPath) { return }
+                    if (item.path !== tabPath) {
+                        return
+                    }
                     const nextTab =
-                        SYSTEM_ROUTER_LIST[index + 1] || SYSTEM_ROUTER_LIST[index - 1]
-                    if (!nextTab) { return }
+                        SYSTEM_ROUTER_LIST[index + 1] ||
+                        SYSTEM_ROUTER_LIST[index - 1]
+                    if (!nextTab) {
+                        return
+                    }
                     SYSTEM_ACTIVE_ROUTER = nextTab.path
                     router.push(nextTab.path)
                 })
@@ -59,7 +69,7 @@ export const GlobalStore = defineStore({
         },
         // 关闭其他
         async closeMultipleTab(tabsMenuValue?: string) {
-            this.SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST.filter(item => {
+            this.SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST.filter((item) => {
                 return item.path === tabsMenuValue || item.path === HOME_URL
             })
         },

@@ -16,12 +16,6 @@
         >
             <TreeMenu :tree-data='list' :collapse='isCollapse'></TreeMenu>
         </el-menu>
-        <div class='sidebarBox' @click='changAside'>
-            <MyIcon
-                :icon="globalStore.SYSTEM_COLLAPSE ? 'xiangyou' : 'xiangzuo'"
-                :font='14'
-            ></MyIcon>
-        </div>
     </el-scrollbar>
 </template>
 
@@ -69,10 +63,6 @@
             await router.push('/login')
         }
     }
-
-    const changAside = () => {
-        globalStore.SYSTEM_COLLAPSE = !globalStore.SYSTEM_COLLAPSE
-    }
 </script>
 
 <style scoped lang='scss'>
@@ -96,22 +86,6 @@
     .scrollbar {
         height: 100%;
         border-right: 1px solid #e4e4e4;
-
-        .sidebarBox {
-            width: 10px;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            cursor: pointer;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            background-color: #dadbe0;
-        }
     }
 
     .el-menu-vertical-demo:not(.el-menu--collapse) {

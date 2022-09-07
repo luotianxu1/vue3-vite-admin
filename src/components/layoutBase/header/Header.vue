@@ -1,6 +1,13 @@
 <template>
     <div class='header'>
-        <BreadCrumb class='item'></BreadCrumb>
+        <div class='left'>
+            <MyIcon
+                :icon="globalStore.SYSTEM_COLLAPSE ? 'mulushousuo' : 'muluzhankai'"
+                :font='20'
+                @click='changAside'
+            ></MyIcon>
+            <BreadCrumb class='item'></BreadCrumb>
+        </div>
         <div class='right'>
             <Info class='item'></Info>
             <ScreenFull class='item'></ScreenFull>
@@ -12,11 +19,17 @@
 </template>
 
 <script lang='ts' setup>
+    import { GlobalStore } from '@/store'
     import Avatar from './components/Avatar.vue'
     import Info from './components/Info.vue'
     import Setting from './components/Setting.vue'
     import ScreenFull from './components/Screenfull.vue'
     import BreadCrumb from './components/BreadCrumb.vue'
+
+    const globalStore = GlobalStore()
+    const changAside = () => {
+        globalStore.SYSTEM_COLLAPSE = !globalStore.SYSTEM_COLLAPSE
+    }
 </script>
 
 <style lang='scss' scoped>
@@ -29,6 +42,15 @@
         padding: 0 10px;
         border-bottom: 1px solid #e4e4e4;
         flex-shrink: 0;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            .item {
+                margin-left: 10px;
+            }
+        }
 
         .right {
             display: flex;
