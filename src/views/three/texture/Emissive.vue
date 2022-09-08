@@ -63,9 +63,7 @@
         const time = clock.getDelta()
         cube1.rotation.y += time
         sphere1.rotation.y -= time
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

@@ -94,11 +94,11 @@
         web.scene.add(sphere)
         web.scene.add(cube)
 
-        web.camera.position.set(-50,10,50)
-        web.camera.lookAt(0,0,0)
+        web.camera.position.set(-50, 10, 50)
+        web.camera.lookAt(0, 0, 0)
         web.addAmbientLight('#1c1c1c')
-        web.addSpotLight(-40, 60, -10,0xcccccc)
-        web.addDirectionalLight(30, 10, -50,'#ffffff')
+        web.addSpotLight(-40, 60, -10, 0xcccccc)
+        web.addDirectionalLight(30, 10, -50, '#ffffff')
         web.directionalLight.add(lensFlare)
         web.addAxesHelper()
 
@@ -116,7 +116,8 @@
         step += delta
         sphere.position.x = 20 + 10 * Math.cos(step)
         sphere.position.y = 2 + 10 * Math.abs(Math.sin(step))
-        web.renderer.render(web.scene, web.camera)
+
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

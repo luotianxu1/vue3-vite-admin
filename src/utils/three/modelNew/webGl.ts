@@ -1,16 +1,16 @@
 import Scene from '@/utils/three/modelNew/scene'
+import Renderer from '@/utils/three/modelNew/renderer'
 import PerspectiveCamera from '@/utils/three/modelNew/perspectiveCamera'
 import AmbientLight from '@/utils/three/modelNew/ambientLight'
 import DirectionalLight from '@/utils/three/modelNew/directionLight'
 import PointLight from '@/utils/three/modelNew/pointLight'
 import SpotLight from '@/utils/three/modelNew/spotLight'
-import Renderer from '@/utils/three/modelNew/renderer'
+import HemisphereLight from '@/utils/three/modelNew/hemisphereLight'
 import AxesHelper from '@/utils/three/modelNew/axesHelper'
 import Controls from '@/utils/three/modelNew/controls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import * as THREE from 'three'
-import HemisphereLight from '@/utils/three/modelNew/hemisphereLight'
 
 export default class WebGl {
     domElement
@@ -211,6 +211,25 @@ export default class WebGl {
             this.domElement.offsetHeight
         )
         this.renderer.setPixelRatio(window.devicePixelRatio)
+    }
+
+    update() {
+        if (this.stats) {
+            this.stats.update()
+        }
+        if (this.controls) {
+            this.controls.update()
+        }
+        if (this.cameraHelper) {
+            this.cameraHelper.update()
+        }
+        if (this.spotLightHelper) {
+            this.spotLightHelper.update()
+        }
+        if (this.pointLightHelper) {
+            this.pointLightHelper.update()
+        }
+        this.renderer.render(this.scene, this.camera)
     }
 
     // 销毁

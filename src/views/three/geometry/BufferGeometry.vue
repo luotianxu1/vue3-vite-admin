@@ -39,9 +39,7 @@
     }
 
     const renderScene = () => {
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

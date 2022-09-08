@@ -142,9 +142,7 @@
             // 设置旋转
             item.mesh.quaternion.copy(item.body.quaternion)
         })
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

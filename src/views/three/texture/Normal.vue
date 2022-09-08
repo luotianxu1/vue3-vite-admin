@@ -86,9 +86,7 @@
                 invert * (sphereLightMesh.position.x - pivot) + pivot
         }
         web.pointLight.position.copy(sphereLightMesh.position)
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

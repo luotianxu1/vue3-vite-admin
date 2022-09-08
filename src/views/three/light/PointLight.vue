@@ -79,9 +79,7 @@
                 invert * (sphereLightMesh.position.x - pivot) + pivot
         }
 
-        web.stats.update()
-        web.pointLightHelper.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 

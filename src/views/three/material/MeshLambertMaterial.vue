@@ -78,9 +78,7 @@
     const renderScene = () => {
         const time = clock.getDelta()
         selectedMesh.rotation.y = step += time
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 

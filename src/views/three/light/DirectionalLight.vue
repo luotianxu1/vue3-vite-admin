@@ -92,10 +92,7 @@
         sphereLightMesh.position.x = 10 + 26 * Math.cos(step / 3)
         web.directionalLight.position.copy(sphereLightMesh.position)
 
-        web.cameraHelper.update()
-        web.stats.update()
-
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 

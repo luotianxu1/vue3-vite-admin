@@ -78,9 +78,7 @@
         // points.rotation.x = time * 0.3
         points2.rotation.x = time * 0.2
         points2.rotation.y = time * 0.05
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

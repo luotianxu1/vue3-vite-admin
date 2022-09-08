@@ -1,8 +1,8 @@
 <template>
-    <div ref='webGl' class='webGl'></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import WebGl from '@/utils/three/modelNew/webGl'
     import * as THREE from 'three'
 
@@ -100,8 +100,8 @@
         step += delta
         sphere.position.x = 20 + 10 * Math.cos(step)
         sphere.position.y = 2 + 10 * Math.abs(Math.sin(step))
-        web.stats.update()
-        web.renderer.render(web.scene, web.camera)
+
+        web.update()
         requestAnimationFrame(renderScene)
     }
 
@@ -111,7 +111,7 @@
     })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .webGl {
         width: 100%;
         height: 100%;

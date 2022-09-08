@@ -60,9 +60,7 @@
     const clock = new THREE.Clock()
     const renderScene = () => {
         rawShaderMaterial.uniforms.uTime.value = clock.getElapsedTime()
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

@@ -55,9 +55,7 @@
     let step = 0
     const renderScene = () => {
         plane.rotation.y = step += 0.01
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 

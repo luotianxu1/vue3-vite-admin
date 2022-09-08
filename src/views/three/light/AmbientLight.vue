@@ -42,8 +42,7 @@
     }
 
     const render = () => {
-        web.stats.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(render)
     }
 

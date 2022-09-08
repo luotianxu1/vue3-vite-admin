@@ -46,9 +46,7 @@
 
     gsap.to(sphere1.rotation, { y: 2 * Math.PI, duration: 5, repeat: -1 })
     const renderScene = () => {
-        web.stats.update()
-        web.controls.update()
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

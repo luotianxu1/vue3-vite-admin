@@ -80,12 +80,10 @@
     let step = 0
     const renderScene = () => {
         const delta = clock.getDelta()
-        web.controls.update()
-        web.stats.update()
         group.rotation.y = step += delta
         group.rotation.z = step -= delta
         group.rotation.x = step += delta
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(renderScene)
     }
 </script>

@@ -65,7 +65,7 @@
     }
 
     const render = () => {
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(render)
     }
 </script>

@@ -1,8 +1,8 @@
 <template>
-    <div ref='webGl' class='webGl'></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import WebGl from '@/utils/three/modelNew/webGl'
     import * as THREE from 'three'
     import { addDefaultCubeAndSphere, addGroundPlane } from '@/utils/three/util'
@@ -69,9 +69,9 @@
         web.scene.add(sphereLightMesh)
 
         targetList = {
-            'Plane': plane,
-            'Sphere': sphere,
-            'Cube': cube
+            Plane: plane,
+            Sphere: sphere,
+            Cube: cube
         }
 
         web.gui.addColor(form, 'spotColor')
@@ -127,15 +127,13 @@
             }
             web.spotLight.position.copy(sphereLightMesh.position)
         }
-        web.spotLightHelper.update()
-        web.stats.update()
 
-        web.renderer.render(web.scene, web.camera)
+        web.update()
         requestAnimationFrame(render)
     }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .webGl {
         width: 100%;
         height: 100%;
