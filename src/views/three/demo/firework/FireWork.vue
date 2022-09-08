@@ -10,7 +10,7 @@
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
     import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
     import { Water } from 'three/examples/jsm/objects/Water2'
-    import Fireworks from '@/utils/three/firework'
+    import Fireworks from '@/utils/three/model/mesh/firework'
     import WebGl from '@/utils/three/model/webGl'
 
     const webGl = ref()
