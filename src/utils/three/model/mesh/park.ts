@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import eventHub from '@/utils/eventHub'
-import cameraModule from '@/utils/three/model/cameraPark'
+import cameraModule from '@/views/open/smartPark/model/cameraPark'
 
 export default class City {
     gltf
