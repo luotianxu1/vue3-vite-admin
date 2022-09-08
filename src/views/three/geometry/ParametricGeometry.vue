@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import { ParametricGeometry } from 'three/examples/jsm/geometries/ParametricGeometry'
 
     const webGl = ref()

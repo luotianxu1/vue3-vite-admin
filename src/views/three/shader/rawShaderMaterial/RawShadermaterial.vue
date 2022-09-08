@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import basicVertexShader from './shader/vertex.glsl?raw'
     import basicFragmentShader from './shader/fragment.glsl?raw'
     import ca from '@/assets/textures/ca.jpeg'

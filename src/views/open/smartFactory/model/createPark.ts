@@ -1,5 +1,5 @@
 import Park from '@/utils/three/model/mesh/park'
-import scenePark from '@/utils/three/model/scenePark'
+import scenePark from '@/views/open/smartFactory/model/scenePark'
 
 let park
 

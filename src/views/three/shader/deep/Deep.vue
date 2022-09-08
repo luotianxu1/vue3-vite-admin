@@ -6,7 +6,7 @@
     import * as THREE from 'three'
     import basicVertexShader from './shader/vertex.glsl?raw'
     import basicFragmentShader from './shader/fragment.glsl?raw'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import ca from '@/assets/textures/ca.jpeg'
 
     const webGl = ref()

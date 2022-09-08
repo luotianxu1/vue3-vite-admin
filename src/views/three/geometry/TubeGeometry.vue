@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import { Vector3 } from 'three/src/math/Vector3'
 
     const webGl = ref()

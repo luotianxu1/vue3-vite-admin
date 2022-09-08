@@ -1,8 +1,8 @@
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls'
-import cameraModule from '@/utils/three/model/cameraPark'
-import renderer from '@/utils/three/model/renderer'
+import cameraModule from '@/views/open/smartFactory/model/cameraPark'
+import renderer from '@/views/open/smartFactory/model/renderer'
 import eventHub from '@/utils/eventHub'
 
 class ControlsModule {

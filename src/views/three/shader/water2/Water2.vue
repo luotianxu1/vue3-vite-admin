@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import { Water } from 'three/examples/jsm/objects/Water2'
     import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'

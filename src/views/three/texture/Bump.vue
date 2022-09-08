@@ -6,7 +6,7 @@
     import cubeMap from '../../../assets/img/three/texture/general/stone.jpg'
     import bumpMap from '../../../assets/img/three/texture/general/stone-bump.jpg'
     import * as THREE from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import { addLargeGroundPlane } from '@/utils/three/util'
 
     const webGl = ref()

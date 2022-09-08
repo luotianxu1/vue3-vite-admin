@@ -1,5 +1,5 @@
-import cameraModule from '@/utils/three/model/cameraPark'
-import renderer from '@/utils/three/model/renderer'
+import cameraModule from '@/views/open/smartFactory/model/cameraPark'
+import renderer from '@/views/open/smartFactory/model/renderer'
 
 // 更新摄像头
 cameraModule.activeCamera.aspect = window.innerWidth / window.innerHeight

@@ -5,7 +5,7 @@
 <script lang="ts" setup>
     import * as THREE from 'three'
     import * as CANNON from 'cannon-es'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
 
     const cubeArr: any = []
     const createCube = () => {

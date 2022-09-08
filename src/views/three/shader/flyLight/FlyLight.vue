@@ -9,7 +9,7 @@
     import fragmentShader from './shader/fragment.glsl?raw'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
     import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
 
     const webGl = ref()
 

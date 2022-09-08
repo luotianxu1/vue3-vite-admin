@@ -5,7 +5,7 @@
 <script lang="ts" setup>
     import * as THREE from 'three'
     import * as d3 from 'd3'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
 
     const map = new THREE.Object3D()
     const operationData = (jsonData) => {

@@ -9,7 +9,7 @@
         LensflareElement
     } from 'three/examples/jsm/objects/Lensflare'
     import { Clock } from 'three'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
 
     const webGl = ref()
 

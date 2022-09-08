@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
 
     const webGl = ref()

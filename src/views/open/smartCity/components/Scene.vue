@@ -5,7 +5,7 @@
 <script lang="ts" setup>
     import * as THREE from 'three'
     import gsap from 'gsap'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     // 事件总线
     import eventHub from '@/utils/eventHub'
     import createCity from '@/utils/three/model/mesh/city'

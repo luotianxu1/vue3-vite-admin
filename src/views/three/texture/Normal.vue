@@ -7,7 +7,7 @@
     import cubeNoMap from '../../../assets/img/three/texture/general/plaster-normal.jpg'
     import cubeMap from '../../../assets/img/three/texture/general/plaster.jpg'
     import { addLargeGroundPlane } from '@/utils/three/util'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
 
     const webGl = ref()
 

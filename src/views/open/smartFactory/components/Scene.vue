@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
     import * as THREE from 'three'
     import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer'

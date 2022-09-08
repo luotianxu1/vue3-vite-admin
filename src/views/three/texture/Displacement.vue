@@ -5,7 +5,7 @@
 <script lang="ts" setup>
     import sphereMap from '../../../assets/img/three/texture/general/w_c.jpg'
     import displacementMap from '../../../assets/img/three/texture/general/w_d.png'
-    import WebGl from '@/utils/three/modelNew/webGl'
+    import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
     import { addLargeGroundPlane } from '@/utils/three/util'
 
