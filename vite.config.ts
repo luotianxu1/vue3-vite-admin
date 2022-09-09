@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import path from 'path'
 const config = loadEnv('development', './')
+import cesium from 'vite-plugin-cesium'
 
 export default defineConfig({
     plugins: [
@@ -20,7 +21,8 @@ export default defineConfig({
             // directoryAsNamespace: true,
             dts: 'src/types/components.d.ts'
             // deep: true
-        })
+        }),
+        cesium()
     ],
     resolve: {
         alias: {
