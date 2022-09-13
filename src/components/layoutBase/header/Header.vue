@@ -59,6 +59,10 @@
             .item {
                 padding: 0 10px;
                 cursor: pointer;
+
+                &:last-child {
+                    padding-left: 0!important;
+                }
             }
         }
     }

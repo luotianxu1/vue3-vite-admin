@@ -38,7 +38,7 @@
             navigationHelpButton: false, // 帮助按钮
             animation: false, // 动画
             timeline: false, // 时间轴
-            fullscreenButton: false // 全屏按钮
+            fullscreenButton: false, // 全屏按钮
             // 地形
             // terrainProvider: Cesium.createWorldTerrain({
             //     requestVertexNormals: true,
@@ -53,13 +53,13 @@
             //     tileMatrixSetID: 'GoogleMapsCompatible'
             // })
             //   天地图影像服务
-            // imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
-            //     url: 'http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=30d07720fa76f07732d83c748bb84211',
-            //     layer: 'tdtBasicLayer',
-            //     style: 'default',
-            //     format: 'image/jpeg',
-            //     tileMatrixSetID: 'GoogleMapsCompatible'
-            // })
+            imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+                url: 'http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=30d07720fa76f07732d83c748bb84211',
+                layer: 'tdtBasicLayer',
+                style: 'default',
+                format: 'image/jpeg',
+                tileMatrixSetID: 'GoogleMapsCompatible'
+            })
             // OSM地图,
             // imageryProvider: new Cesium.OpenStreetMapImageryProvider({
             //     url: 'https://a.tile.openstreetmap.org/'

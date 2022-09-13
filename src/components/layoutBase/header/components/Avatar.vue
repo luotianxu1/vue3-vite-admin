@@ -85,6 +85,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                margin-left: 10px;
 
                 span:nth-child(1) {
                     font-size: 16px;
