@@ -4,8 +4,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import path from 'path'
-const config = loadEnv('development', './')
 import cesium from 'vite-plugin-cesium'
+const config = loadEnv('development', './')
 
 export default defineConfig({
     plugins: [
