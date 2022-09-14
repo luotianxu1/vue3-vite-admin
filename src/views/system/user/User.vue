@@ -81,7 +81,7 @@
                 ></el-button>
             </template>
             <template #img="row">
-                <el-avatar :src="row.data.img"></el-avatar>
+                <el-avatar :src="row.data.img" fit='cover'></el-avatar>
             </template>
             <template #sex="row">
                 {{ Number(row.data.sex) === 1 ? '男' : '女' }}
@@ -232,7 +232,7 @@
             type: 'slot',
             slot_name: 'operation',
             width: 120,
-            fixed: true
+            fixed: 'right'
         }
     ]
 

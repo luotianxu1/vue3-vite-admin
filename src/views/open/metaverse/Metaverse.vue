@@ -7,6 +7,7 @@
     import Stats from 'three/examples/jsm/libs/stats.module.js'
     import { Octree } from 'three/examples/jsm/math/Octree'
     import { Capsule } from 'three/examples/jsm/math/Capsule'
+    import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
     onMounted(() => {
         const clock = new THREE.Clock()
@@ -22,6 +23,14 @@
             1000
         )
         camera.position.set(0, 5, 10)
+
+        const backCamera = new THREE.PerspectiveCamera(
+            70,
+            window.innerWidth / window.innerHeight,
+            0.001,
+            1000
+        )
+        camera.position.set(0, 5, -10)
 
         const container = document.getElementById('container')
 
@@ -42,15 +51,19 @@
         container.appendChild(stats.domElement)
         container.appendChild(renderer.domElement)
 
+        let activeCamera = camera
+
         function animate() {
             let delta = clock.getDelta()
-            // console.log(delta);
             controlPlayer(delta)
             updatePlayer(delta)
             resetPlayer()
             stats.update()
-            // controls.update();
-            renderer.render(scene, camera)
+            // 更新动作
+            if (mixer) {
+                mixer.update(delta)
+            }
+            renderer.render(scene, activeCamera)
             requestAnimationFrame(animate)
         }
 
@@ -66,9 +79,9 @@
 
         // 创建立方体叠楼梯效果
         for (let i = 0; i < 10; i++) {
-            const boxGeometry = new THREE.BoxGeometry(1,1,0.1)
-            const boxMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00})
-            const box = new THREE.Mesh(boxGeometry,boxMaterial)
+            const boxGeometry = new THREE.BoxGeometry(1, 1, 0.15)
+            const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+            const box = new THREE.Mesh(boxGeometry, boxMaterial)
             box.position.y = 0.15 + i * 0.15
             box.position.z = i * 0.3
             plane.add(box)
@@ -88,33 +101,58 @@
             0.35
         )
 
-        // 创建一个平面
-        const capsuleBodyGeometry = new THREE.PlaneGeometry(1, 0.5, 1, 1)
-        const capsuleBodyMaterial = new THREE.MeshBasicMaterial({
-            color: 0x0000ff,
-            side: THREE.DoubleSide
+        // 添加半球光源
+        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 1)
+        scene.add(hemisphereLight)
+
+        // 加载机器人模型
+        const loader = new GLTFLoader()
+        let mixer
+        let actions = {}
+        // 设置激活动作
+        let activeAction
+        loader.load('./model/glb/RobotExpressive.glb', (gltf) => {
+            const robot = gltf.scene
+            robot.scale.set(0.5, 0.5, 0.5)
+            robot.position.set(0, -0.88, 0)
+            capsule.add(robot)
+            mixer = new THREE.AnimationMixer(robot)
+            for (let i = 0; i < gltf.animations.length; i++) {
+                let name = gltf.animations[i].name
+                actions[gltf.animations[i].name] = mixer.clipAction(
+                    gltf.animations[i]
+                )
+                if (
+                    name === 'Idle' ||
+                    name === 'Running' ||
+                    name === 'Walking'
+                ) {
+                    actions[name].clampWhenFinished = false
+                    actions[name].loop = THREE.LoopRepeat
+                } else {
+                    actions[name].clampWhenFinished = true
+                    actions[name].loop = THREE.LoopOnce
+                }
+            }
+            activeAction = actions['Idle']
+            activeAction.play()
         })
-        const capsuleBody = new THREE.Mesh(
-            capsuleBodyGeometry,
-            capsuleBodyMaterial
-        )
-        capsuleBody.position.set(0, 0.5, 0)
 
         // 创建一个胶囊物体
-        const capsuleGeometry = new THREE.CapsuleGeometry(0.35, 1, 32)
-        const capsuleMaterial = new THREE.MeshBasicMaterial({
-            color: 0xff0000,
-            side: THREE.DoubleSide
-        })
-        const capsule = new THREE.Mesh(capsuleGeometry, capsuleMaterial)
+        const capsule = new THREE.Object3D()
         capsule.position.set(0, 0.85, 0)
         scene.add(capsule)
 
         // 将相机作为胶囊的子元素，就可以实现跟随
         camera.position.set(0, 2, -5)
         camera.lookAt(capsule.position)
-        capsule.add(camera)
-        capsule.add(capsuleBody)
+        backCamera.position.set(0, 2, 5)
+        backCamera.lookAt(capsule.position)
+        // 控制旋转上下的空3d对象
+        const capsuleBodyControl = new THREE.Object3D()
+        capsuleBodyControl.add(camera)
+        capsuleBodyControl.add(backCamera)
+        capsule.add(capsuleBodyControl)
 
         // 设置重力
         const gravity = -9.8
@@ -153,6 +191,15 @@
             playerCollider.getCenter(capsule.position)
             // 进行碰撞检测
             playerCollisions()
+
+            // 如果有水平的运动，则色湖之运动的动作
+            if ((Math.abs(playerVelocity.x) + Math.abs(playerVelocity.z)) > 0.1 && Math.abs(playerVelocity.x) + Math.abs(playerVelocity.z) <= 3) {
+                fadeToAction('Walking')
+            } else if ((Math.abs(playerVelocity.x) + Math.abs(playerVelocity.z)) > 3) {
+                fadeToAction('Running')
+            } else {
+                fadeToAction('Idle')
+            }
         }
 
         // 人物碰撞检测
@@ -191,9 +238,43 @@
             (event) => {
                 keyStates[event.code] = false
                 keyStates.isDown = false
+                if (event.code === 'KeyV') {
+                    activeCamera = activeCamera === camera ? backCamera : camera
+                }
+                if (event.code === 'KeyT') {
+                    fadeToAction('Wave')
+                }
             },
             false
         )
+
+        // 动作
+        function fadeToAction(name) {
+            let prevAction = activeAction
+            activeAction = actions[name]
+            if (prevAction !== activeAction) {
+                prevAction.fadeOut(0.3)
+                activeAction
+                    .reset()
+                    .setEffectiveTimeScale(1)
+                    .setEffectiveWeight(1)
+                    .fadeIn(0.3)
+                    .play()
+
+                mixer.addEventListener('finished', () => {
+                    let action = activeAction
+                    activeAction = actions['Idle']
+                    action.fadeOut(0.3)
+                    activeAction
+                        .reset()
+                        .setEffectiveTimeScale(1)
+                        .setEffectiveWeight(1)
+                        .fadeIn(0.3)
+                        .play()
+                })
+            }
+        }
+
         document.addEventListener('mousedown', () => {
             // 锁定鼠标指针
             document.body.requestPointerLock()
@@ -208,7 +289,7 @@
                 capsule.getWorldDirection(capsuleFront)
                 // console.log(capsuleFront);
                 // 计算玩家的速度
-                playerVelocity.add(capsuleFront.multiplyScalar(deltaTime))
+                playerVelocity.add(capsuleFront.multiplyScalar(deltaTime * 2))
             }
             if (keyStates['KeyS']) {
                 playerDirection.z = 1
@@ -250,18 +331,27 @@
 
         // 根据鼠标在屏幕移动，来旋转胶囊
         window.addEventListener('mousemove', (event) => {
-            capsule.rotation.y -= event.movementX * 0.001
+            capsule.rotation.y -= event.movementX * 0.003
+            capsuleBodyControl.rotation.x += event.movementY * 0.003
+            if (capsuleBodyControl.rotation.x > Math.PI / 8) {
+                capsuleBodyControl.rotation.x = Math.PI / 8
+            } else if (capsuleBodyControl.rotation.x < -Math.PI / 8) {
+                capsuleBodyControl.rotation.x = -Math.PI / 8
+            }
         })
 
         // 多层次细节展示
         let lod = new THREE.LOD()
-        const material = new THREE.MeshBasicMaterial({color: 0xff0000,wireframe: true})
+        const material = new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true
+        })
         for (let i = 0; i < 5; i++) {
-            const geometry = new THREE.SphereGeometry(1,22 - i * 5,22 - i * 5)
-            const mesh = new THREE.Mesh(geometry,material)
+            const geometry = new THREE.SphereGeometry(1, 22 - i * 5, 22 - i * 5)
+            const mesh = new THREE.Mesh(geometry, material)
             lod.addLevel(mesh, i * 5)
         }
-        lod.position.set(10,0,10)
+        lod.position.set(10, 0, 10)
         scene.add(lod)
 
         animate()
