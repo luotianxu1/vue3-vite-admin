@@ -1,16 +1,16 @@
 <template>
-    <LayoutQuery>
+    <LayoutQuery :loading="tableData.loading">
         <template #fl>
             <div class="query-item">
                 <el-input
-                    v-model="params.name"
+                    v-model="queryParams.name"
                     placeholder="请输入用户姓名"
                     clearable
                 ></el-input>
             </div>
             <div class="query-item">
                 <el-select
-                    v-model="params.type"
+                    v-model="queryParams.type"
                     placeholder="请选择用户角色"
                     clearable
                 >
@@ -24,7 +24,7 @@
             </div>
             <div class="query-item">
                 <el-date-picker
-                    v-model="params.time"
+                    v-model="queryParams.time"
                     type="datetimerange"
                     range-separator="至"
                     start-placeholder="开始时间"
@@ -34,7 +34,7 @@
                 ></el-date-picker>
             </div>
             <div class="query-item">
-                <el-button :icon="Search" type="primary" @click="search">
+                <el-button :icon="Search" type="primary" @click="getUserList">
                     查询
                 </el-button>
                 <el-button :icon="Download" type="primary" @click="exportExcel">
@@ -59,15 +59,12 @@
         <MyTable
             ref="myTableRef"
             :column="data"
-            :data="tableData.data"
+            :data="pageList"
             check-box
-            api="getUserPageList"
-            :params="params"
             :init-request="false"
             :on-load="true"
-            :format="formatData"
             :index="true"
-            @onLoad="onLoad"
+            :fixed-index="true"
         >
             <template #operation="row">
                 <el-button
@@ -124,7 +121,11 @@
 </template>
 
 <script lang="ts" setup>
-    import { deleteUserApi } from '@/api/system/userApi'
+    import {
+        deleteUserApi,
+        getUserListApi,
+        PageListParams
+    } from '@/api/system/userApi'
     import {
         Search,
         Edit,
@@ -132,10 +133,10 @@
         CirclePlus,
         Download
     } from '@element-plus/icons-vue'
-    import { ElMessageBox } from 'element-plus'
+    import { ElMessage, ElMessageBox } from 'element-plus'
     import { jsonToExcel } from '@/utils/excel'
 
-    const options = shallowReadonly([
+    const options = [
         {
             value: '0',
             label: '全部'
@@ -152,8 +153,8 @@
             value: '3',
             label: '用户'
         }
-    ])
-    const shortcuts = shallowReadonly([
+    ]
+    const shortcuts = [
         {
             text: '上周',
             value: () => {
@@ -181,24 +182,16 @@
                 return [start, end]
             }
         }
-    ])
+    ]
 
-    const myTableRef = ref()
-    // 查询列表
-    const tableData = reactive({
-        pageIndex: 1,
-        pageSize: 25,
-        total: 0,
-        data: []
-    })
-    const params = reactive({
-        name: '',
-        type: '0',
-        time: ''
-    })
-    const data = shallowReadonly([
-        { label: 'ID', prop: 'id', width: '70' },
-        { label: '姓名', prop: 'name', width: '70' },
+    const data = [
+        {
+            label: 'ID',
+            prop: 'id',
+            width: 180,
+            fixed: true
+        },
+        { label: '姓名', prop: 'name', width: 70 },
         {
             label: '头像',
             prop: 'img',
@@ -206,57 +199,87 @@
             slot_name: 'img',
             width: '80'
         },
-        { label: '年龄', prop: 'age', width: '80', sort: true },
+        { label: '年龄', prop: 'age', width: 80, sort: true },
         {
             label: '性别',
             prop: 'sex',
             type: 'slot',
             slot_name: 'sex',
-            width: '60'
+            width: 60
         },
         {
             label: '角色',
             prop: 'type',
             type: 'slot',
             slot_name: 'type',
-            width: '110'
+            width: 110
         },
-        { label: '手机号', prop: 'phone', width: '150' },
-        { label: '邮箱', prop: 'email', showOverflowTooltip: true },
-        { label: '城市', prop: 'city', showOverflowTooltip: true },
+        { label: '手机号', prop: 'phone', width: 130 },
+        { label: '邮箱', prop: 'email', showOverflowTooltip: true, width: 200 },
+        { label: '城市', prop: 'city', showOverflowTooltip: true, width: 170 },
         {
             label: '状态',
             prop: 'status',
             type: 'slot',
             slot_name: 'status',
-            width: '70'
+            width: 70
         },
-        { label: '添加时间', prop: 'addTime', width: '120' },
-        { label: '修改时间', prop: 'editTime', width: '120' },
+        { label: '添加时间', prop: 'addTime', width: 170 },
+        { label: '修改时间', prop: 'editTime', width: 170 },
         {
             label: '操作',
             prop: 'operation',
             type: 'slot',
             slot_name: 'operation',
-            width: '120'
+            width: 120,
+            fixed: true
         }
-    ])
+    ]
 
-    const search = () => {
-        myTableRef.value.getTableList()
+    const myTableRef = ref()
+
+    // 查询列表
+    const tableData = reactive({
+        pageIndex: 1,
+        pageSize: 20,
+        total: 0,
+        list: [],
+        loading: false
+    })
+    const queryParams = reactive<PageListParams>({
+        userId: '1',
+        name: '',
+        type: '0',
+        time: ''
+    })
+    const getUserList = async () => {
+        tableData.list = []
+        tableData.total = 0
+        tableData.pageIndex = 1
+        tableData.loading = true
+        const res = await getUserListApi({
+            ...queryParams
+        })
+        tableData.loading = false
+        if (res.data) {
+            tableData.list = res.data.list
+            tableData.total = res.data.list.length
+        }
     }
 
-    const formatData = (val) => {
-        return val
-    }
+    const pageStart = computed(() => {
+        return (tableData.pageIndex - 1) * tableData.pageSize
+    })
 
-    const onLoad = (val) => {
-        tableData.data = val
-    }
+    const pageList = computed(() => {
+        return tableData.list.slice(
+            pageStart.value,
+            pageStart.value + tableData.pageSize
+        )
+    })
 
     // 删除用户
     const deleteInfo = (val: any) => {
-        console.log(val)
         ElMessageBox.confirm(`是否确认删除${val.name}?`, '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -266,7 +289,7 @@
                 const res = await deleteUserApi({ id: val.id })
                 if (res.status === 200) {
                     ElMessage.success('删除成功!')
-                    await search()
+                    await getUserList()
                 }
             })
             .catch(() => {

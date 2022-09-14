@@ -1,13 +1,13 @@
 <template>
     <el-table
         v-loading="tableData.loading"
+        style="width: 100%"
+        height="100%"
         :data="tableData.data"
         :stripe="stripe"
         :border="border"
         :highlight-current-row="highlightCurrentRow"
         :empty-text="emptyText"
-        style="width: 100%"
-        height="100%"
         :size="size"
         @selection-change="handleSelectionChange"
     >
@@ -18,15 +18,16 @@
             v-if="checkBox"
             type="selection"
             width="50"
-            :fixed="fixedCheck"
+            :fixed="true"
             :align="align"
         ></el-table-column>
         <el-table-column
             v-if="index"
             type="index"
             width="60"
-            :fixed="fixedIndex"
+            :fixed="true"
             :align="align"
+            label='编号'
         ></el-table-column>
 
         <template v-for="(item, itemIndex) in column" :key="itemIndex">
@@ -59,7 +60,6 @@
 </template>
 
 <script lang="ts" setup>
-    import * as api from '@/api/system/tableApi'
 
     const props = defineProps({
         column: {
@@ -71,64 +71,39 @@
             type: Array,
             default: () => []
         },
+        // 斑马纹
         stripe: {
             type: Boolean,
             default: true
         },
+        // 是否带有纵向边框
         border: {
             type: Boolean,
             default: true
         },
+        // 高亮显示选中行
         highlightCurrentRow: {
             type: Boolean,
             default: true
         },
+        // 表格尺寸
         size: {
             type: String,
             default: 'default'
         },
+        // 对齐方式
         align: {
             type: String,
             default: 'center'
         },
-        fixedIndex: {
-            type: Boolean,
-            default: false
-        },
-        fixedCheck: {
-            type: Boolean,
-            default: false
-        },
+        // 无数据时提示
         emptyText: {
             type: String,
             default: '暂无数据！'
         },
         checkBox: Boolean,
-        index: Boolean,
-        api: {
-            type: String,
-            default: ''
-        },
-        params: {
-            type: Object,
-            default: () => {}
-        },
-        initRequest: {
-            type: Boolean,
-            default: false
-        },
-        onLoad: {
-            type: Boolean,
-            default: false
-        },
-        format: {
-            type: Function,
-            default: (val) => {
-                return val
-            }
-        }
+        index: Boolean
     })
-    const emit = defineEmits(['onLoad'])
     const tableData:any = reactive({
         total: 0,
         loading: false,
@@ -141,40 +116,10 @@
             tableData.data = val
         }
     )
-    onMounted(() => {
-        if (props.initRequest) {
-            getTableList()
-        }
-    })
-    const getTableList = async () => {
-        tableData.loading = true
-        const res = await api[props.api]({
-            ...props.params
-        })
-        console.log(res)
-        if (res.data && res.data.total && res.data.list) {
-            if (props.format && typeof props.format === 'function') {
-                tableData.data = props.format(res.data.list)
-            } else {
-                tableData.data = res.data.list
-            }
-            tableData.total = res.data.total
-            tableData.loading = false
-            if (props.onLoad) {
-                emit('onLoad', tableData.data)
-            }
-        } else {
-            ElMessage.warning('暂无数据！')
-        }
-    }
 
     const handleSelectionChange = (val) => {
         console.log(val)
     }
-
-    defineExpose({
-        getTableList
-    })
 </script>
 
 <style scoped lang="scss"></style>
