@@ -49,9 +49,14 @@ const openRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'metaverse',
-                name: '元宇宙',
+                name: '八叉树',
                 component: () =>
                     import('@/views/open/metaverse/Metaverse.vue')
+            },
+            {
+                path: 'smartCity2',
+                name: '智慧城市2',
+                component: () => import('@/views/open/smartCity2/HomeView.vue')
             },
             {
                 path: 'map',

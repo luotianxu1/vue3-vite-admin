@@ -11,6 +11,12 @@ import Controls from '@/utils/three/model/controls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import * as THREE from 'three'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import VideoPlane from '@/utils/three/model/mesh/videoPlane'
+import LightCircle from '@/utils/three/model/mesh/lightCircle'
 
 export default class WebGl {
     domElement
@@ -29,8 +35,10 @@ export default class WebGl {
     cameraHelper
     spotLightHelper
     pointLightHelper
+    effectComposer
+    clock
 
-    constructor(domElement) {
+    constructor(domElement, controls = true) {
         this.domElement = domElement
         this.scene = Scene()
         this.camera = PerspectiveCamera(
@@ -39,13 +47,13 @@ export default class WebGl {
         )
         this.scene.add(this.camera)
         this.camera.lookAt(this.scene)
-
         this.renderer = Renderer(domElement)
         this.renderer.render(this.scene, this.camera)
-
-        this.controls = Controls(this.camera, this.renderer)
-        this.controls.update()
-
+        if (controls) {
+            this.controls = Controls(this.camera, this.renderer)
+        }
+        this.clock = new THREE.Clock()
+        this.addEffect()
         window.addEventListener('resize', () => {
             this.resize(domElement)
         })
@@ -202,7 +210,27 @@ export default class WebGl {
             this.domElement.getBoundingClientRect().top + 'px'
     }
 
-    // 监听页面变化
+    /**
+     * 合成效果
+     */
+    addEffect() {
+        this.effectComposer = new EffectComposer(this.renderer)
+        this.effectComposer.setSize(window.innerWidth, window.innerHeight)
+    }
+
+    /**
+     * 设置背景颜色
+     * @param color
+     */
+    setBgColor(color) {
+        this.scene.background = new THREE.Color(color)
+        this.scene.environment = new THREE.Color(color)
+    }
+
+    /**
+     * 监听页面变化
+     * @param domElement
+     */
     resize(domElement) {
         this.camera.aspect = domElement.offsetWidth / domElement.offsetHeight
         this.camera.updateProjectionMatrix()
@@ -211,6 +239,70 @@ export default class WebGl {
             this.domElement.offsetHeight
         )
         this.renderer.setPixelRatio(window.devicePixelRatio)
+    }
+
+    /**
+     * 加载hdr
+     * @param url
+     */
+    hdrLoader(url) {
+        const hdrLoader = new RGBELoader()
+        return new Promise((resolve) => {
+            hdrLoader.load(url, (hdr) => {
+                resolve(hdr)
+            })
+        })
+    }
+
+    /**
+     * 设置hdr背景
+     * @param url
+     */
+    setHdrBg(url) {
+        this.hdrLoader(url).then((res) => {
+            let texture = res as any
+            texture.mapping = THREE.EquirectangularReflectionMapping
+            texture.anisotropy = 16
+            texture.format = THREE.RGBAFormat
+            this.scene.background = texture
+            this.scene.environment = texture
+        })
+    }
+
+    gltfLoader(url) {
+        const gltfLoader = new GLTFLoader()
+        const dracoLoader = new DRACOLoader()
+        dracoLoader.setDecoderPath('./draco/gltf/')
+        dracoLoader.setDecoderConfig({ type: 'js' })
+        dracoLoader.preload()
+        gltfLoader.setDRACOLoader(dracoLoader)
+
+        return new Promise((resolve) => {
+            gltfLoader.load(url, (gltf) => {
+                resolve(gltf)
+            })
+        })
+    }
+
+    /**
+     * 添加视频
+     * @param url 视频链接
+     * @param size 宽高
+     * @param position 位置
+     */
+    addVideo(url, size, position?) {
+        let videoPlane = new VideoPlane(url, size, position)
+        this.scene.add(videoPlane.mesh)
+        return videoPlane
+    }
+
+    /**
+     * 添加光环
+     * @param position
+     * @param scale
+     */
+    addLightCircle(position, scale?) {
+        return new LightCircle(this.scene, position, scale)
     }
 
     update() {
@@ -229,10 +321,13 @@ export default class WebGl {
         if (this.pointLightHelper) {
             this.pointLightHelper.update()
         }
+        this.effectComposer.render()
         this.renderer.render(this.scene, this.camera)
     }
 
-    // 销毁
+    /**
+     * 销毁
+     */
     remove() {
         if (this.gui) {
             this.gui.destroy()

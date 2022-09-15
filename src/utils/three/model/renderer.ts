@@ -10,9 +10,11 @@ export default function Renderer(domElement) {
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(domElement.offsetWidth, domElement.offsetHeight)
     renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.VSMShadowMap
+    // renderer.shadowMap.type = THREE.VSMShadowMap
     renderer.outputEncoding = THREE.sRGBEncoding
     renderer.toneMapping = THREE.ACESFilmicToneMapping
+    // renderer.physicallyCorrectLights = true
+    // renderer.toneMappingExposure = 0.75
     domElement.appendChild(renderer.domElement)
     return renderer
 }
