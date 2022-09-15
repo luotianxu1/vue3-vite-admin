@@ -138,6 +138,13 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/material/MeshPhysicalMaterial.vue')
             },
             {
+                path: 'meshPhysicalMaterial2',
+                name: '网格物理材质2',
+                meta: { title: 'meshPhysicalMaterial2' },
+                component: () =>
+                    import('@/views/three/material/MeshPhysicalMaterial2.vue')
+            },
+            {
                 path: 'lineBasicMaterial',
                 name: '直线基础材质',
                 meta: { title: 'lineBasicMaterial' },
@@ -415,6 +422,12 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '纹理显示',
                 meta: { title: 'texture' },
                 component: () => import('@/views/three/texture/Texture.vue')
+            },
+            {
+                path: 'canvas',
+                name: 'canvas',
+                meta: { title: 'canvas' },
+                component: () => import('@/views/three/texture/Canvas.vue')
             },
             {
                 path: 'car',

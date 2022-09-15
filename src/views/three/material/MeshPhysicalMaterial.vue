@@ -66,6 +66,7 @@
         }
         web = new WebGl(webGl.value)
         web.addSpotLight(0, 30, 60, 0xffffff, 0.6)
+        web.addAmbientLight()
         web.addStats()
         web.addAxesHelper()
 
