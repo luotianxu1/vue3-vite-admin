@@ -58,7 +58,6 @@
         const box = new THREE.Mesh(boxGeometry, boxMaterial)
         box.position.set(3, 0, 0)
         web.scene.add(box)
-        console.log(sphereMaterial)
 
         // 创建平面
         const planeGeometry = new THREE.PlaneGeometry(10, 10)
@@ -70,12 +69,10 @@
         plane.position.set(0, -1, 0)
         plane.rotation.x = -Math.PI / 2
         web.scene.add(plane)
-        console.log(plane)
 
         // 创建cubeTarget
         const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(512)
         cubeCamera = new THREE.CubeCamera(0.1, 1000, cubeRenderTarget)
-        console.log()
 
         renderScene()
     }

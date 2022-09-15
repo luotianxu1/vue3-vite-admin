@@ -430,6 +430,12 @@ const systemRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/three/texture/Canvas.vue')
             },
             {
+                path: 'video',
+                name: 'video',
+                meta: { title: 'video' },
+                component: () => import('@/views/three/texture/Video.vue')
+            },
+            {
                 path: 'car',
                 name: '车',
                 meta: { title: 'car' },
