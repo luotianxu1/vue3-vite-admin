@@ -18,8 +18,8 @@ export default function PerspectiveCamera(
     y = 50,
     z = 50,
     fov = 45,
-    near = 0.01,
-    far = 50000
+    near = 0.000001,
+    far = 10000
 ) {
     const perspectiveCamera = new THREE.PerspectiveCamera(
         fov,

@@ -19,6 +19,7 @@ import VideoPlane from '@/utils/three/model/mesh/videoPlane'
 import LightCircle from '@/utils/three/model/mesh/lightCircle'
 import CanvasPlane from '@/utils/three/model/mesh/canvasPlane'
 import TextVideo from '@/utils/three/model/mesh/textVideo'
+import FireSprite from '@/utils/three/model/mesh/fireSprite'
 
 export default class WebGl {
     domElement
@@ -40,6 +41,7 @@ export default class WebGl {
     effectComposer
     clock
     textVideoArrays: any = []
+    updateMeshArr: any = []
 
     constructor(domElement, controls = true) {
         this.domElement = domElement
@@ -330,6 +332,18 @@ export default class WebGl {
         return textVideo
     }
 
+    /**
+     * 添加火焰
+     * @param position
+     * @param scale
+     */
+    addFireSprite(position, scale) {
+        let fireSprite = new FireSprite(position, scale)
+        this.scene.add(fireSprite.mesh)
+        this.updateMeshArr.push(fireSprite)
+        return fireSprite
+    }
+
     update() {
         let deltaTime = this.clock.getDelta()
         if (this.stats) {
@@ -351,6 +365,11 @@ export default class WebGl {
         if (this.textVideoArrays.length > 0) {
             for (let i = 0; i < this.textVideoArrays.length; i++) {
                 this.textVideoArrays[i].update(deltaTime)
+            }
+        }
+        if (this.updateMeshArr.length > 0) {
+            for (let i = 0; i < this.updateMeshArr.length; i++) {
+                this.updateMeshArr[i].update(deltaTime)
             }
         }
         this.renderer.render(this.scene, this.camera)

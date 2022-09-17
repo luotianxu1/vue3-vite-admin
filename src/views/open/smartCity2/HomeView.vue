@@ -113,6 +113,8 @@
             )
         })
 
+        web.addFireSprite()
+
         renderScene()
     }
 
