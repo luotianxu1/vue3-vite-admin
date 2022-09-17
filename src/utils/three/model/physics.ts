@@ -314,7 +314,7 @@ export default class Physics {
         this.eventPositionList.forEach((item) => {
             // 计算胶囊距离某个点的距离，是否触发事件
             const distanceToSquared = this.capsule.position.distanceToSquared(
-                item.position
+                item.localPosition
             )
             if (
                 distanceToSquared < item.radius * item.radius &&
@@ -331,6 +331,18 @@ export default class Physics {
                 item.isInner = false
                 item.outCallback && item.outCallback(item)
             }
+        })
+    }
+
+    // 监测位置
+    onPosition(position, callback, outCallback, radius = 2) {
+        let localPosition = position.clone()
+        this.eventPositionList.push({
+            localPosition,
+            callback,
+            outCallback,
+            isInner: false,
+            radius
         })
     }
 }

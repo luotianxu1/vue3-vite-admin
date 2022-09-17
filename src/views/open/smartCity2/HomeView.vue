@@ -88,6 +88,29 @@
 
             let lightCirclePosition = new THREE.Vector3(-3, -0.3, 15)
             let lightCircle = web.addLightCircle(lightCirclePosition)
+
+            physics.onPosition(
+                lightCirclePosition,
+                () => {
+                    lightCircle.mesh.visible = false
+                    let canvasPosition = new THREE.Vector3(-3, 1.3, 18)
+                    let canvasRotation = new THREE.Euler(0, Math.PI, 0)
+                    // web.addCanvasPlane(
+                    //     '恭喜到达指定位置',
+                    //     canvasPosition,
+                    //     canvasRotation
+                    // )
+
+                    web.addTextVideo(
+                        '恭喜到达指定位置',
+                        canvasPosition,
+                        canvasRotation
+                    )
+                },
+                () => {
+                    lightCircle.mesh.visible = true
+                }
+            )
         })
 
         renderScene()

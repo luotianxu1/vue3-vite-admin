@@ -17,6 +17,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import VideoPlane from '@/utils/three/model/mesh/videoPlane'
 import LightCircle from '@/utils/three/model/mesh/lightCircle'
+import CanvasPlane from '@/utils/three/model/mesh/canvasPlane'
+import TextVideo from '@/utils/three/model/mesh/textVideo'
 
 export default class WebGl {
     domElement
@@ -37,6 +39,7 @@ export default class WebGl {
     pointLightHelper
     effectComposer
     clock
+    textVideoArrays: any = []
 
     constructor(domElement, controls = true) {
         this.domElement = domElement
@@ -305,7 +308,30 @@ export default class WebGl {
         return new LightCircle(this.scene, position, scale)
     }
 
+    /**
+     * 添加canvas框
+     * @param text 文本
+     * @param position 位置
+     * @param euler 旋转角度
+     */
+    addCanvasPlane(text, position, euler) {
+        return new CanvasPlane(this.scene, text, position, euler)
+    }
+
+    /**
+     * 添加视频框
+     * @param text
+     * @param position 位置
+     * @param euler 旋转角度
+     */
+    addTextVideo(text, position, euler) {
+        let textVideo = new TextVideo(this.scene, text, position, euler)
+        this.textVideoArrays.push(textVideo)
+        return textVideo
+    }
+
     update() {
+        let deltaTime = this.clock.getDelta()
         if (this.stats) {
             this.stats.update()
         }
@@ -322,6 +348,11 @@ export default class WebGl {
             this.pointLightHelper.update()
         }
         this.effectComposer.render()
+        if (this.textVideoArrays.length > 0) {
+            for (let i = 0; i < this.textVideoArrays.length; i++) {
+                this.textVideoArrays[i].update(deltaTime)
+            }
+        }
         this.renderer.render(this.scene, this.camera)
     }
 
