@@ -338,7 +338,7 @@ export default class WebGl {
      * @param scale
      */
     addFireSprite(position, scale) {
-        let fireSprite = new FireSprite(position, scale)
+        let fireSprite = new FireSprite(this.camera, position, scale)
         this.scene.add(fireSprite.mesh)
         this.updateMeshArr.push(fireSprite)
         return fireSprite

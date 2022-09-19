@@ -88,6 +88,7 @@
 
             let lightCirclePosition = new THREE.Vector3(-3, -0.3, 15)
             let lightCircle = web.addLightCircle(lightCirclePosition)
+            let fireSprite
 
             physics.onPosition(
                 lightCirclePosition,
@@ -106,14 +107,14 @@
                         canvasPosition,
                         canvasRotation
                     )
+                    // 添加火焰
+                    fireSprite || (fireSprite = web.addFireSprite())
                 },
                 () => {
                     lightCircle.mesh.visible = true
                 }
             )
         })
-
-        web.addFireSprite()
 
         renderScene()
     }
