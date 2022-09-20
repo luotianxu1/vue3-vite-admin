@@ -59,6 +59,11 @@ const openRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/open/smartCity2/HomeView.vue')
             },
             {
+                path: 'hotel',
+                name: '日夜交替',
+                component: () => import('@/views/open/hotel/Hotel.vue')
+            },
+            {
                 path: 'map',
                 name: '3D地图',
                 component: () => import('@/views/open/map/Map.vue')

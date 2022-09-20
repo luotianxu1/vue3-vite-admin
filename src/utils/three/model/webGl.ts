@@ -20,6 +20,9 @@ import LightCircle from '@/utils/three/model/mesh/lightCircle'
 import CanvasPlane from '@/utils/three/model/mesh/canvasPlane'
 import TextVideo from '@/utils/three/model/mesh/textVideo'
 import FireSprite from '@/utils/three/model/mesh/fireSprite'
+import SphereSky from '@/utils/three/model/mesh/sphereSky'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import gsap from 'gsap'
 
 export default class WebGl {
     domElement
@@ -42,6 +45,7 @@ export default class WebGl {
     clock
     textVideoArrays: any = []
     updateMeshArr: any = []
+    isDay
 
     constructor(domElement, controls = true) {
         this.domElement = domElement
@@ -220,7 +224,14 @@ export default class WebGl {
      */
     addEffect() {
         this.effectComposer = new EffectComposer(this.renderer)
-        this.effectComposer.setSize(window.innerWidth, window.innerHeight)
+        this.effectComposer.setSize(
+            this.domElement.offsetWidth,
+            this.domElement.offsetHeight
+        )
+
+        // 添加渲染通道
+        const renderPass = new RenderPass(this.scene, this.camera)
+        this.effectComposer.addPass(renderPass)
     }
 
     /**
@@ -264,13 +275,16 @@ export default class WebGl {
      * @param url
      */
     setHdrBg(url) {
-        this.hdrLoader(url).then((res) => {
-            let texture = res as any
-            texture.mapping = THREE.EquirectangularReflectionMapping
-            texture.anisotropy = 16
-            texture.format = THREE.RGBAFormat
-            this.scene.background = texture
-            this.scene.environment = texture
+        return new Promise((resolve) => {
+            this.hdrLoader(url).then((res) => {
+                let texture = res as any
+                texture.mapping = THREE.EquirectangularReflectionMapping
+                texture.anisotropy = 16
+                texture.format = THREE.RGBAFormat
+                this.scene.background = texture
+                this.scene.environment = texture
+                resolve(texture)
+            })
         })
     }
 
@@ -342,6 +356,57 @@ export default class WebGl {
         this.scene.add(fireSprite.mesh)
         this.updateMeshArr.push(fireSprite)
         return fireSprite
+    }
+
+    addSphereSky(dayCallback, nightCallback) {
+        let uTime = {
+            value: 0
+        }
+        this.isDay = true
+        let sphereSky = new SphereSky(10000, uTime, this.scene.environment)
+        this.scene.add(sphereSky.mesh, sphereSky.sun)
+
+        gsap.to(uTime, {
+            value: 24,
+            duration: 24,
+            repeat: -1,
+            ease: 'linear',
+            onUpdate: () => {
+                sphereSky.updateSun(uTime.value)
+                if (
+                    uTime.value > 6 &&
+                    uTime.value <= 18 &&
+                    this.isDay === false
+                ) {
+                    sphereSky.sun.visible = true
+                    this.isDay = true
+                    dayCallback()
+                }
+                if (
+                    (uTime.value > 18 || uTime.value <= 6) &&
+                    this.isDay === true
+                ) {
+                    this.isDay = false
+                    sphereSky.sun.visible = false
+                    nightCallback()
+                }
+                if (Math.abs(uTime.value - 12) < 4) {
+                    this.renderer.toneMappingExposure = 1
+                }
+                if (Math.abs(uTime.value - 12) > 6) {
+                    this.renderer.toneMappingExposure = 0.3
+                }
+                if (
+                    Math.abs(uTime.value - 12) >= 4 &&
+                    Math.abs(uTime.value - 12) <= 6
+                ) {
+                    let strength = 1 - (Math.abs(uTime.value - 12) - 4) / 2
+                    strength < 0.3 || (strength = 0.3)
+                    this.renderer.toneMappingExposure = strength
+                }
+            }
+        })
+        return sphereSky
     }
 
     update() {
