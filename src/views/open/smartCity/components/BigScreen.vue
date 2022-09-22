@@ -98,7 +98,6 @@
         height: 100vh;
         position: fixed;
         z-index: 100;
-
         left: 0;
         top: 0;
         pointer-events: none;
@@ -185,7 +184,6 @@
     }
     .footerBorder {
         position: absolute;
-        bottom: 0;
         bottom: 0;
         width: 3.5rem;
         height: 0.4rem;
