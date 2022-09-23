@@ -100,7 +100,7 @@
         const mouse = new THREE.Vector2()
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1
         mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
-        const info:any = document.querySelector('#info')
+        const info:HTMLDivElement | null = document.querySelector('#info')
         if (!info) {
             return
         }

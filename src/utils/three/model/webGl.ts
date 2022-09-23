@@ -25,27 +25,27 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import gsap from 'gsap'
 
 export default class WebGl {
-    domElement
-    scene
+    domElement:HTMLDivElement
+    scene:THREE.Scene
     camera
-    ambientLight
-    directionalLight
-    pointLight
-    spotLight
-    hemisphereLight
-    renderer
-    axesHelper
+    ambientLight: THREE.AmbientLight | undefined
+    directionalLight: THREE.DirectionalLight | undefined
+    pointLight: THREE.PointLight | undefined
+    spotLight: THREE.SpotLight | undefined
+    hemisphereLight: THREE.HemisphereLight | undefined
+    renderer: THREE.WebGLRenderer
+    axesHelper: THREE.AxesHelper | undefined
     controls
     stats
     gui
-    cameraHelper
-    spotLightHelper
-    pointLightHelper
+    cameraHelper: THREE.CameraHelper | undefined
+    spotLightHelper: THREE.SpotLightHelper | undefined
+    pointLightHelper: THREE.PointLightHelper | undefined
     effectComposer
-    clock
+    clock: THREE.Clock
     textVideoArrays: any = []
     updateMeshArr: any = []
-    isDay
+    isDay: Boolean | undefined
 
     constructor(domElement, controls = true) {
         this.domElement = domElement
@@ -240,7 +240,6 @@ export default class WebGl {
      */
     setBgColor(color) {
         this.scene.background = new THREE.Color(color)
-        this.scene.environment = new THREE.Color(color)
     }
 
     /**
