@@ -466,13 +466,13 @@ const systemRouter: RouteRecordRaw[] = [
                 meta: { title: 'webGL' },
                 component: () => import('@/views/three/shader/WebGL.vue')
             },
-            {
-                path: 'shader',
-                name: 'shader',
-                meta: { title: 'shader' },
-                component: () =>
-                    import('@/views/three/shader/shader/Shader.vue')
-            },
+            // {
+            //     path: 'shader',
+            //     name: 'shader',
+            //     meta: { title: 'shader' },
+            //     component: () =>
+            //         import('@/views/three/shader/shader/Shader.vue')
+            // },
             {
                 path: 'rowShaderMaterial',
                 name: '原始着色器',
