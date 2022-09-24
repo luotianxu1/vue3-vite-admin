@@ -5,6 +5,7 @@
 <script lang="ts" setup>
     import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
+    import { ElMessage } from 'element-plus'
 
     const webGl = ref()
 
@@ -53,7 +54,10 @@
     let cubes: Array<THREE.Mesh> = []
     // 立方体方向
     let cubeStat = {
-        position: ''
+        position: '',
+        cubeWidth: 1,
+        cubeHeight: 0.5,
+        result: 0
     }
     const createBox = () => {
         const geometry = new THREE.BoxGeometry(1, 0.5, 1)
@@ -155,6 +159,9 @@
             jumperStat.xSpeed = 0
             jumperStat.ready = false
             checkInCube()
+            if (cubeStat.result === 2) {
+                createBox()
+            }
         }
     }
 
@@ -167,10 +174,38 @@
         }
         // 跳跃时的立方体
         const pointC = {
+            x: cubes[cubes.length - 2].position.x,
+            z: cubes[cubes.length - 2].position.z
+        }
+        // 落下时的立方体
+        const pointN = {
             x: cubes[cubes.length - 1].position.x,
             z: cubes[cubes.length - 1].position.z
         }
-        // 落下时的立方体
+        let totalC
+        let totalN
+        if (cubeStat.position === 'left') {
+            totalC = Math.abs(point0.x - pointC.x)
+            totalN = Math.abs(point0.x - pointN.x)
+        } else {
+            totalC = Math.abs(point0.z - pointC.z)
+            totalN = Math.abs(point0.z - pointN.z)
+        }
+        const widthTotalData = cubeStat.cubeWidth / 2 + 0.1
+        /**
+         * 0: 空白位置
+         * 1: 这是在第一个立方体上，不会掉下去
+         * -1: 这是在第一个立方体上，会掉下去
+         * 2: 这是在第二个立方体上，不会掉下去
+         * -2: 这是在第二个立方体上，会掉下去
+         */
+        if (totalC < widthTotalData) {
+            cubeStat.result = cubeStat.cubeWidth / 2 > totalC ? 1 : -1
+        } else if (totalN < widthTotalData) {
+            cubeStat.result = cubeStat.cubeWidth / 2 > totalN ? 2 : -2
+        } else {
+            ElMessage.error('游戏结束')
+        }
     }
 
     const render = () => {
