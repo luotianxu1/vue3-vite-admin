@@ -17,7 +17,8 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapAdministrative',
                 name: '简易行政区',
-                component: () => import('@/views/map/mapType/AMapAdministrative.vue')
+                component: () =>
+                    import('@/views/map/mapType/AMapAdministrative.vue')
             },
             {
                 path: 'aMapArea',
@@ -37,7 +38,8 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapCoverEvent',
                 name: '覆盖物事件',
-                component: () => import('@/views/map/mapEvent/AMapCoverEvent.vue')
+                component: () =>
+                    import('@/views/map/mapEvent/AMapCoverEvent.vue')
             },
             {
                 path: 'aMapMarker',
@@ -47,42 +49,50 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapTrackPlayback',
                 name: '轨迹回放',
-                component: () => import('@/views/map/mapCover/AMapTrackPlayback.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapTrackPlayback.vue')
             },
             {
                 path: 'aMapAvoidLayers',
                 name: '避让图层',
-                component: () => import('@/views/map/mapCover/AMapAvoidLayers.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapAvoidLayers.vue')
             },
             {
                 path: 'aMapTextMarker',
                 name: '文字标注',
-                component: () => import('@/views/map/mapCover/AMapTextMarker.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapTextMarker.vue')
             },
             {
                 path: 'aMapMassPointMarkers',
                 name: '海量点',
-                component: () => import('@/views/map/mapCover/AMapMassPointMarkers.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapMassPointMarkers.vue')
             },
             {
                 path: 'aMapMassMarkers',
                 name: '海量点2',
-                component: () => import('@/views/map/mapCover/AMapMassMarkers.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapMassMarkers.vue')
             },
             {
                 path: 'aMapPointAggregation',
                 name: '点聚合',
-                component: () => import('@/views/map/mapCover/AMapPointAggregation.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapPointAggregation.vue')
             },
             {
                 path: 'aMapPointAggregation2',
                 name: '按索引点聚合',
-                component: () => import('@/views/map/mapCover/AMapPointAggregation2.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapPointAggregation2.vue')
             },
             {
                 path: 'aMapVectorGraphics',
                 name: '矢量图形',
-                component: () => import('@/views/map/mapCover/AMapVectorGraphics.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapVectorGraphics.vue')
             },
             {
                 path: 'aMapMenu',
@@ -92,27 +102,32 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapInfoWindow',
                 name: '信息窗体',
-                component: () => import('@/views/map/mapCover/AMapInfoWindow.vue')
+                component: () =>
+                    import('@/views/map/mapCover/AMapInfoWindow.vue')
             },
             {
                 path: 'aMapInputHint',
                 name: '输入提示',
-                component: () => import('@/views/map/mapSearch/AMapInputHint.vue')
+                component: () =>
+                    import('@/views/map/mapSearch/AMapInputHint.vue')
             },
             {
                 path: 'aMapPlanning',
                 name: '驾车路线规划',
-                component: () => import('@/views/map/mapPlanning/AMapPlanning.vue')
+                component: () =>
+                    import('@/views/map/mapPlanning/AMapPlanning.vue')
             },
             {
                 path: 'aMapDragPlanning',
                 name: '拖拽路线规划',
-                component: () => import('@/views/map/mapPlanning/AMapDragPlanning.vue')
+                component: () =>
+                    import('@/views/map/mapPlanning/AMapDragPlanning.vue')
             },
             {
                 path: 'aMapGeocoding',
                 name: '地理编码',
-                component: () => import('@/views/map/mapOther/AMapGeocoding.vue')
+                component: () =>
+                    import('@/views/map/mapOther/AMapGeocoding.vue')
             },
             {
                 path: 'aMapLocation',
@@ -122,7 +137,8 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapAdministrativeArea',
                 name: '行政区查询',
-                component: () => import('@/views/map/mapOther/AMapAdministrativeArea.vue')
+                component: () =>
+                    import('@/views/map/mapOther/AMapAdministrativeArea.vue')
             },
             {
                 path: 'aMapWeather',
@@ -132,17 +148,20 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapPointCalculate',
                 name: '两点间距离',
-                component: () => import('@/views/map/mapCalculate/AMapPointCalculate.vue')
+                component: () =>
+                    import('@/views/map/mapCalculate/AMapPointCalculate.vue')
             },
             {
                 path: 'aMapLineCalculate',
                 name: '点到线间距离',
-                component: () => import('@/views/map/mapCalculate/AMapLineCalculate.vue')
+                component: () =>
+                    import('@/views/map/mapCalculate/AMapLineCalculate.vue')
             },
             {
                 path: 'aMapPathLength',
                 name: '路径长度',
-                component: () => import('@/views/map/mapCalculate/AMapPathLength.vue')
+                component: () =>
+                    import('@/views/map/mapCalculate/AMapPathLength.vue')
             },
             {
                 path: 'aMapAreaNum',
@@ -152,82 +171,105 @@ const mapRouter: RouteRecordRaw[] = [
             {
                 path: 'aMapIsOnLine',
                 name: '点是否在线上',
-                component: () => import('@/views/map/mapCalculate/AMapIsOnLine.vue')
+                component: () =>
+                    import('@/views/map/mapCalculate/AMapIsOnLine.vue')
             },
             {
                 path: 'aMapIsOnPolygon',
                 name: '点是否在多边形内',
-                component: () => import('@/views/map/mapCalculate/AMapIsOnPolygon.vue')
+                component: () =>
+                    import('@/views/map/mapCalculate/AMapIsOnPolygon.vue')
             },
             {
                 path: 'aMapGeometricRelationship',
                 name: '几何关系',
-                component: () => import('@/views/map/mapCalculate/AMapGeometricRelationship.vue')
+                component: () =>
+                    import(
+                        '@/views/map/mapCalculate/AMapGeometricRelationship.vue'
+                    )
             },
             {
                 path: 'cellularHeatmap',
                 name: '蜂窝热力图',
-                component: () => import('@/views/map/mapVisualization/CellularHeatmap.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/CellularHeatmap.vue')
             },
             {
                 path: 'gridHeatmap',
                 name: '网格热力图',
-                component: () => import('@/views/map/mapVisualization/GridHeatmap.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/GridHeatmap.vue')
             },
             {
                 path: 'heatmap',
                 name: '热力图',
-                component: () => import('@/views/map/mapVisualization/Heatmap.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/Heatmap.vue')
             },
             {
                 path: 'pulseLine',
                 name: '脉冲线',
-                component: () => import('@/views/map/mapVisualization/PulseLine.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/PulseLine.vue')
             },
             {
                 path: 'flyingLine',
                 name: '飞线',
-                component: () => import('@/views/map/mapVisualization/FlyingLine.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/FlyingLine.vue')
             },
             {
                 path: 'connectingLine',
                 name: '连接线',
-                component: () => import('@/views/map/mapVisualization/ConnectingLine.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/ConnectingLine.vue')
             },
             {
                 path: 'lineLayer',
                 name: '线图层',
-                component: () => import('@/views/map/mapVisualization/LineLayer.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/LineLayer.vue')
             },
             {
                 path: 'iconLayer',
                 name: '图标图层',
-                component: () => import('@/views/map/mapVisualization/IconLayer.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/IconLayer.vue')
             },
             {
                 path: 'postLocation',
                 name: '贴地点',
-                component: () => import('@/views/map/mapVisualization/PostLocation.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/PostLocation.vue')
             },
             {
                 path: 'prismLayer',
                 name: '棱柱图层',
-                component: () => import('@/views/map/mapVisualization/PrismLayer.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/PrismLayer.vue')
             },
             {
                 path: 'dotLayer',
                 name: '圆点图层',
-                component: () => import('@/views/map/mapVisualization/DotLayer.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/DotLayer.vue')
             },
             {
                 path: 'signagePoint',
                 name: '标牌点',
-                component: () => import('@/views/map/mapVisualization/SignagePoint.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/SignagePoint.vue')
             },
             {
                 path: 'pathTracing',
                 name: '路径跟踪',
-                component: () => import('@/views/map/mapVisualization/PathTracing.vue')
+                component: () =>
+                    import('@/views/map/mapVisualization/PathTracing.vue')
+            },
+            {
+                path: 'mapChange',
+                name: '地图切换',
+                component: () => import('@/views/map/leaflet/MapChange.vue')
             }
         ]
     }
