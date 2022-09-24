@@ -72,6 +72,7 @@
     import { UserStore } from '@/store/modules/user'
     import { getUserPageList } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus } from '@element-plus/icons-vue'
+    import { ElMessage } from 'element-plus'
 
     const tableData = reactive({
         name: '',
@@ -86,9 +87,9 @@
     async function getMenuList() {
         tableData.loading = true
         let res
-        if ( userStore.USER_INFO) {
+        if (userStore.USER_INFO) {
             res = await getUserPageList({
-                id: userStore.USER_INFO.id as number
+                userId: userStore.USER_INFO.id as string
             })
         }
         if (res.data && res.data.total && res.data.list) {

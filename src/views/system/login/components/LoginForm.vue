@@ -43,11 +43,11 @@
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
     import { UserStore } from '@/store/modules/user'
-    import { UserState } from '@/store/interface/user'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
-    import { loginApi } from '@/api/system/userApi'
+    import { loginApi, LoginData } from '@/api/system/userApi'
     import { setToken, setTokenTime } from '@/utils/auth'
+    import { ElMessage } from 'element-plus'
 
     const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])
@@ -101,7 +101,7 @@
                 ElMessage.success('登录成功！')
                 setToken('123')
                 setTokenTime()
-                userStore.USER_INFO = res.data as UserState['USER_INFO']
+                userStore.USER_INFO = res.data as LoginData
                 await router.push('/system/user')
             } else {
                 return false

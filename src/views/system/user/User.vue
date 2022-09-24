@@ -81,7 +81,7 @@
                 ></el-button>
             </template>
             <template #img="row">
-                <el-avatar :src="row.data.img" fit='cover'></el-avatar>
+                <el-avatar :src="row.data.img" fit="cover"></el-avatar>
             </template>
             <template #sex="row">
                 {{ Number(row.data.sex) === 1 ? '男' : '女' }}
@@ -124,7 +124,7 @@
     import {
         deleteUserApi,
         getUserListApi,
-        PageListParams
+        PageUserParams
     } from '@/api/system/userApi'
     import {
         Search,
@@ -246,7 +246,7 @@
         list: [],
         loading: false
     })
-    const queryParams = reactive<PageListParams>({
+    const queryParams = reactive<PageUserParams>({
         userId: '1',
         name: '',
         type: '0',

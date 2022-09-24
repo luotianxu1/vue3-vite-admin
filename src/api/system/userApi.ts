@@ -14,25 +14,30 @@ export interface RegisterParams extends LoginParams {
 
 // 用户信息
 export interface LoginData {
-    id: number
-    name: string
-    sex: number
-    phone: number
-    email: string
-    city: string
-    status: number
-    type: number
-    img: string
-    addTime: string
-    editTime: string
+    id?: number
+    name?: string
+    sex?: number
+    age?: number
+    type?: number
+    phone?: number
+    email?: string
+    city?: string
+    status?: number
+    img?: string
+    addTime?: string
+    editTime?: string
 }
 
-// 获取用户菜单
-export interface PageListParams {
+// 获取用户列表
+export interface PageUserParams {
     userId: string
     name: string
     type: '0' | '1' | '2' | '3'
     time: string
+}
+
+export interface PageListParams {
+    userId: string
 }
 
 // 用户列表
@@ -61,7 +66,7 @@ export const getUserPageList = (
 
 // 获取用户列表
 export const getUserListApi = (
-    data: PageListParams
+    data: PageUserParams
 ): Promise<ResponseData<UserList>> => request.post('/api/userList', data)
 
 // 删除用户
