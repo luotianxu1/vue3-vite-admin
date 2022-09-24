@@ -66,5 +66,10 @@
     "vite": "^2.9.0",
     "vue-global-api": "^0.4.1",
     "vue-tsc": "^0.29.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }
