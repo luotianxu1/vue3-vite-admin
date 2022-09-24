@@ -25,8 +25,8 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import gsap from 'gsap'
 
 export default class WebGl {
-    domElement:HTMLDivElement
-    scene:THREE.Scene
+    domElement: HTMLDivElement
+    scene: THREE.Scene
     camera
     ambientLight: THREE.AmbientLight | undefined
     directionalLight: THREE.DirectionalLight | undefined
