@@ -14,7 +14,7 @@
 
     onUnmounted(() => {
         web.remove()
-        window.removeEventListener('mousemove',detect)
+        window.removeEventListener('mousemove', detect)
     })
 
     const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
@@ -31,8 +31,17 @@
     // 鼠标位置对象
     const mouse = new THREE.Vector2()
     const detect = (e) => {
-        mouse.x = ((e.clientX - webGl.value.getBoundingClientRect().x) / webGl.value.offsetWidth) * 2 - 1
-        mouse.y = -(((e.clientY - webGl.value.getBoundingClientRect().y) / webGl.value.offsetHeight) * 2 - 1)
+        mouse.x =
+            ((e.clientX - webGl.value.getBoundingClientRect().x) /
+                webGl.value.offsetWidth) *
+                2 -
+            1
+        mouse.y = -(
+            ((e.clientY - webGl.value.getBoundingClientRect().y) /
+                webGl.value.offsetHeight) *
+                2 -
+            1
+        )
         raycaster.setFromCamera(mouse, web.camera)
         const result = raycaster.intersectObjects(cubeArr)
         if (result.length) {

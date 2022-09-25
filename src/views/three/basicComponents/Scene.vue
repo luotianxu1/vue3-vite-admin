@@ -33,7 +33,11 @@
     const form = reactive({
         添加: function () {
             const cubeSize = Math.ceil(Math.random() * 3)
-            const cubeGeoMetry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
+            const cubeGeoMetry = new THREE.BoxGeometry(
+                cubeSize,
+                cubeSize,
+                cubeSize
+            )
             const cubeMaterial = new THREE.MeshLambertMaterial({
                 color: Math.random() * 0xffffff
             })
@@ -44,21 +48,22 @@
                 -30 + Math.round(Math.random() * planeGeometry.parameters.width)
             cube.position.y = Math.round(Math.random() * 5)
             cube.position.z =
-                -20 + Math.round(Math.random() * planeGeometry.parameters.height)
+                -20 +
+                Math.round(Math.random() * planeGeometry.parameters.height)
             web.scene.add(cube)
         },
-        根据名称打印物体: function() {
+        根据名称打印物体: function () {
             let nameCube = web.scene.getObjectByName('cube-1')
             console.log(nameCube)
         },
-        删除物体: function() {
+        删除物体: function () {
             const allChildren = web.scene.children
             const lastObject = allChildren[allChildren.length - 1]
             if (lastObject instanceof THREE.Mesh) {
                 web.scene.remove(lastObject)
             }
         },
-        指定同一属性: function() {
+        指定同一属性: function () {
             web.scene.overrideMaterial = new THREE.MeshLambertMaterial({
                 color: 0xffffff
             })
@@ -73,7 +78,7 @@
         web = new WebGl(webGl.value)
         web.addAxesHelper(20)
         web.addAmbientLight(0x3c3c3c)
-        web.addSpotLight(-40,60,-10,0xffffff,1,true)
+        web.addSpotLight(-40, 60, -10, 0xffffff, 1, true)
         web.addStats()
 
         web.scene.add(plane)

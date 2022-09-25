@@ -70,13 +70,13 @@
         let cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
         let cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
         cube.castShadow = true
-        cube.position.x = -60 + Math.round((Math.random() * 100))
-        cube.position.y = Math.round((Math.random() * 10))
-        cube.position.z = -150 + Math.round((Math.random() * 175))
+        cube.position.x = -60 + Math.round(Math.random() * 100)
+        cube.position.y = Math.round(Math.random() * 10)
+        cube.position.z = -150 + Math.round(Math.random() * 175)
         return cube
     }
     const generate = () => {
-        const toRemove:any = []
+        const toRemove: any = []
         scene.traverse(function (e) {
             if (e instanceof THREE.Mesh) {
                 toRemove.push(e)
@@ -87,11 +87,13 @@
         })
 
         if (form.combined) {
-            let geometryArray:any = []
+            let geometryArray: any = []
             for (let i = 0; i < form.numberOfObjects; i++) {
                 let cubeMesh = addcube()
                 cubeMesh.updateMatrix()
-                const newGeometry = cubeMesh.geometry.applyMatrix4(cubeMesh.matrix)
+                const newGeometry = cubeMesh.geometry.applyMatrix4(
+                    cubeMesh.matrix
+                )
                 geometryArray.push(newGeometry)
             }
 

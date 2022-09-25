@@ -35,7 +35,7 @@
         }
         web = new WebGl(webGl.value)
         web.addAmbientLight(0x343434)
-        web.addSpotLight(-10, 30, 40,0xffffff)
+        web.addSpotLight(-10, 30, 40, 0xffffff)
 
         web.scene.add(skyBox)
 

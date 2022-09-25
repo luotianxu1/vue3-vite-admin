@@ -45,17 +45,34 @@
         //   循环生成点
         for (let i = 0; i < params.count; i++) {
             // 当前的点应该在那一条分支的角度上
-            const branchAngel = (i % params.branch) * ((2 * Math.PI) / params.branch)
+            const branchAngel =
+                (i % params.branch) * ((2 * Math.PI) / params.branch)
 
             // 当前点距离圆心的距离
-            const distance = Math.random() * params.radius * Math.pow(Math.random(), 3)
+            const distance =
+                Math.random() * params.radius * Math.pow(Math.random(), 3)
             const current = i * 3
-            const randomX = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            const randomY = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            const randomZ = Math.pow(Math.random() * 2 - 1, 3) * (params.radius - distance) / 5
-            positions[current] = Math.cos(branchAngel + distance * params.rotateScale) * distance + randomX
+            const randomX =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            const randomY =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            const randomZ =
+                (Math.pow(Math.random() * 2 - 1, 3) *
+                    (params.radius - distance)) /
+                5
+            positions[current] =
+                Math.cos(branchAngel + distance * params.rotateScale) *
+                    distance +
+                randomX
             positions[current + 1] = randomY
-            positions[current + 2] = Math.sin(branchAngel + distance * params.rotateScale) * distance + randomZ
+            positions[current + 2] =
+                Math.sin(branchAngel + distance * params.rotateScale) *
+                    distance +
+                randomZ
 
             // 混合颜色形成渐变色
             const mixColor = centerColor.clone()
@@ -65,7 +82,10 @@
             colors[current + 2] = mixColor.b
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+        geometry.setAttribute(
+            'position',
+            new THREE.BufferAttribute(positions, 3)
+        )
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
 
         //   设置点材质
@@ -94,7 +114,7 @@
         web.addStats()
         web.addAxesHelper()
         web.addAmbientLight(0x343434)
-        web.camera.position.set(5,5,5)
+        web.camera.position.set(5, 5, 5)
         generateGalaxy()
         renderScene()
     }

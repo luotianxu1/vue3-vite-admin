@@ -88,7 +88,7 @@
         web.addAxesHelper()
         web.addAmbientLight(0xffffff, 0.5)
         web.addDirectionalLight(10, 10, 10, 0xffffff, 0.5)
-        web.camera.position.set(0,0,5)
+        web.camera.position.set(0, 0, 5)
 
         web.scene.add(cube)
         web.scene.add(plane)

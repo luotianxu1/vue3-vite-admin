@@ -44,7 +44,7 @@
         web = new WebGl(webGl.value)
         web.addStats()
         web.addAxesHelper()
-        web.camera.position.set(10,5,10)
+        web.camera.position.set(10, 5, 10)
 
         web.scene.add(circle)
 

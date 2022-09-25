@@ -46,7 +46,7 @@
         web.addAxesHelper()
         web.addAmbientLight(0x444444)
         web.addSpotLight(-10, 30, 40, 0xffffff)
-        web.camera.position.set(0,20,40)
+        web.camera.position.set(0, 20, 40)
 
         const groundPlane = addLargeGroundPlane(web.scene, true)
         groundPlane.position.y = -10

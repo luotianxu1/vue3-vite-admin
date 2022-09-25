@@ -1,6 +1,5 @@
 <template>
     <div ref="webGl" class="webGl"></div>
-
 </template>
 
 <script lang="ts" setup>
@@ -43,7 +42,7 @@
         web.addStats()
         web.addAxesHelper()
         web.scene.add(points)
-        web.camera.position.set(10,0,10)
+        web.camera.position.set(10, 0, 10)
         renderScene()
     }
 

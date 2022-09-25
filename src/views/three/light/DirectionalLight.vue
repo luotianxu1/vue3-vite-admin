@@ -1,8 +1,8 @@
 <template>
-    <div ref='webGl' class='webGl'></div>
+    <div ref="webGl" class="webGl"></div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
     import { addDefaultCubeAndSphere, addGroundPlane } from '@/utils/three/util'
@@ -65,9 +65,9 @@
         web.addGUI()
 
         targetList = {
-            'Plane': plane,
-            'Sphere': sphere,
-            'Cube': cube
+            Plane: plane,
+            Sphere: sphere,
+            Cube: cube
         }
 
         web.gui.addColor(form, 'color')
@@ -100,11 +100,10 @@
         web.directionalLight.color = new THREE.Color(val.color)
         web.directionalLight.intensity = val.intensity
         web.directionalLight.target = targetList[form.target]
-
     })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .webGl {
         width: 100%;
         height: 100%;

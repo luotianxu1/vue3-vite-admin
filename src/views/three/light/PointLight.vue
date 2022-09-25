@@ -69,8 +69,8 @@
         } else {
             phase += time
         }
-        sphereLightMesh.position.z = +(25 * Math.sin(phase))
-        sphereLightMesh.position.x = +(14 * Math.cos(phase))
+        sphereLightMesh.position.z = Number(25 * Math.sin(phase))
+        sphereLightMesh.position.x = Number(14 * Math.cos(phase))
         sphereLightMesh.position.y = 5
 
         if (invert < 0) {
@@ -92,9 +92,9 @@
 </script>
 
 <style scoped lang="scss">
-        .webGl {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
+    .webGl {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
 </style>

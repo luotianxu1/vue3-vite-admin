@@ -117,8 +117,8 @@
             } else {
                 phase += delta
             }
-            sphereLightMesh.position.z = +(7 * Math.sin(phase))
-            sphereLightMesh.position.x = +(14 * Math.cos(phase))
+            sphereLightMesh.position.z = Number(7 * Math.sin(phase))
+            sphereLightMesh.position.x = Number(14 * Math.cos(phase))
             sphereLightMesh.position.y = 15
             if (invert < 0) {
                 let pivot = 14

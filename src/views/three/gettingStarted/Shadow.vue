@@ -23,7 +23,7 @@
         }
         web = new WebGl(webGl.value)
         web.addAxesHelper(20)
-        web.addSpotLight(-40, 40, - 15, 0xffffff, 1, true)
+        web.addSpotLight(-40, 40, -15, 0xffffff, 1, true)
 
         // 创建平面并定义平面大小
         const planeGeometry = new THREE.PlaneGeometry(60, 20)
