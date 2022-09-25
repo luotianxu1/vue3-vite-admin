@@ -3,10 +3,9 @@
         <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
                 <span class="user">
-                    <el-avatar :size="40" :src="USER_INFO?.img"></el-avatar>
+                    <el-avatar :size="30" :src="USER_INFO?.img"></el-avatar>
                     <span class="userInfo">
                         <span>{{ USER_INFO?.name }}</span>
-                        <span>{{ userStatus[USER_INFO.type as number] }}</span>
                     </span>
                 </span>
                 <el-icon class="el-icon--right">
@@ -36,11 +35,6 @@
     import { storeToRefs } from 'pinia'
     import { ArrowDown } from '@element-plus/icons-vue'
 
-    const userStatus = shallowReadonly({
-        0: '超级管理员',
-        1: '管理员',
-        2: '用户'
-    })
     const router = useRouter()
     const userStore = UserStore()
     const { USER_INFO } = storeToRefs(userStore)

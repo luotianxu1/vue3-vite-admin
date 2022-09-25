@@ -1,10 +1,12 @@
 <template>
     <div class="screenfull" @click="click">
         <el-tooltip content="全屏" placement="bottom" effect="light">
-            <i
-                class="iconfont"
-                :class="isFullscreen === true ? 'suoxiao' : 'fullScreen'"
-            ></i>
+            <MyIcon
+                :icon="isFullscreen === true ? 'suoxiao' : 'fullScreen'"
+                :font="20"
+                :hover="true"
+                :width="500"
+            ></MyIcon>
         </el-tooltip>
     </div>
 </template>

@@ -1,7 +1,13 @@
 <template>
     <div class="systemSetting">
         <el-tooltip content="系统设置" placement="bottom" effect="light">
-            <MyIcon icon="setting" :font="25" @click="open"></MyIcon>
+            <MyIcon
+                icon="setting"
+                :font="20"
+                :hover="true"
+                :width="500"
+                @click="open"
+            ></MyIcon>
         </el-tooltip>
         <el-drawer v-model="drawer" title="系统设置" direction="rtl">
             <span>Hi, there!</span>

@@ -61,7 +61,7 @@
             align-items: center;
 
             .item {
-                padding: 0 10px;
+                padding: 0 12px;
                 cursor: pointer;
 
                 &:last-child {
