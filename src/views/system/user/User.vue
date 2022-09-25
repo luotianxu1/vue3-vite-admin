@@ -40,6 +40,15 @@
                 <el-button :icon="Download" type="primary" @click="exportExcel">
                     导出
                 </el-button>
+                <el-button type="primary" link>
+                    多选搜索
+                    <template #icon>
+                        <i
+                            class="iconfont icon-shaixuan"
+                            style="font-size: 18px"
+                        ></i>
+                    </template>
+                </el-button>
             </div>
         </template>
         <template #fr>
@@ -107,7 +116,10 @@
                 ></el-switch>
             </template>
         </MyTable>
-        <template #footer>
+        <template #btn>
+            <el-button>反选</el-button>
+        </template>
+        <template #page>
             <div class="query-item">
                 <el-pagination
                     v-model:currentPage="tableData.pageIndex"

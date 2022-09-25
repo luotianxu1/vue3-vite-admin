@@ -4,11 +4,14 @@
         element-loading-text="加载中..."
         class="layout"
     >
+        <div class="top">
+            <slot name="top"></slot>
+        </div>
         <div class="query">
-            <div class="fl">
+            <div class="item">
                 <slot name="fl"></slot>
             </div>
-            <div class="fr">
+            <div class="item">
                 <slot name="fr"></slot>
             </div>
         </div>
@@ -16,7 +19,12 @@
             <slot></slot>
         </div>
         <div class="footer">
-            <slot name="footer"></slot>
+            <div class="item">
+                <slot name="btn"></slot>
+            </div>
+            <div class="item">
+                <slot name="page"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -64,20 +72,10 @@
         }
 
         .query {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding-bottom: 5px;
-
-            .fl {
-                float: left;
-                display: flex;
-                align-items: center;
-            }
-
-            .fr {
-                float: right;
-                display: flex;
-                align-items: center;
-            }
         }
 
         .table {
@@ -90,7 +88,12 @@
         .footer {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
         }
     }
 </style>

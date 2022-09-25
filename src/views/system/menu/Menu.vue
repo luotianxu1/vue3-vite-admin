@@ -55,7 +55,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <template #footer>
+        <template #page>
             <div class="query-item">
                 <el-pagination
                     v-model:currentPage="tableData.pageIndex"
