@@ -11,8 +11,7 @@
             <el-main>
                 <Connect></Connect>
             </el-main>
-            <el-footer>
-            </el-footer>
+            <el-footer></el-footer>
         </el-container>
     </el-container>
 </template>

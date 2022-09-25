@@ -44,14 +44,14 @@
                 &:nth-child(9) {
                     background-color: lightcoral;
                     height: 60px;
-                    top: 44px
+                    top: 44px;
                 }
 
                 &:nth-child(2),
                 &:nth-child(8) {
                     background-color: lightblue;
                     height: 120px;
-                    top: 12px
+                    top: 12px;
                 }
 
                 &:nth-child(3),
@@ -65,30 +65,32 @@
                 &:nth-child(6) {
                     background-color: gold;
                     height: 180px;
-                    top: 16px
+                    top: 16px;
                 }
 
                 &:nth-child(5) {
                     background-color: plum;
                     height: 180px;
-                    top: 32px
+                    top: 32px;
                 }
             }
         }
     }
 
     @keyframes beating {
-        0%, 30% {
+        0%,
+        30% {
             height: 50%;
             top: 25%;
             background-color: plum;
             filter: blur(0);
         }
-        60%,70% {
+        60%,
+        70% {
             height: 50%;
             top: 25%;
             background-color: plum;
             filter: blur(5px);
         }
-     }
+    }
 </style>

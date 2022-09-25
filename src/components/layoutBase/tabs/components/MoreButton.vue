@@ -27,7 +27,9 @@
 
     // 关闭当前
     const closeCurrentTab = () => {
-        if (globalStore.SYSTEM_ACTIVE_ROUTER === HOME_URL) { return }
+        if (globalStore.SYSTEM_ACTIVE_ROUTER === HOME_URL) {
+            return
+        }
         globalStore.removeTabs(globalStore.SYSTEM_ACTIVE_ROUTER)
     }
 

@@ -7,9 +7,7 @@ export const UserStore = defineStore({
     state: (): UserState => ({
         USER_INFO: {}
     }),
-    getters: {
-    },
-    actions: {
-    },
+    getters: {},
+    actions: {},
     persist: piniaPersistConfig('UserState')
 })

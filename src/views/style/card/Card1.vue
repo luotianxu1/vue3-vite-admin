@@ -7,7 +7,7 @@
                     <p>Web Designer</p>
                     <div class="image">
                         <img
-                            src='../../../assets/img/style/card/card7.jpeg'
+                            src="../../../assets/img/style/card/card7.jpeg"
                             alt=""
                         />
                     </div>

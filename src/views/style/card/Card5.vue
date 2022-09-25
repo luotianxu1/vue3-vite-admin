@@ -2,14 +2,14 @@
     <div class="page">
         <div class="container">
             <div
-                v-for='(item,index) in list'
-                :key='index'
+                v-for="(item, index) in list"
+                :key="index"
                 class="panel"
-                :style="{backgroundImage: 'url('+item.url+')'}"
-                :class='chooseNum === index ? "active" : ""'
-                @click='choose(index)'
+                :style="{ backgroundImage: 'url(' + item.url + ')' }"
+                :class="chooseNum === index ? 'active' : ''"
+                @click="choose(index)"
             >
-                <h3>{{item.name}}</h3>
+                <h3>{{ item.name }}</h3>
             </div>
         </div>
     </div>

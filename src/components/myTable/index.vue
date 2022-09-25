@@ -27,7 +27,7 @@
             width="60"
             :fixed="true"
             :align="align"
-            label='编号'
+            label="编号"
         ></el-table-column>
 
         <template v-for="(item, itemIndex) in column" :key="itemIndex">
@@ -60,7 +60,6 @@
 </template>
 
 <script lang="ts" setup>
-
     const props = defineProps({
         column: {
             type: Object,
@@ -104,7 +103,7 @@
         checkBox: Boolean,
         index: Boolean
     })
-    const tableData:any = reactive({
+    const tableData: any = reactive({
         total: 0,
         loading: false,
         data: []

@@ -177,8 +177,8 @@
                 justify-content: center;
                 width: inherit;
                 height: inherit;
-                color: rgba(255,255,255,0.7);
-                background: rgba(255,255,255,0.2);
+                color: rgba(255, 255, 255, 0.7);
+                background: rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
                 text-align: center;
                 font-size: 40px;
@@ -186,9 +186,9 @@
                 transition: 0.2s;
 
                 &:hover {
-                    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+                    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
                     color: #fff;
-                    background: rgba(255,255,255,0.3);
+                    background: rgba(255, 255, 255, 0.3);
                     font-size: 45px;
                 }
             }

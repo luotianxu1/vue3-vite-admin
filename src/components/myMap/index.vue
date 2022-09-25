@@ -9,14 +9,14 @@
     type Tplugin = 'ToolBar' | 'Scale' | 'HawkEye' | 'Geolocation'
 
     interface Props {
-        options?: AMap.MapOptions,
-        plugin?: [Tplugin?,Tplugin?,Tplugin?,Tplugin?]
+        options?: AMap.MapOptions
+        plugin?: [Tplugin?, Tplugin?, Tplugin?, Tplugin?]
     }
     const props = withDefaults(defineProps<Props>(), {
         options: () => {
             return {}
         },
-        plugin:() => {
+        plugin: () => {
             return ['ToolBar']
         }
     })

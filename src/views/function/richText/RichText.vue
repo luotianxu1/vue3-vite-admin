@@ -10,7 +10,7 @@
                 />
             </div>
             <div class="query-item">
-                {{text}}
+                {{ text }}
             </div>
         </template>
         <MyTextEditor

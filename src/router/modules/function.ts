@@ -27,7 +27,8 @@ const functionRouter: RouteRecordRaw[] = [
             {
                 path: 'richText',
                 name: '富文本编辑器',
-                component: () => import('@/views/function/richText/RichText.vue')
+                component: () =>
+                    import('@/views/function/richText/RichText.vue')
             },
             {
                 path: 'drag',

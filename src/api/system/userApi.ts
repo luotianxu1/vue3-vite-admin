@@ -62,7 +62,8 @@ export const registerApi = (
 // 获取用户菜单
 export const getUserPageList = (
     data: PageListParams
-): Promise<ResponseData<UserList>> => request.post('/api/pageListV2', data)
+): Promise<ResponseData<PageListParams>> =>
+    request.post('/api/pageListV2', data)
 
 // 获取用户列表
 export const getUserListApi = (

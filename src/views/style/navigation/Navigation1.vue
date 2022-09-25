@@ -9,7 +9,11 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <MyIcon icon="yonghu" :width="800" :font="22"></MyIcon>
+                            <MyIcon
+                                icon="yonghu"
+                                :width="800"
+                                :font="22"
+                            ></MyIcon>
                         </span>
                         <span class="text">用户</span>
                     </span>
@@ -21,7 +25,11 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <MyIcon icon="caidan1" :width="800" :font="22"></MyIcon>
+                            <MyIcon
+                                icon="caidan1"
+                                :width="800"
+                                :font="22"
+                            ></MyIcon>
                         </span>
                         <span class="text">菜单</span>
                     </span>
@@ -33,7 +41,11 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <MyIcon icon="rili" :width="800" :font="22"></MyIcon>
+                            <MyIcon
+                                icon="rili"
+                                :width="800"
+                                :font="22"
+                            ></MyIcon>
                         </span>
                         <span class="text">日历</span>
                     </span>
@@ -45,7 +57,11 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <MyIcon icon="gongju" :width="800" :font="22"></MyIcon>
+                            <MyIcon
+                                icon="gongju"
+                                :width="800"
+                                :font="22"
+                            ></MyIcon>
                         </span>
                         <span class="text">工具</span>
                     </span>
@@ -57,7 +73,11 @@
                 >
                     <span class="item">
                         <span class="icon">
-                            <MyIcon icon="ditu" :width="800" :font="22"></MyIcon>
+                            <MyIcon
+                                icon="ditu"
+                                :width="800"
+                                :font="22"
+                            ></MyIcon>
                         </span>
                         <span class="text">地图</span>
                     </span>

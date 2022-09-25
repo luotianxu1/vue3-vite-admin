@@ -6,22 +6,22 @@
                     <el-avatar :size="40" :src="USER_INFO?.img"></el-avatar>
                     <span class="userInfo">
                         <span>{{ USER_INFO?.name }}</span>
-                        <span>{{ userStatus[USER_INFO.type] }}</span>
+                        <span>{{ userStatus[USER_INFO.type as number] }}</span>
                     </span>
                 </span>
-                <el-icon class='el-icon--right'>
+                <el-icon class="el-icon--right">
                     <ArrowDown />
                 </el-icon>
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item command='userCenter'>
+                    <el-dropdown-item command="userCenter">
                         个人中心
                     </el-dropdown-item>
-                    <el-dropdown-item command='taskCenter'>
+                    <el-dropdown-item command="taskCenter">
                         任务中心
                     </el-dropdown-item>
-                    <el-dropdown-item command='quit' divided>
+                    <el-dropdown-item command="quit" divided>
                         退出登录
                     </el-dropdown-item>
                 </el-dropdown-menu>
@@ -30,7 +30,7 @@
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import { useRouter } from 'vue-router'
     import { UserStore } from '@/store/modules/user'
     import { storeToRefs } from 'pinia'
@@ -67,7 +67,7 @@
     }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .avatar {
         cursor: pointer;
     }

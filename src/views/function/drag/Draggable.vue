@@ -4,15 +4,14 @@
             <el-tag
                 v-for="item in activities"
                 :key="item.type"
-                :type="item.type"
+                :index="item.type"
                 effect="dark"
             >
                 {{ item.name }}
             </el-tag>
         </MyDraggable>
-        {{activities}}
+        {{ activities }}
     </div>
-
 </template>
 
 <script lang="ts" setup>
@@ -25,7 +24,7 @@
 </script>
 
 <style scoped lang="scss">
-.el-tag{
-		margin-right: 5px;
-}
+    .el-tag {
+        margin-right: 5px;
+    }
 </style>

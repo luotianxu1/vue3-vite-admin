@@ -1,29 +1,30 @@
 <template>
-    <div class='top'>
-        <el-avatar :size='40' :src='url'></el-avatar>
-        <span v-show='!globalStore.SYSTEM_COLLAPSE' class='title'>
+    <div class="top">
+        <el-avatar :size="40" :src="url"></el-avatar>
+        <span v-show="!globalStore.SYSTEM_COLLAPSE" class="title">
             管理系统模板
         </span>
     </div>
-    <el-scrollbar class='scrollbar'>
+    <el-scrollbar class="scrollbar">
         <el-menu
-            :collapse='globalStore.SYSTEM_COLLAPSE'
+            :collapse="globalStore.SYSTEM_COLLAPSE"
             unique-opened
-            :collapse-transition='true'
-            class='el-menu-vertical-demo'
-            :default-active='globalStore.SYSTEM_ACTIVE_ROUTER'
+            :collapse-transition="true"
+            class="el-menu-vertical-demo"
+            :default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
             router
         >
-            <TreeMenu :tree-data='list' :collapse='isCollapse'></TreeMenu>
+            <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
         </el-menu>
     </el-scrollbar>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import router from '@/router'
     import { GlobalStore } from '@/store'
     import { UserStore } from '@/store/modules/user'
     import { getUserPageList } from '@/api/system/userApi'
+    import { ElMessage } from 'element-plus'
     import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'
 
     // 图标
@@ -54,7 +55,7 @@
     const userStore = UserStore()
     const getList = async () => {
         const res = await getUserPageList({
-            id: userStore.USER_INFO.id as number
+            userId: userStore.USER_INFO.id
         })
         if (res.status === 200) {
             list.value = res.data?.list
@@ -65,7 +66,7 @@
     }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .top {
         display: flex;
         align-items: center;

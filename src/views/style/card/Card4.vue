@@ -37,10 +37,7 @@
                 light.style.display = 'block'
                 list.addEventListener('mousemove', (e) => {
                     let x =
-                        e.pageX -
-                        list.offsetLeft -
-                        light.offsetWidth / 2 -
-                        200
+                        e.pageX - list.offsetLeft - light.offsetWidth / 2 - 200
                     let y = e.pageY - list.offsetTop - light.offsetWidth / 2
                     light.style.left = x + 'px'
                     light.style.top = y + 'px'

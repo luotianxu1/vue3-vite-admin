@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
     import screenfull from 'screenfull'
+    import { ElMessage } from 'element-plus'
 
     const sf = screenfull
 

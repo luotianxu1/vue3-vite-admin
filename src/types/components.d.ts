@@ -59,6 +59,7 @@ declare module 'vue' {
     MyTable: typeof import('./../components/myTable/index.vue')['default']
     MyTextEditor: typeof import('./../components/myTextEditor/index.vue')['default']
     Screenfull: typeof import('./../components/layoutBase/header/components/Screenfull.vue')['default']
+    Select: typeof import('./../components/layoutBase/header/components/Select.vue')['default']
     Setting: typeof import('./../components/layoutBase/header/components/Setting.vue')['default']
     Sidebar: typeof import('./../components/layoutBase/sidebar/Sidebar.vue')['default']
     Tabs: typeof import('./../components/layoutBase/tabs/index.vue')['default']

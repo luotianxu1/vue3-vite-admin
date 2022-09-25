@@ -12,17 +12,20 @@ const demoRouter: RouteRecordRaw[] = [
             {
                 path: 'navigation',
                 name: '导航栏1',
-                component: () => import('@/views/style/navigation/Navigation1.vue')
+                component: () =>
+                    import('@/views/style/navigation/Navigation1.vue')
             },
             {
                 path: 'navigation2',
                 name: '导航栏2',
-                component: () => import('@/views/style/navigation/Navigation2.vue')
+                component: () =>
+                    import('@/views/style/navigation/Navigation2.vue')
             },
             {
                 path: 'navigation3',
                 name: '导航栏3',
-                component: () => import('@/views/style/navigation/Navigation3.vue')
+                component: () =>
+                    import('@/views/style/navigation/Navigation3.vue')
             },
             {
                 path: 'card1',

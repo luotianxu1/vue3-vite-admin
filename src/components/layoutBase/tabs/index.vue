@@ -1,14 +1,19 @@
 <template>
     <div class="tabs-box">
         <div class="tabs-menu">
-            <el-tabs v-model='tabsMenuValue' type='card' @tab-click='tabClick' @tab-remove="removeTab">
+            <el-tabs
+                v-model="tabsMenuValue"
+                type="card"
+                @tab-click="tabClick"
+                @tab-remove="removeTab"
+            >
                 <el-tab-pane
-                    v-for='item in tabsMenuList'
-                    :key='item.path'
-                    :path='item.path'
-                    :label='item.title'
-                    :name='item.path'
-                    :closable='item.close'
+                    v-for="item in tabsMenuList"
+                    :key="item.path"
+                    :path="item.path"
+                    :label="item.title"
+                    :name="item.path"
+                    :closable="item.close"
                 >
                     <template #label>
                         {{ item.title }}
@@ -20,11 +25,11 @@
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import MoreButton from './components/MoreButton.vue'
-    import {GlobalStore} from '@/store'
+    import { GlobalStore } from '@/store'
     import { useRoute, useRouter } from 'vue-router'
-    import { TabsPaneContext } from 'element-plus'
+    import { TabPanelName, TabsPaneContext } from 'element-plus'
 
     const globalStore = GlobalStore()
     const tabsMenuList = computed(() => globalStore.SYSTEM_ROUTER_LIST)
@@ -32,7 +37,7 @@
         get: () => {
             return globalStore.SYSTEM_ACTIVE_ROUTER
         },
-        set: val => {
+        set: (val) => {
             globalStore.setTabsMenuValue(val)
         }
     })
@@ -60,8 +65,8 @@
         router.push(path)
     }
 
-    const removeTab = (activeTabPath: string) => {
-        globalStore.removeTabs(activeTabPath)
+    const removeTab = (activeTabPath: TabPanelName) => {
+        globalStore.removeTabs(activeTabPath as string)
     }
 </script>
 

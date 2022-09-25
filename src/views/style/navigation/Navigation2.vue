@@ -51,14 +51,16 @@
                             top: calc(50% - 2px);
                             transform: rotate(-45deg);
                             background-color: #fb7299;
-                            transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+                            transition: top 0.3s ease-in-out,
+                                transform 0.3s ease-in-out 0.3s;
                         }
 
                         &:nth-child(3) {
                             top: calc(50% - 2px);
                             transform: rotate(45deg);
                             background-color: #fb7299;
-                            transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+                            transition: top 0.3s ease-in-out,
+                                transform 0.3s ease-in-out 0.3s;
                         }
                     }
                 }

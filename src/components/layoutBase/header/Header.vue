@@ -1,30 +1,34 @@
 <template>
-    <div class='header'>
-        <div class='left'>
+    <div class="header">
+        <div class="left">
             <MyIcon
-                :icon="globalStore.SYSTEM_COLLAPSE ? 'mulushousuo' : 'muluzhankai'"
-                :font='20'
-                @click='changAside'
+                :icon="
+                    globalStore.SYSTEM_COLLAPSE ? 'mulushousuo' : 'muluzhankai'
+                "
+                :font="20"
+                @click="changAside"
             ></MyIcon>
-            <BreadCrumb class='item'></BreadCrumb>
+            <BreadCrumb class="item"></BreadCrumb>
         </div>
-        <div class='right'>
-            <Info class='item'></Info>
-            <ScreenFull class='item'></ScreenFull>
-            <ChangeLanguage class='item'></ChangeLanguage>
-            <Setting class='item'></Setting>
-            <Avatar class='item'></Avatar>
+        <div class="right">
+            <Select class="item"></Select>
+            <Info class="item"></Info>
+            <ScreenFull class="item"></ScreenFull>
+            <ChangeLanguage class="item"></ChangeLanguage>
+            <Setting class="item"></Setting>
+            <Avatar class="item"></Avatar>
         </div>
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import { GlobalStore } from '@/store'
     import Avatar from './components/Avatar.vue'
     import Info from './components/Info.vue'
     import Setting from './components/Setting.vue'
     import ScreenFull from './components/Screenfull.vue'
     import BreadCrumb from './components/BreadCrumb.vue'
+    import Select from './components/Select.vue'
 
     const globalStore = GlobalStore()
     const changAside = () => {
@@ -32,7 +36,7 @@
     }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
     .header {
         display: flex;
         align-items: center;
@@ -61,7 +65,7 @@
                 cursor: pointer;
 
                 &:last-child {
-                    padding-left: 0!important;
+                    padding-left: 0 !important;
                 }
             }
         }
