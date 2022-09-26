@@ -135,15 +135,15 @@ L.TileLayer.ChinaProvider.providers = {
 
     Baidu: {
         Normal: {
-            Map: '//api0.map.bdimg.com/customimage/tile?&x={x}&y={y}&z={z}&udt=20191205&scale=1&ak=5ieMMexWmzB9jivTq6oCRX9j'
+            Map: 'https://maponline{s}.bdimg.com/tile/?qt=vtile&styles=pl&scaler=2&udt=20220923&from=jsapi2_0&x={x}&y={y}&z={z}',
+            subdomains:['0', '1', '2', '3'],
         },
         Satellite: {
             Map: '//shangetu{s}.map.bdimg.com/it/u=x={x};y={y};z={z};v=009;type=sate&fm=46',
             Annotion:
                 '//online{s}.map.bdimg.com/tile/?qt=tile&x={x}&y={y}&z={z}&styles=sl&v=020'
         },
-        Subdomains: '0123456789',
-        tms: true
+        Subdomains: '0123456789'
     },
 
     Tencent: {
