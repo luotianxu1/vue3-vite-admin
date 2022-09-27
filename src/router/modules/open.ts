@@ -71,6 +71,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'jump',
                 name: '跳一跳',
                 component: () => import('@/views/open/jump/Jump.vue')
+            },
+            {
+                path: 'sheep',
+                name: '羊了个羊',
+                component: () => import('@/views/game/sheep/Sheep.vue')
             }
         ]
     }
