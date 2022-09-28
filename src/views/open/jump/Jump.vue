@@ -16,7 +16,9 @@
 
     onMounted(() => {
         init()
+        console.log(platform)
         if (platform === 'computer') {
+            console.log(132456)
             window.addEventListener('mousedown', handleTouchStart)
             window.addEventListener('mouseup', handleTouchEnd)
         } else {

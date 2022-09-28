@@ -32,8 +32,9 @@ function systemPlatform() {
         platform === 'linux'
     ) {
         type = 'computer'
+    } else {
+        type = 'phone'
     }
-    type = 'phone'
     return type
 }
 
