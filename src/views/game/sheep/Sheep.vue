@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <div id="storageBox"></div>
+        <div ref='photoBox' class='photoBox'></div>
+        <div ref='storageBox' class="storageBox"></div>
     </div>
 </template>
 
@@ -22,6 +23,18 @@
     const imgs = [img1,img2,img3,img4]
     // 游戏状态
     const gameOver = false
+
+    const storageBox = ref<HTMLDivElement>()
+    const photoBox = ref<HTMLDivElement>()
+
+    onMounted(() => {
+        if (!storageBox.value) {
+            return
+        }
+        console.log(storageBox.value.offsetWidth)
+        console.log(storageBox.value.offsetHeight)
+        console.log()
+    })
 
     // 打乱数组
     const randomSort = () => {
@@ -63,14 +76,29 @@
 
 <style scoped lang="scss">
     #app {
-        width: 500px;
-        height: 600px;
-        margin: 50px auto;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         background-color: blue;
         background-size: 100% auto;
         background-position: center;
-        position: relative;
         border: 5px;
+
+        .photoBox {
+            height: 80%;
+            width: 90%;
+        }
+
+        .storageBox {
+            height: 10%;
+            width: 80%;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
     }
 
     .imgGlobal {
@@ -83,12 +111,4 @@
         filter: brightness(30%);
     }
 
-    #storage {
-        height: 50px;
-        width: 350px;
-        position: absolute;
-        border-radius: 5px;
-        bottom: 40px;
-        left: 75px;
-    }
 </style>

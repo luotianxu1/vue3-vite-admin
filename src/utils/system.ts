@@ -1,0 +1,40 @@
+/**
+ * 获取系统
+ */
+const ua = navigator.userAgent.toLowerCase()
+const testUa = (regexp) => regexp.test(ua)
+
+function systemType() {
+    let system
+    if (testUa(/windows|win32|win64|wow32|wow64/gi)) {
+        system = 'windows'
+    } else if (testUa(/macintosh|macintel/gi)) {
+        system = 'macos'
+    } else if (testUa(/x11/gi)) {
+        system = 'linux'
+    } else if (testUa(/android|adr/gi)) {
+        system = 'andriod'
+    } else if (testUa(/ios|iphone|ipad|iwatch/gi)) {
+        system = 'ios'
+    }
+    return system
+}
+
+/**
+ * 获取运行平台类型
+ */
+function systemPlatform() {
+    let type
+    let platform = systemType()
+    if (
+        platform === 'windows' ||
+        platform === 'macos' ||
+        platform === 'linux'
+    ) {
+        type = 'computer'
+    }
+    type = 'phone'
+    return type
+}
+
+export { systemType, systemPlatform }
