@@ -18,7 +18,6 @@
         init()
         console.log(platform)
         if (platform === 'computer') {
-            console.log(132456)
             window.addEventListener('mousedown', handleTouchStart)
             window.addEventListener('mouseup', handleTouchEnd)
         } else {
@@ -234,7 +233,7 @@
 
     // 游戏结束
     const gameOver = () => {
-        ElMessage.error('游戏结束')
+        ElMessage.error('游戏结束，重新开始！')
         cubes.forEach(item => {
             web.scene.remove(item)
         })
