@@ -1,28 +1,46 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+    <div class='app'>
+        <div ref='webGl' class='webGl'></div>
+        <div class='num'>{{ num }}</div>
+    </div>
 </template>
 
-<script lang="ts" setup>
+<script lang='ts' setup>
     import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
     import { ElMessage } from 'element-plus'
+    import { systemPlatform } from '@/utils/system'
 
     const webGl = ref()
+    const platform = systemPlatform()
 
     onMounted(() => {
         init()
-        window.addEventListener('mousedown', handleTouchStart)
-        window.addEventListener('mouseup', handleTouchEnd)
+        if (platform === 'computer') {
+            window.addEventListener('mousedown', handleTouchStart)
+            window.addEventListener('mouseup', handleTouchEnd)
+        } else {
+            window.addEventListener('touchstart', handleTouchStart)
+            window.addEventListener('touchend', handleTouchEnd)
+        }
     })
 
     onUnmounted(() => {
         web.remove()
+        if (platform === 'computer') {
+            window.removeEventListener('mousedown', handleTouchStart)
+            window.removeEventListener('mouseup', handleTouchEnd)
+        } else {
+            window.removeEventListener('touchstart', handleTouchStart)
+            window.removeEventListener('touchend', handleTouchEnd)
+        }
     })
 
     let cameraPos = {
         next: new THREE.Vector3(0, 0, 0),
         curr: new THREE.Vector3()
     }
+    const num = ref<number>(0)
 
     let web
     const init = () => {
@@ -123,6 +141,7 @@
         const geometry = new THREE.BoxGeometry(0.25, 0.5, 0.25)
         const material = new THREE.MeshPhongMaterial({ color: '#000000' })
         jumper = new THREE.Mesh(geometry, material)
+        jumper.name = 'jumper'
         geometry.translate(0, 0.25, 0)
         jumper.position.y = 0.25
         web.scene.add(jumper)
@@ -158,9 +177,10 @@
             jumperStat.ySpeed = 0
             jumperStat.xSpeed = 0
             jumperStat.ready = false
-            checkInCube()
-            if (cubeStat.result === 2) {
+            let result = checkInCube()
+            if (cubeStat.result === 2 && result) {
                 createBox()
+                num.value++
             }
         }
     }
@@ -204,8 +224,28 @@
         } else if (totalN < widthTotalData) {
             cubeStat.result = cubeStat.cubeWidth / 2 > totalN ? 2 : -2
         } else {
-            ElMessage.error('游戏结束')
+            gameOver()
+            return false
         }
+        return true
+    }
+
+    // 游戏结束
+    const gameOver = () => {
+        ElMessage.error('游戏结束')
+        cubes.forEach(item => {
+            web.scene.remove(item)
+        })
+        cubes = []
+        createBox()
+        createBox()
+        cameraPos = {
+            next: new THREE.Vector3(0, 0, 0),
+            curr: new THREE.Vector3()
+        }
+        updateCamera()
+        jumper.position.set(0, 0.25, 0)
+        num.value = 0
     }
 
     const render = () => {
@@ -214,10 +254,25 @@
     }
 </script>
 
-<style scoped lang="scss">
-    .webGl {
+<style scoped lang='scss'>
+    .app {
         width: 100%;
         height: 100%;
         position: relative;
+
+        .webGl {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .num {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            color: #fff;
+        }
     }
+
 </style>
