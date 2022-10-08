@@ -7,6 +7,7 @@ import threeRouter from '@/router/modules/three'
 import functionRouter from '@/router/modules/function'
 import errorRouter from '@/router/modules/error'
 import cesiumRouter from '@/router/modules/cesium'
+import gameRouter from '@/router/modules/game'
 import NProgress from 'nprogress'
 import 'nprogress/css/nprogress.css'
 NProgress.configure({ showSpinner: false })
@@ -19,7 +20,8 @@ export const asyncRouterList: Array<RouteRecordRaw> = [
     ...threeRouter,
     ...functionRouter,
     ...errorRouter,
-    ...cesiumRouter
+    ...cesiumRouter,
+    ...gameRouter
 ]
 
 export type AppRouteRecordRaw = RouteRecordRaw & {

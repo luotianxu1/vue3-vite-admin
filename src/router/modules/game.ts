@@ -1,22 +1,28 @@
 import LayoutOpen from '@/components/layoutOpen/index.vue'
 import { RouteRecordRaw } from 'vue-router'
 
-const cesiumRouter: RouteRecordRaw[] = [
+const gameRouter: RouteRecordRaw[] = [
     {
-        path: '/cesium',
+        path: '/game',
         component: LayoutOpen,
-        name: 'cesium',
-        meta: { title: 'cesium' },
-        redirect: '/system/user',
+        name: 'game',
+        meta: { title: 'game' },
+        redirect: '/game/sheep',
         children: [
             {
-                path: 'cesium',
-                name: 'cesium',
-                meta: { title: 'cesium', keepAlive: true },
-                component: () => import('@/views/cesium/init/Cesium.vue')
+                path: 'sheep',
+                name: 'sheep',
+                meta: { title: 'sheep', keepAlive: true },
+                component: () => import('@/views/game/sheep/Sheep2.vue')
+            },
+            {
+                path: 'jump',
+                name: 'jump',
+                meta: { title: 'jump', keepAlive: true },
+                component: () => import('@/views/game/jump/Jump.vue')
             }
         ]
     }
 ]
 
-export default cesiumRouter
+export default gameRouter
