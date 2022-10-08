@@ -43,6 +43,7 @@
     <div v-else-if="step === 2" class="intro">
         <h1>{{ result ? 'You Win！🎉' : 'You Lose!😢' }}</h1>
         <el-button type="primary" @click="rePlay">再来一轮</el-button>
+        <el-button type="primary" @click="setGame">难度调节</el-button>
     </div>
     <div v-else class="box">
         <div class="card-wrap" :style="cardWrapStyle">
@@ -181,6 +182,10 @@
     // 重新开始
     const rePlay = () => {
         initGame()
+    }
+    // 设置
+    const setGame = () => {
+        step.value = 0
     }
 
     const result = ref<boolean>(false)
