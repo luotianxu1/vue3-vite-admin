@@ -366,9 +366,7 @@
     })
 
     // 点击卡片
-    let timer
     const clickCard = (item) => {
-        clearTimeout(timer)
         removeThree()
         penddingList.value.push(item)
         const index = cardItemList.value.indexOf(item)
@@ -385,9 +383,7 @@
                 'px'
         }, 0)
 
-        timer = setTimeout(() => {
-            removeThree()
-        }, 500)
+        removeThree()
     }
 
     const removeThree = () => {
