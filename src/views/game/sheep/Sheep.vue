@@ -31,7 +31,7 @@
             <input
                 v-model="option.maxCardType"
                 min="3"
-                max="14"
+                max="10"
                 step="1"
                 type="range"
             />
