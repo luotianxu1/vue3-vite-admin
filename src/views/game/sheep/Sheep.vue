@@ -41,12 +41,13 @@
         <el-button type="primary" @click="startGame">开始游戏</el-button>
     </div>
     <div v-else-if="step === 2" class="intro">
-        <h1>{{ result ? 'You Win！🎉' : 'You Lose!😢' }}</h1>
+        <h1>{{ result ? 'You Win!🎉' : 'You Lose!😢' }}</h1>
         <el-button type="primary" @click="rePlay">再来一轮</el-button>
         <el-button type="primary" @click="setGame">难度调节</el-button>
     </div>
     <div v-else class="box">
         <div class="card-wrap" :style="cardWrapStyle">
+            <!-- 所有卡片 -->
             <div
                 v-for="item in cardItemList"
                 :key="item.key"
@@ -57,6 +58,7 @@
             >
                 {{ item.content }}
             </div>
+            <!-- 已经选中的卡片 -->
             <div
                 v-for="item in penddingList"
                 :key="item.key"
@@ -65,6 +67,7 @@
             >
                 {{ item.content }}
             </div>
+            <!-- 已经清除的卡片 -->
             <div
                 v-for="item in clearList"
                 :key="item.key"
@@ -73,23 +76,11 @@
             >
                 {{ item.content }}
             </div>
-            <div
-                v-for="item in saveList"
-                :key="item.key"
-                class="card-item"
-                :style="item.style"
-                @click="clickSaveCard(item)"
-            >
-                {{ item.content }}
-            </div>
             <p class="card-tips">
-                剩余空位:{{ 7 - penddingList.length }}/7；已消除:{{
+                剩余空位:{{ 7 - penddingList.length }}/7;已消除:{{
                     clearList.length
                 }}/{{
-                    cardItemList.length +
-                    penddingList.length +
-                    saveList.length +
-                    clearList.length
+                    cardItemList.length + penddingList.length + clearList.length
                 }}
             </p>
         </div>
@@ -102,8 +93,6 @@
 
 <script lang="ts" setup>
     class CardItem {
-        static width = 20
-        static height = 21
         x = 20
         y = 21
         z = 0
@@ -111,6 +100,8 @@
         val = 0
         style: {}
         content
+        static width = 20
+        static height = 21
         static colorType = {
             1: { background: '#FFB7DD' },
             2: { background: '#FFCCCC' },
@@ -124,8 +115,7 @@
             10: { background: '#BBFFEE' },
             11: { background: '#AAFFEE' },
             12: { background: '#99FFFF' },
-            13: { background: '#CCEEFF' },
-            14: { background: '#CCDDFF' }
+            13: { background: '#CCDDFF' }
         }
 
         static contentType = {
@@ -141,8 +131,7 @@
             10: '🌽',
             11: '🌾',
             12: '🐑',
-            13: '🪵',
-            14: '🔥'
+            13: '🔥'
         }
 
         constructor({ x, y, z, key }) {
@@ -188,45 +177,42 @@
         step.value = 0
     }
 
+    // 判断游戏结果
     const result = ref<boolean>(false)
-    let map = ref<Array<any>>([])
-    // 所有方块
+    // 所有卡片
     const cardItemList = ref<Array<any>>([])
-    // 已经清除的方块
+    // 已经清除的卡片
     const clearList = ref<Array<any>>([])
-    // 选中的方块
-    const saveList = ref<Array<any>>([])
+    // 已经选中的卡片
     const penddingList = ref<Array<any>>([])
     const initGame = () => {
         step.value = 1
         getMap()
         penddingList.value = []
         clearList.value = []
-        saveList.value = []
         setCardValue()
         calcCover()
     }
 
-    let maxWidth = ref(0)
-    let maxHeight = ref(0)
+    let maxWidth = 0
+    let maxHeight = 0
     const getMap = () => {
-        console.log(option)
-        maxWidth.value = (option.x - 1) * 2
-        maxHeight.value = (option.y - 1) * 2
+        maxWidth = (option.x - 1) * 2
+        maxHeight = (option.y - 1) * 2
         const cardMap = new Array(option.z)
         const itemList: Array<any> = []
         let key = 0
         for (let k = 0; k < option.z; k++) {
-            cardMap[k] = new Array(maxHeight.value)
-            for (let i = 0; i < maxHeight.value; i++) {
-                cardMap[k][i] = new Array(maxWidth.value).fill(0)
+            cardMap[k] = new Array(maxHeight)
+            for (let i = 0; i < maxHeight; i++) {
+                cardMap[k][i] = new Array(maxWidth).fill(0)
             }
         }
         for (let k = 0; k < option.z; k++) {
             const shrink = Math.floor((option.z - k) / 3)
-            for (let i = shrink; i < maxHeight.value - shrink; i++) {
+            for (let i = shrink; i < maxHeight - shrink; i++) {
                 // 列，对称设置
-                const mid = Math.ceil((maxWidth.value - shrink) / 2)
+                const mid = Math.ceil((maxWidth - shrink) / 2)
                 for (let j = shrink; j <= mid; j++) {
                     let canSetCard = true
                     if (j > 0 && cardMap[k][i][j - 1]) {
@@ -262,7 +248,7 @@
                         if (j < mid) {
                             key++
                             cardItem = new CardItem({
-                                x: maxWidth.value - j,
+                                x: maxWidth - j,
                                 y: i,
                                 z: k,
                                 key
@@ -280,7 +266,6 @@
             cardMap[clearItem.z][clearItem.y][clearItem.x] = 0
         }
         itemList.reverse()
-        map.value = cardMap
         cardItemList.value = itemList
     }
 
@@ -317,9 +302,9 @@
 
     const calcCover = () => {
         // 构建一个遮挡 map
-        const coverMap = new Array(maxHeight.value)
-        for (let i = 0; i <= maxHeight.value; i++) {
-            coverMap[i] = new Array(maxWidth.value).fill(false)
+        const coverMap = new Array(maxHeight)
+        for (let i = 0; i <= maxHeight; i++) {
+            coverMap[i] = new Array(maxWidth).fill(false)
         }
 
         // 从后往前，后面的层数高
@@ -344,29 +329,22 @@
         }
     }
 
-    const clickSaveCard = (item) => {
-        cardItemList.value.push(item)
-        const index = saveList.value.indexOf(item)
-        saveList.value = saveList.value
-            .slice(0, index)
-            .concat(saveList.value.slice(index + 1))
-        clickCard(item)
-    }
-
     const leftOffset = computed(() => {
-        const wrapWidth = (maxWidth.value + 2) * CardItem.width
+        const wrapWidth = (maxWidth + 2) * CardItem.width
         return (wrapWidth - 7 * CardItem.width * 2) / 2
     })
 
     const cardWrapStyle = computed(() => {
         return {
-            width: (maxWidth.value + 2) * CardItem.width + 'px',
-            height: (maxHeight.value + 1) * CardItem.height + 'px'
+            width: (maxWidth + 2) * CardItem.width + 'px',
+            height: (maxHeight + 1) * CardItem.height + 'px'
         }
     })
 
     // 点击卡片
+    let timer
     const clickCard = (item) => {
+        clearTimeout(timer)
         removeThree()
         penddingList.value.push(item)
         const index = cardItemList.value.indexOf(item)
@@ -382,8 +360,9 @@
                 (penddingList.value.length - 1) * CardItem.width * 2 +
                 'px'
         }, 0)
-
-        removeThree()
+        timer = setTimeout(() => {
+            removeThree()
+        }, 100)
     }
 
     const removeThree = () => {
