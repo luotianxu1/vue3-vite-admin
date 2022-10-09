@@ -12,14 +12,21 @@ const gameRouter: RouteRecordRaw[] = [
             {
                 path: 'sheep',
                 name: 'sheep',
-                meta: { title: 'sheep', keepAlive: true },
+                meta: { title: 'sheep' },
                 component: () => import('@/views/game/sheep/Sheep.vue')
             },
             {
                 path: 'jump',
                 name: 'jump',
-                meta: { title: 'jump', keepAlive: true },
+                meta: { title: 'jump' },
                 component: () => import('@/views/game/jump/Jump.vue')
+            },
+            {
+                path: 'minesweeper',
+                name: 'minesweeper',
+                meta: { title: 'minesweeper' },
+                component: () =>
+                    import('@/views/game/minesweeper/Minesweeper.vue')
             }
         ]
     }
