@@ -456,6 +456,12 @@ const systemRouter: RouteRecordRaw[] = [
                     import('@/views/three/demo/missile/Missile.vue')
             },
             {
+                path: 'earch',
+                name: '地球',
+                meta: { title: 'earch' },
+                component: () => import('@/views/three/demo/earch/Earch.vue')
+            },
+            {
                 path: 'physics1',
                 name: '小球下落',
                 meta: { title: 'physics1' },
