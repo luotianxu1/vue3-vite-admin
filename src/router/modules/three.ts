@@ -439,7 +439,7 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'car',
                 name: '车',
                 meta: { title: 'car' },
-                component: () => import('@/views/three/demo/Car.vue')
+                component: () => import('@/views/three/demo/car/Car.vue')
             },
             {
                 path: 'fireWork',
@@ -447,6 +447,13 @@ const systemRouter: RouteRecordRaw[] = [
                 meta: { title: 'fireWork' },
                 component: () =>
                     import('@/views/three/demo/firework/FireWork.vue')
+            },
+            {
+                path: 'missile',
+                name: '导弹轨迹',
+                meta: { title: 'missile' },
+                component: () =>
+                    import('@/views/three/demo/missile/Missile.vue')
             },
             {
                 path: 'physics1',

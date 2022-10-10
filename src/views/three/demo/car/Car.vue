@@ -149,8 +149,6 @@
 
         // 添加网格地面
         const gridHelper = new THREE.GridHelper(10, 10)
-        gridHelper.material.opacity = 0.2
-        gridHelper.material.transparent = true
         web.scene.add(gridHelper)
 
         // 添加gltf汽车模型
