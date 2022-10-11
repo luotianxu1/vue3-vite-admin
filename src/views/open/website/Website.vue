@@ -20,67 +20,42 @@
 
 <script lang="ts" setup>
     import * as THREE from 'three'
-    import { ref, onMounted } from 'vue'
-    import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-    import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+    import WebGl from '@/utils/three/model/webGl'
     import { gsap } from 'gsap'
+
     let screenDom = ref()
     let pages = ref()
+
     onMounted(() => {
-        // 创建场景
-        let scene = new THREE.Scene()
-        // 创建相机
-        let camera = new THREE.PerspectiveCamera(
+        init()
+    })
+
+    onUnmounted(() => {
+        web.remove()
+    })
+
+    let web
+    const init = () => {
+        if (!screenDom.value) {
+            return
+        }
+        web = new WebGl(screenDom.value)
+        web.camera = new THREE.PerspectiveCamera(
             45,
             window.innerWidth / window.innerHeight,
             0.1,
             100000
         )
+        web.camera.position.set(0, 0, 10)
+        web.addDirectionalLight(0, 0, 1, 0xffffff, 1)
+        web.addDirectionalLight(0, 0, -1, 0xffffff, 0.5)
+        web.addAmbientLight(0xffffff, 0.5)
+        web.setbgPicture('./textures/bg/25s.jpg')
 
-        camera.position.set(0, 0, 10)
-        // 创建渲染器
-        let renderer = new THREE.WebGLRenderer({ antialias: true })
-        renderer.setSize(window.innerWidth, window.innerHeight)
-        // 将画布添加到页面中
-        if (!screenDom.value) {
-            return
-        }
-        screenDom.value.appendChild(renderer.domElement)
-
-        // 创建星空的背景
-        let url = './textures/bg/25s.jpg'
-        let envTexture = new THREE.TextureLoader().load(url)
-        envTexture.mapping = THREE.EquirectangularReflectionMapping
-        scene.background = envTexture
-        scene.environment = envTexture
-
-        function render() {
-            requestAnimationFrame(render)
-            renderer.render(scene, camera)
-        }
-        render()
-
-        // 添加灯光
-        let light = new THREE.DirectionalLight(0xffffff, 1)
-        light.position.set(0, 0, 1)
-        scene.add(light)
-        let light2 = new THREE.DirectionalLight(0xffffff, 0.5)
-        light2.position.set(0, 0, -1)
-        scene.add(light2)
-        let light3 = new THREE.AmbientLight(0xffffff, 0.5)
-        light3.position.set(-1, 1, 1)
-        scene.add(light3)
-
-        // 设置解压缩的加载器
-        let dracoLoader = new DRACOLoader()
-        dracoLoader.setDecoderPath('./draco/gltf/')
-        dracoLoader.setDecoderConfig({ type: 'js' })
-        let loader = new GLTFLoader()
-        loader.setDRACOLoader(dracoLoader)
-        loader.load('./model/glb/xz.glb', (gltf) => {
+        web.gltfLoader('./model/glb/xz.glb').then((gltf) => {
             gltf.scene.scale.set(0.1, 0.1, 0.1)
             gltf.scene.position.set(3, 0, 0)
-            scene.add(gltf.scene)
+            web.scene.add(gltf.scene)
 
             window.addEventListener('mousemove', (e) => {
                 let x = (e.clientX / window.innerWidth) * 2 - 1
@@ -94,11 +69,10 @@
                 })
             })
         })
-
-        loader.load('./model/glb/xq6.glb', (gltf) => {
+        web.gltfLoader('./model/glb/xq6.glb').then((gltf) => {
             gltf.scene.scale.set(0.1, 0.1, 0.1)
             gltf.scene.position.set(3, -8, 0)
-            scene.add(gltf.scene)
+            web.scene.add(gltf.scene)
 
             window.addEventListener('mousemove', (e) => {
                 let x = (e.clientX / window.innerWidth) * 2 - 1
@@ -112,11 +86,9 @@
                 })
             })
         })
-
-        loader.load('./model/glb/gr75.glb', (gltf) => {
-            // gltf.scene.scale.set(0.1, 0.1, 0.1);
+        web.gltfLoader('./model/glb/gr75.glb').then((gltf) => {
             gltf.scene.position.set(3, -16, 0)
-            scene.add(gltf.scene)
+            web.scene.add(gltf.scene)
 
             window.addEventListener('mousemove', (e) => {
                 let x = (e.clientX / window.innerWidth) * 2 - 1
@@ -147,7 +119,7 @@
                 }
             }
             if (!timeline2.isActive()) {
-                timeline2.to(camera.position, {
+                timeline2.to(web.camera.position, {
                     duration: 0.5,
                     y: page * -8
                 })
@@ -158,7 +130,7 @@
             }
         })
 
-        loader.load('./model/glb/moon.glb', (gltf) => {
+        web.gltfLoader('./model/glb/moon.glb').then((gltf) => {
             let moon = gltf.scene.children[0] as THREE.Mesh
             for (let j = 0; j < 10; j++) {
                 let moonInstance = new THREE.InstancedMesh(
@@ -186,10 +158,17 @@
                     ease: 'linear',
                     repeat: -1
                 })
-                scene.add(moonInstance)
+                web.scene.add(moonInstance)
             }
         })
-    })
+
+        render()
+    }
+
+    const render = () => {
+        web.update()
+        requestAnimationFrame(render)
+    }
 </script>
 
 <style>
