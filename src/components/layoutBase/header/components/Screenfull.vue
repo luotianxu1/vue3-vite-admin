@@ -2,7 +2,9 @@
     <div class="screenfull" @click="click">
         <el-tooltip content="全屏" placement="bottom" effect="light">
             <MyIcon
-                :icon="isFullscreen === true ? 'suoxiao' : 'fullScreen'"
+                :icon="
+                    isFullscreen === true ? 'icon-suoxiao' : 'icon-fullScreen'
+                "
                 :font="20"
                 :hover="true"
                 :width="500"

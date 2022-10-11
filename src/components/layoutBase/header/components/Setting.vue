@@ -2,7 +2,7 @@
     <div class="systemSetting">
         <el-tooltip content="系统设置" placement="bottom" effect="light">
             <MyIcon
-                icon="setting"
+                icon="icon-setting"
                 :font="20"
                 :hover="true"
                 :width="500"
