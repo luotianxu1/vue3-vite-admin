@@ -242,6 +242,13 @@ export default class WebGl {
         this.scene.background = new THREE.Color(color)
     }
 
+    setbgPicture(url) {
+        let envTexture = new THREE.TextureLoader().load(url)
+        envTexture.mapping = THREE.EquirectangularRefractionMapping
+        this.scene.background = envTexture
+        this.scene.environment = envTexture
+    }
+
     /**
      * 监听页面变化
      * @param domElement

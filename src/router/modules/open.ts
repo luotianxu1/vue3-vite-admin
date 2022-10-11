@@ -66,6 +66,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'map',
                 name: '3D地图',
                 component: () => import('@/views/open/map/Map.vue')
+            },
+            {
+                path: 'website',
+                name: '3D官网',
+                component: () => import('@/views/open/website/Website.vue')
             }
         ]
     }

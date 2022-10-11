@@ -77,11 +77,7 @@
     .title {
         background-color: rgba(0, 0, 0, 0) !important;
         font-family: XBS;
-        font-size: 3rem!important;
-    }
-
-    .font {
-        //font-family: FZCYJ;
+        font-size: 3rem !important;
     }
 
     .list-item {
