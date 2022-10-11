@@ -108,8 +108,6 @@
                 <el-switch
                     v-model="row.data.status"
                     :active-value="1"
-                    active-color="#13ce66"
-                    inactive-color="#ff4949"
                     inline-prompt
                     active-text="启"
                     inactive-text="禁"
