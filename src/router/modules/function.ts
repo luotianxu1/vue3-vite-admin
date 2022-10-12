@@ -71,6 +71,12 @@ const functionRouter: RouteRecordRaw[] = [
                 path: 'debounce',
                 name: '防抖指令',
                 component: () => import('@/views/function/debounce/index.vue')
+            },
+            {
+                path: 'imageView',
+                name: '图片预览',
+                component: () =>
+                    import('@/views/function/imageView/imageView.vue')
             }
         ]
     }
