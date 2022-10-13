@@ -3,10 +3,11 @@
         <el-upload
             v-model:file-list="fileList"
             class="upload-demo"
-            action="#"
+            action=""
             multiple
             :on-change="onChange"
             :limit="1"
+            :auto-upload="false"
         >
             <el-button type="primary">上传文件</el-button>
         </el-upload>
@@ -20,7 +21,7 @@
 <script lang="ts" setup>
     import axios from 'axios'
     import Qs from 'qs'
-    import { UploadUserFile } from 'element-plus'
+    import { UploadUserFile, ElMessage } from 'element-plus'
 
     const fileList = ref<UploadUserFile[]>()
     const textarea = ref('')
@@ -51,10 +52,9 @@
             res.data.words_result.forEach((item) => {
                 textarea.value += item.words
             })
+        } else {
+            ElMessage.warning('请联系管理员！')
         }
-        console.log(textarea.value)
-
-        console.log(res)
     }
 </script>
 <style lang="scss" scoped></style>
