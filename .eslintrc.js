@@ -222,7 +222,7 @@ module.exports = {
         'object-shorthand': 'off', // 强制对象字面量缩写语法
         'one-var': 'warn', // 连续声明
         'operator-assignment': ['off', 'always'], // 赋值运算符 += -=什么的
-        'operator-linebreak': ['error', 'after'], // 换行时运算符在行尾还是行首
+        'operator-linebreak': ['off', 'after'], // 换行时运算符在行尾还是行首
         'padded-blocks': 'off', // 块语句内行首行尾是否要空行
         'prefer-const': 'off', // 首选const
         'prefer-spread': 'off', // 首选展开运算
