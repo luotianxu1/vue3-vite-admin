@@ -52,10 +52,7 @@
                 if (child.isMesh && child.name === 'Plane') {
                     child.visible = false
                 }
-                if (
-                    child.isMesh &&
-                    child.material.name === 'Vetro'
-                ) {
+                if (child.isMesh && child.material.name === 'Vetro') {
                     vetroMaterial = child.material
                 }
             })
