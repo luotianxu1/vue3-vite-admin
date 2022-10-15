@@ -77,14 +77,6 @@ const functionRouter: RouteRecordRaw[] = [
                 name: '图片预览',
                 component: () =>
                     import('@/views/function/imageView/imageView.vue')
-            },
-            {
-                path: 'characterRecognition',
-                name: '文字识别',
-                component: () =>
-                    import(
-                        '@/views/function/characterRecognition/CharacterRecognition.vue'
-                    )
             }
         ]
     }

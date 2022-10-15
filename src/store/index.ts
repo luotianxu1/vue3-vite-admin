@@ -4,6 +4,7 @@ import piniaPersistConfig from '@/config/piniaPersist'
 import { GlobalState } from './interface'
 import { HOME_URL, TABS_BLACK_LIST } from '@/config/config'
 import router from '@/router/index'
+import dayjs from 'dayjs'
 
 export const GlobalStore = defineStore({
     // id: 必须的，在所有 Store 中唯一
@@ -15,9 +16,14 @@ export const GlobalStore = defineStore({
         SYSTEM_ROUTER_LIST: [
             { title: '首页', path: HOME_URL, icon: 'home-filled', close: false }
         ],
-        SYSTEM_PAGE_SIZE: 30
+        SYSTEM_PAGE_SIZE: 30,
+        SYETEM_TIME: 0
     }),
-    getters: {},
+    getters: {
+        systemTime(state) {
+            return dayjs(state.SYETEM_TIME).format('YYYY-MM-DD HH:mm:ss')
+        }
+    },
     actions: {
         // 添加tab
         async addTabs(tabItem: Menu.MenuOptions) {

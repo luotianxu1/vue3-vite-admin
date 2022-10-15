@@ -9,4 +9,6 @@ export interface GlobalState {
     SYSTEM_ROUTER_LIST: any
     // 分页页数
     SYSTEM_PAGE_SIZE: number
+    // 系统时间
+    SYETEM_TIME: number
 }

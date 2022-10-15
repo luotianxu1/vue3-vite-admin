@@ -33,6 +33,19 @@
     })
 
     const size = ref<'large' | 'default' | 'small'>('default')
+
+    let timer
+    onMounted(() => {
+        timer = setInterval(() => {
+            globalStore.SYETEM_TIME = new Date().valueOf()
+        }, 1000)
+    })
+
+    onUnmounted(() => {
+        if (timer) {
+            clearInterval(timer)
+        }
+    })
 </script>
 
 <style>
