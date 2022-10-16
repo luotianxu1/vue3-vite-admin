@@ -58,7 +58,7 @@
             </span>
         </template>
     </el-dialog>
-    <audio ref="audioRef" src="../../../../public/sound/gnzw.mp3"></audio>
+    <audio ref="audioRef" src="./sound/gnzw.mp3"></audio>
 </template>
 <script lang="ts" setup>
     import {
