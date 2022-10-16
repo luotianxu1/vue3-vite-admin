@@ -150,13 +150,17 @@
                         globalStore.systemTime ===
                         dayjs(item.time - 600000).format('YYYY-MM-DD HH:mm:ss')
                 )
-                audioRef.value.play()
+                if (data[0].remind) {
+                    audioRef.value.play()
+                }
                 ElMessageBox.alert(data[0].name, '待办事项', {
                     confirmButtonText: '确认完成',
                     showClose: false,
                     callback: () => {
                         ElMessage.success(`已完成: ${data[0].name}`)
-                        audioRef.value.pause()
+                        if (data[0].remind) {
+                            audioRef.value.pause()
+                        }
                         complete(data[0])
                     }
                 })
