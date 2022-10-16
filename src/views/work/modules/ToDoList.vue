@@ -18,7 +18,7 @@
                     <el-switch v-model="scope.row.remind" />
                 </template>
             </el-table-column>
-            <el-table-column label="操作" width="70">
+            <el-table-column label="操作" width="85">
                 <template #default="scope">
                     <el-button type="danger" @click="complete(scope.row)">
                         完成
@@ -58,9 +58,15 @@
             </span>
         </template>
     </el-dialog>
+    <audio ref="audioRef" src="../../../../public/sound/gnzw.mp3"></audio>
 </template>
 <script lang="ts" setup>
-    import { FormInstance, FormRules, ElMessage } from 'element-plus'
+    import {
+        FormInstance,
+        FormRules,
+        ElMessage,
+        ElMessageBox
+    } from 'element-plus'
     import { WorkStore } from '@/store/modules/work'
     import { GlobalStore } from '@/store'
     import dayjs from 'dayjs'
@@ -69,6 +75,7 @@
 
     const workStore = WorkStore()
     const globalStore = GlobalStore()
+    const audioRef = ref()
 
     const ruleForm = reactive({
         name: '',
@@ -95,8 +102,12 @@
 
     const ruleFormRef = ref<FormInstance>()
     const dialogVisible = ref(false)
+
     const addEvent = () => {
         dialogVisible.value = true
+        if (ruleFormRef.value) {
+            ruleFormRef.value.resetFields()
+        }
     }
     const confirm = async (formEl: FormInstance | undefined) => {
         if (!formEl) {
@@ -116,6 +127,7 @@
         })
     }
 
+    // 完成待办
     const complete = (row: ToDoItem) => {
         workStore.TODO_LIST = workStore.TODO_LIST.filter(
             (item) => item.id !== row.id
@@ -125,7 +137,7 @@
     workStore.$subscribe(
         (mutation, state) => {
             toDoTime = state.TODO_LIST.map((item) =>
-                dayjs(item.time).format('YYYY-MM-DD HH:mm:ss')
+                dayjs(item.time - 600000).format('YYYY-MM-DD HH:mm:ss')
             )
         },
         { detached: false }
@@ -136,13 +148,18 @@
                 let data = workStore.TODO_LIST.filter(
                     (item) =>
                         globalStore.systemTime ===
-                        dayjs(item.time).format('YYYY-MM-DD HH:mm:ss')
+                        dayjs(item.time - 600000).format('YYYY-MM-DD HH:mm:ss')
                 )
-                let str = ''
-                data.forEach((item) => {
-                    str += item.name
+                audioRef.value.play()
+                ElMessageBox.alert(data[0].name, '待办事项', {
+                    confirmButtonText: '确认完成',
+                    showClose: false,
+                    callback: () => {
+                        ElMessage.success(`已完成: ${data[0].name}`)
+                        audioRef.value.pause()
+                        complete(data[0])
+                    }
                 })
-                ElMessage.warning(str)
             }
         },
         { detached: false }

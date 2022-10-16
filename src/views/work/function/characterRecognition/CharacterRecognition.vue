@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="characterRecognition">
         <el-upload
             v-model:file-list="fileList"
             class="upload-demo"
@@ -57,4 +57,13 @@
         }
     }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .characterRecognition {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+</style>
