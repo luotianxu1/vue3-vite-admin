@@ -3,7 +3,6 @@
         <div class="header">
             <div class="header-time">
                 {{ globalStore.systemTime }}
-                {{ getWeek(globalStore.SYETEM_TIME) }}
             </div>
         </div>
         <el-row :gutter="20">
@@ -33,7 +32,6 @@
 </template>
 <script lang="ts" setup>
     import { GlobalStore } from '@/store'
-    import { getWeek } from '@/utils/time'
     import Applicatin from './modules/Application.vue'
     import ToDoList from './modules/ToDoList.vue'
     import Statistical from './modules/Statistical.vue'
