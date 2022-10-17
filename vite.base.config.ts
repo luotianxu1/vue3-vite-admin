@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import cesium from 'vite-plugin-cesium'
+import { viteMockServe } from 'vite-plugin-mock'
 
 export default defineConfig({
     plugins: [
@@ -21,7 +22,8 @@ export default defineConfig({
             dts: 'src/types/components.d.ts'
             // deep: true
         }),
-        cesium()
+        cesium(),
+        viteMockServe()
     ],
     resolve: {
         alias: {
