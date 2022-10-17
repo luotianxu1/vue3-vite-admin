@@ -8,7 +8,7 @@ const userList = mockjs.mock({
     ]
 })
 
-module.exports = [
+export default [
     {
         method: 'post',
         url: '/testApi/api/login',
