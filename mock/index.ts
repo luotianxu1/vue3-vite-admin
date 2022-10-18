@@ -1368,6 +1368,12 @@ export default [
                             url: '/open/drag'
                         },
                         {
+                            id: 501,
+                            name: '工作台',
+                            icon: 'icon-yidong',
+                            url: '/work/index'
+                        },
+                        {
                             id: 400,
                             name: '唱歌排名',
                             icon: 'dangedemoban',
