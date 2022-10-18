@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 declare namespace Menu {
     interface MenuOptions {
         path: string
@@ -7,4 +8,9 @@ declare namespace Menu {
         close?: boolean
         children?: MenuOptions[]
     }
+}
+
+interface ImportMetaEnv {
+    readonly VITE_APP_CURRENTMODE: string
+    readonly VITE_APP_BASE_URL: string
 }
