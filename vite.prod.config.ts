@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import cesium from 'vite-plugin-cesium'
 import { viteMockServe } from 'vite-plugin-mock'
+import viteCompression from 'vite-plugin-compression'
 
 export default defineConfig({
     plugins: [
@@ -30,12 +31,37 @@ export default defineConfig({
             injectCode: ` import { setupProdMockServer } from './mockProdServer'; setupProdMockServer(); `,
             logger: false, //是否在控制台显示请求日志
             supportTs: true //打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件
+        }),
+        viteCompression({
+            verbose: true,
+            disable: false,
+            threshold: 10240,
+            algorithm: 'gzip',
+            ext: '.gz'
         })
     ],
     build: {
         rollupOptions: {
-            output: {}
+            output: {
+                // 分包
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id
+                            .toString()
+                            .split('node_modules/')[1]
+                            .split('/')[0]
+                            .toString()
+                    }
+                }
+            }
         },
-        assetsInlineLimit: 4096
+        assetsInlineLimit: 4096,
+        //  清除console和debugger
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        }
     }
 })
