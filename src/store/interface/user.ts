@@ -1,6 +1,7 @@
-import { LoginData } from '@/api/system/userApi'
+import { IUserData } from '@/api/system/userApi'
 
 export interface UserState {
     // 用户信息
-    USER_INFO: LoginData
+    USER_INFO: IUserData
+    USER_ID: string
 }

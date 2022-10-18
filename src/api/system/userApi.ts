@@ -1,20 +1,35 @@
 import request from '@/api/request'
-import { ResponseData } from '@/api/interface/type'
+import { IResponseData } from '@/api/interface/type'
 
 // 用户登录
-export interface LoginParams {
+export interface ILoginParams {
     password: string
     username: string
 }
 
-// 用户注册
-export interface RegisterParams extends LoginParams {
+export interface ILoginData {
+    isLogin: boolean
+    userId: string
+}
+
+export interface IRegisterParams extends ILoginParams {
     passwordAgain: string
 }
 
-// 用户信息
-export interface LoginData {
-    id?: number
+export interface IRegisterData {
+    isRegister: boolean
+}
+
+// 用户登录
+export const loginApi = (data: ILoginParams): Promise<IResponseData<ILoginData>> =>
+    request.post('/api/login', data)
+
+// 用户注册
+export const registerApi = (data: IRegisterParams): Promise<IResponseData<IRegisterData>> =>
+    request.post('/api/register', data)
+
+export interface IUserData {
+    id?: string
     name?: string
     sex?: number
     age?: number
@@ -28,48 +43,37 @@ export interface LoginData {
     editTime?: string
 }
 
-// 获取用户列表
-export interface PageUserParams {
+// 获取用户信息
+export const getUserInfoApi = (data: string): Promise<IResponseData<IUserData>> =>
+    request.post('/api/getUserInfo', data)
+
+export interface IPageListParams {
+    userId: string
+}
+
+// 获取用户菜单
+export const getUserPageList = (data: IPageListParams): Promise<IResponseData<IPageListParams>> =>
+    request.post('/api/pageListV2', data)
+
+export interface IPageUserParams {
     userId: string
     name: string
     type: '0' | '1' | '2' | '3'
     time: string
 }
 
-export interface PageListParams {
-    userId: string
+export interface IUserListData {
+    list: IUserData[]
 }
 
-// 用户列表
-export interface UserList {
-    list: []
-}
-
-// 删除用户
-export interface UserDel {
+export interface IUserDel {
     id: number
 }
 
-// 用户登录
-export const loginApi = (data: LoginParams): Promise<ResponseData<LoginData>> =>
-    request.post('/api/login', data)
-
-// 用户注册
-export const registerApi = (
-    data: RegisterParams
-): Promise<ResponseData<null>> => request.post('/api/register', data)
-
-// 获取用户菜单
-export const getUserPageList = (
-    data: PageListParams
-): Promise<ResponseData<PageListParams>> =>
-    request.post('/api/pageListV2', data)
-
 // 获取用户列表
-export const getUserListApi = (
-    data: PageUserParams
-): Promise<ResponseData<UserList>> => request.post('/api/userList', data)
+export const getUserListApi = (data: IPageUserParams): Promise<IResponseData<IUserListData>> =>
+    request.post('/api/userList', data)
 
 // 删除用户
-export const deleteUserApi = (data: UserDel): Promise<ResponseData<null>> =>
+export const deleteUserApi = (data: IUserDel): Promise<IResponseData<null>> =>
     request.post('/api/deleteUser', data)

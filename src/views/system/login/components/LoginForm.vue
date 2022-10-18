@@ -2,13 +2,7 @@
     <div ref="loginRef" class="box login">
         <ChangeLanguage class="language" />
         <h1>{{ $t('login.loginTitle') }}</h1>
-        <el-form
-            ref="loginFormRef"
-            class="form"
-            action=""
-            :model="loginInfo"
-            :rules="rules"
-        >
+        <el-form ref="loginFormRef" class="form" action="" :model="loginInfo" :rules="rules">
             <el-form-item prop="username">
                 <el-input
                     v-model="loginInfo.username"
@@ -45,8 +39,7 @@
     import { UserStore } from '@/store/modules/user'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
-    import { loginApi, LoginData } from '@/api/system/userApi'
-    import { setToken, setTokenTime } from '@/utils/auth'
+    import { loginApi, getUserInfoApi } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
 
     const { t } = useI18n()
@@ -98,10 +91,17 @@
         loginFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
                 const res = await loginApi(loginInfo)
-                ElMessage.success('登录成功！')
-                setToken('123')
-                setTokenTime()
-                userStore.USER_INFO = res.data as LoginData
+                if (!res.data || !res.data.isLogin) {
+                    ElMessage.warning(res.message)
+                    return
+                }
+                ElMessage.success(res.message)
+                userStore.USER_ID = res.data.userId
+                const userInfo = await getUserInfoApi(res.data.userId)
+                if (!userInfo.data) {
+                    return
+                }
+                userStore.USER_INFO = userInfo.data
                 await router.push('/system/user')
             } else {
                 return false

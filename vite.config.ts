@@ -15,8 +15,6 @@ const envResolver = {
     }
 }
 
-export default defineConfig(({ command, mode }) => {
-    console.log(mode)
-
+export default defineConfig(({ command }) => {
     return envResolver[command]()
 })

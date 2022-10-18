@@ -2,12 +2,7 @@
     <div ref="registerRef" class="box register">
         <ChangeLanguage class="language"></ChangeLanguage>
         <h1>{{ $t('login.registerTitle') }}</h1>
-        <el-form
-            ref="registerFormRef"
-            class="form"
-            :model="registerInfo"
-            :rules="rules"
-        >
+        <el-form ref="registerFormRef" class="form" :model="registerInfo" :rules="rules">
             <el-form-item class="item" prop="username">
                 <el-input
                     v-model="registerInfo.username"
@@ -54,7 +49,7 @@
 <script lang="ts" setup>
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
-    import { registerApi } from '@/api/system/userApi'
+    import { registerApi, IRegisterParams } from '@/api/system/userApi'
     import { useI18n } from 'vue-i18n'
     import { ElMessage } from 'element-plus'
     const { t } = useI18n()
@@ -63,7 +58,7 @@
     const registerRef = ref()
     const registerFormRef = ref<FormInstance>()
 
-    const registerInfo = reactive({
+    const registerInfo = reactive<IRegisterParams>({
         username: '',
         password: '',
         passwordAgain: ''
@@ -105,10 +100,11 @@
         registerFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
                 const res = await registerApi(registerInfo)
-                if (res.status !== 200) {
-                    return ElMessage.warning(res.message)
+                if (!res.data || !res.data.isRegister) {
+                    ElMessage.warning(res.message)
+                    return
                 }
-                ElMessage.success('注册成功！')
+                ElMessage.success(res.message)
                 changeToLogin()
             } else {
                 return false

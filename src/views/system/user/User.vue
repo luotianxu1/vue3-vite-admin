@@ -9,11 +9,7 @@
                 ></el-input>
             </div>
             <div class="query-item">
-                <el-select
-                    v-model="queryParams.type"
-                    placeholder="请选择用户角色"
-                    clearable
-                >
+                <el-select v-model="queryParams.type" placeholder="请选择用户角色" clearable>
                     <el-option
                         v-for="item in options"
                         :key="item.value"
@@ -34,32 +30,19 @@
                 ></el-date-picker>
             </div>
             <div class="query-item">
-                <el-button :icon="Search" type="primary" @click="getUserList">
-                    查询
-                </el-button>
-                <el-button :icon="Download" type="primary" @click="exportExcel">
-                    导出
-                </el-button>
+                <el-button :icon="Search" type="primary" @click="getUserList">查询</el-button>
+                <el-button :icon="Download" type="primary" @click="exportExcel">导出</el-button>
                 <el-button type="primary" link>
                     多选搜索
                     <template #icon>
-                        <i
-                            class="iconfont icon-shaixuan"
-                            style="font-size: 18px"
-                        ></i>
+                        <i class="iconfont icon-shaixuan" style="font-size: 18px"></i>
                     </template>
                 </el-button>
             </div>
         </template>
         <template #fr>
             <div class="query-item">
-                <el-button
-                    type="success"
-                    :icon="CirclePlus"
-                    @click="addNewsInfo"
-                >
-                    新增
-                </el-button>
+                <el-button type="success" :icon="CirclePlus" @click="addNewsInfo">新增</el-button>
             </div>
             <div class="query-item">
                 <el-button type="danger" :icon="Delete">多选删除</el-button>
@@ -96,12 +79,8 @@
                 {{ Number(row.data.sex) === 1 ? '男' : '女' }}
             </template>
             <template #type="row">
-                <el-tag v-if="row.data.type === 0" type="danger">
-                    超级管理员
-                </el-tag>
-                <el-tag v-if="row.data.type === 1" type="warning">
-                    管理员
-                </el-tag>
+                <el-tag v-if="row.data.type === 0" type="danger">超级管理员</el-tag>
+                <el-tag v-if="row.data.type === 1" type="warning">管理员</el-tag>
                 <el-tag v-if="row.data.type === 2" type="success">用户</el-tag>
             </template>
             <template #status="row">
@@ -131,18 +110,8 @@
 </template>
 
 <script lang="ts" setup>
-    import {
-        deleteUserApi,
-        getUserListApi,
-        PageUserParams
-    } from '@/api/system/userApi'
-    import {
-        Search,
-        Edit,
-        Delete,
-        CirclePlus,
-        Download
-    } from '@element-plus/icons-vue'
+    import { deleteUserApi, getUserListApi, IPageUserParams } from '@/api/system/userApi'
+    import { Search, Edit, Delete, CirclePlus, Download } from '@element-plus/icons-vue'
     import { ElMessage, ElMessageBox } from 'element-plus'
     import { jsonToExcel } from '@/utils/excel'
 
@@ -256,7 +225,7 @@
         list: [],
         loading: false
     })
-    const queryParams = reactive<PageUserParams>({
+    const queryParams = reactive<IPageUserParams>({
         userId: '1',
         name: '',
         type: '0',
@@ -270,6 +239,7 @@
         const res = await getUserListApi({
             ...queryParams
         })
+
         tableData.loading = false
         if (res.data) {
             tableData.list = res.data.list
@@ -282,10 +252,7 @@
     })
 
     const pageList = computed(() => {
-        return tableData.list.slice(
-            pageStart.value,
-            pageStart.value + tableData.pageSize
-        )
+        return tableData.list.slice(pageStart.value, pageStart.value + tableData.pageSize)
     })
 
     // 删除用户
