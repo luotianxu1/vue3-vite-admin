@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
+    import { ElMessage } from 'element-plus'
 
     const map = shallowRef()
     const Map = shallowRef()
@@ -77,14 +78,18 @@
     }
 
     const showInfoM = (e) => {
-        ElMessage.success('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置点击了marker！')
+        ElMessage.success(
+            '您在 [ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ] 的位置点击了marker！'
+        )
     }
 
     const showInfoP = (e) => {
-        ElMessage.success('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置点击了polygon！')
+        ElMessage.success(
+            '您在 [ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ] 的位置点击了polygon！'
+        )
     }
 
-    const showInfoOver = (e) => {
+    const showInfoOver = () => {
         ElMessage.success('鼠标移入覆盖物！')
     }
 
@@ -93,7 +98,9 @@
     }
 
     const showInfoPD = (e) => {
-        ElMessage.success('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置双击了polygon！')
+        ElMessage.success(
+            '您在 [ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ] 的位置双击了polygon！'
+        )
     }
 
     const dragging = () => {

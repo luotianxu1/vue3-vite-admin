@@ -133,11 +133,7 @@
         web.gltfLoader('./model/glb/moon.glb').then((gltf) => {
             let moon = gltf.scene.children[0] as THREE.Mesh
             for (let j = 0; j < 10; j++) {
-                let moonInstance = new THREE.InstancedMesh(
-                    moon.geometry,
-                    moon.material,
-                    100
-                )
+                let moonInstance = new THREE.InstancedMesh(moon.geometry, moon.material, 100)
 
                 // scene.add(moon);
                 for (let i = 0; i < 100; i++) {

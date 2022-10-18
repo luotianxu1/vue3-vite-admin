@@ -9,8 +9,6 @@
     import cameraModule from '@/views/open/smartPark/model/cameraPark'
     // 导入渲染器
     import renderer from '@/views/open/smartPark/model/renderer'
-    // 导入控制器
-    import controls from '@/views/open/smartPark/model/controlsPark'
     // 初始化屏幕调整
     import '@/views/open/smartPark/model/initpark'
     // 导入执行函数

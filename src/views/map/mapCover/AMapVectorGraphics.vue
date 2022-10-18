@@ -27,6 +27,7 @@
     import AMapLoader from '@amap/amap-jsapi-loader'
     import { getShanghai } from '@/api/system/mapApi'
     import axios from 'axios'
+    import { ElMessage } from 'element-plus'
 
     const map = shallowRef()
     const Map = shallowRef()
@@ -41,11 +42,7 @@
         AMapLoader.load({
             key: 'cb7590d4af790e30ab7f2e51d9778391',
             version: '2.0',
-            plugins: [
-                'AMap.BezierCurveEditor',
-                'AMap.MouseTool',
-                'AMap.GeoJSON'
-            ]
+            plugins: ['AMap.BezierCurveEditor', 'AMap.MouseTool', 'AMap.GeoJSON']
         })
             .then((AMap) => {
                 Map.value = AMap
@@ -143,10 +140,7 @@
                 [116.41, 39.89] //途经点
             ],
             //第四段弧线
-            [
-                116.423857, 39.889498, 116.422312, 39.899639, 116.425273,
-                39.902273
-            ]
+            [116.423857, 39.889498, 116.422312, 39.899639, 116.425273, 39.902273]
             //控制点，控制点，途经点，每段最多两个控制点
         ]
 
@@ -351,9 +345,7 @@
     }
 
     const drawGeoJSON = async () => {
-        axios(
-            'https://a.amap.com/jsapi_demos/static/geojson/chongqing.json'
-        ).then((geoJSON) => {
+        axios('https://a.amap.com/jsapi_demos/static/geojson/chongqing.json').then((geoJSON) => {
             let data = geoJSON.data
             let geojson = new Map.value.GeoJSON({
                 geoJSON: data,

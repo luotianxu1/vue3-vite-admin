@@ -1,12 +1,7 @@
 <template>
     <div class="main">
         <el-button @click="clear">清空排名</el-button>
-        <el-select
-            v-model="num"
-            class="m-2"
-            placeholder="Select"
-            size="large"
-        >
+        <el-select v-model="num" class="m-2" placeholder="Select" size="large">
             <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -14,13 +9,7 @@
                 :value="item.value"
             />
         </el-select>
-        <el-table
-            :data="tableList"
-            border
-            stripe
-            height="500"
-            style="width: 100%; height: 100%"
-        >
+        <el-table :data="tableList" border stripe height="500" style="width: 100%; height: 100%">
             <el-table-column type="index" />
             <el-table-column prop="name" label="姓名" />
             <el-table-column prop="num" label="轮" />
@@ -38,10 +27,7 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template #default="scope">
-                    <el-button
-                        :disabled="scope.row.click"
-                        @click="addItem(scope.row)"
-                    >
+                    <el-button :disabled="scope.row.click" @click="addItem(scope.row)">
                         添加
                     </el-button>
                 </template>
@@ -51,6 +37,7 @@
 </template>
 
 <script lang="ts" setup>
+    import { ElMessage } from 'element-plus'
 
     const addItem = (item) => {
         if (!item.value) {
@@ -64,7 +51,7 @@
     const num = ref(1)
 
     let tableList = computed(() => {
-        return tableData.value.filter(item => item.num == num.value)
+        return tableData.value.filter((item) => item.num === num.value)
     })
 
     const clear = () => {
@@ -72,7 +59,7 @@
         localStorage.removeItem('newItem')
         setTimeout(() => {
             localStorage.setItem('flag', '1')
-        },1000)
+        }, 1000)
     }
 
     const options = [

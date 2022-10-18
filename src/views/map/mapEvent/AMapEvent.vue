@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
+    import { ElMessage } from 'element-plus'
 
     const map = shallowRef()
     const Map = shallowRef()
@@ -22,7 +23,7 @@
             .then((AMap) => {
                 Map.value = AMap
                 map.value = new AMap.Map('map', {
-                    viewMode: '3D',//开启3D视图,默认为关闭
+                    viewMode: '3D', //开启3D视图,默认为关闭
                     terrain: true,
                     zoom: 5,
                     center: [105.602725, 37.076636],
@@ -52,13 +53,31 @@
                     ElMessage.success('地图缩放结束')
                 })
                 map.value.on('click', (e) => {
-                    ElMessage.success('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置单击了地图！')
+                    ElMessage.success(
+                        '您在 [ ' +
+                            e.lnglat.getLng() +
+                            ',' +
+                            e.lnglat.getLat() +
+                            ' ] 的位置单击了地图！'
+                    )
                 })
                 map.value.on('dblclick', (e) => {
-                    ElMessage.success('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置双击了地图！')
+                    ElMessage.success(
+                        '您在 [ ' +
+                            e.lnglat.getLng() +
+                            ',' +
+                            e.lnglat.getLat() +
+                            ' ] 的位置双击了地图！'
+                    )
                 })
                 map.value.on('mousemove', (e) => {
-                    console.log('您在 [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ] 的位置移动了鼠标！')
+                    console.log(
+                        '您在 [ ' +
+                            e.lnglat.getLng() +
+                            ',' +
+                            e.lnglat.getLat() +
+                            ' ] 的位置移动了鼠标！'
+                    )
                 })
                 map.value.on('dragstart', () => {
                     ElMessage.success('地图拖拽开始')

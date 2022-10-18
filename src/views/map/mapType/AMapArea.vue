@@ -3,6 +3,7 @@
 </template>
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
+    import { ElMessage } from 'element-plus'
 
     const nationStroke = 'rgba(20, 20, 120, 0.6)'
     const nationFill = 'rgba(20, 120, 230, 0.3)'

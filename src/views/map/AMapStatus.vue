@@ -7,9 +7,7 @@
             <el-button @click="getMapZoom">获取地图层级</el-button>
             <el-button @click="setMapCenter">随机设置地图中心点</el-button>
             <el-button @click="getMapCenter">获取地图中心点</el-button>
-            <el-button @click="setMapZoomCenter">
-                随机设置地图层级与中心点
-            </el-button>
+            <el-button @click="setMapZoomCenter">随机设置地图层级与中心点</el-button>
             <el-button @click="getMapBounds">获取地图显示范围</el-button>
             <el-button @click="setMapBounds">设置地图显示范围</el-button>
             <el-button @click="getMapCity">获取地图当前行政区</el-button>
@@ -35,16 +33,8 @@
                     :value="item.value"
                 />
             </el-select>
-            <el-switch
-                v-model="isLimit"
-                active-text="锁定"
-                inactive-text="未锁定"
-            />
-            <el-input
-                v-model="cityName"
-                class="input-with-select"
-                placeholder="设置地图当前行政区"
-            >
+            <el-switch v-model="isLimit" active-text="锁定" inactive-text="未锁定" />
+            <el-input v-model="cityName" class="input-with-select" placeholder="设置地图当前行政区">
                 <template #append>
                     <el-button :icon="Search" @click="setCity"></el-button>
                 </template>
@@ -77,7 +67,7 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { ElNotification } from 'element-plus'
+    import { ElMessage, ElNotification } from 'element-plus'
     import { Search } from '@element-plus/icons-vue'
 
     const map = shallowRef()
@@ -97,21 +87,27 @@
         AMapLoader.load({
             key: 'cb7590d4af790e30ab7f2e51d9778391',
             version: '2.0',
-            plugins: ['AMap.Scale','AMap.HawkEye','AMap.ToolBar','AMap.ControlBar','AMap.MapType']
+            plugins: [
+                'AMap.Scale',
+                'AMap.HawkEye',
+                'AMap.ToolBar',
+                'AMap.ControlBar',
+                'AMap.MapType'
+            ]
         })
             .then((AMap) => {
                 Map.value = AMap
                 map.value = new AMap.Map('map', {
-                    viewMode: '3D',//开启3D视图,默认为关闭
-		                // rotation: 45, // 旋转角度
-		                // rotateEnable: false, // 禁止旋转
-		                // pitchEnable: false, // 禁止俯仰角度调整
-		                // pitch: 65, // 俯仰角度
+                    viewMode: '3D', //开启3D视图,默认为关闭
+                    // rotation: 45, // 旋转角度
+                    // rotateEnable: false, // 禁止旋转
+                    // pitchEnable: false, // 禁止俯仰角度调整
+                    // pitch: 65, // 俯仰角度
                     terrain: true,
                     zoom: 5,
                     center: [105.602725, 37.076636],
-		                features: ['bg', 'road', 'building', 'point'], // 地图显示要素
-		                showLabel: true //显示地图文字标记
+                    features: ['bg', 'road', 'building', 'point'], // 地图显示要素
+                    showLabel: true //显示地图文字标记
                 })
                 const scale = new AMap.Scale()
                 const toolBar = new AMap.ToolBar({
@@ -129,9 +125,9 @@
                 const overView = new AMap.HawkEye({
                     opened: false
                 })
-                const type= new AMap.MapType({
+                const type = new AMap.MapType({
                     defaultType: 0,
-                    position: 'LB',//定位到左下角
+                    position: 'LB', //定位到左下角
                     offset: [100, 160] //偏移量 x,y轴
                 })
                 map.value.addControl(type)
@@ -199,9 +195,7 @@
         let lng = 121.138398 + Math.floor(Math.random() * 589828) / 1e6 //经度范围[121.138398, 121.728226]
         let lat = 30.972688 + Math.floor(Math.random() * 514923) / 1e6 //纬度范围[30.972688, 31.487611]
         map.value.setCenter([lng, lat]) //设置地图中心点
-        ElMessage.success(
-            `当前中心点已设为 ${lng.toFixed(6)},${lat.toFixed(6)}`
-        )
+        ElMessage.success(`当前中心点已设为 ${lng.toFixed(6)},${lat.toFixed(6)}`)
     }
 
     const getMapCenter = () => {
@@ -215,9 +209,7 @@
         let lat = 30.972688 + Math.floor(Math.random() * 514923) / 1e6
         map.value.setZoomAndCenter(zoom, [lng, lat]) //同时设置地图层级与中心点
         ElMessage.success(
-            `当前层级已设为${zoom}级，中心点已设为 ${lng.toFixed(
-                6
-            )},${lat.toFixed(6)}`
+            `当前层级已设为${zoom}级，中心点已设为 ${lng.toFixed(6)},${lat.toFixed(6)}`
         )
     }
 
@@ -239,16 +231,11 @@
         let bounds = map.value.getBounds()
         let northEast = bounds.northEast
         let southWes = bounds.southWest
-        ElMessage.success(
-            `NorthEast坐标${northEast}，SouthWest坐标 ${southWes}`
-        )
+        ElMessage.success(`NorthEast坐标${northEast}，SouthWest坐标 ${southWes}`)
     }
 
     const setMapBounds = () => {
-        const mybounds = new Map.value.Bounds(
-            [116.319665, 39.855919],
-            [116.468324, 39.9756]
-        )
+        const mybounds = new Map.value.Bounds([116.319665, 39.855919], [116.468324, 39.9756])
         map.value.setBounds(mybounds)
     }
 

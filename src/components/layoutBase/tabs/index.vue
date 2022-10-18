@@ -29,7 +29,7 @@
     import MoreButton from './components/MoreButton.vue'
     import { GlobalStore } from '@/store'
     import { useRoute, useRouter } from 'vue-router'
-    import { TabPanelName, TabsPaneContext } from 'element-plus'
+    import { TabPaneName, TabsPaneContext } from 'element-plus'
 
     const globalStore = GlobalStore()
     const tabsMenuList = computed(() => globalStore.SYSTEM_ROUTER_LIST)
@@ -65,7 +65,7 @@
         router.push(path)
     }
 
-    const removeTab = (activeTabPath: TabPanelName) => {
+    const removeTab = (activeTabPath: TabPaneName) => {
         globalStore.removeTabs(activeTabPath as string)
     }
 </script>
