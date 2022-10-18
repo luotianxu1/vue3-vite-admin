@@ -1317,19 +1317,19 @@ export default [
                             children: [
                                 {
                                     id: 401,
-                                    name: 'sheep',
+                                    name: '菜了个菜',
                                     icon: 'choujiang',
                                     url: '/game/sheep'
                                 },
                                 {
                                     id: 401,
-                                    name: 'jump',
+                                    name: '跳一跳',
                                     icon: 'choujiang',
                                     url: '/game/jump'
                                 },
                                 {
                                     id: 401,
-                                    name: 'minesweeper',
+                                    name: '扫雷',
                                     icon: 'choujiang',
                                     url: '/game/minesweeper'
                                 }
