@@ -1374,6 +1374,12 @@ export default [
                             url: '/work/index'
                         },
                         {
+                            id: 501,
+                            name: '青联',
+                            icon: 'icon-yidong',
+                            url: '/three/test'
+                        },
+                        {
                             id: 400,
                             name: '唱歌排名',
                             icon: 'dangedemoban',
