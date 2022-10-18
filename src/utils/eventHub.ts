@@ -1,5 +1,5 @@
-import Mitt from 'mitt'
+import mitt from 'mitt'
 
-const eventHub = new Mitt()
+const eventHub = mitt()
 
 export default eventHub
