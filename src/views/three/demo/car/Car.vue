@@ -13,10 +13,7 @@
                     class="select-item"
                     @click="selectColor(index)"
                 >
-                    <div
-                        class="select-item-color"
-                        :style="{ backgroundColor: item }"
-                    ></div>
+                    <div class="select-item-color" :style="{ backgroundColor: item }"></div>
                 </div>
             </div>
 
@@ -161,38 +158,23 @@
             web.scene.add(bmw)
             bmw.traverse((child) => {
                 // 判断是否是轮毂
-                if (
-                    child instanceof THREE.Mesh &&
-                    child.name.includes('轮毂')
-                ) {
+                if (child instanceof THREE.Mesh && child.name.includes('轮毂')) {
                     child.material = wheelsMaterial
                 }
                 // 判断是否是车身
-                if (
-                    child instanceof THREE.Mesh &&
-                    child.name.includes('Mesh002')
-                ) {
+                if (child instanceof THREE.Mesh && child.name.includes('Mesh002')) {
                     child.material = bodyMaterial
                 }
                 // 判断是否是前脸
-                if (
-                    child instanceof THREE.Mesh &&
-                    child.name.includes('前脸')
-                ) {
+                if (child instanceof THREE.Mesh && child.name.includes('前脸')) {
                     child.material = frontMaterial
                 }
                 // 判断是否是引擎盖
-                if (
-                    child instanceof THREE.Mesh &&
-                    child.name.includes('引擎盖_1')
-                ) {
+                if (child instanceof THREE.Mesh && child.name.includes('引擎盖_1')) {
                     child.material = hoodMaterial
                 }
                 // 判断是否是挡风玻璃
-                if (
-                    child instanceof THREE.Mesh &&
-                    child.name.includes('挡风玻璃')
-                ) {
+                if (child instanceof THREE.Mesh && child.name.includes('挡风玻璃')) {
                     child.material = glassMaterial
                 }
             })

@@ -1,9 +1,4 @@
-import axios, {
-    AxiosInstance,
-    AxiosError,
-    AxiosRequestConfig,
-    AxiosResponse
-} from 'axios'
+import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { checkStatus } from './checkStatus'
 // import { diffTokenTime, getToken } from '@/utils/auth'
 
