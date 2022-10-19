@@ -51,8 +51,21 @@ export interface IPageListParams {
     userId: string
 }
 
+export interface IPageItem {
+    id: number
+    icon: string
+    name: string
+    url: string
+    children?: IPageItem[]
+}
+
+export interface IPageListData {
+    list: IPageItem[]
+    total: number
+}
+
 // 获取用户菜单
-export const getUserPageList = (data: IPageListParams): Promise<IResponseData<IPageListParams>> =>
+export const getUserPageList = (data: IPageListParams): Promise<IResponseData<IPageListData>> =>
     request.post('/api/pageListV2', data)
 
 export interface IPageUserParams {

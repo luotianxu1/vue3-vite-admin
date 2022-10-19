@@ -1,9 +1,6 @@
 <template>
-    <template v-for="item in treeData" :key="item._id">
-        <el-sub-menu
-            v-if="item.children && item.children.length > 0"
-            :index="item.url"
-        >
+    <template v-for="item in props.treeData" :key="item._id">
+        <el-sub-menu v-if="item.children && item.children.length > 0" :index="item.url">
             <template #title>
                 <MyIcon :padding="5" :icon="item.icon"></MyIcon>
                 <span>{{ item.name }}</span>
@@ -20,16 +17,14 @@
 </template>
 
 <script lang="ts" setup>
-    defineProps({
-        treeData: {
-            type: Array,
-            default: function () {
-                return []
-            }
-        },
-        collapse: {
-            type: Boolean
-        }
+    import { IPageItem } from '@/api/system/userApi'
+
+    interface Props {
+        treeData: Array<IPageItem>
+    }
+
+    const props = withDefaults(defineProps<Props>(), {
+        treeData: () => []
     })
 </script>
 

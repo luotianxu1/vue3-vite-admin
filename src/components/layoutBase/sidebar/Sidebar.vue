@@ -1,9 +1,7 @@
 <template>
     <div class="top">
         <el-avatar :size="40" :src="url"></el-avatar>
-        <span v-show="!globalStore.SYSTEM_COLLAPSE" class="title">
-            管理系统模板
-        </span>
+        <span v-show="!globalStore.SYSTEM_COLLAPSE" class="title">管理系统模板</span>
     </div>
     <el-scrollbar class="scrollbar">
         <el-menu
@@ -14,7 +12,7 @@
             :default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
             router
         >
-            <TreeMenu :tree-data="list" :collapse="isCollapse"></TreeMenu>
+            <TreeMenu :tree-data="list"></TreeMenu>
         </el-menu>
     </el-scrollbar>
 </template>
@@ -23,14 +21,12 @@
     import router from '@/router'
     import { GlobalStore } from '@/store'
     import { UserStore } from '@/store/modules/user'
-    import { getUserPageList } from '@/api/system/userApi'
+    import { getUserPageList, IPageItem } from '@/api/system/userApi'
     import { ElMessage } from 'element-plus'
     import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'
 
     // 图标
-    const url = ref(
-        'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
-    )
+    const url = ref('https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png')
 
     const globalStore = GlobalStore()
     // 监听路由
@@ -42,10 +38,8 @@
         { immediate: true }
     )
 
-    // 是否收缩侧边栏
-    const isCollapse = ref(false)
-    // 图标
-    const list = ref()
+    // 用户菜单
+    const list = ref<IPageItem[]>([])
 
     // 获取菜单列表
     onMounted(() => {
@@ -55,14 +49,14 @@
     const userStore = UserStore()
     const getList = async () => {
         const res = await getUserPageList({
-            userId: userStore.USER_INFO.id
+            userId: userStore.USER_INFO.id as string
         })
-        if (res.status === 200) {
-            list.value = res.data?.list
-        } else {
-            ElMessage.error('获取菜单失败,请重新登录!')
-            await router.push('/login')
+        if (!res.data) {
+            ElMessage.error(res.message)
+            router.push('/login')
+            return
         }
+        list.value = res.data.list
     }
 </script>
 
