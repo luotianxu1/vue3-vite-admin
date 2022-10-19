@@ -68,7 +68,7 @@
                 flex: 0.5;
                 margin: 10px;
                 position: relative;
-                -webkit-transition: all 700ms ease-in;
+                transition: all 700ms ease-in;
 
                 h3 {
                     font-size: 24px;

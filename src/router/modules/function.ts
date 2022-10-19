@@ -27,8 +27,7 @@ const functionRouter: RouteRecordRaw[] = [
             {
                 path: 'richText',
                 name: '富文本编辑器',
-                component: () =>
-                    import('@/views/function/richText/RichText.vue')
+                component: () => import('@/views/function/richText/RichText.vue')
             },
             {
                 path: 'drag',
@@ -48,8 +47,7 @@ const functionRouter: RouteRecordRaw[] = [
             {
                 path: 'waterMark',
                 name: '水印指令',
-                component: () =>
-                    import('@/views/function/waterMarkDirect/index.vue')
+                component: () => import('@/views/function/waterMarkDirect/index.vue')
             },
             {
                 path: 'dragDirect',
@@ -59,8 +57,7 @@ const functionRouter: RouteRecordRaw[] = [
             {
                 path: 'longPress',
                 name: '长按指令',
-                component: () =>
-                    import('@/views/function/longPressDirect/index.vue')
+                component: () => import('@/views/function/longPressDirect/index.vue')
             },
             {
                 path: 'throttle',
@@ -75,8 +72,7 @@ const functionRouter: RouteRecordRaw[] = [
             {
                 path: 'imageView',
                 name: '图片预览',
-                component: () =>
-                    import('@/views/function/imageView/imageView.vue')
+                component: () => import('@/views/function/imageView/imageView.vue')
             }
         ]
     }

@@ -19,22 +19,19 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'shadow',
                 name: '阴影',
                 meta: { title: '阴影' },
-                component: () =>
-                    import('@/views/three/gettingStarted/Shadow.vue')
+                component: () => import('@/views/three/gettingStarted/Shadow.vue')
             },
             {
                 path: 'sport',
                 name: '运动',
                 meta: { title: '运动' },
-                component: () =>
-                    import('@/views/three/gettingStarted/Sport.vue')
+                component: () => import('@/views/three/gettingStarted/Sport.vue')
             },
             {
                 path: 'scene',
                 name: '场景',
                 meta: { title: '场景' },
-                component: () =>
-                    import('@/views/three/basicComponents/Scene.vue')
+                component: () => import('@/views/three/basicComponents/Scene.vue')
             },
             {
                 path: 'ambientLight',
@@ -58,15 +55,13 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'directionLight',
                 name: '平行光',
                 meta: { title: '平行光' },
-                component: () =>
-                    import('@/views/three/light/DirectionalLight.vue')
+                component: () => import('@/views/three/light/DirectionalLight.vue')
             },
             {
                 path: 'hemisphereLight',
                 name: '半球光光源',
                 meta: { title: '半球光光源' },
-                component: () =>
-                    import('@/views/three/light/HemisphereLight.vue')
+                component: () => import('@/views/three/light/HemisphereLight.vue')
             },
             {
                 path: 'lensFlare',
@@ -78,92 +73,79 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'meshBasicMaterial',
                 name: '网格基础材质',
                 meta: { title: 'MeshBasicMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshBasicMaterial.vue')
+                component: () => import('@/views/three/material/MeshBasicMaterial.vue')
             },
             {
                 path: 'meshDepthMaterial',
                 name: '网格深度材质',
                 meta: { title: 'MeshBasicMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshDepthMaterial.vue')
+                component: () => import('@/views/three/material/MeshDepthMaterial.vue')
             },
             {
                 path: 'multiMaterialObject',
                 name: '联合材质',
                 meta: { title: 'multiMaterialObject' },
-                component: () =>
-                    import('@/views/three/material/MultiMaterialObject.vue')
+                component: () => import('@/views/three/material/MultiMaterialObject.vue')
             },
             {
                 path: 'meshNormalMaterial',
                 name: '网格法向材质',
                 meta: { title: 'meshNormalMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshNormalMaterial.vue')
+                component: () => import('@/views/three/material/MeshNormalMaterial.vue')
             },
             {
                 path: 'meshFaceMaterial',
                 name: '多种材质',
                 meta: { title: 'meshFaceMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshFaceMaterial.vue')
+                component: () => import('@/views/three/material/MeshFaceMaterial.vue')
             },
             {
                 path: 'meshLambertMaterial',
                 name: '网格Lambert材质',
                 meta: { title: 'meshLambertMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshLambertMaterial.vue')
+                component: () => import('@/views/three/material/MeshLambertMaterial.vue')
             },
             {
                 path: 'meshPhongMaterial',
                 name: '网格Phong材质',
                 meta: { title: 'meshPhongMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshPhongMaterial.vue')
+                component: () => import('@/views/three/material/MeshPhongMaterial.vue')
             },
             {
                 path: 'meshStandardMaterial',
                 name: '网格标准材质',
                 meta: { title: 'meshStandardMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshStandardMaterial.vue')
+                component: () => import('@/views/three/material/MeshStandardMaterial.vue')
             },
             {
                 path: 'meshPhysicalMaterial',
                 name: '网格物理材质',
                 meta: { title: 'meshPhysicalMaterial' },
-                component: () =>
-                    import('@/views/three/material/MeshPhysicalMaterial.vue')
+                component: () => import('@/views/three/material/MeshPhysicalMaterial.vue')
             },
             {
                 path: 'meshPhysicalMaterial2',
                 name: '网格物理材质2',
                 meta: { title: 'meshPhysicalMaterial2' },
-                component: () =>
-                    import('@/views/three/material/MeshPhysicalMaterial2.vue')
+                component: () => import('@/views/three/material/MeshPhysicalMaterial2.vue')
             },
             {
                 path: 'lineBasicMaterial',
                 name: '直线基础材质',
                 meta: { title: 'lineBasicMaterial' },
-                component: () =>
-                    import('@/views/three/material/LineBasicMaterial.vue')
+                component: () => import('@/views/three/material/LineBasicMaterial.vue')
             },
             {
                 path: 'lineDashedMaterial',
                 name: '虚线材质',
                 meta: { title: 'lineDashedMaterial' },
-                component: () =>
-                    import('@/views/three/material/LineDashedMaterial.vue')
+                component: () => import('@/views/three/material/LineDashedMaterial.vue')
             },
             {
                 path: 'bufferGeometry',
                 name: '几何体',
                 meta: { title: 'bufferGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/BufferGeometry.vue')
+                component: () => import('@/views/three/geometry/BufferGeometry.vue')
             },
             {
                 path: 'triangle',
@@ -175,71 +157,61 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'planeGeometry',
                 name: '平面',
                 meta: { title: 'planeGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/PlaneGeometry.vue')
+                component: () => import('@/views/three/geometry/PlaneGeometry.vue')
             },
             {
                 path: 'circleGeometry',
                 name: '圆形',
                 meta: { title: 'circleGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/CircleGeometry.vue')
+                component: () => import('@/views/three/geometry/CircleGeometry.vue')
             },
             {
                 path: 'ringGeometry',
                 name: '环形',
                 meta: { title: 'ringGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/RingGeometry.vue')
+                component: () => import('@/views/three/geometry/RingGeometry.vue')
             },
             {
                 path: 'shapeGeometry',
                 name: '任意图形',
                 meta: { title: 'shapeGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/ShapeGeometry.vue')
+                component: () => import('@/views/three/geometry/ShapeGeometry.vue')
             },
             {
                 path: 'boxGeometry',
                 name: '长方体',
                 meta: { title: 'boxGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/BoxGeometry.vue')
+                component: () => import('@/views/three/geometry/BoxGeometry.vue')
             },
             {
                 path: 'sphereGeometry',
                 name: '球体',
                 meta: { title: 'sphereGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/SphereGeometry.vue')
+                component: () => import('@/views/three/geometry/SphereGeometry.vue')
             },
             {
                 path: 'cylinderGeometry',
                 name: '圆柱体',
                 meta: { title: 'cylinderGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/CylinderGeometry.vue')
+                component: () => import('@/views/three/geometry/CylinderGeometry.vue')
             },
             {
                 path: 'coneGeometry',
                 name: '圆锥体',
                 meta: { title: 'coneGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/ConeGeometry.vue')
+                component: () => import('@/views/three/geometry/ConeGeometry.vue')
             },
             {
                 path: 'torusGeometry',
                 name: '圆环',
                 meta: { title: 'torusGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/TorusGeometry.vue')
+                component: () => import('@/views/three/geometry/TorusGeometry.vue')
             },
             {
                 path: 'torusKnotGeometry',
                 name: '环状扭结',
                 meta: { title: 'torusKnotGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/TorusKnotGeometry.vue')
+                component: () => import('@/views/three/geometry/TorusKnotGeometry.vue')
             },
             {
                 path: 'polyhedron',
@@ -251,36 +223,25 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'convexGeometry',
                 name: '凸包几何体',
                 meta: { title: 'convexGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/ConvexGeometry.vue')
+                component: () => import('@/views/three/geometry/ConvexGeometry.vue')
             },
             {
                 path: 'latheGeometry',
                 name: '车削缓冲几何体',
                 meta: { title: 'latheGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/LatheGeometry.vue')
+                component: () => import('@/views/three/geometry/LatheGeometry.vue')
             },
             {
                 path: 'extrudeGeometry',
                 name: '挤压缓冲几何体',
                 meta: { title: 'extrudeGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/ExtrudeGeometry.vue')
+                component: () => import('@/views/three/geometry/ExtrudeGeometry.vue')
             },
             {
                 path: 'tubeGeometry',
                 name: '管道缓冲几何体',
                 meta: { title: 'tubeGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/TubeGeometry.vue')
-            },
-            {
-                path: 'parametricGeometry',
-                name: '参数化缓冲几何体',
-                meta: { title: 'parametricGeometry' },
-                component: () =>
-                    import('@/views/three/geometry/ParametricGeometry.vue')
+                component: () => import('@/views/three/geometry/TubeGeometry.vue')
             },
             {
                 path: 'group',
@@ -310,57 +271,49 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'spriteMaterial1',
                 name: '点精灵材质1',
                 meta: { title: 'parametricGeometry' },
-                component: () =>
-                    import('@/views/three/particle/SpriteMaterial1.vue')
+                component: () => import('@/views/three/particle/SpriteMaterial1.vue')
             },
             {
                 path: 'spriteMaterial2',
                 name: '点精灵材质2',
                 meta: { title: 'parametricGeometry' },
-                component: () =>
-                    import('@/views/three/particle/SpriteMaterial2.vue')
+                component: () => import('@/views/three/particle/SpriteMaterial2.vue')
             },
             {
                 path: 'pointsMaterial1',
                 name: '点材质1',
                 meta: { title: 'pointsMaterial1' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial1.vue')
+                component: () => import('@/views/three/particle/PointsMaterial1.vue')
             },
             {
                 path: 'pointsMaterial2',
                 name: '点材质2',
                 meta: { title: 'pointsMaterial2' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial2.vue')
+                component: () => import('@/views/three/particle/PointsMaterial2.vue')
             },
             {
                 path: 'pointsMaterial3',
                 name: '点材质3',
                 meta: { title: 'pointsMaterial3' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial3.vue')
+                component: () => import('@/views/three/particle/PointsMaterial3.vue')
             },
             {
                 path: 'pointsMaterial4',
                 name: '点材质4',
                 meta: { title: 'pointsMaterial4' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial4.vue')
+                component: () => import('@/views/three/particle/PointsMaterial4.vue')
             },
             {
                 path: 'pointsMaterial5',
                 name: '点材质5',
                 meta: { title: 'pointsMaterial5' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial5.vue')
+                component: () => import('@/views/three/particle/PointsMaterial5.vue')
             },
             {
                 path: 'pointsMaterial6',
                 name: '点材质6',
                 meta: { title: 'pointsMaterial6' },
-                component: () =>
-                    import('@/views/three/particle/PointsMaterial6.vue')
+                component: () => import('@/views/three/particle/PointsMaterial6.vue')
             },
             {
                 path: 'bump',
@@ -378,8 +331,7 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'displacement',
                 name: '移位贴图',
                 meta: { title: 'displacement' },
-                component: () =>
-                    import('@/views/three/texture/Displacement.vue')
+                component: () => import('@/views/three/texture/Displacement.vue')
             },
             {
                 path: 'setalness',
@@ -445,15 +397,13 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'fireWork',
                 name: '烟花',
                 meta: { title: 'fireWork' },
-                component: () =>
-                    import('@/views/three/demo/firework/FireWork.vue')
+                component: () => import('@/views/three/demo/firework/FireWork.vue')
             },
             {
                 path: 'missile',
                 name: '导弹轨迹',
                 meta: { title: 'missile' },
-                component: () =>
-                    import('@/views/three/demo/missile/Missile.vue')
+                component: () => import('@/views/three/demo/missile/Missile.vue')
             },
             {
                 path: 'earch',
@@ -497,9 +447,7 @@ const systemRouter: RouteRecordRaw[] = [
                 name: '原始着色器',
                 meta: { title: 'rowShaderMaterial' },
                 component: () =>
-                    import(
-                        '@/views/three/shader/rawShaderMaterial/RawShadermaterial.vue'
-                    )
+                    import('@/views/three/shader/rawShaderMaterial/RawShadermaterial.vue')
             },
             {
                 path: 'deep',
@@ -511,8 +459,7 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'flyLight',
                 name: '孔明灯',
                 meta: { title: 'flyLight' },
-                component: () =>
-                    import('@/views/three/shader/flyLight/FlyLight.vue')
+                component: () => import('@/views/three/shader/flyLight/FlyLight.vue')
             },
             {
                 path: 'water',
@@ -524,8 +471,7 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'water2',
                 name: '水2',
                 meta: { title: 'water2' },
-                component: () =>
-                    import('@/views/three/shader/water2/Water2.vue')
+                component: () => import('@/views/three/shader/water2/Water2.vue')
             },
             {
                 path: 'point',
@@ -537,15 +483,13 @@ const systemRouter: RouteRecordRaw[] = [
                 path: 'customShader',
                 name: '修改Shader',
                 meta: { title: 'customShader' },
-                component: () =>
-                    import('@/views/three/shader/custom/CustomShader.vue')
+                component: () => import('@/views/three/shader/custom/CustomShader.vue')
             },
             {
                 path: 'effect',
                 name: '效果合成',
                 meta: { title: 'customShader' },
-                component: () =>
-                    import('@/views/three/shader/effect/Effect.vue')
+                component: () => import('@/views/three/shader/effect/Effect.vue')
             },
             {
                 path: 'moon',

@@ -25,8 +25,7 @@ const gameRouter: RouteRecordRaw[] = [
                 path: 'minesweeper',
                 name: 'minesweeper',
                 meta: { title: 'minesweeper' },
-                component: () =>
-                    import('@/views/game/minesweeper/Minesweeper.vue')
+                component: () => import('@/views/game/minesweeper/Minesweeper.vue')
             }
         ]
     }

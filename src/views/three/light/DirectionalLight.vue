@@ -88,7 +88,7 @@
         sphere.position.x = 20 + 10 * Math.cos(step)
         sphere.position.y = 2 + 10 * Math.abs(Math.sin(step))
         sphereLightMesh.position.z = -8
-        sphereLightMesh.position.y = +(27 * Math.sin(step / 3))
+        sphereLightMesh.position.y = Number(27 * Math.sin(step / 3))
         sphereLightMesh.position.x = 10 + 26 * Math.cos(step / 3)
         web.directionalLight.position.copy(sphereLightMesh.position)
 

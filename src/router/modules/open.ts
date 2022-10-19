@@ -23,8 +23,7 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'homeViewing',
                 name: '全景看房',
                 meta: { title: 'homeViewing' },
-                component: () =>
-                    import('@/views/three/demo/houseViewing/HomeViewing.vue')
+                component: () => import('@/views/three/demo/houseViewing/HomeViewing.vue')
             },
             {
                 path: 'rankedManage',
@@ -44,8 +43,7 @@ const openRouter: RouteRecordRaw[] = [
             {
                 path: 'smartFactory',
                 name: '智慧工厂',
-                component: () =>
-                    import('@/views/open/smartFactory/SmartFactory.vue')
+                component: () => import('@/views/open/smartFactory/SmartFactory.vue')
             },
             {
                 path: 'metaverse',

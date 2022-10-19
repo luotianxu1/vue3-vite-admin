@@ -859,12 +859,6 @@ export default [
                                         },
                                         {
                                             id: 342,
-                                            name: '参数化缓冲几何体',
-                                            icon: 'icon-threejs',
-                                            url: '/three/parametricGeometry'
-                                        },
-                                        {
-                                            id: 342,
                                             name: '对象组合',
                                             icon: 'icon-threejs',
                                             url: '/three/group'

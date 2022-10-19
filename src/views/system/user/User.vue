@@ -110,7 +110,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { deleteUserApi, getUserListApi, IPageUserParams } from '@/api/system/userApi'
+    import { deleteUserApi, getUserListApi, IPageUserParams, IUserData } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus, Download } from '@element-plus/icons-vue'
     import { ElMessage, ElMessageBox } from 'element-plus'
     import { jsonToExcel } from '@/utils/excel'
@@ -218,7 +218,13 @@
     const myTableRef = ref()
 
     // 查询列表
-    const tableData = reactive({
+    const tableData = reactive<{
+        pageIndex: number
+        pageSize: number
+        total: number
+        list: IUserData[]
+        loading: boolean
+    }>({
         pageIndex: 1,
         pageSize: 20,
         total: 0,

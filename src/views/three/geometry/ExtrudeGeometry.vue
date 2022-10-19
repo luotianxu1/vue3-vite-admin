@@ -37,10 +37,10 @@
         ])
         shape.quadraticCurveTo(20, 15, 10, 10)
         let hole1 = new THREE.Path()
-        hole1.absellipse(16, 24, 2, 3, 0, Math.PI * 2, true)
+        hole1.absellipse(16, 24, 2, 3, 0, Math.PI * 2, true, 0)
         shape.holes.push(hole1)
         let hole2 = new THREE.Path()
-        hole2.absellipse(23, 24, 2, 3, 0, Math.PI * 2, true)
+        hole2.absellipse(23, 24, 2, 3, 0, Math.PI * 2, true, 0)
         shape.holes.push(hole2)
         let hole3 = new THREE.Path()
         hole3.absarc(20, 16, 2, 0, Math.PI, true)
@@ -66,6 +66,8 @@
         if (shape) {
             web.scene.remove(shape)
         }
+        console.log(val)
+
         const newExtrudeGeometry = new THREE.ExtrudeGeometry(drawShape(), {
             bevelThickness: val.bevelThickness,
             bevelSize: val.bevelSize,

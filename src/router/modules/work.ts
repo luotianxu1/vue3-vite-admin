@@ -18,9 +18,7 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'characterRecognition',
                 name: '文字识别',
                 component: () =>
-                    import(
-                        '@/views/work/function/characterRecognition/CharacterRecognition.vue'
-                    )
+                    import('@/views/work/function/characterRecognition/CharacterRecognition.vue')
             }
         ]
     }
