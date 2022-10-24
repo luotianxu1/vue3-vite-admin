@@ -75,7 +75,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-mock": "^2.9.6",
     "vue-global-api": "^0.4.1",
-    "vue-tsc": "^1.0.8"
+    "vue-tsc": "^1.0.9"
   },
   "config": {
     "commitizen": {
