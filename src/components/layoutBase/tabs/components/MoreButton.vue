@@ -2,19 +2,13 @@
     <el-dropdown trigger="click">
         <el-button size="small" type="primary">
             <span>更多</span>
-            <el-icon class="el-icon--right"><arrow-down /></el-icon>
+            <MyIcon icon="icon-xiangxia" color="#fff" :font="14" style="margin-left: 5px"></MyIcon>
         </el-button>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item @click="closeCurrentTab">
-                    关闭当前
-                </el-dropdown-item>
-                <el-dropdown-item @click="closeOtherTab">
-                    关闭其他
-                </el-dropdown-item>
-                <el-dropdown-item @click="closeAllTab">
-                    关闭所有
-                </el-dropdown-item>
+                <el-dropdown-item @click="closeCurrentTab">关闭当前</el-dropdown-item>
+                <el-dropdown-item @click="closeOtherTab">关闭其他</el-dropdown-item>
+                <el-dropdown-item @click="closeAllTab">关闭所有</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>
