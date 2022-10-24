@@ -1330,6 +1330,38 @@ export default [
                             ]
                         },
                         {
+                            id: 400,
+                            name: 'Echarts',
+                            icon: 'dangedemoban',
+                            url: '/echarts',
+                            children: [
+                                {
+                                    id: 401,
+                                    name: '饼图1',
+                                    icon: 'choujiang',
+                                    url: '/echarts/pie1'
+                                },
+                                {
+                                    id: 401,
+                                    name: '仪表盘1',
+                                    icon: 'choujiang',
+                                    url: '/echarts/gauge1'
+                                },
+                                {
+                                    id: 401,
+                                    name: '仪表盘2',
+                                    icon: 'choujiang',
+                                    url: '/echarts/gauge2'
+                                },
+                                {
+                                    id: 401,
+                                    name: '仪表盘3',
+                                    icon: 'choujiang',
+                                    url: '/echarts/guage3'
+                                }
+                            ]
+                        },
+                        {
                             id: 344,
                             name: 'Cesium',
                             icon: 'icon-threejs',
