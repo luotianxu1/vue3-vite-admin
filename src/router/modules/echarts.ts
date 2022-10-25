@@ -31,8 +31,18 @@ const functionRouter: RouteRecordRaw[] = [
             },
             {
                 path: 'bar1',
-                name: '柱形图',
+                name: '柱形图1',
                 component: () => import('@/views/echarts/bar/Bar1.vue')
+            },
+            {
+                path: 'bar2',
+                name: '柱形图2',
+                component: () => import('@/views/echarts/bar/Bar2.vue')
+            },
+            {
+                path: 'line1',
+                name: '折线图1',
+                component: () => import('@/views/echarts/line/Line1.vue')
             }
         ]
     }

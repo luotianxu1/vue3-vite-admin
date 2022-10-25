@@ -1364,6 +1364,18 @@ export default [
                                     name: '柱形图1',
                                     icon: 'choujiang',
                                     url: '/echarts/bar1'
+                                },
+                                {
+                                    id: 401,
+                                    name: '柱形图2',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar2'
+                                },
+                                {
+                                    id: 401,
+                                    name: '折线图1',
+                                    icon: 'choujiang',
+                                    url: '/echarts/line1'
                                 }
                             ]
                         },
