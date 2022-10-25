@@ -28,6 +28,11 @@ const functionRouter: RouteRecordRaw[] = [
                 path: 'guage3',
                 name: '仪表盘3',
                 component: () => import('@/views/echarts/gauge/Guage3.vue')
+            },
+            {
+                path: 'bar1',
+                name: '柱形图',
+                component: () => import('@/views/echarts/bar/Bar1.vue')
             }
         ]
     }

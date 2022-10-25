@@ -1358,6 +1358,12 @@ export default [
                                     name: '仪表盘3',
                                     icon: 'choujiang',
                                     url: '/echarts/guage3'
+                                },
+                                {
+                                    id: 401,
+                                    name: '柱形图1',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar1'
                                 }
                             ]
                         },
