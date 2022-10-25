@@ -15,7 +15,7 @@
             return
         }
         let chart = echarts.init(myCharts.value)
-        let option = {
+        let option: echarts.EChartsOption = {
             backgroundColor: '#013',
             series: [
                 {
@@ -24,11 +24,7 @@
                     startAngle: 90,
                     endAngle: -270,
                     axisLine: {
-                        show: false,
-                        lineStyle: {
-                            width: 4,
-                            color: [[1, 'rgba(17, 136, 255, .3)']]
-                        }
+                        show: false
                     },
                     // 刻度
                     axisTick: {
@@ -83,16 +79,13 @@
                         }
                     },
                     splitLine: {
-                        show: false,
-                        distance: 0,
-                        length: 10
+                        show: false
                     },
                     axisTick: {
                         show: false
                     },
                     axisLabel: {
-                        show: false,
-                        distance: 50
+                        show: false
                     },
                     data: [
                         {
@@ -122,7 +115,6 @@
                                 color: '#4db'
                             }
                         },
-
                         {
                             value: 45,
                             name: '指标3',

@@ -15,14 +15,13 @@
             return
         }
         let chart = echarts.init(myCharts.value)
-        let option = {
+        let option: echarts.EChartsOption = {
             series: [
                 {
                     name: '外部刻度',
                     type: 'gauge',
                     radius: '100%',
                     axisLine: {
-                        roundCap: true,
                         lineStyle: {
                             opacity: 0,
                             color: [
@@ -126,7 +125,6 @@
                     labelLine: {
                         show: false
                     },
-                    hoverAnimation: false,
                     data: [1]
                 }
             ]

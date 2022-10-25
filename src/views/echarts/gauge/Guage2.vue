@@ -15,7 +15,7 @@
             return
         }
         let chart = echarts.init(myCharts.value)
-        let option = {
+        let option: echarts.EChartsOption = {
             backgroundColor: 'rgba(0,0,0,0.5)',
             series: [
                 {
@@ -37,7 +37,7 @@
                     },
                     axisTick: {
                         // 刻度(线)样式。
-                        show: true, // 是否显示刻度(线),默认 true。
+                        show: false, // 是否显示刻度(线),默认 true。
                         splitNumber: 1
                     },
                     axisLine: {
@@ -64,7 +64,7 @@
                                                 color: '#5183FF' // 100% 处的颜色
                                             }
                                         ]
-                                    }
+                                    } as unknown as string
                                 ],
                                 [1, '#E6EBF8']
                             ]
