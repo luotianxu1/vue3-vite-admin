@@ -1343,6 +1343,18 @@ export default [
                                 },
                                 {
                                     id: 401,
+                                    name: '饼图2',
+                                    icon: 'choujiang',
+                                    url: '/echarts/pie2'
+                                },
+                                {
+                                    id: 401,
+                                    name: '饼图3',
+                                    icon: 'choujiang',
+                                    url: '/echarts/pie3'
+                                },
+                                {
+                                    id: 401,
                                     name: '仪表盘1',
                                     icon: 'choujiang',
                                     url: '/echarts/gauge1'
@@ -1373,9 +1385,45 @@ export default [
                                 },
                                 {
                                     id: 401,
+                                    name: '柱形图3',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar3'
+                                },
+                                {
+                                    id: 401,
+                                    name: '柱形图4',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar4'
+                                },
+                                {
+                                    id: 401,
+                                    name: '柱形图5',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar5'
+                                },
+                                {
+                                    id: 401,
+                                    name: '柱形图6',
+                                    icon: 'choujiang',
+                                    url: '/echarts/bar6'
+                                },
+                                {
+                                    id: 401,
                                     name: '折线图1',
                                     icon: 'choujiang',
                                     url: '/echarts/line1'
+                                },
+                                {
+                                    id: 401,
+                                    name: '折线图2',
+                                    icon: 'choujiang',
+                                    url: '/echarts/line2'
+                                },
+                                {
+                                    id: 401,
+                                    name: '树图1',
+                                    icon: 'choujiang',
+                                    url: '/echarts/tree1'
                                 }
                             ]
                         },
