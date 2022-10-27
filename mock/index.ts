@@ -1484,6 +1484,12 @@ export default [
                                             name: '折线图2',
                                             icon: 'icon-choujiang',
                                             url: '/echarts/line2'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '折线图3',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/line3'
                                         }
                                     ]
                                 },
@@ -1538,6 +1544,26 @@ export default [
                                             name: '地图2',
                                             icon: 'icon-choujiang',
                                             url: '/echarts/map2'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '地图3',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/map3'
+                                        }
+                                    ]
+                                },
+                                {
+                                    id: 343,
+                                    name: '关系图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/graph1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '关系图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/graph1'
                                         }
                                     ]
                                 }

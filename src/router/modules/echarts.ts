@@ -110,6 +110,11 @@ const functionRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/echarts/line/Line2.vue')
             },
             {
+                path: 'line3',
+                name: '折线图3',
+                component: () => import('@/views/echarts/line/Line3.vue')
+            },
+            {
                 path: 'tree1',
                 name: '树图1',
                 component: () => import('@/views/echarts/tree/Tree1.vue')
@@ -133,6 +138,16 @@ const functionRouter: RouteRecordRaw[] = [
                 path: 'map2',
                 name: '地图2',
                 component: () => import('@/views/echarts/map/Map2.vue')
+            },
+            {
+                path: 'map3',
+                name: '地图3',
+                component: () => import('@/views/echarts/map/Map3.vue')
+            },
+            {
+                path: 'graph1',
+                name: '关系图1',
+                component: () => import('@/views/echarts/graph/Graph1.vue')
             }
         ]
     }
