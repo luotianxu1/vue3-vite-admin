@@ -14,16 +14,16 @@
                     </h2>
                     <div class="social-icons">
                         <div class="item">
-                            <i class="iconfont facebook"></i>
+                            <i class="iconfont icon-facebook"></i>
                         </div>
                         <div class="item">
-                            <i class="iconfont twitter"></i>
+                            <i class="iconfont icon-twitter"></i>
                         </div>
                         <div class="item">
-                            <i class="iconfont linkedin"></i>
+                            <i class="iconfont icon-linkedin"></i>
                         </div>
                         <div class="item">
-                            <i class="iconfont instagram"></i>
+                            <i class="iconfont icon-instagram"></i>
                         </div>
                     </div>
                 </div>

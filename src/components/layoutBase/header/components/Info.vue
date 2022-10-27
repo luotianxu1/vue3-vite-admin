@@ -4,12 +4,7 @@
             123
             <template #reference>
                 <el-badge :value="12">
-                    <MyIcon
-                        icon="xiaoxi"
-                        :font="20"
-                        :hover="true"
-                        :width="500"
-                    ></MyIcon>
+                    <MyIcon icon="icon-xiaoxi" :font="20" :hover="true" :width="500"></MyIcon>
                 </el-badge>
             </template>
         </el-popover>

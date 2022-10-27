@@ -2,82 +2,42 @@
     <div class="page">
         <div class="navigation">
             <ul>
-                <li
-                    class="list"
-                    :class="active === 0 ? 'active' : ''"
-                    @click="change(0)"
-                >
+                <li class="list" :class="active === 0 ? 'active' : ''" @click="change(0)">
                     <span class="item">
                         <span class="icon">
-                            <MyIcon
-                                icon="yonghu"
-                                :width="800"
-                                :font="22"
-                            ></MyIcon>
+                            <MyIcon icon="icon-yonghu" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">用户</span>
                     </span>
                 </li>
-                <li
-                    class="list"
-                    :class="active === 1 ? 'active' : ''"
-                    @click="change(1)"
-                >
+                <li class="list" :class="active === 1 ? 'active' : ''" @click="change(1)">
                     <span class="item">
                         <span class="icon">
-                            <MyIcon
-                                icon="caidan1"
-                                :width="800"
-                                :font="22"
-                            ></MyIcon>
+                            <MyIcon icon="icon-caidan1" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">菜单</span>
                     </span>
                 </li>
-                <li
-                    class="list"
-                    :class="active === 2 ? 'active' : ''"
-                    @click="change(2)"
-                >
+                <li class="list" :class="active === 2 ? 'active' : ''" @click="change(2)">
                     <span class="item">
                         <span class="icon">
-                            <MyIcon
-                                icon="rili"
-                                :width="800"
-                                :font="22"
-                            ></MyIcon>
+                            <MyIcon icon="icon-rili" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">日历</span>
                     </span>
                 </li>
-                <li
-                    class="list"
-                    :class="active === 3 ? 'active' : ''"
-                    @click="change(3)"
-                >
+                <li class="list" :class="active === 3 ? 'active' : ''" @click="change(3)">
                     <span class="item">
                         <span class="icon">
-                            <MyIcon
-                                icon="gongju"
-                                :width="800"
-                                :font="22"
-                            ></MyIcon>
+                            <MyIcon icon="icon-gongju" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">工具</span>
                     </span>
                 </li>
-                <li
-                    class="list"
-                    :class="active === 4 ? 'active' : ''"
-                    @click="change(4)"
-                >
+                <li class="list" :class="active === 4 ? 'active' : ''" @click="change(4)">
                     <span class="item">
                         <span class="icon">
-                            <MyIcon
-                                icon="ditu"
-                                :width="800"
-                                :font="22"
-                            ></MyIcon>
+                            <MyIcon icon="icon-ditu" :width="800" :font="22"></MyIcon>
                         </span>
                         <span class="text">地图</span>
                     </span>

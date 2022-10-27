@@ -6,20 +6,17 @@
                     <h3>Broke John</h3>
                     <p>Web Designer</p>
                     <div class="image">
-                        <img
-                            src="../../../assets/img/style/card/card7.jpeg"
-                            alt=""
-                        />
+                        <img src="../../../assets/img/style/card/card7.jpeg" alt="" />
                     </div>
                     <div class="social">
                         <span class="icon">
-                            <i class="iconfont caidan1"></i>
+                            <i class="iconfont icon-caidan1"></i>
                         </span>
                         <span class="icon">
-                            <i class="iconfont caidan1"></i>
+                            <i class="iconfont icon-caidan1"></i>
                         </span>
                         <span class="icon">
-                            <i class="iconfont caidan1"></i>
+                            <i class="iconfont icon-caidan1"></i>
                         </span>
                     </div>
                 </div>
@@ -56,11 +53,7 @@
             &:before {
                 content: '';
                 border-radius: 5px;
-                background-image: linear-gradient(
-                    90deg,
-                    hotpink 0%,
-                    #33495e 100%
-                );
+                background-image: linear-gradient(90deg, hotpink 0%, #33495e 100%);
                 position: absolute;
                 top: 0;
                 left: 0;

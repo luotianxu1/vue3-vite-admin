@@ -96,43 +96,43 @@ export default [
                         {
                             id: 1,
                             name: '高德地图',
-                            icon: 'ditu',
+                            icon: 'icon-ditu',
                             url: '/aMap',
                             children: [
                                 {
                                     id: 2,
                                     name: '地图状态',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapStatus'
                                 },
                                 {
                                     id: 2,
                                     name: '地图切换',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/mapChange'
                                 },
                                 {
                                     id: 3,
                                     name: '类型',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapAdministrative',
                                     children: [
                                         {
                                             id: 4,
                                             name: '简易行政区',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapAdministrative'
                                         },
                                         {
                                             id: 5,
                                             name: '世界地图',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapArea'
                                         },
                                         {
                                             id: 7,
                                             name: '区域掩模',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapAreaMask'
                                         }
                                     ]
@@ -140,19 +140,19 @@ export default [
                                 {
                                     id: 8,
                                     name: '事件',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapEvent',
                                     children: [
                                         {
                                             id: 9,
                                             name: '地图事件',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapEvent'
                                         },
                                         {
                                             id: 10,
                                             name: '覆盖物事件',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapCoverEvent'
                                         }
                                     ]
@@ -160,73 +160,73 @@ export default [
                                 {
                                     id: 11,
                                     name: '覆盖物',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapMarker',
                                     children: [
                                         {
                                             id: 12,
                                             name: '点标记',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapMarker'
                                         },
                                         {
                                             id: 13,
                                             name: '轨迹回放',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapTrackPlayback'
                                         },
                                         {
                                             id: 14,
                                             name: '避让标注图层',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapAvoidLayers'
                                         },
                                         {
                                             id: 15,
                                             name: '文字标注',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapTextMarker'
                                         },
                                         {
                                             id: 16,
                                             name: '海量点',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapMassPointMarkers'
                                         },
                                         {
                                             id: 17,
                                             name: '海量点2',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapMassMarkers'
                                         },
                                         {
                                             id: 18,
                                             name: '聚合',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapPointAggregation'
                                         },
                                         {
                                             id: 19,
                                             name: '按索引聚合',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapPointAggregation2'
                                         },
                                         {
                                             id: 20,
                                             name: '矢量图形',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapVectorGraphics'
                                         },
                                         {
                                             id: 21,
                                             name: '右键菜单',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapMenu'
                                         },
                                         {
                                             id: 22,
                                             name: '信息窗体',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapInfoWindow'
                                         }
                                     ]
@@ -234,13 +234,13 @@ export default [
                                 {
                                     id: 23,
                                     name: '搜索服务',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapInputHint',
                                     children: [
                                         {
                                             id: 24,
                                             name: '输入提示',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapInputHint'
                                         }
                                     ]
@@ -248,19 +248,19 @@ export default [
                                 {
                                     id: 25,
                                     name: '路线规划',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapPlanning',
                                     children: [
                                         {
                                             id: 26,
                                             name: '驾车路线规划',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapPlanning'
                                         },
                                         {
                                             id: 27,
                                             name: '拖拽路线规划',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapDragPlanning'
                                         }
                                     ]
@@ -268,31 +268,31 @@ export default [
                                 {
                                     id: 28,
                                     name: '其他',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapGeocoding',
                                     children: [
                                         {
                                             id: 29,
                                             name: '地理编码',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapGeocoding'
                                         },
                                         {
                                             id: 30,
                                             name: '行政区查询',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapAdministrativeArea'
                                         },
                                         {
                                             id: 31,
                                             name: '定位',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapLocation'
                                         },
                                         {
                                             id: 32,
                                             name: '天气',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapWeather'
                                         }
                                     ]
@@ -300,49 +300,49 @@ export default [
                                 {
                                     id: 33,
                                     name: '计算',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/aMapPointCalculate',
                                     children: [
                                         {
                                             id: 34,
                                             name: '两点间距离',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapPointCalculate'
                                         },
                                         {
                                             id: 35,
                                             name: '点到直线的距离',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapLineCalculate'
                                         },
                                         {
                                             id: 36,
                                             name: '折线长度',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapPathLength'
                                         },
                                         {
                                             id: 37,
                                             name: '面积',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapAreaNum'
                                         },
                                         {
                                             id: 38,
                                             name: '点是否在线上',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapIsOnLine'
                                         },
                                         {
                                             id: 39,
                                             name: '点是否在多边形内',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapIsOnPolygon'
                                         },
                                         {
                                             id: 40,
                                             name: '几何关系',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/aMapGeometricRelationship'
                                         }
                                     ]
@@ -350,79 +350,79 @@ export default [
                                 {
                                     id: 41,
                                     name: '可视化',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/map/cellularHeatmap',
                                     children: [
                                         {
                                             id: 42,
                                             name: '蜂窝热力图',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/cellularHeatmap'
                                         },
                                         {
                                             id: 43,
                                             name: '网格热力图',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/gridHeatmap'
                                         },
                                         {
                                             id: 44,
                                             name: '热力图',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/heatmap'
                                         },
                                         {
                                             id: 45,
                                             name: '脉冲线',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/pulseLine'
                                         },
                                         {
                                             id: 46,
                                             name: '飞线',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/flyingLine'
                                         },
                                         {
                                             id: 47,
                                             name: '连接线',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/connectingLine'
                                         },
                                         {
                                             id: 48,
                                             name: '线图层',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/lineLayer'
                                         },
                                         {
                                             id: 49,
                                             name: '图标图层',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/iconLayer'
                                         },
                                         {
                                             id: 50,
                                             name: '贴地点',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/postLocation'
                                         },
                                         {
                                             id: 51,
                                             name: '棱柱图层',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/prismLayer'
                                         },
                                         {
                                             id: 52,
                                             name: '圆点图层',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/dotLayer'
                                         },
                                         {
                                             id: 53,
                                             name: '标牌点',
-                                            icon: 'locus',
+                                            icon: 'icon-locus',
                                             url: '/map/signagePoint'
                                         }
                                     ]
@@ -438,7 +438,7 @@ export default [
                                 {
                                     id: 101,
                                     name: '用户管理',
-                                    icon: 'yonghu',
+                                    icon: 'icon-yonghu',
                                     url: '/system/user'
                                 },
                                 {
@@ -452,13 +452,13 @@ export default [
                         {
                             id: 200,
                             name: '样式',
-                            icon: 'dangedemoban',
+                            icon: 'icon-dangedemoban',
                             url: '/style',
                             children: [
                                 {
                                     id: 28,
                                     name: '导航栏',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/style/navigation',
                                     children: [
                                         {
@@ -484,7 +484,7 @@ export default [
                                 {
                                     id: 28,
                                     name: '卡片',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/style/card1',
                                     children: [
                                         {
@@ -528,7 +528,7 @@ export default [
                                 {
                                     id: 28,
                                     name: '按钮',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/style/button1',
                                     children: [
                                         {
@@ -548,7 +548,7 @@ export default [
                                 {
                                     id: 28,
                                     name: '加载图标',
-                                    icon: 'locus',
+                                    icon: 'icon-locus',
                                     url: '/style/loading1',
                                     children: [
                                         {
@@ -1170,19 +1170,19 @@ export default [
                         {
                             id: 400,
                             name: '功能',
-                            icon: 'dangedemoban',
+                            icon: 'icon-dangedemoban',
                             url: '/function',
                             children: [
                                 {
                                     id: 401,
                                     name: '抽奖',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/function/lottery'
                                 },
                                 {
                                     id: 402,
                                     name: '日历',
-                                    icon: 'rili',
+                                    icon: 'icon-rili',
                                     url: '/function/calendar'
                                 },
                                 {
@@ -1206,7 +1206,7 @@ export default [
                                 {
                                     id: 406,
                                     name: '拖拽组件',
-                                    icon: 'rili',
+                                    icon: 'icon-rili',
                                     url: '/function/drag'
                                 },
                                 {
@@ -1312,19 +1312,19 @@ export default [
                                 {
                                     id: 401,
                                     name: '菜了个菜',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/game/sheep'
                                 },
                                 {
                                     id: 401,
                                     name: '跳一跳',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/game/jump'
                                 },
                                 {
                                     id: 401,
                                     name: '扫雷',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/game/minesweeper'
                                 }
                             ]
@@ -1332,158 +1332,214 @@ export default [
                         {
                             id: 400,
                             name: 'Echarts',
-                            icon: 'dangedemoban',
+                            icon: 'icon-dangedemoban',
                             url: '/echarts',
                             children: [
                                 {
-                                    id: 401,
-                                    name: '饼图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/pie1'
+                                    id: 343,
+                                    name: '饼图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/pie1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '饼图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/pie1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '饼图2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/pie2'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '饼图3',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/pie3'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '饼图2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/pie2'
+                                    id: 343,
+                                    name: '仪表盘',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/gauge1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '仪表盘1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/gauge1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '仪表盘2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/gauge2'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '仪表盘3',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/guage3'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '仪表盘4',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/guage4'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '仪表盘5',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/guage5'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '仪表盘6',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/guage6'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '饼图3',
-                                    icon: 'choujiang',
-                                    url: '/echarts/pie3'
+                                    id: 343,
+                                    name: '柱形图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/bar1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '柱形图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar2'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图3',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar3'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图4',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar4'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图5',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar5'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图6',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar6'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图7',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar7'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图8',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar8'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '柱形图9',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/bar9'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '仪表盘1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/gauge1'
+                                    id: 343,
+                                    name: '折线图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/line1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '折线图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/line1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '折线图2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/line2'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '仪表盘2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/gauge2'
+                                    id: 343,
+                                    name: '树图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/tree1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '树图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/tree1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '树图2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/tree2'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '仪表盘3',
-                                    icon: 'choujiang',
-                                    url: '/echarts/guage3'
+                                    id: 343,
+                                    name: '散点图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/scatter1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '散点图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/scatter1'
+                                        }
+                                    ]
                                 },
                                 {
-                                    id: 401,
-                                    name: '仪表盘4',
-                                    icon: 'choujiang',
-                                    url: '/echarts/guage4'
-                                },
-                                {
-                                    id: 401,
-                                    name: '仪表盘5',
-                                    icon: 'choujiang',
-                                    url: '/echarts/guage5'
-                                },
-                                {
-                                    id: 401,
-                                    name: '仪表盘6',
-                                    icon: 'choujiang',
-                                    url: '/echarts/guage6'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar1'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar2'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图3',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar3'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图4',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar4'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图5',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar5'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图6',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar6'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图7',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar7'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图8',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar8'
-                                },
-                                {
-                                    id: 401,
-                                    name: '柱形图9',
-                                    icon: 'choujiang',
-                                    url: '/echarts/bar9'
-                                },
-                                {
-                                    id: 401,
-                                    name: '折线图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/line1'
-                                },
-                                {
-                                    id: 401,
-                                    name: '折线图2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/line2'
-                                },
-                                {
-                                    id: 401,
-                                    name: '树图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/tree1'
-                                },
-                                {
-                                    id: 401,
-                                    name: '树图2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/tree2'
-                                },
-                                {
-                                    id: 401,
-                                    name: '散点图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/scatter1'
-                                },
-                                {
-                                    id: 401,
-                                    name: '地图1',
-                                    icon: 'choujiang',
-                                    url: '/echarts/map1'
-                                },
-                                {
-                                    id: 401,
-                                    name: '地图2',
-                                    icon: 'choujiang',
-                                    url: '/echarts/map2'
+                                    id: 343,
+                                    name: '地图',
+                                    icon: 'icon-threejs',
+                                    url: '/echarts/map1',
+                                    children: [
+                                        {
+                                            id: 401,
+                                            name: '地图1',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/map1'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '地图2',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/map2'
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -1496,7 +1552,7 @@ export default [
                                 {
                                     id: 401,
                                     name: 'cesium',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/cesium/cesium'
                                 }
                             ]
@@ -1534,19 +1590,19 @@ export default [
                         {
                             id: 400,
                             name: '唱歌排名',
-                            icon: 'dangedemoban',
+                            icon: 'icon-dangedemoban',
                             url: '/open',
                             children: [
                                 {
                                     id: 401,
                                     name: '分数管理',
-                                    icon: 'choujiang',
+                                    icon: 'icon-choujiang',
                                     url: '/open/rankedList'
                                 },
                                 {
                                     id: 402,
                                     name: '分数排名',
-                                    icon: 'rili',
+                                    icon: 'icon-rili',
                                     url: '/open/rankedManage'
                                 }
                             ]

@@ -7,7 +7,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont facebook"></span>
+                    <span class="iconfont icon-facebook"></span>
                 </div>
                 <div class="text">Facebook</div>
             </div>
@@ -17,7 +17,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont twitter"></span>
+                    <span class="iconfont icon-twitter"></span>
                 </div>
                 <div class="text">Twitter</div>
             </div>
@@ -27,7 +27,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont linkedin"></span>
+                    <span class="iconfont icon-linkedin"></span>
                 </div>
                 <div class="text">Linkedin</div>
             </div>
@@ -37,7 +37,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont instagram"></span>
+                    <span class="iconfont icon-instagram"></span>
                 </div>
                 <div class="text">Instagram</div>
             </div>
@@ -47,7 +47,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span class="iconfont youtube"></span>
+                    <span class="iconfont icon-youtube"></span>
                 </div>
                 <div class="text">Youtube</div>
             </div>

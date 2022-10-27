@@ -2,9 +2,7 @@
     <div class="header">
         <div class="left">
             <MyIcon
-                :icon="
-                    globalStore.SYSTEM_COLLAPSE ? 'mulushousuo' : 'muluzhankai'
-                "
+                :icon="globalStore.SYSTEM_COLLAPSE ? 'icon-mulushousuo' : 'icon-muluzhankai'"
                 :font="20"
                 @click="changAside"
             ></MyIcon>

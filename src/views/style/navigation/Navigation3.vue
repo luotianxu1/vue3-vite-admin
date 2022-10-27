@@ -1,31 +1,26 @@
 <template>
     <div class="page">
         <nav class="menu">
-            <input
-                id="menu_toggle"
-                type="checkbox"
-                class="menu-toggle"
-                checked
-            />
+            <input id="menu_toggle" type="checkbox" class="menu-toggle" checked />
             <label for="menu_toggle"></label>
             <ul>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="iconfont configure"></i></a>
+                    <a href="#"><i class="iconfont icon-configure"></i></a>
                 </li>
             </ul>
         </nav>
