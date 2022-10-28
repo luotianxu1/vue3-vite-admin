@@ -1550,6 +1550,12 @@ export default [
                                             name: '地图3',
                                             icon: 'icon-choujiang',
                                             url: '/echarts/map3'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '地图4',
+                                            icon: 'icon-choujiang',
+                                            url: '/echarts/map4'
                                         }
                                     ]
                                 },

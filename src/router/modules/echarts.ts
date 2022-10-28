@@ -145,6 +145,11 @@ const functionRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/echarts/map/Map3.vue')
             },
             {
+                path: 'map4',
+                name: '地图4',
+                component: () => import('@/views/echarts/map/Map4.vue')
+            },
+            {
                 path: 'graph1',
                 name: '关系图1',
                 component: () => import('@/views/echarts/graph/Graph1.vue')
