@@ -21,13 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-    // const num = computed(() => {
-    //     if (store.state.system?.SYSTEM_COLLAPSE) {
-    //         return 24
-    //     }
-    //     return 200
-    // })
-
     onMounted(() => {
         let lis = document.querySelectorAll('.list')
         for (let i = 0; i < lis.length; i++) {
@@ -36,8 +29,7 @@
                 let light = list.querySelector('.light') as HTMLBodyElement
                 light.style.display = 'block'
                 list.addEventListener('mousemove', (e) => {
-                    let x =
-                        e.pageX - list.offsetLeft - light.offsetWidth / 2 - 200
+                    let x = e.pageX - list.offsetLeft - light.offsetWidth / 2 - 200
                     let y = e.pageY - list.offsetTop - light.offsetWidth / 2
                     light.style.left = x + 'px'
                     light.style.top = y + 'px'
