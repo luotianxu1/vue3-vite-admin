@@ -1352,6 +1352,12 @@ export default [
                                     name: '画板',
                                     icon: 'icon-choujiang',
                                     url: '/canvas/canvas3'
+                                },
+                                {
+                                    id: 401,
+                                    name: '时钟',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas4'
                                 }
                             ]
                         },
