@@ -1331,6 +1331,38 @@ export default [
                         },
                         {
                             id: 400,
+                            name: 'Canvas',
+                            icon: 'icon-dangedemoban',
+                            url: '/canvas/canvas1',
+                            children: [
+                                {
+                                    id: 401,
+                                    name: 'Canvas1',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas1'
+                                },
+                                {
+                                    id: 401,
+                                    name: '抽奖',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas2'
+                                },
+                                {
+                                    id: 401,
+                                    name: '画板',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas3'
+                                },
+                                {
+                                    id: 401,
+                                    name: '时钟',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas4'
+                                }
+                            ]
+                        },
+                        {
+                            id: 400,
                             name: 'Echarts',
                             icon: 'icon-dangedemoban',
                             url: '/echarts',
