@@ -26,6 +26,9 @@
             return
         }
         web = new WebGl(webGl.value, false)
+        web.renderer.shadowMap.type = THREE.VSMShadowMap
+        web.renderer.outputEncoding = THREE.sRGBEncoding
+
         web.camera.position.set(0, 2, 10)
         web.setHdrBg('./textures/hdr/sky11.hdr')
         web.addStats()
@@ -47,9 +50,7 @@
                 if (
                     child.isMesh &&
                     child.material &&
-                    child.material.name.indexOf(
-                        'KB3D_DLA_ConcreteRiverRock'
-                    ) !== -1
+                    child.material.name.indexOf('KB3D_DLA_ConcreteRiverRock') !== -1
                 ) {
                     planeGroup.add(child.clone())
                     child.visible = false
@@ -57,9 +58,7 @@
                 if (
                     child.isMesh &&
                     child.material &&
-                    child.material.name.indexOf(
-                        'KB3D_DLA_ConcreteScreedTan'
-                    ) !== -1
+                    child.material.name.indexOf('KB3D_DLA_ConcreteScreedTan') !== -1
                 ) {
                     planeGroup.add(child.clone())
                     child.visible = false
@@ -67,9 +66,7 @@
                 if (
                     child.isMesh &&
                     child.material &&
-                    child.material.name.indexOf(
-                        'KB3D_DLA_ConcretePittedGrayLight'
-                    ) !== -1
+                    child.material.name.indexOf('KB3D_DLA_ConcretePittedGrayLight') !== -1
                 ) {
                     planeGroup.add(child.clone())
                     child.visible = false
@@ -102,11 +99,7 @@
                     //     canvasRotation
                     // )
 
-                    web.addTextVideo(
-                        '恭喜到达指定位置',
-                        canvasPosition,
-                        canvasRotation
-                    )
+                    web.addTextVideo('恭喜到达指定位置', canvasPosition, canvasRotation)
                     // 添加火焰
                     fireSprite || (fireSprite = web.addFireSprite())
                 },
