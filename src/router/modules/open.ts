@@ -69,6 +69,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'website',
                 name: '3D官网',
                 component: () => import('@/views/open/website/Website.vue')
+            },
+            {
+                path: 'plane',
+                name: '飞机',
+                component: () => import('@/views/open/plane/Plane.vue')
             }
         ]
     }
