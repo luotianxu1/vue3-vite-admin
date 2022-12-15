@@ -10,11 +10,6 @@ const openRouter: RouteRecordRaw[] = [
         redirect: '/open/car',
         children: [
             {
-                path: 'drag',
-                name: '拖拽',
-                component: () => import('@/views/open/drag/index.vue')
-            },
-            {
                 path: 'rankedList',
                 name: '排名列表',
                 component: () => import('@/views/open/ranking/List.vue')
@@ -69,6 +64,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'website',
                 name: '3D官网',
                 component: () => import('@/views/open/website/Website.vue')
+            },
+            {
+                path: 'plane',
+                name: '飞机',
+                component: () => import('@/views/open/plane/Plane.vue')
             }
         ]
     }

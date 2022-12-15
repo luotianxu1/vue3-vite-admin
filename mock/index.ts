@@ -1016,6 +1016,12 @@ export default [
                                             name: 'video',
                                             icon: 'icon-threejs',
                                             url: '/three/video'
+                                        },
+                                        {
+                                            id: 501,
+                                            name: '青联',
+                                            icon: 'icon-yidong',
+                                            url: '/three/test'
                                         }
                                     ]
                                 },
@@ -1162,6 +1168,60 @@ export default [
                                             name: '机器人',
                                             icon: 'icon-threejs',
                                             url: '/three/robot'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '智慧城市',
+                                            icon: 'icon-threejs',
+                                            url: '/open/smartCity'
+                                        },
+                                        {
+                                            id: 401,
+                                            name: '智慧城市2',
+                                            icon: 'icon-threejs',
+                                            url: '/open/smartCity2'
+                                        },
+                                        {
+                                            id: 402,
+                                            name: '智慧园区',
+                                            icon: 'icon-threejs',
+                                            url: '/open/smartPark'
+                                        },
+                                        {
+                                            id: 402,
+                                            name: '日夜交替',
+                                            icon: 'icon-threejs',
+                                            url: '/open/hotel'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: '智慧工厂',
+                                            icon: 'icon-threejs',
+                                            url: '/open/smartFactory'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: '全景看房',
+                                            icon: 'icon-threejs',
+                                            url: '/open/homeViewing'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: '3D地图',
+                                            icon: 'icon-threejs',
+                                            url: '/open/map'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: '3D官网',
+                                            icon: 'icon-threejs',
+                                            url: '/open/website'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: 'plane',
+                                            icon: 'icon-threejs',
+                                            url: '/open/plane'
                                         }
                                     ]
                                 }
@@ -1256,50 +1316,6 @@ export default [
                                     name: '图片预览',
                                     icon: 'icon-beijingtupian',
                                     url: '/function/imageView'
-                                }
-                            ]
-                        },
-                        {
-                            id: 400,
-                            name: '智慧城市',
-                            icon: 'icon-threejs',
-                            url: '/open',
-                            children: [
-                                {
-                                    id: 401,
-                                    name: '智慧城市',
-                                    icon: 'icon-threejs',
-                                    url: '/open/smartCity'
-                                },
-                                {
-                                    id: 401,
-                                    name: '智慧城市2',
-                                    icon: 'icon-threejs',
-                                    url: '/open/smartCity2'
-                                },
-                                {
-                                    id: 402,
-                                    name: '智慧园区',
-                                    icon: 'icon-threejs',
-                                    url: '/open/smartPark'
-                                },
-                                {
-                                    id: 402,
-                                    name: '日夜交替',
-                                    icon: 'icon-threejs',
-                                    url: '/open/hotel'
-                                },
-                                {
-                                    id: 344,
-                                    name: '智慧工厂',
-                                    icon: 'icon-threejs',
-                                    url: '/open/smartFactory'
-                                },
-                                {
-                                    id: 344,
-                                    name: '全景看房',
-                                    icon: 'icon-threejs',
-                                    url: '/open/homeViewing'
                                 }
                             ]
                         },
@@ -1622,35 +1638,12 @@ export default [
                             ]
                         },
                         {
-                            id: 344,
-                            name: '3D地图',
-                            icon: 'icon-threejs',
-                            url: '/open/map'
-                        },
-                        {
-                            id: 344,
-                            name: '3D官网',
-                            icon: 'icon-threejs',
-                            url: '/open/website'
-                        },
-                        {
-                            id: 501,
-                            name: '拖拽页面',
-                            icon: 'icon-yidong',
-                            url: '/open/drag'
-                        },
-                        {
                             id: 501,
                             name: '工作台',
                             icon: 'icon-yidong',
                             url: '/work/index'
                         },
-                        {
-                            id: 501,
-                            name: '青联',
-                            icon: 'icon-yidong',
-                            url: '/three/test'
-                        },
+
                         {
                             id: 400,
                             name: '唱歌排名',
