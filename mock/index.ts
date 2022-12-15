@@ -1222,6 +1222,12 @@ export default [
                                             name: 'plane',
                                             icon: 'icon-threejs',
                                             url: '/open/plane'
+                                        },
+                                        {
+                                            id: 344,
+                                            name: '轮廓',
+                                            icon: 'icon-threejs',
+                                            url: '/open/click'
                                         }
                                     ]
                                 }

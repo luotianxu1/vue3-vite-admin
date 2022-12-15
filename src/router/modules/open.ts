@@ -69,6 +69,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'plane',
                 name: '飞机',
                 component: () => import('@/views/open/plane/Plane.vue')
+            },
+            {
+                path: 'click',
+                name: '点击',
+                component: () => import('@/views/open/click/Click.vue')
             }
         ]
     }

@@ -73,17 +73,18 @@
         rbgeLoader.load('./textures/hdr/living.hdr', (texture) => {
             texture.mapping = THREE.EquirectangularReflectionMapping
             gltf.scene.traverse((child) => {
-                if (child.isMesh && child.name !== 'GymFloor_ParquetShader_0') {
-                    child.castShadow = true
-                    child.receiveShadow = true
-                    child.material.envMapIntensity = 0.2
-                    child.material.envMap = texture
+                let obj = child as THREE.Mesh
+                if (obj.isMesh && child.name !== 'GymFloor_ParquetShader_0') {
+                    obj.castShadow = true
+                    obj.receiveShadow = true
+                    ;(obj.material as THREE.MeshStandardMaterial).envMapIntensity = 0.2
+                    ;(obj.material as THREE.MeshBasicMaterial).envMap = texture
                 }
-                if (child.name === 'GymFloor_ParquetShader_0') {
-                    child.castShadow = true
-                    child.receiveShadow = true
-                    child.material.envMapIntensity = 0.2
-                    child.material.envMap = scene.environment
+                if (obj.name === 'GymFloor_ParquetShader_0') {
+                    obj.castShadow = true
+                    obj.receiveShadow = true
+                    ;(obj.material as THREE.MeshStandardMaterial).envMapIntensity = 0.2
+                    ;(obj.material as THREE.MeshBasicMaterial).envMap = scene.environment
                 }
             })
             scene.add(gltf.scene)
