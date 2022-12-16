@@ -3,7 +3,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import cesium from 'vite-plugin-cesium'
-import { viteMockServe } from 'vite-plugin-mock'
 
 export const getPlugins = (mode) => [
     vue(),
@@ -19,6 +18,5 @@ export const getPlugins = (mode) => [
         dts: 'src/types/components.d.ts'
         // deep: true
     }),
-    cesium(),
-    viteMockServe()
+    cesium()
 ]
