@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 declare namespace Menu {
     interface MenuOptions {
         path: string

@@ -19,10 +19,10 @@ module.exports = {
             jsx: true
         }
     },
-    'extends': [
-        "plugin:vue/vue3-essential",
-        "plugin:vue/vue3-recommended",
-        "prettier",
+    extends: [
+        'plugin:vue/vue3-essential',
+        'plugin:vue/vue3-recommended',
+        'prettier',
         '@vue/standard',
         'vue-global-api'
     ],
@@ -33,7 +33,6 @@ module.exports = {
         // 'prettier'
         'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-
         'indent': 0, // 缩进风格
         'quotes': [
             1,
@@ -42,9 +41,9 @@ module.exports = {
                 allowTemplateLiterals: true
             }
         ],
-        'no-mixed-spaces-and-tabs':0,
+        'no-mixed-spaces-and-tabs': 0,
         'no-var-requires': 0, // 可以使用require导入
-        'no-tabs':'off',
+        'no-tabs': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
         'import/no-absolute-path': 'off',

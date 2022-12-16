@@ -27,18 +27,13 @@
         // 模块名到基于 baseUrl的路径映射的列表。
         "paths": {
             "@/*": ["src/*"],
+            "@assets/*": ["src/assets/*"],
             "#/*": ["types/*"]
         },
         // 要包含的类型声明文件名列表
         "types": ["node", "vite/client", "element-plus/global"],
         "typeRoots": ["./node_modules/@types/", "./types"]
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.d.ts",
-        "src/*.d.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue"
-    ],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "exclude": ["node_modules"]
 }
