@@ -126,8 +126,8 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 3rem;
-        height: 4rem;
+        width: 18rem;
+        height: 25rem;
         border-radius: 10px;
         backface-visibility: hidden;
         transition: all 0.5s;
@@ -136,8 +136,8 @@
 
         .language {
             position: absolute;
-            top: 0.2rem;
-            right: 0.2rem;
+            top: 1.2rem;
+            right: 1.2rem;
             z-index: 999;
         }
 
