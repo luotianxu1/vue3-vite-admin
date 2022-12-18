@@ -27,6 +27,7 @@ export default defineConfig({
             }
         },
         assetsInlineLimit: 4096,
+        minify: 'terser',
         //  清除console和debugger
         terserOptions: {
             compress: {

@@ -8,14 +8,8 @@
             ></path>
         </svg>
         <div class="container">
-            <LoginForm
-                ref="loginRef"
-                @changeToRegister="changeToRegister"
-            ></LoginForm>
-            <RegisterForm
-                ref="registerRef"
-                @changeToLogin="changeToLogin"
-            ></RegisterForm>
+            <LoginForm ref="loginRef" @changeToRegister="changeToRegister"></LoginForm>
+            <RegisterForm ref="registerRef" @changeToLogin="changeToLogin"></RegisterForm>
         </div>
     </div>
 </template>

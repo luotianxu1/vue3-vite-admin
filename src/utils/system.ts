@@ -26,11 +26,7 @@ function systemType() {
 function systemPlatform() {
     let type
     let platform = systemType()
-    if (
-        platform === 'windows' ||
-        platform === 'macos' ||
-        platform === 'linux'
-    ) {
+    if (platform === 'windows' || platform === 'macos' || platform === 'linux') {
         type = 'computer'
     } else {
         type = 'phone'
@@ -38,4 +34,11 @@ function systemPlatform() {
     return type
 }
 
-export { systemType, systemPlatform }
+/**
+ * 获取浏览器语言
+ */
+function getLanguage() {
+    return navigator.language.toLowerCase()
+}
+
+export { systemType, systemPlatform, getLanguage }

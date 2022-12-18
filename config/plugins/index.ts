@@ -1,6 +1,10 @@
+import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import setupExtend from 'vite-plugin-vue-setup-extend'
+import { visualizer } from 'rollup-plugin-visualizer'
+
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import cesium from 'vite-plugin-cesium'
 
@@ -18,5 +22,14 @@ export const getPlugins = (mode) => [
         dts: 'src/types/components.d.ts'
         // deep: true
     }),
-    cesium()
+    // setup语法糖设置名字
+    setupExtend(),
+    cesium(),
+    // 生产报告 放在最后一个
+    visualizer({
+        open: mode === 'production',
+        gzipSize: true,
+        brotliSize: true,
+        filename: resolve(process.cwd(), 'dist/report.html')
+    })
 ]

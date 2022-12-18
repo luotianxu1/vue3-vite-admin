@@ -1,0 +1,163 @@
+@use "sass:math";
+@use "sass:map";
+
+$btn-types: "primary", "info", "success", "danger", "warning";
+$text-types: "primary", "regular", "secondary", "placeholder", "disabled";
+$border-types: "", "darker", "dark", "light", "lighter", "extra-light";
+$fill-types: "", "darker", "dark", "light", "lighter", "extra-light", "blank";
+$map: (
+  "white": #fff,
+  "black": #000,
+  "primary": #e240ff,
+  "success": #67c23a,
+  "warning": #e6a23c,
+  "danger": #f56c6c,
+  "error": #f56c6c,
+  "info": #909399
+);
+
+@mixin mix($name, $color, $mix-color, $number ,$num ) {
+  #{$name}: mix($mix-color, $color, math.percentage(math.div($number, $num)));
+}
+
+@mixin set-color-mix-level( $type,$number,$mode,$color,$mix-color) {
+  @include mix(#{$type}-#{$mode}-#{$number},$color, $mix-color, $number, 12);
+}
+
+@mixin set-main-color($mix-color:white, $mix-color-2: black) {
+  @each $btn in $btn-types {
+    @include set-btn-color(#{$btn},map.get($map, #{$btn}), $mix-color, $mix-color-2);
+  }
+}
+
+@mixin set-btn-color( $name , $color, $mix-color-1: white, $mix-color-2: black ) {
+  /** 设置主要颜色 背景 边框等 */
+  --el-color-#{ $name }: #{$color};
+
+  @for $i from 1 through 9 {
+    @if $i > 2 and $i % 2 == 1 {
+      @include set-color-mix-level(--el-color-#{$name}, $i, "light", $color, $mix-color-1);
+    }
+  }
+
+  @for $i from 2 through 2 {
+    @include set-color-mix-level(--el-color-#{$name}, $i, "dark", $color, $mix-color-2);
+  }
+}
+
+@mixin set-text-color( $color, $mix-color: white , $num: 16) {
+  /** 设置文字颜色 */
+  @each $type in $text-types {
+    @if index($text-types, $type) == 1 {
+      --el-text-color-#{$type}: #{ $color };
+    } @else {
+      @include mix(--el-text-color-#{$type},$color, $mix-color ,index($text-types, $type), $num);
+    }
+  }
+
+  color: $color;
+}
+
+@mixin set-border-color($color, $mix-color:white, $num: 14) {
+  /** border颜色 */
+  @each $type in $border-types {
+    @if index($border-types, $type) == 1 {
+      --el-border-color: #{ $color };
+    } @else {
+      @include mix(--el-border-color-#{$type},$color, $mix-color,index($border-types, $type), $num);
+    }
+  }
+}
+
+@mixin set-fill-color($color , $mix-color:white , $num: 8) {
+  /** 基本填充颜色 */
+  @each $type in $fill-types {
+    @if index($fill-types, $type) == 1 {
+      --el-fill-color: #{ $color };
+    } @else {
+      @include mix(--el-fill-color-#{$type}, $color, $mix-color,index($fill-types, $type),  $num);
+    }
+  }
+}
+
+@mixin set-box-shadow($r, $g, $b , $a) {
+  /** 基本页面颜色 */
+  --el-box-shadow: 0 12px 32px 4px rgb(#{ $r $g $b } / 4%), 0 8px 20px rgb(#{ $r $g $b } / 8%);
+  --el-box-shadow-light: 0 0 12px rgb(#{ $r $g $b } / 12%);
+  --el-box-shadow-lighter: 0 0 6px rgb(#{ $r $g $b } / 12%);
+  --el-box-shadow-dark: 0 16px 48px 16px rgb(#{ $r $g $b } / 8%), 0 12px 32px rgb(#{ $r $g $b } / 12%), 0 8px 16px -8px rgb(#{ $r $g $b } / 16%);
+}
+
+// 注意 body做根元素比较合适 用#app 一些样式选择不到 因为本身他就独立于其之外
+body.dark {
+  // white 暗色混入 black 亮色混入
+  @include set-main-color(map.get($map,"black"), map.get($map,"white"));
+  @include set-text-color(#ffffff,  map.get($map, "black") , 9);
+  @include set-border-color(#dedddd, map.get($map, "black"), 8);
+
+  // linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)  #595959
+  @include set-fill-color(#595959, map.get($map, "black"), 20);
+  @include set-box-shadow(255, 255, 255, #ffffff);
+
+  // 背景填充色
+  --el-bg-color: #1f1f1f;
+  --el-bg-color-page: #1a1a1a;
+  --el-bg-color-overlay: #313131;  // 任何有下拉的组件的填充色
+  --el-option-color: var(--el-text-color-primary); // switch 的开关 与 radio 里的原点 颜色一致
+
+  /* 加载遮罩 */
+  --el-mask-color: rgba(0 0 0 / 70%);
+
+  /* 按钮  disabled文字颜色 / 文字颜色    */
+  .el-button.is-disabled {
+    --el-button-disabled-text-color: var(--el-text-color-disabled);
+  }
+  .el-button {
+    &--primary,
+    &--warning,
+    &--info,
+    &--success,
+    &--danger {
+      --el-button-text-color: var(--el-text-color-primary);
+    }
+  }
+
+  // input 里的
+  .el-input.is-disabled .el-input__wrapper {
+    background: var(--el-fill-color);
+    color: black;
+  }
+
+  /* checkbox 的border 太白 */
+  .el-checkbox__input.is-disabled .el-checkbox__inner {
+    border-color: var(--el-border-color-lighter);
+    background: var(--el-fill-color);
+  }
+
+  // switch 的开关 与 radio 里的原点 颜色一致  --el-text-color-primary
+  .el-switch__core .el-switch__action {
+    background: var(--el-option-color);
+  }
+  .el-switch__core {
+    background: var(--el-fill-color-lighter);
+  }
+
+  // radio 里的原点
+  .el-radio__inner::after {
+    background-color: var(--el-option-color);
+  }
+  .el-radio__input.is-disabled .el-radio__inner {
+    border-color: var(--el-border-color-lighter);
+    background: var(--el-fill-color-lighter);
+  }
+
+  // 取消下拉的rad
+  .el-popper {
+    --el-popper-border-radius: none;
+  }
+
+  // picker背景颜色修改
+  .el-color-picker__color-inner {
+    background-color: map.get($map, "primary") !important;
+  }
+}
