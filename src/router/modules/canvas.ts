@@ -32,6 +32,12 @@ const canvasRouter: RouteRecordRaw[] = [
                 name: '时钟',
                 meta: { title: 'canvas2', keepAlive: true },
                 component: () => import('@/views/canvas/Canvas4.vue')
+            },
+            {
+                path: 'canvas5',
+                name: '碰撞',
+                meta: { title: 'canvas2', keepAlive: true },
+                component: () => import('@/views/canvas/Canvas5.vue')
             }
         ]
     }
