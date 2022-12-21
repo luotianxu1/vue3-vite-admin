@@ -7,13 +7,8 @@ const functionRouter: RouteRecordRaw[] = [
         component: LayoutBase,
         name: '功能',
         meta: { title: '功能' },
-        redirect: '/function/lottery',
+        redirect: '/function/number',
         children: [
-            {
-                path: 'lottery',
-                name: '抽奖',
-                component: () => import('@/views/function/lottery/Lottery.vue')
-            },
             {
                 path: 'number',
                 name: '数字',

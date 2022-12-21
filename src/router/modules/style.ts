@@ -7,7 +7,7 @@ const demoRouter: RouteRecordRaw[] = [
         component: LayoutBase,
         name: '样式',
         meta: { title: 'style' },
-        redirect: '/style/lottery',
+        redirect: '/style/navigation',
         children: [
             {
                 path: 'navigation',

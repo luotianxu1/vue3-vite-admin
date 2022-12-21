@@ -1240,18 +1240,6 @@ export default [
                             url: '/function',
                             children: [
                                 {
-                                    id: 401,
-                                    name: '抽奖',
-                                    icon: 'icon-choujiang',
-                                    url: '/function/lottery'
-                                },
-                                {
-                                    id: 402,
-                                    name: '日历',
-                                    icon: 'icon-rili',
-                                    url: '/function/calendar'
-                                },
-                                {
                                     id: 403,
                                     name: '数字',
                                     icon: 'icon-number',
