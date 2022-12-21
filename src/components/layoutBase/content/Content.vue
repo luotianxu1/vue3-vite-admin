@@ -1,36 +1,19 @@
 <template>
-    <div class="main">
-        <router-view v-slot="{ Component }">
-            <keep-alive>
-                <transition appear name="fade-transform" mode="out-in">
-                    <component
-                        :is="Component"
-                        v-if="$route.meta.keepAlive"
-                        :key="$route.name"
-                    />
-                </transition>
-            </keep-alive>
+    <router-view v-slot="{ Component }">
+        <keep-alive>
             <transition appear name="fade-transform" mode="out-in">
-                <component
-                    :is="Component"
-                    v-if="!$route.meta.keepAlive"
-                    :key="$route.name"
-                />
+                <component :is="Component" v-if="$route.meta.keepAlive" :key="$route.name" />
             </transition>
-        </router-view>
-    </div>
+        </keep-alive>
+        <transition appear name="fade-transform" mode="out-in">
+            <component :is="Component" v-if="!$route.meta.keepAlive" :key="$route.name" />
+        </transition>
+    </router-view>
 </template>
 
 <script lang="ts" setup></script>
 
 <style scoped lang="scss">
-    .main {
-        height: 100%;
-        &::-webkit-scrollbar {
-            background-color: white;
-        }
-    }
-
     .fade-transform-leave-active,
     .fade-transform-enter-active {
         transition: all 0.2s;

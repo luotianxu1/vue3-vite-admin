@@ -1,9 +1,5 @@
 <template>
-    <div
-        v-loading="props.loading"
-        element-loading-text="加载中..."
-        class="layout"
-    >
+    <div v-loading="props.loading" element-loading-text="加载中..." class="layout">
         <div class="top">
             <slot name="top"></slot>
         </div>
@@ -15,9 +11,7 @@
                 <slot name="fr"></slot>
             </div>
         </div>
-        <div class="table">
-            <slot></slot>
-        </div>
+        <slot name="table"></slot>
         <div class="footer">
             <div class="item">
                 <slot name="btn"></slot>

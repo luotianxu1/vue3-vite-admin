@@ -48,51 +48,53 @@
                 <el-button type="danger" :icon="Delete">多选删除</el-button>
             </div>
         </template>
-        <MyTable
-            ref="myTableRef"
-            :column="data"
-            :data="pageList"
-            check-box
-            :init-request="false"
-            :on-load="true"
-            :index="true"
-            :fixed-index="true"
-        >
-            <template #operation="row">
-                <el-button
-                    type="info"
-                    :icon="Edit"
-                    circle
-                    @click="deleteInfo(row.data.id)"
-                ></el-button>
-                <el-button
-                    type="danger"
-                    :icon="Delete"
-                    circle
-                    @click="deleteInfo(row.data)"
-                ></el-button>
-            </template>
-            <template #img="row">
-                <el-avatar :src="row.data.img" fit="cover"></el-avatar>
-            </template>
-            <template #sex="row">
-                {{ Number(row.data.sex) === 1 ? '男' : '女' }}
-            </template>
-            <template #type="row">
-                <el-tag v-if="row.data.type === 0" type="danger">超级管理员</el-tag>
-                <el-tag v-if="row.data.type === 1" type="warning">管理员</el-tag>
-                <el-tag v-if="row.data.type === 2" type="success">用户</el-tag>
-            </template>
-            <template #status="row">
-                <el-switch
-                    v-model="row.data.status"
-                    :active-value="1"
-                    inline-prompt
-                    active-text="启"
-                    inactive-text="禁"
-                ></el-switch>
-            </template>
-        </MyTable>
+        <template #table>
+            <MyTable
+                ref="myTableRef"
+                :column="data"
+                :data="pageList"
+                check-box
+                :init-request="false"
+                :on-load="true"
+                :index="true"
+                :fixed-index="true"
+            >
+                <template #operation="row">
+                    <el-button
+                        type="info"
+                        :icon="Edit"
+                        circle
+                        @click="deleteInfo(row.data.id)"
+                    ></el-button>
+                    <el-button
+                        type="danger"
+                        :icon="Delete"
+                        circle
+                        @click="deleteInfo(row.data)"
+                    ></el-button>
+                </template>
+                <template #img="row">
+                    <el-avatar :src="row.data.img" fit="cover"></el-avatar>
+                </template>
+                <template #sex="row">
+                    {{ Number(row.data.sex) === 1 ? '男' : '女' }}
+                </template>
+                <template #type="row">
+                    <el-tag v-if="row.data.type === 0" type="danger">超级管理员</el-tag>
+                    <el-tag v-if="row.data.type === 1" type="warning">管理员</el-tag>
+                    <el-tag v-if="row.data.type === 2" type="success">用户</el-tag>
+                </template>
+                <template #status="row">
+                    <el-switch
+                        v-model="row.data.status"
+                        :active-value="1"
+                        inline-prompt
+                        active-text="启"
+                        inactive-text="禁"
+                    ></el-switch>
+                </template>
+            </MyTable>
+        </template>
         <template #btn>
             <el-button>反选</el-button>
         </template>
