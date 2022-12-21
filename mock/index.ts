@@ -1241,6 +1241,18 @@ export default [
                             children: [
                                 {
                                     id: 403,
+                                    name: '穿梭框',
+                                    icon: 'icon-chuansuokuang',
+                                    url: '/function/transfer'
+                                },
+                                {
+                                    id: 403,
+                                    name: '放大镜',
+                                    icon: 'icon-search',
+                                    url: '/function/magnifyingGlass'
+                                },
+                                {
+                                    id: 403,
                                     name: '数字',
                                     icon: 'icon-number',
                                     url: '/function/number'

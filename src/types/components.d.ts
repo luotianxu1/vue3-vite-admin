@@ -58,6 +58,7 @@ declare module 'vue' {
     MyDialog: typeof import('./../components/myDialog/index.vue')['default']
     MyDraggable: typeof import('./../components/myDraggable/index.vue')['default']
     MyIcon: typeof import('./../components/myIcon/index.vue')['default']
+    MyMagifier: typeof import('./../components/myMagifier/index.vue')['default']
     MyMap: typeof import('./../components/myMap/index.vue')['default']
     MyTable: typeof import('./../components/myTable/index.vue')['default']
     MyTextEditor: typeof import('./../components/myTextEditor/index.vue')['default']

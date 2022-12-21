@@ -15,6 +15,11 @@ const functionRouter: RouteRecordRaw[] = [
                 component: () => import('@/views/function/transfer/Transfer.vue')
             },
             {
+                path: 'magnifyingGlass',
+                name: '放大镜',
+                component: () => import('@/views/function/magnifyingGlass/MagnifyingGlass.vue')
+            },
+            {
                 path: 'number',
                 name: '数字',
                 component: () => import('@/views/function/number/Number.vue')
