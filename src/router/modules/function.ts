@@ -10,6 +10,11 @@ const functionRouter: RouteRecordRaw[] = [
         redirect: '/function/number',
         children: [
             {
+                path: 'transfer',
+                name: '穿梭框',
+                component: () => import('@/views/function/transfer/Transfer.vue')
+            },
+            {
                 path: 'number',
                 name: '数字',
                 component: () => import('@/views/function/number/Number.vue')
