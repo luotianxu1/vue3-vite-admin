@@ -1663,27 +1663,32 @@ export default [
                             icon: 'icon-yidong',
                             url: '/work/index'
                         },
-
                         {
-                            id: 400,
-                            name: '唱歌排名',
-                            icon: 'icon-dangedemoban',
-                            url: '/open',
-                            children: [
-                                {
-                                    id: 401,
-                                    name: '分数管理',
-                                    icon: 'icon-choujiang',
-                                    url: '/open/rankedList'
-                                },
-                                {
-                                    id: 402,
-                                    name: '分数排名',
-                                    icon: 'icon-rili',
-                                    url: '/open/rankedManage'
-                                }
-                            ]
+                            id: 501,
+                            name: '拖拽',
+                            icon: 'icon-yidong',
+                            url: '/open/editor'
                         }
+                        // {
+                        //     id: 400,
+                        //     name: '唱歌排名',
+                        //     icon: 'icon-dangedemoban',
+                        //     url: '/open',
+                        //     children: [
+                        //         {
+                        //             id: 401,
+                        //             name: '分数管理',
+                        //             icon: 'icon-choujiang',
+                        //             url: '/open/rankedList'
+                        //         },
+                        //         {
+                        //             id: 402,
+                        //             name: '分数排名',
+                        //             icon: 'icon-rili',
+                        //             url: '/open/rankedManage'
+                        //         }
+                        //     ]
+                        // }
                     ],
                     total: 100
                 }

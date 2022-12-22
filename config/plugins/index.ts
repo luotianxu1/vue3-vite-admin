@@ -4,12 +4,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import setupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
-
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import cesium from 'vite-plugin-cesium'
 
 export const getPlugins = (mode) => [
     vue(),
+    vueJsx(),
     AutoImport({
         resolvers: [ElementPlusResolver()],
         imports: ['vue', 'vue-router'],

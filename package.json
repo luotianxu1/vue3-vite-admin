@@ -57,6 +57,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "@vitejs/plugin-vue": "^2.0.0",
+    "@vitejs/plugin-vue-jsx": "^1.3.5",
     "@vue/eslint-config-standard": "^5.1.2",
     "autoprefixer": "^10.4.13",
     "cz-customizable": "^6.3.0",

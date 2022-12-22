@@ -74,6 +74,11 @@ const openRouter: RouteRecordRaw[] = [
                 path: 'click',
                 name: '点击',
                 component: () => import('@/views/open/click/Click.vue')
+            },
+            {
+                path: 'editor',
+                name: '拖拽',
+                component: () => import('@/views/open/edit/index.vue')
             }
         ]
     }
