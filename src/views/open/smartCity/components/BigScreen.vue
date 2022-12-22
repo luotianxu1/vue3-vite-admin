@@ -3,11 +3,7 @@
         <div class="header">智慧城市</div>
         <div class="main">
             <div class="left">
-                <div
-                    v-for="(item, index) in props.dataInfo"
-                    :key="index"
-                    class="cityEvent"
-                >
+                <div v-for="(item, index) in props.dataInfo" :key="index" class="cityEvent">
                     <h3>
                         <span>{{ item.name }}</span>
                     </h3>
@@ -17,9 +13,7 @@
                             alt="icon"
                             class="icon"
                         />
-                        <span>
-                            {{ toFixInt(item.number) }}({{ item.unit }})
-                        </span>
+                        <span>{{ toFixInt(item.number) }}({{ item.unit }})</span>
                     </h1>
                     <div class="footerBoder"></div>
                 </div>
@@ -38,11 +32,7 @@
                         >
                             <h1>
                                 <div>
-                                    <img
-                                        :src="imgs[item.name]"
-                                        alt="icon"
-                                        class="icon"
-                                    />
+                                    <img :src="imgs[item.name]" alt="icon" class="icon" />
                                     <span>{{ item.name }}</span>
                                 </div>
                                 <span class="time1">{{ item.time }}</span>
@@ -106,27 +96,26 @@
     }
 
     .header {
-        width: 19.2rem;
-        height: 1rem;
+        width: 100%;
+        height: 5rem;
         background-image: url('../../../../assets/img/open/smartCity/title.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         text-align: center;
         color: rgb(226, 226, 255);
-        font-size: 0.4rem;
+        font-size: 2.4rem;
     }
 
     .main {
         flex: 1;
-        width: 19.2rem;
+        width: 100%;
         display: flex;
         justify-content: space-between;
     }
 
     .left {
-        width: 4rem;
-        /* background-color: rgb(255,255,255,0.5); */
+        width: 20rem;
         background-image: url('../../../../assets/img/open/smartCity/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -138,8 +127,7 @@
     }
 
     .right {
-        width: 4rem;
-        /* background-color: rgb(255,255,255,0.5); */
+        width: 20rem;
         background-image: url('../../../../assets/img/open/smartCity/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -152,8 +140,7 @@
 
     .cityEvent {
         position: relative;
-        width: 3.5rem;
-        /* height: 3rem; */
+        width: 16.5rem;
         margin-bottom: 0.5rem;
         background-image: url('../../../../assets/img/open/smartCity/bg_img03.png');
         background-repeat: repeat;
@@ -223,7 +210,7 @@
         align-items: center;
         padding: 0 0.3rem 0.3rem;
         justify-content: space-between;
-        font-size: 0.3rem;
+        font-size: 1.3rem;
     }
     h3 {
         color: #fff;
@@ -243,10 +230,10 @@
 
     .cityEvent li > p {
         color: #eee;
-        padding: 0rem 0.3rem 0.3rem;
+        padding: 0rem 1.3rem 0.3rem;
     }
     .list h1 {
-        padding: 0.1rem 0.3rem;
+        padding: 0.1rem 1.3rem;
     }
     .cityEvent.list ul {
         pointer-events: auto;

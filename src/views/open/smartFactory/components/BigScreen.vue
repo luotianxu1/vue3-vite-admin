@@ -168,13 +168,12 @@
     }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
     #bigScreen {
         width: 100vw;
         height: 100vh;
         position: fixed;
         z-index: 100;
-
         left: 0;
         top: 0;
         pointer-events: none;
@@ -183,30 +182,26 @@
     }
 
     .header {
-        /* width: 1920px;
-              height: 100px; */
-
-        width: 19.2rem;
-        height: 1rem;
+        width: 100%;
+        height: 5rem;
         background-image: url('../../../../assets/img/open/smarkFactory/title.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         text-align: center;
         color: rgb(226, 226, 255);
-        font-size: 0.4rem;
+        font-size: 2.4rem;
     }
 
     .main {
         flex: 1;
-        width: 19.2rem;
+        width: 100%;
         display: flex;
         justify-content: space-between;
     }
 
     .left {
-        width: 4rem;
-        /* background-color: rgb(255,255,255,0.5); */
+        width: 20rem;
         background-image: url('../../../../assets/img/open/smarkFactory/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -218,8 +213,7 @@
     }
 
     .right {
-        width: 4rem;
-        /* background-color: rgb(255,255,255,0.5); */
+        width: 20rem;
         background-image: url('../../../../assets/img/open/smarkFactory/line_img.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -232,9 +226,8 @@
 
     .cityEvent {
         position: relative;
-        width: 3.5rem;
-        /* height: 3rem; */
-        margin-bottom: 0.5rem;
+        width: 15.5rem;
+        margin-bottom: 1.5rem;
         background-image: url('../../../../assets/img/open/smarkFactory/bg_img03.png');
         background-repeat: repeat;
         pointer-events: auto;
@@ -266,7 +259,7 @@
     .footerBorder {
         position: absolute;
         bottom: 0;
-        width: 3.5rem;
+        width: 15.5rem;
         height: 0.4rem;
     }
     .footerBorder::before {
@@ -302,15 +295,15 @@
         color: #fff;
         display: flex;
         align-items: center;
-        padding: 0 0.3rem 0.3rem;
+        padding: 0 0.3rem 1.3rem;
         justify-content: space-between;
-        font-size: 0.3rem;
+        font-size: 1.25rem;
     }
     h3 {
         color: #fff;
         display: flex;
         align-items: center;
-        padding: 0.3rem 0.3rem;
+        padding: 1.3rem 1.3rem;
         text-shadow: 0 0 5px #000;
     }
 
