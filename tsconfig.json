@@ -27,8 +27,7 @@
         // 模块名到基于 baseUrl的路径映射的列表。
         "paths": {
             "@/*": ["src/*"],
-            "@assets/*": ["src/assets/*"],
-            "#/*": ["types/*"]
+            "@assets/*": ["src/assets/*"]
         },
         // 要包含的类型声明文件名列表
         "types": ["node", "vite/client", "element-plus/global"],

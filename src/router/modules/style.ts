@@ -83,6 +83,11 @@ const demoRouter: RouteRecordRaw[] = [
                 path: 'input',
                 name: '动态输入框',
                 component: () => import('@/views/style/input/input.vue')
+            },
+            {
+                path: 'input2',
+                name: '打字放大特效',
+                component: () => import('@/views/style/input/input2.vue')
             }
         ]
     }

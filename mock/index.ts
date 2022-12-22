@@ -566,16 +566,30 @@ export default [
                                     ]
                                 },
                                 {
+                                    id: 28,
+                                    name: '输入框',
+                                    icon: 'icon-locus',
+                                    url: '/style/input',
+                                    children: [
+                                        {
+                                            id: 212,
+                                            name: '动态输入框',
+                                            icon: 'icon-beijingtupian',
+                                            url: '/style/input'
+                                        },
+                                        {
+                                            id: 212,
+                                            name: '打字特效',
+                                            icon: 'icon-beijingtupian',
+                                            url: '/style/input2'
+                                        }
+                                    ]
+                                },
+                                {
                                     id: 211,
                                     name: '背景渐变',
                                     icon: 'icon-beijingtupian',
                                     url: '/style/gradient'
-                                },
-                                {
-                                    id: 212,
-                                    name: '动态输入框',
-                                    icon: 'icon-beijingtupian',
-                                    url: '/style/input'
                                 }
                             ]
                         },
@@ -1247,12 +1261,6 @@ export default [
                                 },
                                 {
                                     id: 403,
-                                    name: '放大镜',
-                                    icon: 'icon-search',
-                                    url: '/function/magnifyingGlass'
-                                },
-                                {
-                                    id: 403,
                                     name: '数字',
                                     icon: 'icon-number',
                                     url: '/function/number'
@@ -1380,6 +1388,12 @@ export default [
                                     name: '时钟',
                                     icon: 'icon-choujiang',
                                     url: '/canvas/canvas4'
+                                },
+                                {
+                                    id: 401,
+                                    name: '碰撞',
+                                    icon: 'icon-choujiang',
+                                    url: '/canvas/canvas5'
                                 }
                             ]
                         },
