@@ -1,3 +1,5 @@
+import eventHub from '@/utils/eventHub'
+
 export function useBlockDragger(focusData, lastSelectBlock, data) {
     let dragState = {
         startX: 0,
@@ -5,7 +7,8 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
         startLeft: 0,
         startTop: 0,
         startPos: null as any,
-        lines: null as any
+        lines: null as any,
+        dragging: false
     }
 
     const mouseDown = (e) => {
@@ -16,6 +19,7 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
             startLeft: lastSelectBlock.value.left, // 拖拽前的位置
             startTop: lastSelectBlock.value.top,
             startPos: focusData.value.focus.map(({ top, left }) => ({ top, left })),
+            dragging: false,
             lines: (() => {
                 const { unfocused } = focusData.value // 获取其他没选中的以他们的位置做辅助线
 
@@ -63,6 +67,10 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
     })
     const mouseMove = (e) => {
         let { clientX: moveX, clientY: moveY } = e
+        if (!dragState.dragging) {
+            dragState.dragging = true
+            eventHub.emit('start') // 触发事件就会记住拖拽前的位置
+        }
         // 计算当前元素最新的left和top，去线里面找，找到显示线
         // 鼠标移动后-鼠标移动前 + left就好了
         let left = moveX - dragState.startX + dragState.startLeft
@@ -109,6 +117,10 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
         document.removeEventListener('mouseup', mouseUp)
         markLine.x = null
         markLine.y = null
+        // 如果只是点击不会触发
+        if (dragState.dragging) {
+            eventHub.emit('end')
+        }
     }
 
     return {

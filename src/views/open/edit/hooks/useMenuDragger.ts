@@ -1,3 +1,5 @@
+import eventHub from '@/utils/eventHub'
+
 export function useMenuDragger(containerRef, data) {
     let currentComponent
 
@@ -41,6 +43,7 @@ export function useMenuDragger(containerRef, data) {
         containerRef.value && containerRef.value.addEventListener('dragleave', dragleave)
         containerRef.value && containerRef.value.addEventListener('drop', drop)
         currentComponent = component
+        eventHub.emit('start')
     }
 
     const dragEnd = () => {
@@ -48,6 +51,7 @@ export function useMenuDragger(containerRef, data) {
         containerRef.value && containerRef.value.removeEventListener('dragover', dragover)
         containerRef.value && containerRef.value.removeEventListener('dragleave', dragleave)
         containerRef.value && containerRef.value.removeEventListener('drop', drop)
+        eventHub.emit('end')
     }
 
     return {
