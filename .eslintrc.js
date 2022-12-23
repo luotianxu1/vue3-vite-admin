@@ -151,7 +151,7 @@ module.exports = {
         'no-iterator': 'error', // 禁止使用__iterator__ 属性
         'no-label-var': 'error', // label名不能与var声明的变量名相同
         'no-lone-blocks': 'error', // 禁止不必要的嵌套块
-        'no-lonely-if': 'error', // 禁止else语句内只有if语句
+        'no-lonely-if': 'off', // 禁止else语句内只有if语句
         'no-loop-func': 'warn', // 禁止在循环中使用函数（如果没有引用外部变量不形成闭包就可以）
         'no-mixed-requires': ['off', false], // 声明时不能混用声明类型
         'linebreak-style': ['off', 'windows'], // 换行风格
