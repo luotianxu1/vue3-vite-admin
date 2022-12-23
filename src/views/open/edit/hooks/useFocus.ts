@@ -1,4 +1,7 @@
 export function useFocus(data, callback) {
+    const selectIndex = ref(-1) // 标识没有任何一个被选中
+    const lastSelectBlock = computed(() => data.value.blocks[selectIndex.value])
+
     const focusData = computed(() => {
         let focus: any = []
         let unfocused: any = []
@@ -12,7 +15,7 @@ export function useFocus(data, callback) {
         })
     }
 
-    const blockMousedown = (e, block) => {
+    const blockMousedown = (e, block, index) => {
         e.preventDefault()
         e.stopPropagation()
         // block上我们规划一个属性focus获取焦点或将focus变为true
@@ -28,17 +31,20 @@ export function useFocus(data, callback) {
                 block.focus = true //要清空其focus
             }
         }
+        selectIndex.value = index
         callback(e)
     }
 
     // 点击容器让选中的失去焦点
     const containerMousedown = () => {
         clearBlockFocus()
+        selectIndex.value = -1
     }
 
     return {
         blockMousedown,
         focusData,
-        containerMousedown
+        containerMousedown,
+        lastSelectBlock
     }
 }

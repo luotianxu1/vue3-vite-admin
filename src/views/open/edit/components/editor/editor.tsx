@@ -35,12 +35,15 @@ export default defineComponent({
         const { dragStart, dragEnd } = useMenuDragger(containerRef, data)
 
         // 2.实现获取焦点
-        const { blockMousedown, containerMousedown, focusData } = useFocus(data, (e) => {
-            mouseDown(e)
-        })
+        const { blockMousedown, containerMousedown, focusData, lastSelectBlock } = useFocus(
+            data,
+            (e) => {
+                mouseDown(e)
+            }
+        )
 
         // 3.实现拖拽多个元素
-        const { mouseDown } = useBlockDragger(focusData)
+        const { mouseDown, markLine } = useBlockDragger(focusData, lastSelectBlock, data)
 
         return () => (
             <div class="editor">
@@ -66,12 +69,20 @@ export default defineComponent({
                             style={containerStyles.value}
                             ref={containerRef}
                             onMousedown={containerMousedown}>
-                            {data.value.blocks.map((block) => (
+                            {data.value.blocks.map((block, index) => (
                                 <EditorBlock
                                     class={block.focus ? 'editor-block-focus' : ''}
                                     block={block}
-                                    onMousedown={(e) => blockMousedown(e, block)}></EditorBlock>
+                                    onMousedown={(e) =>
+                                        blockMousedown(e, block, index)
+                                    }></EditorBlock>
                             ))}
+                            {markLine.x !== null && (
+                                <div class="line-x" style={{ left: markLine.x + 'px' }}></div>
+                            )}
+                            {markLine.y !== null && (
+                                <div class="line-y" style={{ top: markLine.y + 'px' }}></div>
+                            )}
                         </div>
                     </div>
                 </div>
