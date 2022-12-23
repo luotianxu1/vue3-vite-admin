@@ -49,8 +49,16 @@ export default defineComponent({
         const { commands } = useCommand(data)
 
         const buttons = [
-            { label: '撤销', icon: 'icon-back', handler: () => commands.undo() },
-            { label: '重做', icon: 'icon-forward', handler: () => commands.redo() }
+            { label: '撤销', icon: 'iconfont icon-chexiao', handler: () => commands.undo() },
+            { label: '重做', icon: 'iconfont icon-fanhui', handler: () => commands.redo() },
+            { label: '导出', icon: 'iconfont icon-xiazai', handler: () => console.log('导出') },
+            { label: '导入', icon: 'iconfont icon-shangchuan', handler: () => console.log('导入') },
+            { label: '置顶', icon: 'iconfont icon-zhidi', handler: () => console.log('置顶') },
+            { label: '置底', icon: 'iconfont icon-zhiding', handler: () => console.log('置底') },
+            { label: '删除', icon: 'iconfont icon-dustbin', handler: () => console.log('删除') },
+            { label: '预览', icon: 'iconfont icon-chakan', handler: () => console.log('预览') },
+            { label: '编辑', icon: 'iconfont icon-chakan', handler: () => console.log('编辑') },
+            { label: '关闭', icon: 'iconfont icon-guanbi', handler: () => console.log('关闭') }
         ]
 
         return () => (
