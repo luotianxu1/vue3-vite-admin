@@ -124,6 +124,33 @@ export function useCommand(data, focusData) {
         }
     })
 
+    // 更新某个组件
+    registry({
+        name: 'updateBlock',
+        pushQueue: true,
+        execute(newBlock, oldBlock) {
+            let dataState = {
+                before: data.value.blocks,
+                after: (() => {
+                    let blocks = [...data.value.blocks]
+                    const index = data.value.blocks.indexOf(oldBlock)
+                    if (index > -1) {
+                        blocks.splice(index, 1, newBlock)
+                    }
+                    return blocks
+                })()
+            }
+            return {
+                redo() {
+                    data.value = { ...data.value, blocks: dataState.after }
+                },
+                undo() {
+                    data.value = { ...data.value, blocks: dataState.before }
+                }
+            }
+        }
+    })
+
     // 置顶
     registry({
         name: 'placeTop',

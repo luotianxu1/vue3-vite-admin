@@ -1,0 +1,9 @@
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 2px 2px #ccc;
+    &-isShow {
+        display: block;
+    }
+}

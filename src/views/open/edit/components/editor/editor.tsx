@@ -6,6 +6,9 @@ import { useFocus } from '../../hooks/useFocus'
 import { useBlockDragger } from '../../hooks/useBlockDragger'
 import { useCommand } from '../../hooks/useCommand'
 import { $dialog } from '../dialog/dialog'
+import { ElButton } from 'element-plus'
+import { $dropdown } from '../dropdown/dropdown'
+import { DropDownItem } from '../dropdownItem/dropdownItem'
 
 export default defineComponent({
     props: {
@@ -18,6 +21,7 @@ export default defineComponent({
     setup(props, ctx) {
         // 预览
         const previewRef = ref(false)
+        const editorRef = ref(true)
         const data = computed({
             get() {
                 return props.modelValue
@@ -91,65 +95,136 @@ export default defineComponent({
                     previewRef.value = !previewRef.value
                     clearBlockFocus()
                 }
+            },
+            {
+                label: '关闭',
+                icon: 'iconfont icon-guanbi',
+                handler: () => {
+                    editorRef.value = false
+                }
             }
         ]
 
-        return () => (
-            <div class="editor">
-                <div class="editor-left">
-                    {/* {根据注册列表渲染内容} */}
-                    {config.componentList.map((component) => (
-                        <div
-                            class="editor-left-item"
-                            draggable
-                            onDragstart={(e) => dragStart(e, component)}
-                            onDragend={() => dragEnd()}>
-                            <span>{component.label}</span>
-                            <div>{component.preview()}</div>
-                        </div>
-                    ))}
-                </div>
-                <div class="editor-top">
-                    {buttons.map((btn) => {
-                        const label = typeof btn.label === 'function' ? btn.label() : btn.label
-                        const icon = typeof btn.icon === 'function' ? btn.icon() : btn.icon
-                        return (
-                            <div class="editor-top-button" onClick={btn.handler}>
-                                <i class={icon}></i>
-                                <span>{label}</span>
+        const onContextMenuBlock = (e, block) => {
+            e.preventDefault()
+            $dropdown({
+                el: e.target,
+                content: () => {
+                    return (
+                        <>
+                            <DropDownItem
+                                label="删除"
+                                icon="iconfont icon-dustbin"
+                                onClick={() => commands.delete()}></DropDownItem>
+                            <DropDownItem
+                                label="置顶"
+                                icon="iconfont icon-zhiding"
+                                onClick={() => commands.placeTop()}></DropDownItem>
+                            <DropDownItem
+                                label="置底"
+                                icon="iconfont icon-zhidi"
+                                onClick={() => commands.placeBottom()}></DropDownItem>
+                            <DropDownItem
+                                label="查看"
+                                icon="iconfont icon-chakan"
+                                onClick={() => {
+                                    $dialog({
+                                        title: '查看节点数据',
+                                        content: JSON.stringify(block)
+                                    })
+                                }}></DropDownItem>
+                            <DropDownItem
+                                label="导入"
+                                icon="iconfont icon-shangchuan"
+                                onClick={() => {
+                                    $dialog({
+                                        title: '导入节点数据',
+                                        content: '',
+                                        footer: true,
+                                        onConfirm(text) {
+                                            commands.updateBlock(JSON.parse(text), block)
+                                        }
+                                    })
+                                }}></DropDownItem>
+                        </>
+                    )
+                }
+            })
+        }
+
+        return () =>
+            !editorRef.value ? (
+                <>
+                    <div class="editor-container-canvas__content" style={containerStyles.value}>
+                        {data.value.blocks.map((block) => (
+                            <EditorBlock
+                                class={'editor-block-preview'}
+                                v-model:block={block}></EditorBlock>
+                        ))}
+                    </div>
+                    <div>
+                        <ElButton type="primary" onClick={() => (editorRef.value = true)}>
+                            继续编辑
+                        </ElButton>
+                    </div>
+                </>
+            ) : (
+                <div class="editor">
+                    <div class="editor-left">
+                        {/* {根据注册列表渲染内容} */}
+                        {config.componentList.map((component) => (
+                            <div
+                                class="editor-left-item"
+                                draggable
+                                onDragstart={(e) => dragStart(e, component)}
+                                onDragend={() => dragEnd()}>
+                                <span>{component.label}</span>
+                                <div>{component.preview()}</div>
                             </div>
-                        )
-                    })}
-                </div>
-                <div class="editor-right">属性控制栏目</div>
-                <div class="editor-container">
-                    <div class="editor-container-canvas">
-                        <div
-                            class="editor-container-canvas__content"
-                            style={containerStyles.value}
-                            ref={containerRef}
-                            onMousedown={containerMousedown}>
-                            {data.value.blocks.map((block, index) => (
-                                <EditorBlock
-                                    class={[
-                                        block.focus ? 'editor-block-focus' : '',
-                                        previewRef.value ? 'editor-block-preview' : ''
-                                    ]}
-                                    v-model:block={block}
-                                    onMousedown={(e) =>
-                                        blockMousedown(e, block, index)
-                                    }></EditorBlock>
-                            ))}
-                            {markLine.x !== null && (
-                                <div class="line-x" style={{ left: markLine.x + 'px' }}></div>
-                            )}
-                            {markLine.y !== null && (
-                                <div class="line-y" style={{ top: markLine.y + 'px' }}></div>
-                            )}
+                        ))}
+                    </div>
+                    <div class="editor-top">
+                        {buttons.map((btn) => {
+                            const label = typeof btn.label === 'function' ? btn.label() : btn.label
+                            const icon = typeof btn.icon === 'function' ? btn.icon() : btn.icon
+                            return (
+                                <div class="editor-top-button" onClick={btn.handler}>
+                                    <i class={icon}></i>
+                                    <span>{label}</span>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div class="editor-right">属性控制栏目</div>
+                    <div class="editor-container">
+                        <div class="editor-container-canvas">
+                            <div
+                                class="editor-container-canvas__content"
+                                style={containerStyles.value}
+                                ref={containerRef}
+                                onMousedown={containerMousedown}>
+                                {data.value.blocks.map((block, index) => (
+                                    <EditorBlock
+                                        class={[
+                                            block.focus ? 'editor-block-focus' : '',
+                                            previewRef.value ? 'editor-block-preview' : ''
+                                        ]}
+                                        v-model:block={block}
+                                        onMousedown={(e) => blockMousedown(e, block, index)}
+                                        onContextmenu={(e) =>
+                                            onContextMenuBlock(e, block)
+                                        }></EditorBlock>
+                                ))}
+                                {markLine.x !== null && (
+                                    <div class="line-x" style={{ left: markLine.x + 'px' }}></div>
+                                )}
+                                {markLine.y !== null && (
+                                    <div class="line-y" style={{ top: markLine.y + 'px' }}></div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
     }
 })
