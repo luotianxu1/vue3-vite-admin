@@ -5,6 +5,7 @@ import { useMenuDragger } from '../../hooks/useMenuDragger'
 import { useFocus } from '../../hooks/useFocus'
 import { useBlockDragger } from '../../hooks/useBlockDragger'
 import { useCommand } from '../../hooks/useCommand'
+import { $dialog } from '../dialog/dialog'
 
 export default defineComponent({
     props: {
@@ -51,8 +52,31 @@ export default defineComponent({
         const buttons = [
             { label: '撤销', icon: 'iconfont icon-chexiao', handler: () => commands.undo() },
             { label: '重做', icon: 'iconfont icon-fanhui', handler: () => commands.redo() },
-            { label: '导出', icon: 'iconfont icon-xiazai', handler: () => console.log('导出') },
-            { label: '导入', icon: 'iconfont icon-shangchuan', handler: () => console.log('导入') },
+            {
+                label: '导出',
+                icon: 'iconfont icon-xiazai',
+                handler: () => {
+                    $dialog({
+                        title: '导出JSON',
+                        content: JSON.stringify(data.value),
+                        footer: false
+                    })
+                }
+            },
+            {
+                label: '导入',
+                icon: 'iconfont icon-shangchuan',
+                handler: () => {
+                    $dialog({
+                        title: '导入JSON',
+                        content: '',
+                        footer: true,
+                        onConfirm(text) {
+                            commands.updateContainer(JSON.parse(text))
+                        }
+                    })
+                }
+            },
             { label: '置顶', icon: 'iconfont icon-zhidi', handler: () => console.log('置顶') },
             { label: '置底', icon: 'iconfont icon-zhiding', handler: () => console.log('置底') },
             { label: '删除', icon: 'iconfont icon-dustbin', handler: () => console.log('删除') },

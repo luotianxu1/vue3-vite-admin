@@ -13,8 +13,8 @@ export function useCommand(data) {
 
     const registry = (command) => {
         state.commandArray.push(command)
-        state.commands[command.name] = () => {
-            const { redo, undo } = command.execute()
+        state.commands[command.name] = (...args) => {
+            const { redo, undo } = command.execute(...args)
             redo()
             // 不需要放队列直接跳过
             if (!command.pushQueue) {
@@ -99,6 +99,25 @@ export function useCommand(data) {
                 },
                 undo() {
                     data.value = { ...data.value, blocks: before }
+                }
+            }
+        }
+    })
+
+    registry({
+        name: 'updateContainer',
+        pushQueue: true,
+        execute(newVal) {
+            let dataState = {
+                before: data.value,
+                after: newVal
+            }
+            return {
+                redo() {
+                    data.value = dataState.after
+                },
+                undo() {
+                    data.value = dataState.before
                 }
             }
         }
