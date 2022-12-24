@@ -1,7 +1,7 @@
 import eventHub from '@/utils/eventHub'
 import deepcopy from 'deepcopy'
 
-export function useCommand(data) {
+export function useCommand(data, focusData) {
     // 前进后退需要指针
     const state = {
         current: -1, // 前进后退的索引值
@@ -27,11 +27,10 @@ export function useCommand(data) {
             }
             queue.push({ redo, undo }) // 保存指令的前进后退
             state.current = current + 1
-            console.log(current)
         }
     }
 
-    // 注册我们需要的命令
+    // 重做
     registry({
         name: 'redo',
         keyboard: 'ctrl+y',
@@ -48,6 +47,7 @@ export function useCommand(data) {
         }
     })
 
+    // 撤销
     registry({
         name: 'undo',
         keyboard: 'ctrl+z',
@@ -67,7 +67,7 @@ export function useCommand(data) {
         }
     })
 
-    // 如果希望将操作放到队列中可以增加一个属性，便是等会操作要放到队列中
+    // 拖拽
     registry({
         name: 'drag',
         pushQueue: true,
@@ -104,6 +104,7 @@ export function useCommand(data) {
         }
     })
 
+    // 导入
     registry({
         name: 'updateContainer',
         pushQueue: true,
@@ -118,6 +119,85 @@ export function useCommand(data) {
                 },
                 undo() {
                     data.value = dataState.before
+                }
+            }
+        }
+    })
+
+    // 置顶
+    registry({
+        name: 'placeTop',
+        pushQueue: true,
+        execute() {
+            let before = deepcopy(data.value.blocks)
+            // 置顶就是在所有blocks中找到最大的
+            let after = (() => {
+                let { focus, unfocused } = focusData.value
+                let maxZIndex = unfocused.reduce((prev, block) => {
+                    return Math.max(prev, block.zIndex)
+                }, -Infinity)
+                focus.forEach((block) => (block.zIndex = maxZIndex + 1))
+                console.log(focus)
+
+                return data.value.blocks
+            })()
+            return {
+                undo: () => {
+                    // blocks 前后一致则不更新
+                    data.value = { ...data.value, blocks: before }
+                },
+                redo: () => {
+                    data.value = { ...data.value, blocks: after }
+                }
+            }
+        }
+    })
+
+    // 置底
+    registry({
+        name: 'placeBottom',
+        pushQueue: true,
+        execute() {
+            let before = deepcopy(data.value.blocks)
+            let after = (() => {
+                let { focus, unfocused } = focusData.value
+                let minZIndex =
+                    unfocused.reduce((prev, block) => {
+                        return Math.min(prev, block.zIndex)
+                    }, Infinity) - 1
+                // 不能直接-1，因为z-index不能为负值
+                if (minZIndex < 0) {
+                    const dur = Math.abs(minZIndex)
+                    minZIndex = 0
+                    unfocused.forEach((block) => (block.zIndex += dur))
+                }
+                focus.forEach((block) => (block.zIndex = minZIndex))
+                return data.value.blocks
+            })()
+            return {
+                undo: () => {
+                    data.value = { ...data.value, blocks: before }
+                },
+                redo: () => {
+                    data.value = { ...data.value, blocks: after }
+                }
+            }
+        }
+    })
+
+    // 删除
+    registry({
+        name: 'delete',
+        pushQueue: true,
+        execute() {
+            let before = deepcopy(data.value.blocks)
+            let after = focusData.value.unfocused
+            return {
+                undo: () => {
+                    data.value = { ...data.value, blocks: before }
+                },
+                redo: () => {
+                    data.value = { ...data.value, blocks: after }
                 }
             }
         }

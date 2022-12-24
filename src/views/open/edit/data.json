@@ -7,19 +7,19 @@
         {
             "top": 100,
             "left": 100,
-            "z-index":1,
+            "zIndex":1,
             "key":"text"
         },
         {
             "top": 200,
             "left": 200,
-            "z-index":1,
+            "zIndex":1,
             "key":"button"
         },
         {
             "top": 300,
             "left": 300,
-            "z-index":1,
+            "zIndex":1,
             "key":"input"
         }
     ]

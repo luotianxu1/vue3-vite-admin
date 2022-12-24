@@ -14,5 +14,10 @@
                 border: 3px dashed red;
             }
         }
+        &-preview {
+            &::after {
+                display: none;
+            }
+        }
     }
 }

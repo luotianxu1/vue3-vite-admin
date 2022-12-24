@@ -7,7 +7,14 @@ export default defineComponent({
             default: () => {}
         }
     },
-    setup(props) {
+    emits: ['update: block'],
+    setup(props, ctx) {
+        const blockData = computed({
+            get: () => props.block,
+            set: (val) => {
+                ctx.emit('update: block', val)
+            }
+        })
         const blockStyles = computed(() => ({
             top: `${props.block.top}px`,
             left: `${props.block.left}px`,
@@ -17,18 +24,18 @@ export default defineComponent({
         const blockRef = ref()
         onMounted(() => {
             let { offsetWidth, offsetHeight } = blockRef.value
-            if (props.block.alignCenter) {
-                // 说明是拖拽松手的时候才渲染，其他默认渲染到页面上的内容不需要居中
-                props.block.left = props.block.left - offsetWidth / 2
-                props.block.top = props.block.top - offsetHeight / 2
-                props.block.alignCenter = false
+            if (blockData.value.alginCenter) {
+                // 说明是拖拽松手的时候才渲染，其它的默认渲染到页面上内容不需要居中
+                blockData.value.top = blockData.value.top - offsetHeight / 2
+                blockData.value.left = blockData.value.left - offsetWidth / 2
+                blockData.value.alginCenter = false // 让渲染后的结果才能去居中
             }
-            props.block.width = offsetWidth
-            props.block.height = offsetHeight
+            blockData.value.width = offsetWidth
+            blockData.value.height = offsetHeight
         })
         return () => {
             // 通过block的key属性直接获取对应的组件
-            const component = config.componentMap[props.block.key]
+            const component = config.componentMap[blockData.value.key]
             // 获取render函数
             const RenderComponent = component.render()
             return (

@@ -16,6 +16,8 @@ export default defineComponent({
     },
     emits: ['update:modelValue'],
     setup(props, ctx) {
+        // 预览
+        const previewRef = ref(false)
         const data = computed({
             get() {
                 return props.modelValue
@@ -37,17 +39,15 @@ export default defineComponent({
         const { dragStart, dragEnd } = useMenuDragger(containerRef, data)
 
         // 2.实现获取焦点
-        const { blockMousedown, containerMousedown, focusData, lastSelectBlock } = useFocus(
-            data,
-            (e) => {
+        const { blockMousedown, containerMousedown, focusData, lastSelectBlock, clearBlockFocus } =
+            useFocus(data, previewRef, (e) => {
                 mouseDown(e)
-            }
-        )
+            })
 
         // 3.实现拖拽多个元素
         const { mouseDown, markLine } = useBlockDragger(focusData, lastSelectBlock, data)
 
-        const { commands } = useCommand(data)
+        const { commands } = useCommand(data, focusData)
 
         const buttons = [
             { label: '撤销', icon: 'iconfont icon-chexiao', handler: () => commands.undo() },
@@ -77,12 +77,21 @@ export default defineComponent({
                     })
                 }
             },
-            { label: '置顶', icon: 'iconfont icon-zhidi', handler: () => console.log('置顶') },
-            { label: '置底', icon: 'iconfont icon-zhiding', handler: () => console.log('置底') },
-            { label: '删除', icon: 'iconfont icon-dustbin', handler: () => console.log('删除') },
-            { label: '预览', icon: 'iconfont icon-chakan', handler: () => console.log('预览') },
-            { label: '编辑', icon: 'iconfont icon-chakan', handler: () => console.log('编辑') },
-            { label: '关闭', icon: 'iconfont icon-guanbi', handler: () => console.log('关闭') }
+            {
+                label: '置顶',
+                icon: 'iconfont icon-zhiding',
+                handler: () => commands.placeTop()
+            },
+            { label: '置底', icon: 'iconfont icon-zhidi', handler: () => commands.placeBottom() },
+            { label: '删除', icon: 'iconfont icon-dustbin', handler: () => commands.delete() },
+            {
+                label: () => (previewRef.value ? '编辑' : '预览'),
+                icon: () => (previewRef.value ? 'iconfont icon-bianji' : 'iconfont icon-chakan'),
+                handler: () => {
+                    previewRef.value = !previewRef.value
+                    clearBlockFocus()
+                }
+            }
         ]
 
         return () => (
@@ -102,10 +111,12 @@ export default defineComponent({
                 </div>
                 <div class="editor-top">
                     {buttons.map((btn) => {
+                        const label = typeof btn.label === 'function' ? btn.label() : btn.label
+                        const icon = typeof btn.icon === 'function' ? btn.icon() : btn.icon
                         return (
                             <div class="editor-top-button" onClick={btn.handler}>
-                                <i class={btn.icon}></i>
-                                <span>{btn.label}</span>
+                                <i class={icon}></i>
+                                <span>{label}</span>
                             </div>
                         )
                     })}
@@ -120,8 +131,11 @@ export default defineComponent({
                             onMousedown={containerMousedown}>
                             {data.value.blocks.map((block, index) => (
                                 <EditorBlock
-                                    class={block.focus ? 'editor-block-focus' : ''}
-                                    block={block}
+                                    class={[
+                                        block.focus ? 'editor-block-focus' : '',
+                                        previewRef.value ? 'editor-block-preview' : ''
+                                    ]}
+                                    v-model:block={block}
                                     onMousedown={(e) =>
                                         blockMousedown(e, block, index)
                                     }></EditorBlock>
