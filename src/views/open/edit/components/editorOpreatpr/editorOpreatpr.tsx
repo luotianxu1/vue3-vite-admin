@@ -9,6 +9,7 @@ import {
     ElOption,
     ElSelect
 } from 'element-plus'
+import TableEditor from '../tableEditor/tableEditor'
 
 export default defineComponent({
     props: {
@@ -92,6 +93,13 @@ export default defineComponent({
                                                     )
                                                 })}
                                             </ElSelect>
+                                        ),
+                                        table: () => (
+                                            <TableEditor
+                                                propConfig={propConfig}
+                                                v-model={
+                                                    state.editData.props[propName]
+                                                }></TableEditor>
                                         )
                                     }[propConfig.type]()}
                                 </ElFormItem>
