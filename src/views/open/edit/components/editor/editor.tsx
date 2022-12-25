@@ -9,6 +9,7 @@ import { $dialog } from '../dialog/dialog'
 import { ElButton } from 'element-plus'
 import { $dropdown } from '../dropdown/dropdown'
 import { DropDownItem } from '../dropdownItem/dropdownItem'
+import EditorOpreatpr from '../editorOpreatpr/editorOpreatpr'
 
 export default defineComponent({
     props: {
@@ -195,7 +196,13 @@ export default defineComponent({
                             )
                         })}
                     </div>
-                    <div class="editor-right">属性控制栏目</div>
+                    <div class="editor-right">
+                        <EditorOpreatpr
+                            block={lastSelectBlock.value}
+                            data={data.value}
+                            updateContainer={commands.updateContainer}
+                            updateBlcok={commands.updateBlock}></EditorOpreatpr>
+                    </div>
                     <div class="editor-container">
                         <div class="editor-container-canvas">
                             <div

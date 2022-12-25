@@ -37,7 +37,9 @@ export default defineComponent({
             // 通过block的key属性直接获取对应的组件
             const component = config.componentMap[blockData.value.key]
             // 获取render函数
-            const RenderComponent = component.render()
+            const RenderComponent = component.render({
+                props: props.block.props
+            })
             return (
                 <div class="editor-block" style={blockStyles.value} ref={blockRef}>
                     {RenderComponent}
