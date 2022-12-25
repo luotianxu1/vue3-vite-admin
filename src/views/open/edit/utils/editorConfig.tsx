@@ -2,6 +2,7 @@
 // key对应组件映射关系
 
 import { ElButton, ElInput } from 'element-plus'
+import Range from '../components/range/rang'
 
 function createEditorConfig() {
     const componentList: any = []
@@ -69,10 +70,33 @@ registerConfig.register({
 
 registerConfig.register({
     label: '输入框',
-    preview: () => <ElInput>预览输入框</ElInput>,
-    render: ({ model }) => <ElInput {...model.default}>渲染输入框</ElInput>,
+    preview: () => <ElInput placeholder="预览输入框"></ElInput>,
+    render: ({ model }) => (
+        <ElInput {...model.default} placeholder="渲染输入框">
+            渲染输入框
+        </ElInput>
+    ),
     key: 'input',
     model: {
         default: '绑定字段'
+    }
+})
+
+registerConfig.register({
+    label: '范围选择器',
+    preview: () => <Range></Range>,
+    render: ({ model }) => (
+        <Range
+            {...{
+                'start': model.start.modelValue, // @update:start
+                'end': model.end.modelValue,
+                'onUpdate:start': model.start['onUpdate:modelValue'],
+                'onUpdate:end': model.end['onUpdate:modelValue']
+            }}></Range>
+    ),
+    key: 'range',
+    model: {
+        start: '开始',
+        end: '结束'
     }
 })
