@@ -1,4 +1,5 @@
 import './editorBlock.scss'
+import BlockResize from '../blockResize/blockResize'
 
 export default defineComponent({
     props: {
@@ -11,7 +12,7 @@ export default defineComponent({
             default: () => {}
         }
     },
-    emits: ['update: block'],
+    emits: ['update: block', 'update: formData'],
     setup(props, ctx) {
         const blockData = computed({
             get: () => props.block,
@@ -20,10 +21,16 @@ export default defineComponent({
             }
         })
         const blockStyles = computed(() => ({
-            top: `${props.block.top}px`,
-            left: `${props.block.left}px`,
-            zIndex: props.block.zIndex
+            top: `${blockData.value.top}px`,
+            left: `${blockData.value.left}px`,
+            zIndex: blockData.value.zIndex
         }))
+        const formData = computed({
+            get: () => props.formData,
+            set: (val) => {
+                ctx.emit('update: formData', val)
+            }
+        })
         const config: any = inject('config')
         const blockRef = ref()
         onMounted(() => {
@@ -42,20 +49,26 @@ export default defineComponent({
             const component = config.componentMap[blockData.value.key]
             // 获取render函数
             const RenderComponent = component.render({
+                size: props.block.hasResize
+                    ? { width: props.block.width, height: props.block.height }
+                    : {},
                 props: props.block.props,
                 model: Object.keys(component.model || {}).reduce((prev, modelName) => {
                     let propName = props.block.model[modelName]
                     prev[modelName] = {
-                        'modelValue': props.formData[propName],
-                        // eslint-disable-next-line vue/no-mutating-props
-                        'onUpdate:modelValue': (v) => (props.formData[propName] = v)
+                        'modelValue': formData.value[propName],
+                        'onUpdate:modelValue': (v) => (formData.value[propName] = v)
                     }
                     return prev
                 }, {})
             })
+            const { width, height } = component.resize || {}
             return (
                 <div class="editor-block" style={blockStyles.value} ref={blockRef}>
                     {RenderComponent}
+                    {blockData.value.focus && (width || height) && (
+                        <BlockResize block={blockData.value} component={component}></BlockResize>
+                    )}
                 </div>
             )
         }
