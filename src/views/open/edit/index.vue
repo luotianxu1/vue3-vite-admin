@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <Editor v-model="state"></Editor>
+        <Editor v-model="state" :form-data="formData"></Editor>
     </div>
 </template>
 
@@ -16,8 +16,14 @@
         setup() {
             const state = ref(data)
             provide('config', config)
+
+            const formData = ref({
+                username: 'luo',
+                password: 123
+            })
             return {
-                state
+                state,
+                formData
             }
         }
     }

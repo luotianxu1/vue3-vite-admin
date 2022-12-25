@@ -27,7 +27,8 @@ export function useMenuDragger(containerRef, data) {
                     zIndex: 1,
                     key: currentComponent.key,
                     alignCenter: true, //希望松手的时候居中
-                    props: {}
+                    props: {},
+                    model: {}
                 }
             ]
         }

@@ -16,6 +16,10 @@ export default defineComponent({
         modelValue: {
             type: Object,
             default: () => {}
+        },
+        formData: {
+            type: Object,
+            default: () => {}
         }
     },
     emits: ['update:modelValue'],
@@ -160,13 +164,15 @@ export default defineComponent({
                         {data.value.blocks.map((block) => (
                             <EditorBlock
                                 class={'editor-block-preview'}
-                                v-model:block={block}></EditorBlock>
+                                v-model:block={block}
+                                formData={props.formData}></EditorBlock>
                         ))}
                     </div>
                     <div>
                         <ElButton type="primary" onClick={() => (editorRef.value = true)}>
                             继续编辑
                         </ElButton>
+                        {JSON.stringify(props.formData)}
                     </div>
                 </>
             ) : (
@@ -218,9 +224,8 @@ export default defineComponent({
                                         ]}
                                         v-model:block={block}
                                         onMousedown={(e) => blockMousedown(e, block, index)}
-                                        onContextmenu={(e) =>
-                                            onContextMenuBlock(e, block)
-                                        }></EditorBlock>
+                                        onContextmenu={(e) => onContextMenuBlock(e, block)}
+                                        formData={props.formData}></EditorBlock>
                                 ))}
                                 {markLine.x !== null && (
                                     <div class="line-x" style={{ left: markLine.x + 'px' }}></div>

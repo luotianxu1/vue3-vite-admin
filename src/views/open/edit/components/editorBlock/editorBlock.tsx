@@ -5,6 +5,10 @@ export default defineComponent({
         block: {
             type: Object,
             default: () => {}
+        },
+        formData: {
+            type: Object,
+            default: () => {}
         }
     },
     emits: ['update: block'],
@@ -38,7 +42,16 @@ export default defineComponent({
             const component = config.componentMap[blockData.value.key]
             // 获取render函数
             const RenderComponent = component.render({
-                props: props.block.props
+                props: props.block.props,
+                model: Object.keys(component.model || {}).reduce((prev, modelName) => {
+                    let propName = props.block.model[modelName]
+                    prev[modelName] = {
+                        'modelValue': props.formData[propName],
+                        // eslint-disable-next-line vue/no-mutating-props
+                        'onUpdate:modelValue': (v) => (props.formData[propName] = v)
+                    }
+                    return prev
+                }, {})
             })
             return (
                 <div class="editor-block" style={blockStyles.value} ref={blockRef}>
