@@ -1,7 +1,9 @@
 import eventHub from '@/utils/eventHub'
+import type { WritableComputedRef } from 'vue'
+import { TState, TBlock } from '../types'
 
-export function useMenuDragger(containerRef, data) {
-    let currentComponent
+export function useMenuDragger(containerRef, data: WritableComputedRef<TState>) {
+    let currentComponent: TBlock | null
 
     const dragenter = (e) => {
         e.dataTransfer.dropEffect = 'move'
@@ -25,7 +27,9 @@ export function useMenuDragger(containerRef, data) {
                     top: e.offsetY,
                     left: e.offsetX,
                     zIndex: 1,
-                    key: currentComponent.key,
+                    width: 100,
+                    height: 100,
+                    key: (currentComponent as TBlock).key,
                     alignCenter: true, //希望松手的时候居中
                     props: {},
                     model: {}

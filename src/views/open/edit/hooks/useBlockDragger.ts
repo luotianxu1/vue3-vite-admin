@@ -1,6 +1,12 @@
 import eventHub from '@/utils/eventHub'
+import type { ComputedRef, WritableComputedRef } from 'vue'
+import { TFocusData, TBlock, TState } from '../types'
 
-export function useBlockDragger(focusData, lastSelectBlock, data) {
+export function useBlockDragger(
+    focusData: ComputedRef<TFocusData>,
+    lastSelectBlock: ComputedRef<TBlock>,
+    data: WritableComputedRef<TState>
+) {
     let dragState = {
         startX: 0,
         startY: 0,
@@ -16,8 +22,8 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
         dragState = {
             startX: e.pageX,
             startY: e.pageY,
-            startLeft: lastSelectBlock.value.left, // 拖拽前的位置
-            startTop: lastSelectBlock.value.top,
+            startLeft: lastSelectBlock.value.left as number, // 拖拽前的位置
+            startTop: lastSelectBlock.value.top as number,
             startPos: focusData.value.focus.map(({ top, left }) => ({ top, left })),
             dragging: false,
             lines: (() => {
@@ -35,6 +41,9 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
                 ]
                 arr.forEach((block) => {
                     const { top: ATop, left: ALeft, width: AWidth, height: AHeight } = block
+                    if (!ATop || !ALeft || !AWidth || !AHeight) {
+                        return
+                    }
                     // 当此元素拖拽到和A元素top一致的时候，要显示这跟辅助线，辅助线的位置就是ATop
                     lines.y.push({ showTop: ATop, top: ATop }) // 顶对顶
                     lines.y.push({ showTop: ATop, top: ATop - BHeight }) // 顶对底
@@ -44,7 +53,6 @@ export function useBlockDragger(focusData, lastSelectBlock, data) {
                     }) // 中对中
                     lines.y.push({ showTop: ATop + AHeight, top: ATop + AHeight }) // 底对顶
                     lines.y.push({ showTop: ATop + AHeight, top: ATop + AHeight - BHeight }) // 底对底
-
                     lines.x.push({ showLeft: ALeft, left: ALeft }) // 左对左
                     lines.x.push({ showLeft: ALeft + AWidth, left: ALeft + AWidth }) // 右对左
                     lines.x.push({

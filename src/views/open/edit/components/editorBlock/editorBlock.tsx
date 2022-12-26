@@ -1,10 +1,12 @@
 import './editorBlock.scss'
 import BlockResize from '../blockResize/blockResize'
+import { PropType } from 'vue'
+import { TBlock, TConfig } from '../../types'
 
 export default defineComponent({
     props: {
         block: {
-            type: Object,
+            type: Object as PropType<TBlock>,
             default: () => {}
         },
         formData: {
@@ -31,22 +33,22 @@ export default defineComponent({
                 ctx.emit('update: formData', val)
             }
         })
-        const config: any = inject('config')
+        const config = inject('config') as TConfig
         const blockRef = ref()
         onMounted(() => {
             let { offsetWidth, offsetHeight } = blockRef.value
-            if (blockData.value.alginCenter) {
+            if (blockData.value.alignCenter) {
                 // 说明是拖拽松手的时候才渲染，其它的默认渲染到页面上内容不需要居中
-                blockData.value.top = blockData.value.top - offsetHeight / 2
-                blockData.value.left = blockData.value.left - offsetWidth / 2
-                blockData.value.alginCenter = false // 让渲染后的结果才能去居中
+                blockData.value.top = (blockData.value.top as number) - offsetHeight / 2
+                blockData.value.left = (blockData.value.left as number) - offsetWidth / 2
+                blockData.value.alignCenter = false // 让渲染后的结果才能去居中
             }
             blockData.value.width = offsetWidth
             blockData.value.height = offsetHeight
         })
         return () => {
             // 通过block的key属性直接获取对应的组件
-            const component = config.componentMap[blockData.value.key]
+            const component = config.componentMap[blockData.value.key as string]
             // 获取render函数
             const RenderComponent = component.render({
                 size: props.block.hasResize

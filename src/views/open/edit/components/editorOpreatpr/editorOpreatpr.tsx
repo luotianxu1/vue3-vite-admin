@@ -10,15 +10,17 @@ import {
     ElSelect
 } from 'element-plus'
 import TableEditor from '../tableEditor/tableEditor'
+import type { PropType } from 'vue'
+import { TBlock, TConfig, TEditData, TState } from '../../types/index'
 
 export default defineComponent({
     props: {
         block: {
-            type: Object,
+            type: Object as PropType<TBlock>,
             default: () => {}
         },
         data: {
-            type: Object,
+            type: Object as PropType<TState>,
             default: () => {}
         },
         updateContainer: {
@@ -31,9 +33,9 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const config: any = inject('config')
+        const config = inject('config') as TConfig
         const state = reactive({
-            editData: {} as any
+            editData: {} as TBlock
         })
         const reset = () => {
             // 说明绑定的是容器宽高
@@ -67,12 +69,12 @@ export default defineComponent({
                     </>
                 )
             } else {
-                let component = config.componentMap[props.block.key]
+                let component = config.componentMap[props.block.key as string]
                 if (component && component.props) {
                     content.push(
                         Object.entries(component.props).map(([propName, propConfig]) => {
                             return (
-                                <ElFormItem label={propConfig.label}>
+                                <ElFormItem label={(propConfig as TEditData).label}>
                                     {{
                                         input: () => (
                                             <ElInput v-model={state.editData.props[propName]} />
@@ -84,7 +86,7 @@ export default defineComponent({
                                         ),
                                         select: () => (
                                             <ElSelect v-model={state.editData.props[propName]}>
-                                                {propConfig.options.map((opt) => {
+                                                {(propConfig as TEditData).options.map((opt) => {
                                                     return (
                                                         <ElOption
                                                             label={opt.label}
@@ -96,12 +98,12 @@ export default defineComponent({
                                         ),
                                         table: () => (
                                             <TableEditor
-                                                propConfig={propConfig}
+                                                propConfig={propConfig as TEditData}
                                                 v-model={
                                                     state.editData.props[propName]
                                                 }></TableEditor>
                                         )
-                                    }[propConfig.type]()}
+                                    }[(propConfig as TEditData).type]()}
                                 </ElFormItem>
                             )
                         })

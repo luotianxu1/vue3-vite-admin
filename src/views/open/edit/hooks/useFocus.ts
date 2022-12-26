@@ -1,10 +1,13 @@
-export function useFocus(data, previewRef, callback) {
+import { WritableComputedRef } from 'vue'
+import { TState, TBlock } from '../types'
+
+export function useFocus(data: WritableComputedRef<TState>, previewRef: boolean, callback) {
     const selectIndex = ref(-1) // 标识没有任何一个被选中
     const lastSelectBlock = computed(() => data.value.blocks[selectIndex.value])
 
     const focusData = computed(() => {
-        let focus: any = []
-        let unfocused: any = []
+        let focus: Array<TBlock> = []
+        let unfocused: Array<TBlock> = []
         data.value.blocks.forEach((block) => (block.focus ? focus : unfocused).push(block))
         return { focus, unfocused }
     })
@@ -16,7 +19,7 @@ export function useFocus(data, previewRef, callback) {
     }
 
     const blockMousedown = (e, block, index) => {
-        if (previewRef.value) {
+        if (previewRef) {
             return
         }
         e.preventDefault()
@@ -40,7 +43,7 @@ export function useFocus(data, previewRef, callback) {
 
     // 点击容器让选中的失去焦点
     const containerMousedown = () => {
-        if (previewRef.value) {
+        if (previewRef) {
             return
         }
         clearBlockFocus()

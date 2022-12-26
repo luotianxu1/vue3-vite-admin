@@ -1,7 +1,9 @@
 import eventHub from '@/utils/eventHub'
 import deepcopy from 'deepcopy'
+import type { ComputedRef, WritableComputedRef } from 'vue'
+import { TFocusData, TState } from '../types'
 
-export function useCommand(data, focusData) {
+export function useCommand(data: WritableComputedRef<TState>, focusData: ComputedRef<TFocusData>) {
     // 前进后退需要指针
     const state = {
         current: -1, // 前进后退的索引值
@@ -161,7 +163,7 @@ export function useCommand(data, focusData) {
             let after = (() => {
                 let { focus, unfocused } = focusData.value
                 let maxZIndex = unfocused.reduce((prev, block) => {
-                    return Math.max(prev, block.zIndex)
+                    return Math.max(prev, block.zIndex as number)
                 }, -Infinity)
                 focus.forEach((block) => (block.zIndex = maxZIndex + 1))
                 console.log(focus)
@@ -190,13 +192,13 @@ export function useCommand(data, focusData) {
                 let { focus, unfocused } = focusData.value
                 let minZIndex =
                     unfocused.reduce((prev, block) => {
-                        return Math.min(prev, block.zIndex)
+                        return Math.min(prev, block.zIndex as number)
                     }, Infinity) - 1
                 // 不能直接-1，因为z-index不能为负值
                 if (minZIndex < 0) {
                     const dur = Math.abs(minZIndex)
                     minZIndex = 0
-                    unfocused.forEach((block) => (block.zIndex += dur))
+                    unfocused.forEach((block) => ((block.zIndex as number) += dur))
                 }
                 focus.forEach((block) => (block.zIndex = minZIndex))
                 return data.value.blocks

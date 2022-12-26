@@ -10,11 +10,13 @@ import { ElButton } from 'element-plus'
 import { $dropdown } from '../dropdown/dropdown'
 import { DropDownItem } from '../dropdownItem/dropdownItem'
 import EditorOpreatpr from '../editorOpreatpr/editorOpreatpr'
+import type { PropType } from 'vue'
+import { TConfig, TState } from '../../types/index'
 
 export default defineComponent({
     props: {
         modelValue: {
-            type: Object,
+            type: Object as PropType<TState>,
             default: () => {}
         },
         formData: {
@@ -41,15 +43,15 @@ export default defineComponent({
             height: data.value.container.height + 'px'
         }))
 
-        const config: any = inject('config')
+        const config = inject('config') as TConfig
 
-        const containerRef: any = ref(null)
+        const containerRef = ref(null)
         // 1.菜单拖拽功能
         const { dragStart, dragEnd } = useMenuDragger(containerRef, data)
 
         // 2.实现获取焦点
         const { blockMousedown, containerMousedown, focusData, lastSelectBlock, clearBlockFocus } =
-            useFocus(data, previewRef, (e) => {
+            useFocus(data, previewRef.value, (e) => {
                 mouseDown(e)
             })
 

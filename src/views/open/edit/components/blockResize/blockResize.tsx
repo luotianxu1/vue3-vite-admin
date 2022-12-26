@@ -1,9 +1,11 @@
+import { PropType } from 'vue'
+import { TBlock } from '../../types'
 import './blockResize.scss'
 
 export default defineComponent({
     props: {
         block: {
-            type: Object,
+            type: Object as PropType<TBlock>,
             default: () => {}
         },
         component: {

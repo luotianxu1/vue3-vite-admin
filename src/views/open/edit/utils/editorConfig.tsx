@@ -3,9 +3,10 @@
 
 import { ElButton, ElInput, ElOption, ElSelect } from 'element-plus'
 import Range from '../components/range/rang'
+import { TConfig, TComponent } from '../types/index'
 
-function createEditorConfig() {
-    const componentList: any = []
+function createEditorConfig(): TConfig {
+    const componentList: Array<TComponent> = []
     const componentMap = {}
 
     return {
