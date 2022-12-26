@@ -32,6 +32,8 @@
         .el-aside {
             width: auto;
             overflow: inherit;
+            display: flex;
+            flex-direction: column;
         }
         .el-header,
         .el-footer {
