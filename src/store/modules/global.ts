@@ -23,7 +23,7 @@ export const GlobalStore = defineStore({
     },
     actions: {
         // 添加tab
-        async addTabs(tabItem: Menu.MenuOptions) {
+        addTabs(tabItem: Menu.MenuOptions) {
             if (TABS_BLACK_LIST.includes(tabItem.path)) {
                 return
             }
@@ -36,10 +36,9 @@ export const GlobalStore = defineStore({
                 this.SYSTEM_ROUTER_LIST.push(tabInfo)
             }
             this.setTabsMenuValue(tabItem.path)
-            await router.push(tabItem.path)
         },
         // 删除tab
-        async removeTabs(tabPath: string) {
+        removeTabs(tabPath: string) {
             let SYSTEM_ACTIVE_ROUTER = this.SYSTEM_ACTIVE_ROUTER
             const SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST
             if (SYSTEM_ACTIVE_ROUTER === tabPath) {
@@ -59,18 +58,18 @@ export const GlobalStore = defineStore({
             this.SYSTEM_ROUTER_LIST = SYSTEM_ROUTER_LIST.filter((item) => item.path !== tabPath)
         },
         // 设置当前路由
-        async setTabsMenuValue(SYSTEM_ACTIVE_ROUTER: string) {
+        setTabsMenuValue(SYSTEM_ACTIVE_ROUTER: string) {
             this.SYSTEM_ACTIVE_ROUTER = SYSTEM_ACTIVE_ROUTER
         },
         // 关闭其他
-        async closeMultipleTab(tabsMenuValue?: string) {
+        closeMultipleTab(tabsMenuValue?: string) {
             this.SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST.filter((item) => {
                 return item.path === tabsMenuValue || item.path === HOME_URL
             })
         },
         // 关闭所有
-        async goHome() {
-            await router.push(HOME_URL)
+        goHome() {
+            router.push(HOME_URL)
             this.SYSTEM_ACTIVE_ROUTER = HOME_URL
         }
     },
