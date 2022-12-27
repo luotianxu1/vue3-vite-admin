@@ -22,7 +22,6 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { ElMessage } from 'element-plus'
 
     const map = shallowRef<AMap.Map>()
     const Map = shallowRef()

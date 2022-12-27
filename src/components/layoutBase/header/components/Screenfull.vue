@@ -2,9 +2,7 @@
     <div class="screenfull" @click="click">
         <el-tooltip content="全屏" placement="bottom" effect="light">
             <MyIcon
-                :icon="
-                    isFullscreen === true ? 'icon-suoxiao' : 'icon-fullScreen'
-                "
+                :icon="isFullscreen === true ? 'icon-suoxiao' : 'icon-fullScreen'"
                 :font="20"
                 :hover="true"
                 :width="500"
@@ -15,7 +13,6 @@
 
 <script lang="ts" setup>
     import screenfull from 'screenfull'
-    import { ElMessage } from 'element-plus'
 
     const sf = screenfull
 

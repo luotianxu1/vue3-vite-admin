@@ -20,30 +20,18 @@
             </el-table-column>
             <el-table-column label="操作" width="85">
                 <template #default="scope">
-                    <el-button type="danger" @click="complete(scope.row)">
-                        完成
-                    </el-button>
+                    <el-button type="danger" @click="complete(scope.row)">完成</el-button>
                 </template>
             </el-table-column>
         </el-table>
     </el-card>
     <el-dialog v-model="dialogVisible" title="添加事件" width="30%">
-        <el-form
-            ref="ruleFormRef"
-            :model="ruleForm"
-            :rules="rules"
-            label-width="120px"
-            status-icon
-        >
+        <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" status-icon>
             <el-form-item label="名称" prop="name">
                 <el-input v-model="ruleForm.name" />
             </el-form-item>
             <el-form-item label="时间" prop="time">
-                <el-date-picker
-                    v-model="ruleForm.time"
-                    type="datetime"
-                    placeholder="请选择时间"
-                />
+                <el-date-picker v-model="ruleForm.time" type="datetime" placeholder="请选择时间" />
             </el-form-item>
             <el-form-item label="是否提醒" prop="remind">
                 <el-switch v-model="ruleForm.remind" />
@@ -52,21 +40,14 @@
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="dialogVisible = false">取消</el-button>
-                <el-button type="primary" @click="confirm(ruleFormRef)">
-                    确定
-                </el-button>
+                <el-button type="primary" @click="confirm(ruleFormRef)">确定</el-button>
             </span>
         </template>
     </el-dialog>
     <audio ref="audioRef" src="./sound/gnzw.mp3"></audio>
 </template>
 <script lang="ts" setup>
-    import {
-        FormInstance,
-        FormRules,
-        ElMessage,
-        ElMessageBox
-    } from 'element-plus'
+    import { FormInstance, FormRules } from 'element-plus'
     import { WorkStore } from '@/store/modules/work'
     import { GlobalStore } from '@/store'
     import dayjs from 'dayjs'
@@ -129,9 +110,7 @@
 
     // 完成待办
     const complete = (row: ToDoItem) => {
-        workStore.TODO_LIST = workStore.TODO_LIST.filter(
-            (item) => item.id !== row.id
-        )
+        workStore.TODO_LIST = workStore.TODO_LIST.filter((item) => item.id !== row.id)
     }
     let toDoTime: string[] = []
     workStore.$subscribe(

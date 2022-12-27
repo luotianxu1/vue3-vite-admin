@@ -28,7 +28,6 @@
 <script lang="ts" setup>
     import MoreButton from './components/MoreButton.vue'
     import { GlobalStore } from '@/store'
-    import { useRoute, useRouter } from 'vue-router'
     import { TabPaneName, TabsPaneContext } from 'element-plus'
 
     const globalStore = GlobalStore()

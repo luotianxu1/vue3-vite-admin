@@ -4,7 +4,6 @@
  * 接收参数：function类型
  */
 import type { Directive, DirectiveBinding } from 'vue'
-import { ElMessage } from 'element-plus'
 
 interface ElType extends HTMLElement {
     handleClick: () => any

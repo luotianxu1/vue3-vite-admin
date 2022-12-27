@@ -13,11 +13,7 @@
                 @click="goRouter(item.url)"
             >
                 <div class="item-box">
-                    <my-icon
-                        :icon="item.icon"
-                        color="#fff"
-                        :font="30"
-                    ></my-icon>
+                    <my-icon :icon="item.icon" color="#fff" :font="30"></my-icon>
                 </div>
                 <div class="item-name">{{ item.name }}</div>
             </div>
@@ -25,8 +21,6 @@
     </el-card>
 </template>
 <script lang="ts" setup>
-    import { useRouter } from 'vue-router'
-
     const list = [
         {
             name: '文字识别',

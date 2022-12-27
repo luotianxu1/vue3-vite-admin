@@ -11,17 +11,13 @@
         >
             <el-button type="primary">上传文件</el-button>
         </el-upload>
-        <el-input
-            v-model="textarea"
-            type="textarea"
-            :autosize="{ minRows: 2, maxRows: 10 }"
-        />
+        <el-input v-model="textarea" type="textarea" :autosize="{ minRows: 2, maxRows: 10 }" />
     </div>
 </template>
 <script lang="ts" setup>
     import axios from 'axios'
+    import { UploadUserFile } from 'element-plus'
     import Qs from 'qs'
-    import { UploadUserFile, ElMessage } from 'element-plus'
 
     const fileList = ref<UploadUserFile[]>()
     const textarea = ref('')

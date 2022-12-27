@@ -67,8 +67,8 @@
 
 <script lang="ts" setup>
     import AMapLoader from '@amap/amap-jsapi-loader'
-    import { ElMessage, ElNotification } from 'element-plus'
     import { Search } from '@element-plus/icons-vue'
+    import { ElNotification } from 'element-plus'
 
     const map = shallowRef()
     const Map = shallowRef()

@@ -1,14 +1,13 @@
 <template>
-    <div class='app'>
-        <div ref='webGl' class='webGl'></div>
-        <div class='num'>{{ num }}</div>
+    <div class="app">
+        <div ref="webGl" class="webGl"></div>
+        <div class="num">{{ num }}</div>
     </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
     import WebGl from '@/utils/three/model/webGl'
     import * as THREE from 'three'
-    import { ElMessage } from 'element-plus'
     import { systemPlatform } from '@/utils/system'
 
     const webGl = ref()
@@ -234,7 +233,7 @@
     // 游戏结束
     const gameOver = () => {
         ElMessage.error('游戏结束，重新开始！')
-        cubes.forEach(item => {
+        cubes.forEach((item) => {
             web.scene.remove(item)
         })
         cubes = []
@@ -255,7 +254,7 @@
     }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
     .app {
         width: 100%;
         height: 100%;
@@ -275,5 +274,4 @@
             color: #fff;
         }
     }
-
 </style>

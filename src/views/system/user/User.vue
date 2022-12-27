@@ -114,7 +114,6 @@
 <script lang="ts" setup>
     import { deleteUserApi, getUserListApi, IPageUserParams, IUserData } from '@/api/system/userApi'
     import { Search, Edit, Delete, CirclePlus, Download } from '@element-plus/icons-vue'
-    import { ElMessage, ElMessageBox } from 'element-plus'
     import { jsonToExcel } from '@/utils/excel'
 
     const options = [

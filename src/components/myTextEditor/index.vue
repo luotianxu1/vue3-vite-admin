@@ -21,7 +21,6 @@
 <script setup lang="ts">
     import '@wangeditor/editor/dist/css/style.css' // 引入 css
     import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-    import { ElMessage } from 'element-plus'
     import {
         i18nChangeLanguage,
         IEditorConfig,

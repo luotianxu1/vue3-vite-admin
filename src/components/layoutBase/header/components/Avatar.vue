@@ -14,15 +14,9 @@
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item command="userCenter">
-                        个人中心
-                    </el-dropdown-item>
-                    <el-dropdown-item command="taskCenter">
-                        任务中心
-                    </el-dropdown-item>
-                    <el-dropdown-item command="quit" divided>
-                        退出登录
-                    </el-dropdown-item>
+                    <el-dropdown-item command="userCenter">个人中心</el-dropdown-item>
+                    <el-dropdown-item command="taskCenter">任务中心</el-dropdown-item>
+                    <el-dropdown-item command="quit" divided>退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
@@ -30,7 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { useRouter } from 'vue-router'
     import { UserStore } from '@/store/modules/user'
     import { storeToRefs } from 'pinia'
     import { ArrowDown } from '@element-plus/icons-vue'

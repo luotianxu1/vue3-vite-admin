@@ -1,5 +1,3 @@
-import { ElMessage } from 'element-plus'
-
 export const checkStatus = (status: number): void => {
     switch (status) {
         case 400:

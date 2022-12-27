@@ -14,7 +14,12 @@ export const getPlugins = (mode) => [
     AutoImport({
         resolvers: [ElementPlusResolver()],
         imports: ['vue', 'vue-router'],
-        dts: 'src/types/auto-imports.d.ts'
+        dts: 'src/types/auto-imports.d.ts',
+        eslintrc: {
+            enabled: false, // Default `false`
+            filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+            globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        }
     }),
     Components({
         resolvers: [ElementPlusResolver()],

@@ -22,7 +22,6 @@
     import { GlobalStore } from '@/store'
     import { UserStore } from '@/store/modules/user'
     import { getUserPageList, IPageItem } from '@/api/system/userApi'
-    import { ElMessage } from 'element-plus'
     import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'
 
     // 图标

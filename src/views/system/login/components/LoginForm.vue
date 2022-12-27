@@ -34,13 +34,11 @@
 </template>
 
 <script lang="ts" setup>
-    import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
     import { UserStore } from '@/store/modules/user'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
     import { loginApi, getUserInfoApi } from '@/api/system/userApi'
-    import { ElMessage } from 'element-plus'
 
     const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])

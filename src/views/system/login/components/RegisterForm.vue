@@ -51,7 +51,6 @@
     import { User, Lock } from '@element-plus/icons-vue'
     import { registerApi, IRegisterParams } from '@/api/system/userApi'
     import { useI18n } from 'vue-i18n'
-    import { ElMessage } from 'element-plus'
     const { t } = useI18n()
     const emit = defineEmits(['changeToLogin'])
 

@@ -1,12 +1,7 @@
 <template>
     <el-breadcrumb separator="/">
-        <el-breadcrumb-item key="/home" :to="{ path: HOME_URL }">
-            首页
-        </el-breadcrumb-item>
-        <el-breadcrumb-item
-            v-for="(item, index) in breadcrumbList"
-            :key="index"
-        >
+        <el-breadcrumb-item key="/home" :to="{ path: HOME_URL }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
             <el-link
                 :underline="false"
                 :disabled="index === breadcrumbList.length - 1"
@@ -18,7 +13,6 @@
     </el-breadcrumb>
 </template>
 <script setup lang="ts">
-    import { useRoute, useRouter } from 'vue-router'
     import { HOME_URL } from '@/config/config'
 
     const route = useRoute()

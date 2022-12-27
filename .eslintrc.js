@@ -24,7 +24,8 @@ module.exports = {
         'plugin:vue/vue3-recommended',
         'prettier',
         '@vue/standard',
-        'vue-global-api'
+        'vue-global-api',
+        './.eslintrc-auto-import.json'
     ],
     rules: {
         // 'plugin:vue/vue3-essential',

@@ -1,4 +1,3 @@
-import { ElMessage } from 'element-plus'
 // 复制文本
 export const useCopy = (text: string) => {
     let input = document.createElement('input')

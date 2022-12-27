@@ -9,7 +9,6 @@
   <button v-throttle="debounceClick">节流提交</button>
 */
 import type { Directive, DirectiveBinding } from 'vue'
-import { ElMessage } from 'element-plus'
 
 interface ElType extends HTMLElement {
     handleClick: () => any

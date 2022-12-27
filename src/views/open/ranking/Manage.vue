@@ -37,8 +37,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { ElMessage } from 'element-plus'
-
     const addItem = (item) => {
         if (!item.value) {
             return ElMessage.error('请输入成绩！')
