@@ -28,25 +28,17 @@
     import { storeToRefs } from 'pinia'
     import { ArrowDown } from '@element-plus/icons-vue'
 
-    const router = useRouter()
     const userStore = UserStore()
     const { USER_INFO } = storeToRefs(userStore)
-
-    const logout = () => {
-        router.push('/login')
-        localStorage.removeItem('vue3-vite-admin')
-    }
 
     const handleCommand = (command) => {
         switch (command) {
             case 'userCenter':
-                logout()
                 break
             case 'taskCenter':
-                logout()
                 break
             case 'quit':
-                logout()
+                userStore.logout()
                 break
             default:
                 break

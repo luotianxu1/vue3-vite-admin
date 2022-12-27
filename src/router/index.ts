@@ -13,8 +13,9 @@ import echartsRouter from '@/router/modules/echarts'
 import canvasRouter from './modules/canvas'
 import NProgress from 'nprogress'
 import 'nprogress/css/nprogress.css'
-import { getToken } from '@/utils/auth'
-import { TOKEN } from '@/utils/constane'
+import { getToken } from '@/utils/token'
+import { TOKEN } from '@/config/config'
+import { RROUTER_WHITLE } from '@/config/config'
 NProgress.configure({ showSpinner: false })
 
 export const asyncRouterList: Array<RouteRecordRaw> = [
@@ -64,11 +65,8 @@ const router = createRouter({
     }
 })
 
-// 白名单
-const whiteList = ['/login', '/work/index']
-
 router.beforeEach((to, from, next) => {
-    if (whiteList.indexOf(to.path) > -1 || getToken(TOKEN)) {
+    if (RROUTER_WHITLE.indexOf(to.path) > -1 || getToken(TOKEN)) {
         NProgress.start()
         next()
     } else {

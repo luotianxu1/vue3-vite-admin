@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import { UserState } from '../interface/user'
 // import piniaPersistConfig from '@/config/piniaPersist'
-import { loginApi } from '@/api/system/userApi'
+import { loginApi, getUserInfoApi } from '@/api/system/userApi'
 import md5 from 'md5'
-import { TOKEN } from '@/utils/constane'
-import { setToken, getToken } from '@/utils/auth'
+import { TOKEN } from '@/config/config'
+import { setToken, getToken, removeAllToken } from '@/utils/token'
 import router from '@/router/index'
+import { setTimeStamp } from '@/utils/auth'
 
 export const UserStore = defineStore({
     id: 'UserState',
@@ -15,6 +16,11 @@ export const UserStore = defineStore({
     }),
     getters: {},
     actions: {
+        /**
+         * 用户登录
+         * @param userInfo
+         * @returns
+         */
         login(userInfo) {
             const { username, password } = userInfo
             return new Promise((resolve, reject) => {
@@ -23,7 +29,10 @@ export const UserStore = defineStore({
                         if (res.data?.isLogin) {
                             ElMessage.success(res.message)
                             setToken(TOKEN, res.data.token)
+                            this.getUserInfo()
                             router.push('/system/user')
+                            // 保存登录时间
+                            setTimeStamp()
                         }
                         resolve(res)
                     })
@@ -31,6 +40,22 @@ export const UserStore = defineStore({
                         reject(err)
                     })
             })
+        },
+        /**
+         * 获取用户信息
+         */
+        async getUserInfo() {
+            const res = await getUserInfoApi(this.TOEKN)
+            res.data && (this.USER_INFO = res.data)
+        },
+        /**
+         * 退出登录
+         */
+        logout() {
+            this.USER_INFO = {}
+            this.TOEKN = ''
+            removeAllToken()
+            router.push('/login')
         }
     }
     // persist: piniaPersistConfig('UserState')

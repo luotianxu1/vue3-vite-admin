@@ -1,5 +1,9 @@
 import dayjs from 'dayjs'
-// 秒转换为HH:mm:ss
+/**
+ * 毫秒转时分秒
+ * @param val
+ * @returns
+ */
 export const formatterSToHMS = (val: number) => {
     const time = val * 1000
     const days = time / 1000 / 60 / 60 / 24
@@ -9,14 +13,15 @@ export const formatterSToHMS = (val: number) => {
     const minutes = time / 1000 / 60 - 24 * 60 * daysRound - 60 * hoursRound
     const minutesRound = Math.floor(minutes)
     const seconds =
-        time / 1000 -
-        24 * 60 * 60 * daysRound -
-        60 * 60 * hoursRound -
-        60 * minutesRound
+        time / 1000 - 24 * 60 * 60 * daysRound - 60 * 60 * hoursRound - 60 * minutesRound
     return hoursRound + ':' + minutesRound + ':' + seconds
 }
 
-// 获取当前星期
+/**
+ *
+ * @param val 获取当前星期
+ * @returns
+ */
 export const getWeek = (val: number) => {
     let day = dayjs(val).day()
     let week = ''
@@ -48,6 +53,12 @@ export const getWeek = (val: number) => {
     return week
 }
 
+/**
+ * 格式化时间
+ * @param val
+ * @param type
+ * @returns
+ */
 export const transformTime = (val, type) => {
     return dayjs(val).format(type)
 }

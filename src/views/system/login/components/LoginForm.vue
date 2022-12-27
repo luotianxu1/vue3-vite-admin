@@ -86,16 +86,7 @@
             return
         }
         loginFormRef.value.validate(async (valid: boolean) => {
-            if (valid) {
-                userStore.login(loginInfo)
-                // const userInfo = await getUserInfoApi(res.data.userId)
-                // if (!userInfo.data) {
-                //     return
-                // }
-                // userStore.USER_INFO = userInfo.data
-            } else {
-                return false
-            }
+            valid && userStore.login(loginInfo)
         })
     }
 
