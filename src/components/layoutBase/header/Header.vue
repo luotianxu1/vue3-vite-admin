@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import Avatar from './components/Avatar.vue'
     import Info from './components/Info.vue'
     import Setting from './components/Setting.vue'

@@ -9,7 +9,7 @@ export interface ILoginParams {
 
 export interface ILoginData {
     isLogin: boolean
-    userId: string
+    token: string
 }
 
 export interface IRegisterParams extends ILoginParams {

@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
 
     let ggkDiv = ''
     let random = Math.random()

@@ -19,7 +19,7 @@
 
 <script lang="ts" setup>
     import router from '@/router'
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import { UserStore } from '@/store/modules/user'
     import { getUserPageList, IPageItem } from '@/api/system/userApi'
     import TreeMenu from '@/components/layoutBase/sidebar/components/TreeMenu.vue'

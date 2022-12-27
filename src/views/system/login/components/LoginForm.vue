@@ -42,7 +42,6 @@
 
     const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])
-    const router = useRouter()
 
     const loginRef = ref()
     const loginFormRef = ref<FormInstance>()
@@ -88,19 +87,12 @@
         }
         loginFormRef.value.validate(async (valid: boolean) => {
             if (valid) {
-                const res = await loginApi(loginInfo)
-                if (!res.data || !res.data.isLogin) {
-                    ElMessage.warning(res.message)
-                    return
-                }
-                ElMessage.success(res.message)
-                userStore.USER_ID = res.data.userId
-                const userInfo = await getUserInfoApi(res.data.userId)
-                if (!userInfo.data) {
-                    return
-                }
-                userStore.USER_INFO = userInfo.data
-                await router.push('/system/user')
+                userStore.login(loginInfo)
+                // const userInfo = await getUserInfoApi(res.data.userId)
+                // if (!userInfo.data) {
+                //     return
+                // }
+                // userStore.USER_INFO = userInfo.data
             } else {
                 return false
             }

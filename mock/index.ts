@@ -29,13 +29,13 @@ export default [
         method: 'post',
         response: ({ body }) => {
             let res = body as ILoginParams
-            if (res.username === 'admin' && res.password === '1') {
+            if (res.username === 'admin') {
                 return <IResponseData<ILoginData>>{
                     status: 200,
                     message: '登陆成功！',
                     data: {
                         isLogin: true,
-                        userId: '123465789'
+                        token: '123465789'
                     }
                 }
             }

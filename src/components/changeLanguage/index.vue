@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import { useI18n } from 'vue-i18n'
     const { locale } = useI18n()
 

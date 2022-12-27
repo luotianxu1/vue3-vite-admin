@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import { HOME_URL } from '@/config/config'
     const globalStore = GlobalStore()
 

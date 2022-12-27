@@ -24,6 +24,7 @@
     "echarts-gl": "^2.0.9",
     "element-plus": "^2.2.6",
     "leaflet": "^1.9.1",
+    "md5": "^2.3.0",
     "mitt": "^3.0.0",
     "nprogress": "^1.0.0-0",
     "pinia": "^2.0.12",

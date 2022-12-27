@@ -49,7 +49,7 @@
 <script lang="ts" setup>
     import { FormInstance, FormRules } from 'element-plus'
     import { WorkStore } from '@/store/modules/work'
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import dayjs from 'dayjs'
     import { transformTime } from '@/utils/time'
     import { ToDoItem } from '@/store/interface/work'

@@ -32,8 +32,8 @@ module.exports = {
         // 'plugin:vue/vue3-recommended',
         // '@vue/standard',
         // 'prettier'
-        'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+        'no-console': import.meta.env.VITE_APP_CURRENTMODE === 'production' ? 'warn' : 'off',
+        'no-debugger': import.meta.env.VITE_APP_CURRENTMODE === 'production' ? 'warn' : 'off',
         'indent': 0, // 缩进风格
         'quotes': [
             1,

@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { checkStatus } from './checkStatus'
-// import { diffTokenTime, getToken } from '@/utils/auth'
 
 const request: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_URL as string,
@@ -10,12 +9,6 @@ const request: AxiosInstance = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-        // if (getToken()) {
-        //     if (diffTokenTime()) {
-        //         return Promise.reject(new Error('请重新登录！'))
-        //     }
-        // }
-
         return config
     },
     (error: AxiosError) => {
@@ -34,6 +27,7 @@ request.interceptors.response.use(
         return data
     },
     (error: AxiosError) => {
+        ElMessage.error(error.message)
         return Promise.reject(error)
     }
 )

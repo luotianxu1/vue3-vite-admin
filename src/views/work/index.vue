@@ -31,7 +31,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { GlobalStore } from '@/store'
+    import { GlobalStore } from '@/store/modules/global'
     import Applicatin from './modules/Application.vue'
     import ToDoList from './modules/ToDoList.vue'
     import Statistical from './modules/Statistical.vue'
