@@ -6,12 +6,13 @@ const demoRouter: RouteRecordRaw[] = [
         path: '/style',
         component: LayoutBase,
         name: '样式',
-        meta: { title: 'style' },
+        meta: { title: '样式' },
         redirect: '/style/navigation',
         children: [
             {
                 path: 'navigation',
                 name: '导航栏1',
+                meta: { title: '样式' },
                 component: () => import('@/views/style/navigation/Navigation1.vue')
             },
             {

@@ -8,9 +8,12 @@
     import { GlobalStore } from '@/store/modules/global'
     import zhCn from 'element-plus/lib/locale/lang/zh-cn'
     import en from 'element-plus/lib/locale/lang/en'
+    import { useI18n } from 'vue-i18n'
 
+    const { locale } = useI18n()
     const globalStore = GlobalStore()
     const localLanguage = computed((): any => {
+        locale.value = globalStore.SYSTEM_LANGUAGE
         if (globalStore.SYSTEM_LANGUAGE && globalStore.SYSTEM_LANGUAGE === 'zh') {
             return zhCn
         }

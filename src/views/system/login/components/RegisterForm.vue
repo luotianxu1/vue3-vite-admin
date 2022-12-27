@@ -125,7 +125,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 18rem;
+        width: 19rem;
         height: 25rem;
         border-radius: 10px;
         backface-visibility: hidden;

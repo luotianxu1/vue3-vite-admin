@@ -33,6 +33,8 @@ export const UserStore = defineStore({
                             router.push('/system/user')
                             // 保存登录时间
                             setTimeStamp()
+                        } else {
+                            ElMessage.warning(res.message)
                         }
                         resolve(res)
                     })

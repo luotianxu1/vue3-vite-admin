@@ -38,7 +38,6 @@
     import { UserStore } from '@/store/modules/user'
     import type { FormInstance } from 'element-plus'
     import { User, Lock } from '@element-plus/icons-vue'
-    import { loginApi, getUserInfoApi } from '@/api/system/userApi'
 
     const { t } = useI18n()
     const emit = defineEmits(['changeToRegister'])
@@ -104,7 +103,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 18rem;
+        width: 19rem;
         height: 25rem;
         border-radius: 10px;
         backface-visibility: hidden;

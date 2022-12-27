@@ -41,7 +41,7 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 18rem;
+            width: 19rem;
             height: 25rem;
             perspective: 1500px;
         }

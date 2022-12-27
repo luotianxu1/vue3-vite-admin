@@ -27,6 +27,7 @@
     "md5": "^2.3.0",
     "mitt": "^3.0.0",
     "nprogress": "^1.0.0-0",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.0.12",
     "pinia-plugin-persistedstate": "^1.6.1",
     "postprocessing": "^6.29.1",
