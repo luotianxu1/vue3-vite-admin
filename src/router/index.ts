@@ -20,17 +20,17 @@ NProgress.configure({ showSpinner: false })
 
 export const asyncRouterList: Array<RouteRecordRaw> = [
     ...systemRouter,
-    ...demoRouter
-    // ...mapRouter,
-    // ...openRouter,
-    // ...threeRouter,
-    // ...functionRouter,
-    // ...errorRouter,
-    // ...cesiumRouter,
-    // ...gameRouter,
-    // ...workRouter,
-    // ...echartsRouter,
-    // ...canvasRouter
+    ...demoRouter,
+    ...mapRouter,
+    ...openRouter,
+    ...threeRouter,
+    ...functionRouter,
+    ...errorRouter,
+    ...cesiumRouter,
+    ...gameRouter,
+    ...workRouter,
+    ...echartsRouter,
+    ...canvasRouter
 ]
 
 export type AppRouteRecordRaw = RouteRecordRaw & {
