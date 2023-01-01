@@ -1,132 +1,116 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import * as THREE from 'three'
-    import WebGl from '@/utils/three/model/webGl'
-    import Clouds from '@/utils/three/model/mesh/clouds'
-    import Ocean from '@/utils/three/model/mesh/ocean'
-    import Physics from '@/utils/three/model/physics'
+import * as THREE from "three"
+import WebGl from "@/utils/three/model/webGl"
+import Clouds from "@/utils/three/model/mesh/clouds"
+import Ocean from "@/utils/three/model/mesh/ocean"
+import Physics from "@/utils/three/model/physics"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    let web
-    let physics
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value, false)
-        web.renderer.shadowMap.type = THREE.VSMShadowMap
-        web.renderer.outputEncoding = THREE.sRGBEncoding
+let web
+let physics
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value, false)
+	web.renderer.shadowMap.type = THREE.VSMShadowMap
+	web.renderer.outputEncoding = THREE.sRGBEncoding
 
-        web.camera.position.set(0, 2, 10)
-        web.setHdrBg('./textures/hdr/sky11.hdr')
-        web.addStats()
+	web.camera.position.set(0, 2, 10)
+	web.setHdrBg("./textures/hdr/sky11.hdr")
+	web.addStats()
 
-        // 添加云
-        let clouds = new Clouds()
-        web.scene.add(clouds.mesh)
+	// 添加云
+	let clouds = new Clouds()
+	web.scene.add(clouds.mesh)
 
-        // 添加水
-        let ocean = new Ocean()
-        web.scene.add(ocean.mesh)
+	// 添加水
+	let ocean = new Ocean()
+	web.scene.add(ocean.mesh)
 
-        // 加载模型
-        web.gltfLoader('./model/glb/metaScene03.glb').then((gltf) => {
-            let planeGroup = new THREE.Group()
-            planeGroup.position.copy(gltf.scene.children[0].position)
-            gltf.scene.add(planeGroup)
-            gltf.scene.traverse((child) => {
-                if (
-                    child.isMesh &&
-                    child.material &&
-                    child.material.name.indexOf('KB3D_DLA_ConcreteRiverRock') !== -1
-                ) {
-                    planeGroup.add(child.clone())
-                    child.visible = false
-                }
-                if (
-                    child.isMesh &&
-                    child.material &&
-                    child.material.name.indexOf('KB3D_DLA_ConcreteScreedTan') !== -1
-                ) {
-                    planeGroup.add(child.clone())
-                    child.visible = false
-                }
-                if (
-                    child.isMesh &&
-                    child.material &&
-                    child.material.name.indexOf('KB3D_DLA_ConcretePittedGrayLight') !== -1
-                ) {
-                    planeGroup.add(child.clone())
-                    child.visible = false
-                }
-            })
-            web.scene.add(gltf.scene)
-            physics = new Physics(planeGroup, web)
+	// 加载模型
+	web.gltfLoader("./model/glb/metaScene03.glb").then(gltf => {
+		let planeGroup = new THREE.Group()
+		planeGroup.position.copy(gltf.scene.children[0].position)
+		gltf.scene.add(planeGroup)
+		gltf.scene.traverse(child => {
+			if (child.isMesh && child.material && child.material.name.indexOf("KB3D_DLA_ConcreteRiverRock") !== -1) {
+				planeGroup.add(child.clone())
+				child.visible = false
+			}
+			if (child.isMesh && child.material && child.material.name.indexOf("KB3D_DLA_ConcreteScreedTan") !== -1) {
+				planeGroup.add(child.clone())
+				child.visible = false
+			}
+			if (child.isMesh && child.material && child.material.name.indexOf("KB3D_DLA_ConcretePittedGrayLight") !== -1) {
+				planeGroup.add(child.clone())
+				child.visible = false
+			}
+		})
+		web.scene.add(gltf.scene)
+		physics = new Physics(planeGroup, web)
 
-            // 添加喷泉旁的光阵视频
-            let lightPlane = web.addVideo(
-                './video/arrow.mp4',
-                new THREE.Vector2(5, 3),
-                new THREE.Vector3(-3, -0.3, 15)
-            )
-            lightPlane.mesh.rotation.x = -Math.PI / 2
+		// 添加喷泉旁的光阵视频
+		let lightPlane = web.addVideo("./video/arrow.mp4", new THREE.Vector2(5, 3), new THREE.Vector3(-3, -0.3, 15))
+		lightPlane.mesh.rotation.x = -Math.PI / 2
 
-            let lightCirclePosition = new THREE.Vector3(-3, -0.3, 15)
-            let lightCircle = web.addLightCircle(lightCirclePosition)
-            let fireSprite
+		let lightCirclePosition = new THREE.Vector3(-3, -0.3, 15)
+		let lightCircle = web.addLightCircle(lightCirclePosition)
+		let fireSprite
 
-            physics.onPosition(
-                lightCirclePosition,
-                () => {
-                    lightCircle.mesh.visible = false
-                    let canvasPosition = new THREE.Vector3(-3, 1.3, 18)
-                    let canvasRotation = new THREE.Euler(0, Math.PI, 0)
-                    // web.addCanvasPlane(
-                    //     '恭喜到达指定位置',
-                    //     canvasPosition,
-                    //     canvasRotation
-                    // )
+		physics.onPosition(
+			lightCirclePosition,
+			() => {
+				lightCircle.mesh.visible = false
+				let canvasPosition = new THREE.Vector3(-3, 1.3, 18)
+				let canvasRotation = new THREE.Euler(0, Math.PI, 0)
+				// web.addCanvasPlane(
+				//     '恭喜到达指定位置',
+				//     canvasPosition,
+				//     canvasRotation
+				// )
 
-                    web.addTextVideo('恭喜到达指定位置', canvasPosition, canvasRotation)
-                    // 添加火焰
-                    fireSprite || (fireSprite = web.addFireSprite())
-                },
-                () => {
-                    lightCircle.mesh.visible = true
-                }
-            )
-        })
+				web.addTextVideo("恭喜到达指定位置", canvasPosition, canvasRotation)
+				// 添加火焰
+				fireSprite || (fireSprite = web.addFireSprite())
+			},
+			() => {
+				lightCircle.mesh.visible = true
+			}
+		)
+	})
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    const clock = new THREE.Clock()
-    const renderScene = () => {
-        let time = clock.getDelta()
-        web.update()
-        if (physics) {
-            physics.update(time)
-        }
-        requestAnimationFrame(renderScene)
-    }
+const clock = new THREE.Clock()
+const renderScene = () => {
+	let time = clock.getDelta()
+	web.update()
+	if (physics) {
+		physics.update(time)
+	}
+	requestAnimationFrame(renderScene)
+}
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>

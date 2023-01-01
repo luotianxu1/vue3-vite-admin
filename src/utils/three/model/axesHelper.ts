@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 /**
  * 坐标轴
@@ -6,5 +6,5 @@ import * as THREE from 'three'
  * @constructor
  */
 export default function AxesHelper(size = 150) {
-    return new THREE.AxesHelper(size)
+	return new THREE.AxesHelper(size)
 }

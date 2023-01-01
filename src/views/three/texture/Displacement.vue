@@ -1,98 +1,98 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import sphereMap from '../../../assets/img/three/texture/general/w_c.jpg'
-    import displacementMap from '../../../assets/img/three/texture/general/w_d.png'
-    import WebGl from '@/utils/three/model/webGl'
-    import * as THREE from 'three'
-    import { addLargeGroundPlane } from '@/utils/three/util'
+import sphereMap from "../../../assets/img/three/texture/general/w_c.jpg"
+import displacementMap from "../../../assets/img/three/texture/general/w_d.png"
+import WebGl from "@/utils/three/model/webGl"
+import * as THREE from "three"
+import { addLargeGroundPlane } from "@/utils/three/util"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    const sphereLight = new THREE.SphereGeometry(0.2)
-    const sphereLightMaterial = new THREE.MeshStandardMaterial({
-        color: 0xff5808
-    })
-    const sphereLightMesh = new THREE.Mesh(sphereLight, sphereLightMaterial)
+const sphereLight = new THREE.SphereGeometry(0.2)
+const sphereLightMaterial = new THREE.MeshStandardMaterial({
+	color: 0xff5808
+})
+const sphereLightMesh = new THREE.Mesh(sphereLight, sphereLightMaterial)
 
-    const textureLoader = new THREE.TextureLoader()
+const textureLoader = new THREE.TextureLoader()
 
-    const sphere = new THREE.SphereGeometry(8, 180, 180)
+const sphere = new THREE.SphereGeometry(8, 180, 180)
 
-    const form = reactive({
-        displacementScale: 1,
-        displacementBias: 1
-    })
-    let sphereMesh
-    const change = () => {
-        if (sphereMesh) {
-            web.scene.remove(sphereMesh)
-        }
-        const sphereMaterial = new THREE.MeshStandardMaterial({
-            map: textureLoader.load(sphereMap),
-            displacementMap: textureLoader.load(displacementMap),
-            metalness: 0.02,
-            roughness: 0.07,
-            color: 0xffffff,
-            displacementScale: form.displacementScale,
-            displacementBias: form.displacementBias
-        })
-        sphereMesh = new THREE.Mesh(sphere, sphereMaterial)
-        sphereMesh.castShadow = true
-        web.scene.add(sphereMesh)
-    }
+const form = reactive({
+	displacementScale: 1,
+	displacementBias: 1
+})
+let sphereMesh
+const change = () => {
+	if (sphereMesh) {
+		web.scene.remove(sphereMesh)
+	}
+	const sphereMaterial = new THREE.MeshStandardMaterial({
+		map: textureLoader.load(sphereMap),
+		displacementMap: textureLoader.load(displacementMap),
+		metalness: 0.02,
+		roughness: 0.07,
+		color: 0xffffff,
+		displacementScale: form.displacementScale,
+		displacementBias: form.displacementBias
+	})
+	sphereMesh = new THREE.Mesh(sphere, sphereMaterial)
+	sphereMesh.castShadow = true
+	web.scene.add(sphereMesh)
+}
 
-    watch(form, () => {
-        change()
-    })
+watch(form, () => {
+	change()
+})
 
-    let web
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value)
-        web.addStats()
-        web.addAxesHelper()
+let web
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value)
+	web.addStats()
+	web.addAxesHelper()
 
-        const groundPlane = addLargeGroundPlane(web.scene, true)
-        groundPlane.position.y = -10
-        web.addAmbientLight(0x343434)
-        web.addSpotLight(-10, 30, 40, 0xffffff)
-        web.scene.add(sphereLightMesh)
-        web.camera.position.set(0, 5, 40)
+	const groundPlane = addLargeGroundPlane(web.scene, true)
+	groundPlane.position.y = -10
+	web.addAmbientLight(0x343434)
+	web.addSpotLight(-10, 30, 40, 0xffffff)
+	web.scene.add(sphereLightMesh)
+	web.camera.position.set(0, 5, 40)
 
-        change()
+	change()
 
-        web.addGUI()
-        web.gui.add(form, 'displacementScale', -5, 5)
-        web.gui.add(form, 'displacementBias', -5, 5)
+	web.addGUI()
+	web.gui.add(form, "displacementScale", -5, 5)
+	web.gui.add(form, "displacementBias", -5, 5)
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    const clock = new THREE.Clock()
-    const renderScene = () => {
-        sphereMesh.rotation.y += clock.getDelta()
-        web.update()
-        requestAnimationFrame(renderScene)
-    }
+const clock = new THREE.Clock()
+const renderScene = () => {
+	sphereMesh.rotation.y += clock.getDelta()
+	web.update()
+	requestAnimationFrame(renderScene)
+}
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>

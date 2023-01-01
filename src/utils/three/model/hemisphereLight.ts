@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 /**
  * 半球光
@@ -11,18 +11,14 @@ import * as THREE from 'three'
  * @constructor
  */
 export default function HemisphereLight(
-    x,
-    y,
-    z,
-    skyColor: number | string = 0x0000ff,
-    groundColor: number | string = 0x00ff00,
-    intensity = 1
+	x,
+	y,
+	z,
+	skyColor: number | string = 0x0000ff,
+	groundColor: number | string = 0x00ff00,
+	intensity = 1
 ) {
-    const hemisphereLight = new THREE.HemisphereLight(
-        skyColor,
-        groundColor,
-        intensity
-    )
-    hemisphereLight.position.set(x,y,z)
-    return hemisphereLight
+	const hemisphereLight = new THREE.HemisphereLight(skyColor, groundColor, intensity)
+	hemisphereLight.position.set(x, y, z)
+	return hemisphereLight
 }

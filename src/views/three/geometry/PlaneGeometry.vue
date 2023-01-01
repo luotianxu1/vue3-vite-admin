@@ -1,82 +1,77 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import * as THREE from 'three'
-    import WebGl from '@/utils/three/model/webGl'
+import * as THREE from "three"
+import WebGl from "@/utils/three/model/webGl"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    const form = reactive({
-        wireframe: false,
-        width: 20,
-        height: 20,
-        widthSegments: 1,
-        heightSegments: 1
-    })
-    const planeGeometry = new THREE.PlaneGeometry(20, 20)
-    const planeMaterial = new THREE.MeshNormalMaterial({
-        side: THREE.DoubleSide
-    })
-    let plane = new THREE.Mesh(planeGeometry, planeMaterial)
-    plane.castShadow = true
-    plane.position.set(0, 0, 0)
+const form = reactive({
+	wireframe: false,
+	width: 20,
+	height: 20,
+	widthSegments: 1,
+	heightSegments: 1
+})
+const planeGeometry = new THREE.PlaneGeometry(20, 20)
+const planeMaterial = new THREE.MeshNormalMaterial({
+	side: THREE.DoubleSide
+})
+let plane = new THREE.Mesh(planeGeometry, planeMaterial)
+plane.castShadow = true
+plane.position.set(0, 0, 0)
 
-    let web
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value)
-        web.addStats()
-        web.addAxesHelper()
+let web
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value)
+	web.addStats()
+	web.addAxesHelper()
 
-        web.scene.add(plane)
+	web.scene.add(plane)
 
-        web.addGUI()
-        web.gui.add(form, 'wireframe')
-        web.gui.add(form, 'width', 0, 100)
-        web.gui.add(form, 'height', 0, 100)
-        web.gui.add(form, 'widthSegments', 1, 40)
-        web.gui.add(form, 'heightSegments', 1, 40)
+	web.addGUI()
+	web.gui.add(form, "wireframe")
+	web.gui.add(form, "width", 0, 100)
+	web.gui.add(form, "height", 0, 100)
+	web.gui.add(form, "widthSegments", 1, 40)
+	web.gui.add(form, "heightSegments", 1, 40)
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    let step = 0
-    const renderScene = () => {
-        plane.rotation.y = step += 0.01
-        web.update()
-        requestAnimationFrame(renderScene)
-    }
+let step = 0
+const renderScene = () => {
+	plane.rotation.y = step += 0.01
+	web.update()
+	requestAnimationFrame(renderScene)
+}
 
-    watch(form, (val) => {
-        planeMaterial.wireframe = val.wireframe
-        let newPlaneGeometry = new THREE.PlaneGeometry(
-            form.width,
-            form.height,
-            form.widthSegments,
-            form.heightSegments
-        )
-        web.scene.remove(plane)
-        plane = new THREE.Mesh(newPlaneGeometry, planeMaterial)
-        web.scene.add(plane)
-    })
+watch(form, val => {
+	planeMaterial.wireframe = val.wireframe
+	let newPlaneGeometry = new THREE.PlaneGeometry(form.width, form.height, form.widthSegments, form.heightSegments)
+	web.scene.remove(plane)
+	plane = new THREE.Mesh(newPlaneGeometry, planeMaterial)
+	web.scene.add(plane)
+})
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>

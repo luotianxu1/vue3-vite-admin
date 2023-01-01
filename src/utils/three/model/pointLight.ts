@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 /**
  * 点光源
@@ -8,14 +8,8 @@ import * as THREE from 'three'
  * @param color 颜色
  * @param intensity 光照强度
  */
-export default function PointLight(
-    x = 0,
-    y = 300,
-    z = 300,
-    color: number | string = 0xffffff,
-    intensity = 1
-) {
-    const pointLight = new THREE.PointLight(color, intensity)
-    pointLight.position.set(x, y, z)
-    return pointLight
+export default function PointLight(x = 0, y = 300, z = 300, color: number | string = 0xffffff, intensity = 1) {
+	const pointLight = new THREE.PointLight(color, intensity)
+	pointLight.position.set(x, y, z)
+	return pointLight
 }

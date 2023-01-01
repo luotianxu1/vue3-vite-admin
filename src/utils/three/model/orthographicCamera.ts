@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 /**
  * 正交相机
@@ -12,25 +12,8 @@ import * as THREE from 'three'
  * @param near 摄像机视锥体近端面
  * @param far 摄像机视锥体远端面
  */
-export default function OrthographicCamera(
-    x = 50,
-    y = 50,
-    z = 50,
-    left,
-    right,
-    top,
-    bottom,
-    near = 0.1,
-    far = 2000
-) {
-    const orthographicCamera = new THREE.OrthographicCamera(
-        left,
-        right,
-        top,
-        bottom,
-        near,
-        far
-    )
-    orthographicCamera.position.set(x, y, z)
-    return
+export default function OrthographicCamera(x = 50, y = 50, z = 50, left, right, top, bottom, near = 0.1, far = 2000) {
+	const orthographicCamera = new THREE.OrthographicCamera(left, right, top, bottom, near, far)
+	orthographicCamera.position.set(x, y, z)
+	return
 }

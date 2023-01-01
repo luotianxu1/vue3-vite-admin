@@ -1,7 +1,7 @@
-import { IUserData } from '@/api/system/userApi'
+import { IUserData } from "@/api/system/userApi"
 
 export interface UserState {
-    // 用户信息
-    USER_INFO: IUserData
-    TOEKN: string
+	// 用户信息
+	USER_INFO: IUserData
+	TOEKN: string
 }

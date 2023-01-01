@@ -1,109 +1,103 @@
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import * as THREE from 'three'
-import gsap from 'gsap'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-import eventHub from '@/utils/eventHub'
-import cameraModule from '@/views/open/smartPark/model/cameraPark'
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import * as THREE from "three"
+import gsap from "gsap"
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
+import eventHub from "@/utils/eventHub"
+import cameraModule from "@/views/open/smartPark/model/cameraPark"
 
 export default class City {
-    gltf
-    scene
-    loader
-    mixer
-    clip
-    action
-    curve
-    curveProgress
-    redcar
+	gltf
+	scene
+	loader
+	mixer
+	clip
+	action
+	curve
+	curveProgress
+	redcar
 
-    constructor(scene) {
-        // 载入模型
-        this.scene = scene
-        this.loader = new GLTFLoader()
-        const dracoLoader = new DRACOLoader()
-        dracoLoader.setDecoderPath('./draco/')
-        this.loader.setDRACOLoader(dracoLoader)
-        this.loader.load('./model/glb/city4.glb', (gltf) => {
-            console.log(gltf)
-            scene.add(gltf.scene)
+	constructor(scene) {
+		// 载入模型
+		this.scene = scene
+		this.loader = new GLTFLoader()
+		const dracoLoader = new DRACOLoader()
+		dracoLoader.setDecoderPath("./draco/")
+		this.loader.setDRACOLoader(dracoLoader)
+		this.loader.load("./model/glb/city4.glb", gltf => {
+			console.log(gltf)
+			scene.add(gltf.scene)
 
-            // 场景子元素遍历
-            this.gltf = gltf
-            gltf.scene.traverse((child) => {
-                if (child.name === '热气球') {
-                    console.log(child)
-                    this.mixer = new THREE.AnimationMixer(child)
-                    this.clip = gltf.animations[1]
-                    this.action = this.mixer.clipAction(this.clip)
-                    this.action.play()
-                }
+			// 场景子元素遍历
+			this.gltf = gltf
+			gltf.scene.traverse(child => {
+				if (child.name === "热气球") {
+					console.log(child)
+					this.mixer = new THREE.AnimationMixer(child)
+					this.clip = gltf.animations[1]
+					this.action = this.mixer.clipAction(this.clip)
+					this.action.play()
+				}
 
-                if (child.name === '汽车园区轨迹') {
-                    // console.log(child);
-                    const line = child
-                    line.visible = false
-                    // 根据点创建曲线
-                    const points: any = []
-                    for (
-                        let i = line.geometry.attributes.position.count - 1;
-                        i >= 0;
-                        i--
-                    ) {
-                        points.push(
-                            new THREE.Vector3(
-                                line.geometry.attributes.position.getX(i),
-                                line.geometry.attributes.position.getY(i),
-                                line.geometry.attributes.position.getZ(i)
-                            )
-                        )
-                    }
+				if (child.name === "汽车园区轨迹") {
+					// console.log(child);
+					const line = child
+					line.visible = false
+					// 根据点创建曲线
+					const points: any = []
+					for (let i = line.geometry.attributes.position.count - 1; i >= 0; i--) {
+						points.push(
+							new THREE.Vector3(
+								line.geometry.attributes.position.getX(i),
+								line.geometry.attributes.position.getY(i),
+								line.geometry.attributes.position.getZ(i)
+							)
+						)
+					}
 
-                    this.curve = new THREE.CatmullRomCurve3(points)
-                    this.curveProgress = 0
-                    this.carAnimation()
-                }
+					this.curve = new THREE.CatmullRomCurve3(points)
+					this.curveProgress = 0
+					this.carAnimation()
+				}
 
-                if (child.name === 'redcar') {
-                    this.redcar = child
-                }
+				if (child.name === "redcar") {
+					this.redcar = child
+				}
 
-                gltf.cameras.forEach((camera) => {
-                    // scene.add(camera);
-                    cameraModule.add(camera.name, camera)
-                })
-            })
-        })
+				gltf.cameras.forEach(camera => {
+					// scene.add(camera);
+					cameraModule.add(camera.name, camera)
+				})
+			})
+		})
 
-        eventHub.on('actionClick', (i) => {
-            console.log(i)
-            this.action.reset()
-            this.clip = this.gltf.animations[i]
-            this.action = this.mixer.clipAction(this.clip)
-            this.action.play()
-        })
-    }
+		eventHub.on("actionClick", i => {
+			console.log(i)
+			this.action.reset()
+			this.clip = this.gltf.animations[i]
+			this.action = this.mixer.clipAction(this.clip)
+			this.action.play()
+		})
+	}
 
-    update(time) {
-        if (this.mixer) {
-            this.mixer.update(time)
-        }
-    }
+	update(time) {
+		if (this.mixer) {
+			this.mixer.update(time)
+		}
+	}
 
-    carAnimation() {
-        gsap.to(this, {
-            curveProgress: 0.999,
-            duration: 10,
-            repeat: -1,
-            onUpdate: () => {
-                const point = this.curve.getPoint(this.curveProgress)
-                this.redcar.position.set(point.x, point.y, point.z)
-                if (this.curveProgress + 0.001 < 1) {
-                    const points = this.curve.getPoint(
-                        this.curveProgress + 0.001
-                    )
-                    this.redcar.lookAt(points)
-                }
-            }
-        })
-    }
+	carAnimation() {
+		gsap.to(this, {
+			curveProgress: 0.999,
+			duration: 10,
+			repeat: -1,
+			onUpdate: () => {
+				const point = this.curve.getPoint(this.curveProgress)
+				this.redcar.position.set(point.x, point.y, point.z)
+				if (this.curveProgress + 0.001 < 1) {
+					const points = this.curve.getPoint(this.curveProgress + 0.001)
+					this.redcar.lookAt(points)
+				}
+			}
+		})
+	}
 }

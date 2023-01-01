@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
 /**
  * 聚光灯光源
@@ -11,15 +11,15 @@ import * as THREE from 'three'
  * @constructor
  */
 export default function SpotLight(
-    x = 100,
-    y = 100,
-    z = 100,
-    color:number | string = 0xffffff,
-    intensity = 1,
-    isCastShadow = true
+	x = 100,
+	y = 100,
+	z = 100,
+	color: number | string = 0xffffff,
+	intensity = 1,
+	isCastShadow = true
 ) {
-    const spotLight = new THREE.SpotLight(color, intensity)
-    spotLight.position.set(x, y, z)
-    spotLight.castShadow = isCastShadow
-    return spotLight
+	const spotLight = new THREE.SpotLight(color, intensity)
+	spotLight.position.set(x, y, z)
+	spotLight.castShadow = isCastShadow
+	return spotLight
 }

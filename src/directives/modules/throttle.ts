@@ -8,35 +8,35 @@
   使用：给 Dom 加上 v-throttle 及回调函数即可
   <button v-throttle="debounceClick">节流提交</button>
 */
-import type { Directive, DirectiveBinding } from 'vue'
+import type { Directive, DirectiveBinding } from "vue"
 
 interface ElType extends HTMLElement {
-    handleClick: () => any
-    disabled: boolean
+	handleClick: () => any
+	disabled: boolean
 }
 const throttle: Directive = {
-    mounted(el: ElType, binding: DirectiveBinding) {
-        if (typeof binding.value !== 'function') {
-            throw ElMessage.warning('请绑定函数！')
-        }
-        let timer: any = null
-        el.handleClick = function () {
-            if (timer) {
-                clearTimeout(timer)
-            }
-            if (!el.disabled) {
-                el.disabled = true
-                binding.value()
-                timer = setTimeout(() => {
-                    el.disabled = false
-                }, 1000)
-            }
-        }
-        el.addEventListener('click', el.handleClick)
-    },
-    beforeUnmount(el: ElType) {
-        el.removeEventListener('click', el.handleClick)
-    }
+	mounted(el: ElType, binding: DirectiveBinding) {
+		if (typeof binding.value !== "function") {
+			throw ElMessage.warning("请绑定函数！")
+		}
+		let timer: any = null
+		el.handleClick = function () {
+			if (timer) {
+				clearTimeout(timer)
+			}
+			if (!el.disabled) {
+				el.disabled = true
+				binding.value()
+				timer = setTimeout(() => {
+					el.disabled = false
+				}, 1000)
+			}
+		}
+		el.addEventListener("click", el.handleClick)
+	},
+	beforeUnmount(el: ElType) {
+		el.removeEventListener("click", el.handleClick)
+	}
 }
 
 export default throttle

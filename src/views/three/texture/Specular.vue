@@ -1,60 +1,60 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import * as THREE from 'three'
-    import WebGl from '@/utils/three/model/webGl'
-    import gsap from 'gsap'
+import * as THREE from "three"
+import WebGl from "@/utils/three/model/webGl"
+import gsap from "gsap"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    const textureLoader = new THREE.TextureLoader()
-    const earthMaterial = new THREE.MeshPhongMaterial({
-        map: textureLoader.load('./textures/earth/Earth.png'),
-        normalMap: textureLoader.load('./textures/earth/EarthNormal.png'),
-        specularMap: textureLoader.load('./textures/earth/EarthSpec.png'),
-        normalScale: new THREE.Vector2(6, 6)
-    })
-    const sphere = new THREE.SphereGeometry(9, 50, 50)
-    const sphere1 = new THREE.Mesh(sphere, earthMaterial)
-    sphere1.rotation.y = (1 / 6) * Math.PI
+const textureLoader = new THREE.TextureLoader()
+const earthMaterial = new THREE.MeshPhongMaterial({
+	map: textureLoader.load("./textures/earth/Earth.png"),
+	normalMap: textureLoader.load("./textures/earth/EarthNormal.png"),
+	specularMap: textureLoader.load("./textures/earth/EarthSpec.png"),
+	normalScale: new THREE.Vector2(6, 6)
+})
+const sphere = new THREE.SphereGeometry(9, 50, 50)
+const sphere1 = new THREE.Mesh(sphere, earthMaterial)
+sphere1.rotation.y = (1 / 6) * Math.PI
 
-    let web
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value)
-        web.addStats()
-        web.addAxesHelper()
-        web.addAmbientLight(0x444444)
-        web.addSpotLight(-10, 30, 40, 0xffffff)
-        web.camera.position.set(0, 20, 40)
-        web.scene.add(sphere1)
+let web
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value)
+	web.addStats()
+	web.addAxesHelper()
+	web.addAmbientLight(0x444444)
+	web.addSpotLight(-10, 30, 40, 0xffffff)
+	web.camera.position.set(0, 20, 40)
+	web.scene.add(sphere1)
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    gsap.to(sphere1.rotation, { y: 2 * Math.PI, duration: 5, repeat: -1 })
-    const renderScene = () => {
-        web.update()
-        requestAnimationFrame(renderScene)
-    }
+gsap.to(sphere1.rotation, { y: 2 * Math.PI, duration: 5, repeat: -1 })
+const renderScene = () => {
+	web.update()
+	requestAnimationFrame(renderScene)
+}
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>

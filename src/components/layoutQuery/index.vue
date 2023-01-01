@@ -1,93 +1,93 @@
 <template>
-    <div v-loading="props.loading" element-loading-text="加载中..." class="layout">
-        <div class="top">
-            <slot name="top"></slot>
-        </div>
-        <div class="query">
-            <div class="item">
-                <slot name="fl"></slot>
-            </div>
-            <div class="item">
-                <slot name="fr"></slot>
-            </div>
-        </div>
-        <slot name="table"></slot>
-        <div class="footer">
-            <div class="item">
-                <slot name="btn"></slot>
-            </div>
-            <div class="item">
-                <slot name="page"></slot>
-            </div>
-        </div>
-    </div>
+	<div v-loading="props.loading" element-loading-text="加载中..." class="layout">
+		<div class="top">
+			<slot name="top"></slot>
+		</div>
+		<div class="query">
+			<div class="item">
+				<slot name="fl"></slot>
+			</div>
+			<div class="item">
+				<slot name="fr"></slot>
+			</div>
+		</div>
+		<slot name="table"></slot>
+		<div class="footer">
+			<div class="item">
+				<slot name="btn"></slot>
+			</div>
+			<div class="item">
+				<slot name="page"></slot>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>
-    const props = defineProps({
-        loading: {
-            required: false,
-            type: Boolean,
-            default: () => {
-                return false
-            }
-        }
-    })
+const props = defineProps({
+	loading: {
+		required: false,
+		type: Boolean,
+		default: () => {
+			return false
+		}
+	}
+})
 
-    // const set = () => {
-    //     let canvas = document.createElement('canvas')
-    //     canvas.width = 300
-    //     canvas.height = 200
-    //     canvas.style.display = 'none'
-    //     let ctx = canvas.getContext('2d')
-    //     ctx.font = '16px Microsoft JhengHei'
-    //     ctx.fillStyle = 'raga(0,0,0,.3)'
-    //     ctx.rotate(-0.3)
-    //     ctx.fillText('罗天旭', canvas.width / 8, canvas.height / 4)
-    //     let img = canvas.toDataURL('img/png')
-    //     main.value.setAttribute('style', `background-image:url(${img});z-index:999999`)
-    // }
+// const set = () => {
+//     let canvas = document.createElement('canvas')
+//     canvas.width = 300
+//     canvas.height = 200
+//     canvas.style.display = 'none'
+//     let ctx = canvas.getContext('2d')
+//     ctx.font = '16px Microsoft JhengHei'
+//     ctx.fillStyle = 'raga(0,0,0,.3)'
+//     ctx.rotate(-0.3)
+//     ctx.fillText('罗天旭', canvas.width / 8, canvas.height / 4)
+//     let img = canvas.toDataURL('img/png')
+//     main.value.setAttribute('style', `background-image:url(${img});z-index:999999`)
+// }
 </script>
 
 <style scoped lang="scss">
-    .layout {
-        height: calc(100% - 20px);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        background-color: #ffffff;
-        border-radius: 4px;
-        box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-        margin: 10px 13px;
-        padding: 20px;
+.layout {
+	height: calc(100% - 20px);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #ffffff;
+	border-radius: 4px;
+	box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+	margin: 10px 13px;
+	padding: 20px;
 
-        &::-webkit-scrollbar {
-            background-color: white;
-        }
+	&::-webkit-scrollbar {
+		background-color: white;
+	}
 
-        .query {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 5px;
-        }
+	.query {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 5px;
+	}
 
-        .table {
-            position: relative;
-            flex-grow: 1;
-            overflow: auto;
-            height: 100%;
-        }
+	.table {
+		position: relative;
+		flex-grow: 1;
+		overflow: auto;
+		height: 100%;
+	}
 
-        .footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-        .item {
-            display: flex;
-            align-items: center;
-        }
-    }
+	.item {
+		display: flex;
+		align-items: center;
+	}
+}
 </style>

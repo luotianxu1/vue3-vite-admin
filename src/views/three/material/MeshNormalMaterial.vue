@@ -1,52 +1,52 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import * as THREE from 'three'
-    import WebGl from '@/utils/three/model/webGl'
+import * as THREE from "three"
+import WebGl from "@/utils/three/model/webGl"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    let web
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value)
-        web.addStats()
+let web
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value)
+	web.addStats()
 
-        web.addAmbientLight(0x0c0c0c)
-        web.addSpotLight(-40, 60, -10, 0xffffff)
+	web.addAmbientLight(0x0c0c0c)
+	web.addSpotLight(-40, 60, -10, 0xffffff)
 
-        const sphereGeometry = new THREE.SphereGeometry(14, 20, 20)
-        const meshMaterial = new THREE.MeshNormalMaterial({
-            flatShading: true
-        })
-        const mesh = new THREE.Mesh(sphereGeometry, meshMaterial)
-        web.scene.add(mesh)
+	const sphereGeometry = new THREE.SphereGeometry(14, 20, 20)
+	const meshMaterial = new THREE.MeshNormalMaterial({
+		flatShading: true
+	})
+	const mesh = new THREE.Mesh(sphereGeometry, meshMaterial)
+	web.scene.add(mesh)
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    const renderScene = () => {
-        web.update()
-        requestAnimationFrame(renderScene)
-    }
+const renderScene = () => {
+	web.update()
+	requestAnimationFrame(renderScene)
+}
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>

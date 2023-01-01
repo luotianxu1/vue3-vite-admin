@@ -1,11 +1,11 @@
-import Park from '@/utils/three/model/mesh/park'
-import scenePark from '@/views/open/smartPark/model/scenePark'
+import Park from "@/utils/three/model/mesh/park"
+import scenePark from "@/views/open/smartPark/model/scenePark"
 
 let park
 
 export default function createPark() {
-    park = new Park(scenePark)
+	park = new Park(scenePark)
 }
 export function updateMesh(time) {
-    park.update(time)
+	park.update(time)
 }

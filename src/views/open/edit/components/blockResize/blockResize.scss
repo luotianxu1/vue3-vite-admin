@@ -1,43 +1,43 @@
 .block-resize {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: rgb(15, 65, 204);
-    z-index: 1000;
-    user-select: none;
-    &:hover {
-        cursor: pointer;
-    }
-    &-top {
-        top: -4px;
-        left: calc(50% - 4px);
-        &-left {
-            top: -4px;
-            left: -4px;
-        }
-        &-right {
-            top: -4px;
-            right: -4px;
-        }
-    }
-    &-bottom {
-        bottom: -4px;
-        left: calc(50% - 4px);
-        &-left {
-            bottom: -4px;
-            left: -4px;
-        }
-        &-right {
-            bottom: -4px;
-            right: -4px;
-        }
-    }
-    &-left {
-        top: calc(50% - 4px);
-        left: -4px;
-    }
-    &-right {
-        top: calc(50% - 4px);
-        right: -4px;
-    }
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background-color: rgb(15, 65, 204);
+	z-index: 1000;
+	user-select: none;
+	&:hover {
+		cursor: pointer;
+	}
+	&-top {
+		top: -4px;
+		left: calc(50% - 4px);
+		&-left {
+			top: -4px;
+			left: -4px;
+		}
+		&-right {
+			top: -4px;
+			right: -4px;
+		}
+	}
+	&-bottom {
+		bottom: -4px;
+		left: calc(50% - 4px);
+		&-left {
+			bottom: -4px;
+			left: -4px;
+		}
+		&-right {
+			bottom: -4px;
+			right: -4px;
+		}
+	}
+	&-left {
+		top: calc(50% - 4px);
+		left: -4px;
+	}
+	&-right {
+		top: calc(50% - 4px);
+		right: -4px;
+	}
 }

@@ -1,62 +1,62 @@
 <template>
-    <div ref="webGl" class="webGl"></div>
+	<div ref="webGl" class="webGl"></div>
 </template>
 
 <script lang="ts" setup>
-    import * as THREE from 'three'
-    import WebGl from '@/utils/three/model/webGl'
+import * as THREE from "three"
+import WebGl from "@/utils/three/model/webGl"
 
-    const webGl = ref()
+const webGl = ref()
 
-    onMounted(() => {
-        init()
-    })
+onMounted(() => {
+	init()
+})
 
-    onUnmounted(() => {
-        web.remove()
-    })
+onUnmounted(() => {
+	web.remove()
+})
 
-    const textureLoader = new THREE.TextureLoader()
-    const texture = textureLoader.load('./textures/door/minecraft.png')
+const textureLoader = new THREE.TextureLoader()
+const texture = textureLoader.load("./textures/door/minecraft.png")
 
-    texture.minFilter = THREE.NearestFilter
-    texture.magFilter = THREE.NearestFilter
-    // texture.minFilter = THREE.LinearFilter
-    // texture.magFilter = THREE.LinearFilter
+texture.minFilter = THREE.NearestFilter
+texture.magFilter = THREE.NearestFilter
+// texture.minFilter = THREE.LinearFilter
+// texture.magFilter = THREE.LinearFilter
 
-    const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
-    const basicMaterial = new THREE.MeshBasicMaterial({
-        map: texture
-    })
-    const cube = new THREE.Mesh(cubeGeometry, basicMaterial)
+const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+const basicMaterial = new THREE.MeshBasicMaterial({
+	map: texture
+})
+const cube = new THREE.Mesh(cubeGeometry, basicMaterial)
 
-    let web
-    const init = () => {
-        if (!webGl.value) {
-            return
-        }
-        web = new WebGl(webGl.value)
-        web.addStats()
-        web.addAxesHelper()
+let web
+const init = () => {
+	if (!webGl.value) {
+		return
+	}
+	web = new WebGl(webGl.value)
+	web.addStats()
+	web.addAxesHelper()
 
-        web.addAmbientLight(0x444444)
-        web.addSpotLight(-10, 30, 40, 0xffffff)
-        web.camera.position.set(0, 0, 5)
-        web.scene.add(cube)
+	web.addAmbientLight(0x444444)
+	web.addSpotLight(-10, 30, 40, 0xffffff)
+	web.camera.position.set(0, 0, 5)
+	web.scene.add(cube)
 
-        renderScene()
-    }
+	renderScene()
+}
 
-    const renderScene = () => {
-        web.update()
-        requestAnimationFrame(renderScene)
-    }
+const renderScene = () => {
+	web.update()
+	requestAnimationFrame(renderScene)
+}
 </script>
 
 <style scoped lang="scss">
-    .webGl {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.webGl {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 </style>
