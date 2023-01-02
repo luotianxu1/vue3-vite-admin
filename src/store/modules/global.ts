@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import piniaPersistConfig from "@/config/piniaPersist"
 import { GlobalState } from "../interface/global"
-import { HOME_URL, TABS_BLACK_LIST } from "@/config/config"
+import { GLOB_APP_HOME, TABS_BLACK_LIST } from "@/config/config"
 import router from "@/router/index"
 import dayjs from "dayjs"
 
@@ -11,8 +11,8 @@ export const GlobalStore = defineStore({
 	state: (): GlobalState => ({
 		SYSTEM_LANGUAGE: "zh",
 		SYSTEM_COLLAPSE: false,
-		SYSTEM_ACTIVE_ROUTER: HOME_URL,
-		SYSTEM_ROUTER_LIST: [{ title: "首页", path: HOME_URL, icon: "home-filled", close: false }],
+		SYSTEM_ACTIVE_ROUTER: GLOB_APP_HOME,
+		SYSTEM_ROUTER_LIST: [{ title: "首页", path: GLOB_APP_HOME, icon: "home-filled", close: false }],
 		SYSTEM_PAGE_SIZE: 30,
 		SYETEM_TIME: 0
 	}),
@@ -64,13 +64,13 @@ export const GlobalStore = defineStore({
 		// 关闭其他
 		closeMultipleTab(tabsMenuValue?: string) {
 			this.SYSTEM_ROUTER_LIST = this.SYSTEM_ROUTER_LIST.filter(item => {
-				return item.path === tabsMenuValue || item.path === HOME_URL
+				return item.path === tabsMenuValue || item.path === GLOB_APP_HOME
 			})
 		},
 		// 关闭所有
 		goHome() {
-			router.push(HOME_URL)
-			this.SYSTEM_ACTIVE_ROUTER = HOME_URL
+			router.push(GLOB_APP_HOME)
+			this.SYSTEM_ACTIVE_ROUTER = GLOB_APP_HOME
 		}
 	},
 	persist: piniaPersistConfig("GlobalState")

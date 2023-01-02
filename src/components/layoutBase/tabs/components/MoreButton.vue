@@ -16,12 +16,12 @@
 
 <script setup lang="ts">
 import { GlobalStore } from "@/store/modules/global"
-import { HOME_URL } from "@/config/config"
+import { GLOB_APP_HOME } from "@/config/config"
 const globalStore = GlobalStore()
 
 // 关闭当前
 const closeCurrentTab = () => {
-	if (globalStore.SYSTEM_ACTIVE_ROUTER === HOME_URL) {
+	if (globalStore.SYSTEM_ACTIVE_ROUTER === GLOB_APP_HOME) {
 		return
 	}
 	globalStore.removeTabs(globalStore.SYSTEM_ACTIVE_ROUTER)

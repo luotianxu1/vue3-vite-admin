@@ -18,6 +18,20 @@ const userInfo = mockjs.mock({
 })
 
 export default [
+	// 用户列表
+	{
+		url: "/testApi/api/userList",
+		method: "post",
+		response: () => {
+			return <IResponseData<IUserListData>>{
+				status: 200,
+				message: "查询用户列表成功！",
+				data: mockjs.mock({
+					"list|100": [userInfo]
+				})
+			}
+		}
+	},
 	// 用户登陆
 	{
 		url: "/testApi/api/login",
@@ -2148,20 +2162,6 @@ export default [
 					],
 					total: 100
 				}
-			}
-		}
-	},
-	// 用户列表
-	{
-		path: "/testApi/api/userList",
-		method: "post",
-		response: () => {
-			return <IResponseData<IUserListData>>{
-				status: 200,
-				message: "查询用户列表成功！",
-				data: mockjs.mock({
-					"list|100": [userInfo]
-				})
 			}
 		}
 	}
