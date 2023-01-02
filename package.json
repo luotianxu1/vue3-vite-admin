@@ -1,5 +1,5 @@
 {
-	"name": "vue3_ts_vite",
+	"name": "vue3-vite-admin",
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
@@ -25,7 +25,7 @@
 		"driver.js": "^0.9.8",
 		"echarts": "^5.4.0",
 		"echarts-gl": "^2.0.9",
-		"element-plus": "^2.2.6",
+		"element-plus": "^2.2.8",
 		"leaflet": "^1.9.1",
 		"md5": "^2.3.0",
 		"mitt": "^3.0.0",

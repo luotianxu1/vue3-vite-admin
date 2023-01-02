@@ -15,3 +15,12 @@ export const TIME_STAMP = "timeStamp"
 
 // token过期时间
 export const TOKEN_TIME_VALUE = 2 * 3600 * 1000
+
+// 名称
+export const GLOB_APP_TITLE = "vue3-vite-admin"
+
+// 主页面路由
+export const GLOB_APP_HOME = "/system/user"
+
+// 登陆页面路由
+export const GLOB_APP_LOGIN = "/login"

@@ -6,11 +6,11 @@
 	<el-scrollbar class="scrollbar">
 		<el-menu
 			:collapse="globalStore.SYSTEM_COLLAPSE"
-			unique-opened
-			:collapse-transition="true"
 			class="el-menu-vertical-demo"
 			:default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
-			router
+			:router="false"
+			:collapse-transition="false"
+			:unique-opened="true"
 		>
 			<TreeMenu :tree-data="list"></TreeMenu>
 		</el-menu>
@@ -22,15 +22,8 @@ import { GlobalStore } from "@/store/modules/global"
 import { UserStore } from "@/store/modules/user"
 import { getUserPageList, IPageItem } from "@/api/system/userApi"
 import TreeMenu from "@/components/layoutBase/sidebar/components/TreeMenu.vue"
-import { filterRoutes, generateMenus } from "@/utils/route"
 
 const router = useRouter()
-
-const routes = computed(() => {
-	const filterRoute = filterRoutes(router.getRoutes())
-	return generateMenus(filterRoute)
-})
-console.log(routes.value)
 
 // 图标
 const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")

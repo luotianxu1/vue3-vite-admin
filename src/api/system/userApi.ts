@@ -10,6 +10,7 @@ export interface ILoginParams {
 export interface ILoginData {
 	isLogin: boolean
 	token: string
+	message?: string
 }
 
 export interface IRegisterParams extends ILoginParams {
@@ -52,7 +53,8 @@ export interface IPageItem {
 	id: number
 	icon: string
 	name: string
-	url: string
+	path: string
+	component: string
 	children?: IPageItem[]
 }
 
