@@ -39,13 +39,6 @@ router.beforeEach(async (to, from, next) => {
 	// 动态设置标题
 	document.title = to.meta.title ? `${to.meta.title} - ${GLOB_APP_TITLE}` : GLOB_APP_TITLE
 
-	// 判断是访问登陆页，有 Token 就在当前页面，没有 Token 放行到登陆页
-	if (to.path === GLOB_APP_LOGIN) {
-		if (getToken(TOKEN)) {
-			return next(from.fullPath)
-		}
-		return next()
-	}
 	// 判断是否在白名单
 	if (RROUTER_WHITLE.indexOf(to.path) > -1) {
 		return next()
