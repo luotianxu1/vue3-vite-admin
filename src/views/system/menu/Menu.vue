@@ -28,7 +28,7 @@
 					<el-empty description="暂无数据"></el-empty>
 				</template>
 				<el-table-column prop="id" align="center" label="ID" />
-				<el-table-column prop="name" align="center" label="名称" />
+				<el-table-column prop="meta.title" align="center" label="名称" />
 				<el-table-column prop="icon" align="center" label="图标">
 					<template #default="scope">
 						<MyIcon :icon="scope.row.meta.icon"></MyIcon>

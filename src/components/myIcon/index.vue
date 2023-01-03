@@ -19,17 +19,20 @@ interface Props {
 	width?: number
 	padding?: number
 	hover?: boolean
+	point?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
 	font: 18,
 	color: "#252323",
 	width: 400,
 	padding: 0,
-	hover: false
+	hover: false,
+	point: false
 })
 const iconStr = computed(() => {
 	let str = ""
 	str += props.hover ? "hover " : ""
+	str += props.point ? "point " : ""
 	str += "iconfont " + props.icon
 	return str
 })
@@ -46,5 +49,9 @@ const paddingNum = computed(() => "0" + " " + props.padding + "px")
 	&:hover {
 		color: rgb(96, 158, 255) !important;
 	}
+}
+
+.point {
+	cursor: pointer;
 }
 </style>
