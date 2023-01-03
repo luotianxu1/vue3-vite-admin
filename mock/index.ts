@@ -1,4 +1,4 @@
-import mockjs, { Random } from "mockjs"
+import mockjs from "mockjs"
 import { IResponseData } from "@/api/interface/type"
 import { ILoginParams, ILoginData, IRegisterParams, IRegisterData, IUserListData } from "@/api/system/userApi"
 
@@ -12,7 +12,7 @@ const userInfo = mockjs.mock({
 	city: "@county(true)",
 	status: "@integer( 0, 1)",
 	type: "@integer( 0, 1)",
-	img: Random.image("200x100"),
+	img: "@image",
 	addTime: "@datetime",
 	editTime: "@datetime"
 })
