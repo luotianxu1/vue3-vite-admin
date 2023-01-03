@@ -7,11 +7,17 @@ import { notFoundRouter } from "./staticRouter"
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob("@/views/**/*.vue")
 
+/**
+ * 初始化动态路由
+ * @returns
+ */
 export const initdynamicRouter = async () => {
 	const userStore = UserStore()
 
 	try {
+		// 获取菜单列表
 		await userStore.getUserMenuList()
+		// 判断当前用户有没有菜单权限
 		if (!userStore.USER_MENULIST.length) {
 			ElNotification({
 				title: "无权限访问",
@@ -19,10 +25,12 @@ export const initdynamicRouter = async () => {
 				type: "warning",
 				duration: 3000
 			})
+			userStore.logout()
 			router.replace(GLOB_APP_LOGIN)
 			return Promise.reject("暂无权限！")
 		}
 
+		// 添加动态路由
 		userStore.flatMenuListGet.forEach((item: any) => {
 			item.children && delete item.children
 			if (item.component && isType(item.component) === "string") {
@@ -36,7 +44,7 @@ export const initdynamicRouter = async () => {
 			}
 		})
 
-		// 4.最后添加 notFoundRouter
+		// 最后添加 notFoundRouter
 		router.addRoute(notFoundRouter)
 	} catch (error) {
 		router.replace(GLOB_APP_LOGIN)

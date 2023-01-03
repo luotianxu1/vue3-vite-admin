@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import piniaPersistConfig from "@/config/piniaPersist"
-import { GlobalState } from "../interface/global"
+import { GlobalState, IRouterList } from "../interface/global"
 import { GLOB_APP_HOME, TABS_BLACK_LIST } from "@/config/config"
 import router from "@/router/index"
 import dayjs from "dayjs"
@@ -12,7 +12,7 @@ export const GlobalStore = defineStore({
 		SYSTEM_LANGUAGE: "zh",
 		SYSTEM_COLLAPSE: false,
 		SYSTEM_ACTIVE_ROUTER: GLOB_APP_HOME,
-		SYSTEM_ROUTER_LIST: [{ title: "首页", path: GLOB_APP_HOME, icon: "home-filled", close: false }],
+		SYSTEM_ROUTER_LIST: [{ title: "首页", path: GLOB_APP_HOME, close: false }],
 		SYSTEM_PAGE_SIZE: 30,
 		SYETEM_TIME: 0
 	}),
@@ -23,11 +23,12 @@ export const GlobalStore = defineStore({
 	},
 	actions: {
 		// 添加tab
-		addTabs(tabItem: Menu.MenuOptions) {
+		addTabs(tabItem: IRouterList) {
 			if (TABS_BLACK_LIST.includes(tabItem.path)) {
 				return
 			}
-			const tabInfo: Menu.MenuOptions = {
+
+			const tabInfo: IRouterList = {
 				title: tabItem.title,
 				path: tabItem.path,
 				close: tabItem.close

@@ -1,3 +1,4 @@
+import { GLOB_APP_HOME } from "@/config/config"
 import { RouteRecordRaw } from "vue-router"
 
 export type AppRouteRecordRaw = RouteRecordRaw & {
@@ -18,6 +19,7 @@ export const staticRouter: AppRouteRecordRaw[] = [
 		path: "/layout",
 		name: "layout",
 		component: () => import("@/components/layoutBase/index.vue"),
+		redirect: GLOB_APP_HOME,
 		children: []
 	},
 	{

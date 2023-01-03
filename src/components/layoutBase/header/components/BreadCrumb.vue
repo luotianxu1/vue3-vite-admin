@@ -1,11 +1,13 @@
 <template>
 	<el-breadcrumb separator="/">
-		<el-breadcrumb-item key="/home" :to="{ path: GLOB_APP_HOME }">首页</el-breadcrumb-item>
-		<el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
-			<el-link :underline="false" :disabled="index === breadcrumbList.length - 1" @click="goto(item.path)">
-				{{ item.name }}
-			</el-link>
-		</el-breadcrumb-item>
+		<transition-group name="breadcrumb" mode="out-in">
+			<el-breadcrumb-item :key="GLOB_APP_HOME" :to="{ path: GLOB_APP_HOME }">首页</el-breadcrumb-item>
+			<el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path">
+				<el-link :underline="false" :disabled="index === breadcrumbList.length - 1" @click="goto(item.path)">
+					{{ item.meta.title }}
+				</el-link>
+			</el-breadcrumb-item>
+		</transition-group>
 	</el-breadcrumb>
 </template>
 <script setup lang="ts">

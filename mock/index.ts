@@ -106,2053 +106,3338 @@ export default [
 				data: {
 					list: [
 						{
-							id: 1,
-							name: "高德地图",
-							icon: "icon-ditu",
 							path: "/map",
-							meta: { isFull: false },
+							name: "map",
+							redirect: "/map/aMapStatus",
+							meta: {
+								title: "高德地图",
+								icon: "icon-ditu",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 2,
-									name: "地图状态",
-									icon: "icon-locus",
 									path: "/map/aMapStatus",
-									meta: { isFull: false },
-									component: "/map/AMapStatus"
+									name: "aMapStatus",
+									component: "/map/AMapStatus",
+									meta: {
+										title: "地图状态",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 2,
-									name: "地图切换",
-									icon: "icon-locus",
 									path: "/map/mapChange",
-									meta: { isFull: false },
-									component: "/map/leaflet/MapChange"
+									name: "mapChange",
+									component: "/map/leaflet/MapChange",
+									meta: {
+										title: "地图切换",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 3,
-									name: "类型",
-									icon: "icon-locus",
 									path: "/map/type",
-									meta: { isFull: false },
+									name: "type",
+									redirect: "/map/aMapAdministrative",
+									meta: {
+										title: "类型",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 4,
-											name: "简易行政区",
-											icon: "icon-locus",
 											path: "/map/aMapAdministrative",
-											meta: { isFull: false },
-											component: "/map/mapType/AMapAdministrative"
+											name: "aMapAdministrative",
+											component: "/map/mapType/AMapAdministrative",
+											meta: {
+												title: "简易行政区",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 5,
-											name: "世界地图",
-											icon: "icon-locus",
 											path: "/map/aMapArea",
-											meta: { isFull: false },
-											component: "/map/mapType/AMapArea"
+											name: "aMapArea",
+											component: "/map/mapType/AMapArea",
+											meta: {
+												title: "世界地图",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 7,
-											name: "区域掩模",
-											icon: "icon-locus",
 											path: "/map/aMapAreaMask",
-											meta: { isFull: false },
-											component: "/map/mapType/AMapAreaMask"
+											name: "aMapAreaMask",
+											component: "/map/mapType/AMapAreaMask",
+											meta: {
+												title: "区域掩模",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 8,
-									name: "事件",
-									icon: "icon-locus",
 									path: "/map/event",
-									meta: { isFull: false },
+									name: "event",
+									redirect: "/map/aMapEvent",
+									meta: {
+										title: "事件",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 9,
-											name: "地图事件",
-											icon: "icon-locus",
 											path: "/map/aMapEvent",
-											meta: { isFull: false },
-											component: "/map/mapEvent/AMapEvent"
+											name: "aMapEvent",
+											component: "/map/mapEvent/AMapEvent",
+											meta: {
+												title: "地图事件",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 10,
-											name: "覆盖物事件",
-											icon: "icon-locus",
 											path: "/map/aMapCoverEvent",
-											meta: { isFull: false },
-											component: "/map/mapEvent/AMapCoverEvent"
+											name: "aMapCoverEvent",
+											component: "/map/mapEvent/AMapCoverEvent",
+											meta: {
+												title: "覆盖物事件",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 11,
-									name: "覆盖物",
-									icon: "icon-locus",
 									path: "/map/Marker",
-									meta: { isFull: false },
+									name: "Marker",
+									redirect: "/map/aMapMarker",
+									meta: {
+										title: "覆盖物",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 12,
-											name: "点标记",
-											icon: "icon-locus",
 											path: "/map/aMapMarker",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapMarker"
+											name: "aMapMarker",
+											component: "/map/mapCover/AMapMarker",
+											meta: {
+												title: "点标记",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 13,
-											name: "轨迹回放",
-											icon: "icon-locus",
 											path: "/map/aMapTrackPlayback",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapTrackPlayback"
+											name: "aMapTrackPlayback",
+											component: "/map/mapCover/AMapTrackPlayback",
+											meta: {
+												title: "轨迹回放",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 14,
-											name: "避让标注图层",
-											icon: "icon-locus",
 											path: "/map/aMapAvoidLayers",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapAvoidLayers"
+											name: "aMapAvoidLayers",
+											component: "/map/mapCover/AMapAvoidLayers",
+											meta: {
+												title: "避让标注图层",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 15,
-											name: "文字标注",
-											icon: "icon-locus",
 											path: "/map/aMapTextMarker",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapTextMarker"
+											name: "aMapTextMarker",
+											component: "/map/mapCover/AMapTextMarker",
+											meta: {
+												title: "文字标注",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 16,
-											name: "海量点",
-											icon: "icon-locus",
 											path: "/map/aMapMassPointMarkers",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapMassPointMarkers"
+											name: "aMapMassPointMarkers",
+											component: "/map/mapCover/AMapMassPointMarkers",
+											meta: {
+												title: "海量点",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 17,
-											name: "海量点2",
-											icon: "icon-locus",
 											path: "/map/aMapMassMarkers",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapMassMarkers"
+											name: "aMapMassMarkers",
+											component: "/map/mapCover/AMapMassMarkers",
+											meta: {
+												title: "海量点2",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 18,
-											name: "聚合",
-											icon: "icon-locus",
 											path: "/map/aMapPointAggregation",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapPointAggregation"
+											name: "aMapPointAggregation",
+											component: "/map/mapCover/AMapPointAggregation",
+											meta: {
+												title: "聚合",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 19,
-											name: "按索引聚合",
-											icon: "icon-locus",
 											path: "/map/aMapPointAggregation2",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapPointAggregation2"
+											name: "aMapPointAggregation2",
+											component: "/map/mapCover/AMapPointAggregation2",
+											meta: {
+												title: "按索引聚合",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 20,
-											name: "矢量图形",
-											icon: "icon-locus",
 											path: "/map/aMapVectorGraphics",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapVectorGraphics"
+											name: "aMapVectorGraphics",
+											component: "/map/mapCover/AMapVectorGraphics",
+											meta: {
+												title: "矢量图形",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 21,
-											name: "右键菜单",
-											icon: "icon-locus",
 											path: "/map/aMapMenu",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapMenu"
+											name: "aMapMenu",
+											component: "/map/mapCover/AMapMenu",
+											meta: {
+												title: "右键菜单",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 22,
-											name: "信息窗体",
-											icon: "icon-locus",
 											path: "/map/aMapInfoWindow",
-											meta: { isFull: false },
-											component: "/map/mapCover/AMapInfoWindow"
+											name: "aMapInfoWindow",
+											component: "/map/mapCover/AMapInfoWindow",
+											meta: {
+												title: "信息窗体",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 23,
-									name: "搜索服务",
-									icon: "icon-locus",
 									path: "/map/InputHint",
-									meta: { isFull: false },
+									name: "InputHint",
+									redirect: "/map/aMapInputHint",
+									meta: {
+										title: "搜索服务",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 24,
-											name: "输入提示",
-											icon: "icon-locus",
 											path: "/map/aMapInputHint",
-											meta: { isFull: false },
-											component: "/map/mapSearch/AMapInputHint"
+											name: "aMapInputHint",
+											component: "/map/mapSearch/AMapInputHint",
+											meta: {
+												title: "输入提示",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 25,
-									name: "路线规划",
-									icon: "icon-locus",
 									path: "/map/Planning",
-									meta: { isFull: false },
+									name: "Planning",
+									redirect: "/map/aMapPlanning",
+									meta: {
+										title: "路线规划",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 26,
-											name: "驾车路线规划",
-											icon: "icon-locus",
 											path: "/map/aMapPlanning",
-											meta: { isFull: false },
-											component: "/map/mapPlanning/AMapPlanning"
+											name: "aMapPlanning",
+											component: "/map/mapPlanning/AMapPlanning",
+											meta: {
+												title: "驾车路线规划",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 27,
-											name: "拖拽路线规划",
-											icon: "icon-locus",
 											path: "/map/aMapDragPlanning",
-											meta: { isFull: false },
-											component: "/map/mapPlanning/AMapDragPlanning"
+											name: "aMapDragPlanning",
+											component: "/map/mapPlanning/AMapDragPlanning",
+											meta: {
+												title: "拖拽路线规划",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 28,
-									name: "其他",
-									icon: "icon-locus",
 									path: "/map/Geocoding",
-									meta: { isFull: false },
+									name: "Geocoding",
+									redirect: "/map/aMapPlanning",
+									meta: {
+										title: "其他",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 29,
-											name: "地理编码",
-											icon: "icon-locus",
 											path: "/map/aMapGeocoding",
-											meta: { isFull: false },
-											component: "/map/mapOther/AMapGeocoding"
+											name: "aMapGeocoding",
+											component: "/map/mapOther/AMapGeocoding",
+											meta: {
+												title: "地理编码",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 30,
-											name: "行政区查询",
-											icon: "icon-locus",
 											path: "/map/aMapAdministrativeArea",
-											meta: { isFull: false },
-											component: "/map/mapOther/AMapAdministrativeArea"
+											name: "aMapAdministrativeArea",
+											component: "/map/mapOther/AMapAdministrativeArea",
+											meta: {
+												title: "行政区查询",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 31,
-											name: "定位",
-											icon: "icon-locus",
 											path: "/map/aMapLocation",
-											meta: { isFull: false },
-											component: "/map/mapOther/AMapLocation"
+											name: "aMapLocation",
+											component: "/map/mapOther/AMapLocation",
+											meta: {
+												title: "定位",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 32,
-											name: "天气",
-											icon: "icon-locus",
 											path: "/map/aMapWeather",
-											meta: { isFull: false },
-											component: "/map/mapOther/AMapWeather"
+											name: "aMapWeather",
+											component: "/map/mapOther/AMapWeather",
+											meta: {
+												title: "天气",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 33,
-									name: "计算",
-									icon: "icon-locus",
 									path: "/map/aMapCalculate",
-									meta: { isFull: false },
+									name: "aMapCalculate",
+									redirect: "/map/aMapPointCalculate",
+									meta: {
+										title: "计算",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 34,
-											name: "两点间距离",
-											icon: "icon-locus",
 											path: "/map/aMapPointCalculate",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapPointCalculate"
+											name: "aMapPointCalculate",
+											component: "/map/mapCalculate/AMapPointCalculate",
+											meta: {
+												title: "两点间距离",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 35,
-											name: "点到直线的距离",
-											icon: "icon-locus",
 											path: "/map/aMapLineCalculate",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapLineCalculate"
+											name: "aMapLineCalculate",
+											component: "/map/mapCalculate/AMapLineCalculate",
+											meta: {
+												title: "点到直线的距离",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 36,
-											name: "折线长度",
-											icon: "icon-locus",
 											path: "/map/aMapPathLength",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapPathLength"
+											name: "aMapPathLength",
+											component: "/map/mapCalculate/AMapPathLength",
+											meta: {
+												title: "折线长度",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 37,
-											name: "面积",
-											icon: "icon-locus",
 											path: "/map/aMapAreaNum",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapArea"
+											name: "aMapAreaNum",
+											component: "/map/mapCalculate/AMapArea",
+											meta: {
+												title: "面积",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 38,
-											name: "点是否在线上",
-											icon: "icon-locus",
 											path: "/map/aMapIsOnLine",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapIsOnLine"
+											name: "aMapIsOnLine",
+											component: "/map/mapCalculate/AMapIsOnLine",
+											meta: {
+												title: "点是否在线上",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 39,
-											name: "点是否在多边形内",
-											icon: "icon-locus",
 											path: "/map/aMapIsOnPolygon",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapIsOnPolygon"
+											name: "aMapIsOnPolygon",
+											component: "/map/mapCalculate/AMapIsOnPolygon",
+											meta: {
+												title: "点是否在多边形内",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 40,
-											name: "几何关系",
-											icon: "icon-locus",
 											path: "/map/aMapGeometricRelationship",
-											meta: { isFull: false },
-											component: "/map/mapCalculate/AMapGeometricRelationship"
+											name: "aMapGeometricRelationship",
+											component: "/map/mapCalculate/AMapGeometricRelationship",
+											meta: {
+												title: "几何关系",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 41,
-									name: "可视化",
-									icon: "icon-locus",
 									path: "/map/cellular",
-									meta: { isFull: false },
+									name: "cellular",
+									redirect: "/map/cellularHeatmap",
+									meta: {
+										title: "可视化",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 42,
-											name: "蜂窝热力图",
-											icon: "icon-locus",
 											path: "/map/cellularHeatmap",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/CellularHeatmap"
+											name: "cellularHeatmap",
+											component: "/map/mapVisualization/CellularHeatmap",
+											meta: {
+												title: "蜂窝热力图",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 43,
-											name: "网格热力图",
-											icon: "icon-locus",
 											path: "/map/gridHeatmap",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/GridHeatmap"
+											name: "gridHeatmap",
+											component: "/map/mapVisualization/GridHeatmap",
+											meta: {
+												title: "网格热力图",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 44,
-											name: "热力图",
-											icon: "icon-locus",
 											path: "/map/heatmap",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/Heatmap"
+											name: "heatmap",
+											component: "/map/mapVisualization/Heatmap",
+											meta: {
+												title: "热力图",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 45,
-											name: "脉冲线",
-											icon: "icon-locus",
 											path: "/map/pulseLine",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/PulseLine"
+											name: "pulseLine",
+											component: "/map/mapVisualization/PulseLine",
+											meta: {
+												title: "脉冲线",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 46,
-											name: "飞线",
-											icon: "icon-locus",
 											path: "/map/flyingLine",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/FlyingLine"
+											name: "flyingLine",
+											component: "/map/mapVisualization/FlyingLine",
+											meta: {
+												title: "飞线",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 47,
-											name: "连接线",
-											icon: "icon-locus",
 											path: "/map/connectingLine",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/ConnectingLine"
+											name: "connectingLine",
+											component: "/map/mapVisualization/ConnectingLine",
+											meta: {
+												title: "连接线",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 48,
-											name: "线图层",
-											icon: "icon-locus",
 											path: "/map/lineLayer",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/LineLayer"
+											name: "lineLayer",
+											component: "/map/mapVisualization/LineLayer",
+											meta: {
+												title: "线图层",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 49,
-											name: "图标图层",
-											icon: "icon-locus",
 											path: "/map/iconLayer",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/IconLayer"
+											name: "iconLayer",
+											component: "/map/mapVisualization/IconLayer",
+											meta: {
+												title: "图标图层",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 50,
-											name: "贴地点",
-											icon: "icon-locus",
 											path: "/map/postLocation",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/PostLocation"
+											name: "postLocation",
+											component: "/map/mapVisualization/PostLocation",
+											meta: {
+												title: "贴地点",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 51,
-											name: "棱柱图层",
-											icon: "icon-locus",
 											path: "/map/prismLayer",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/PrismLayer"
+											name: "prismLayer",
+											component: "/map/mapVisualization/PrismLayer",
+											meta: {
+												title: "棱柱图层",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 52,
-											name: "圆点图层",
-											icon: "icon-locus",
 											path: "/map/dotLayer",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/DotLayer"
+											name: "dotLayer",
+											component: "/map/mapVisualization/DotLayer",
+											meta: {
+												title: "圆点图层",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 53,
-											name: "标牌点",
-											icon: "icon-locus",
 											path: "/map/signagePoint",
-											meta: { isFull: false },
-											component: "/map/mapVisualization/SignagePoint"
+											name: "signagePoint",
+											component: "/map/mapVisualization/SignagePoint",
+											meta: {
+												title: "标牌点",
+												icon: "icon-locus",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								}
 							]
 						},
 						{
-							id: 100,
-							name: "系统管理",
-							icon: "icon-setting",
 							path: "/system",
-							meta: { isFull: false },
+							name: "system",
+							redirect: "/system/user",
+							meta: {
+								title: "系统管理",
+								icon: "icon-setting",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 101,
-									name: "用户管理",
-									icon: "icon-yonghu",
 									path: "/system/user",
-									meta: { isFull: false },
-									component: "/system/user/User"
+									name: "user",
+									component: "/system/user/User",
+									meta: {
+										title: "用户管理",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
 								},
 								{
-									id: 102,
-									name: "菜单管理",
-									icon: "icon-caidan",
 									path: "/system/menu",
-									meta: { isFull: false },
-									component: "/system/menu/Menu"
+									name: "menu",
+									component: "/system/menu/Menu",
+									meta: {
+										title: "菜单管理",
+										icon: "icon-caidan",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
 								}
 							]
 						},
 						{
-							id: 200,
-							name: "样式",
-							icon: "icon-dangedemoban",
 							path: "/style",
-							meta: { isFull: false },
+							name: "style",
+							redirect: "/style/navigation1",
+							meta: {
+								title: "样式",
+								icon: "icon-dangedemoban",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 28,
-									name: "导航栏",
-									icon: "icon-locus",
 									path: "/style/navigation",
-									meta: { isFull: false },
+									name: "navigation",
+									redirect: "/style/navigation1",
+									meta: {
+										title: "导航栏",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 201,
-											name: "导航栏1",
-											icon: "icon-mulu",
 											path: "/style/navigation1",
-											meta: { isFull: false },
-											component: "/style/navigation/Navigation1"
+											name: "navigation1",
+											component: "/style/navigation/Navigation1",
+											meta: {
+												title: "导航栏1",
+												icon: "icon-mulu",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 201,
-											name: "导航栏2",
-											icon: "icon-mulu",
 											path: "/style/navigation2",
-											meta: { isFull: false },
-											component: "/style/navigation/Navigation2"
+											name: "navigation2",
+											component: "/style/navigation/Navigation2",
+											meta: {
+												title: "导航栏2",
+												icon: "icon-mulu",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 201,
-											name: "导航栏3",
-											icon: "icon-mulu",
 											path: "/style/navigation3",
-											meta: { isFull: false },
-											component: "/style/navigation/Navigation3"
+											name: "navigation3",
+											component: "/style/navigation/Navigation3",
+											meta: {
+												title: "导航栏3",
+												icon: "icon-mulu",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 28,
-									name: "卡片",
-									icon: "icon-locus",
 									path: "/style/card",
-									meta: { isFull: false },
+									name: "card",
+									redirect: "/style/card1",
+									meta: {
+										title: "卡片",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 202,
-											name: "卡片1",
-											icon: "icon-kapian",
 											path: "/style/card1",
-											meta: { isFull: false },
-											component: "/style/card/Card1"
+											name: "card1",
+											component: "/style/card/Card1",
+											meta: {
+												title: "卡片1",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 203,
-											name: "卡片2",
-											icon: "icon-kapian",
 											path: "/style/card2",
-											meta: { isFull: false },
-											component: "/style/card/Card2"
+											name: "card2",
+											component: "/style/card/Card2",
+											meta: {
+												title: "卡片2",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 204,
-											name: "卡片3",
-											icon: "icon-kapian",
 											path: "/style/card3",
-											meta: { isFull: false },
-											component: "/style/card/Card3"
+											name: "card3",
+											component: "/style/card/Card3",
+											meta: {
+												title: "卡片3",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 205,
-											name: "卡片4",
-											icon: "icon-kapian",
 											path: "/style/card4",
-											meta: { isFull: false },
-											component: "/style/card/Card4"
+											name: "card4",
+											component: "/style/card/Card4",
+											meta: {
+												title: "卡片4",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 206,
-											name: "卡片5",
-											icon: "icon-kapian",
 											path: "/style/card5",
-											meta: { isFull: false },
-											component: "/style/card/Card5"
+											name: "card5",
+											component: "/style/card/Card5",
+											meta: {
+												title: "卡片5",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 207,
-											name: "卡片6",
-											icon: "icon-kapian",
 											path: "/style/card6",
-											meta: { isFull: false },
-											component: "/style/card/Card6"
+											name: "card6",
+											component: "/style/card/Card6",
+											meta: {
+												title: "卡片6",
+												icon: "icon-kapian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 28,
-									name: "按钮",
-									icon: "icon-locus",
 									path: "/style/button",
-									meta: { isFull: false },
+									name: "button",
+									redirect: "/style/card1",
+									meta: {
+										title: "按钮",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 208,
-											name: "按钮1",
-											icon: "icon-anniu",
 											path: "/style/button1",
-											meta: { isFull: false },
-											component: "/style/button/Button1"
+											name: "button1",
+											component: "/style/button/Button1",
+											meta: {
+												title: "按钮1",
+												icon: "icon-anniu",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 209,
-											name: "按钮2",
-											icon: "icon-anniu",
 											path: "/style/button2",
-											meta: { isFull: false },
-											component: "/style/button/Button2"
+											name: "button2",
+											component: "/style/button/Button2",
+											meta: {
+												title: "按钮2",
+												icon: "icon-anniu",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 28,
-									name: "加载图标",
-									icon: "icon-locus",
 									path: "/style/loading",
-									meta: { isFull: false },
+									name: "loading",
+									redirect: "/style/loading1",
+									meta: {
+										title: "加载图标",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 210,
-											name: "加载图标1",
-											icon: "icon-loading",
 											path: "/style/loading1",
-											meta: { isFull: false },
-											component: "/style/loading/Loading1"
+											name: "loading1",
+											component: "/style/loading/Loading1",
+											meta: {
+												title: "加载图标1",
+												icon: "icon-loading",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 210,
-											name: "加载图标2",
-											icon: "icon-loading",
 											path: "/style/loading2",
-											meta: { isFull: false },
-											component: "/style/loading/Loading2"
+											name: "loading2",
+											component: "/style/loading/Loading2",
+											meta: {
+												title: "加载图标2",
+												icon: "icon-loading",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 28,
-									name: "输入框",
-									icon: "icon-locus",
 									path: "/style/input",
-									meta: { isFull: false },
+									name: "input",
+									redirect: "/style/input1",
+									meta: {
+										title: "输入框",
+										icon: "icon-locus",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 212,
-											name: "动态输入框",
-											icon: "icon-beijingtupian",
 											path: "/style/input1",
-											meta: { isFull: false },
-											component: "/style/input/Input1"
+											name: "input1",
+											component: "/style/input/Input1",
+											meta: {
+												title: "动态输入框",
+												icon: "icon-beijingtupian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 212,
-											name: "打字特效",
-											icon: "icon-beijingtupian",
 											path: "/style/input2",
-											meta: { isFull: false },
-											component: "/style/input/Input2"
+											name: "input2",
+											component: "/style/input/Input2",
+											meta: {
+												title: "打字特效",
+												icon: "icon-beijingtupian",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 211,
-									name: "背景渐变",
-									icon: "icon-beijingtupian",
 									path: "/style/gradient",
-									meta: { isFull: false },
-									component: "/style/gradient/Gradient"
+									name: "gradient",
+									component: "/style/gradient/Gradient",
+									meta: {
+										title: "背景渐变",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 300,
-							name: "threejs",
-							icon: "icon-threejs",
 							path: "/three",
-							meta: { isFull: false },
+							name: "three",
+							redirect: "/three/baseScene",
+							meta: {
+								title: "threejs",
+								icon: "icon-threejs",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 301,
-									name: "基础",
-									icon: "icon-threejs",
 									path: "/three/base",
-									meta: { isFull: false },
+									name: "threeBase",
+									redirect: "/three/baseScene",
+									meta: {
+										title: "基础",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 301,
-											name: "第一个场景",
-											icon: "icon-threejs",
 											path: "/three/baseScene",
-											meta: { isFull: false },
-											component: "/three/gettingStarted/Base"
+											name: "baseScene",
+											component: "/three/gettingStarted/Base",
+											meta: {
+												title: "第一个场景",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 303,
-											name: "阴影",
-											icon: "icon-threejs",
 											path: "/three/shadow",
-											meta: { isFull: false },
-											component: "/three/gettingStarted/Shadow"
+											name: "shadow",
+											component: "/three/gettingStarted/Shadow",
+											meta: {
+												title: "阴影",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 304,
-											name: "运动",
-											icon: "icon-threejs",
 											path: "/three/sport",
-											meta: { isFull: false },
-											component: "/three/gettingStarted/Sport"
+											name: "sport",
+											component: "/three/gettingStarted/Sport",
+											meta: {
+												title: "运动",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 305,
-									name: "基本组件",
-									icon: "icon-threejs",
 									path: "/three/scene",
-									meta: { isFull: false },
+									name: "scene",
+									redirect: "/three/scene1",
+									meta: {
+										title: "基本组件",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 306,
-											name: "场景",
-											icon: "icon-threejs",
 											path: "/three/scene1",
-											meta: { isFull: false },
-											component: "/three/basicComponents/Scene"
+											name: "scene1",
+											component: "/three/basicComponents/Scene",
+											meta: {
+												title: "场景",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 307,
-									name: "光源",
-									icon: "icon-threejs",
 									path: "/three/light",
-									meta: { isFull: false },
+									name: "light",
+									redirect: "/three/ambientLight",
+									meta: {
+										title: "光源",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 308,
-											name: "环境光",
-											icon: "icon-threejs",
 											path: "/three/ambientLight",
-											meta: { isFull: false },
-											component: "/three/light/AmbientLight"
+											name: "ambientLight",
+											component: "/three/light/AmbientLight",
+											meta: {
+												title: "环境光",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 309,
-											name: "聚光灯光源",
-											icon: "icon-threejs",
 											path: "/three/spotLight",
-											meta: { isFull: false },
-											component: "/three/light/SpotLight"
+											name: "spotLight",
+											component: "/three/light/SpotLight",
+											meta: {
+												title: "聚光灯光源",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 310,
-											name: "点光源",
-											icon: "icon-threejs",
 											path: "/three/pointLight",
-											meta: { isFull: false },
-											component: "/three/light/PointLight"
+											name: "pointLight",
+											component: "/three/light/PointLight",
+											meta: {
+												title: "点光源",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 311,
-											name: "平行光",
-											icon: "icon-threejs",
 											path: "/three/directionLight",
-											meta: { isFull: false },
-											component: "/three/light/DirectionalLight"
+											name: "directionLight",
+											component: "/three/light/DirectionalLight",
+											meta: {
+												title: "平行光",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 312,
-											name: "半球光",
-											icon: "icon-threejs",
 											path: "/three/hemisphereLight",
-											meta: { isFull: false },
-											component: "/three/light/HemisphereLight"
+											name: "hemisphereLight",
+											component: "/three/light/HemisphereLight",
+											meta: {
+												title: "半球光",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 313,
-											name: "光晕",
-											icon: "icon-threejs",
 											path: "/three/lensFlare",
-											meta: { isFull: false },
-											component: "/three/light/LensFlare"
+											name: "lensFlare",
+											component: "/three/light/LensFlare",
+											meta: {
+												title: "光晕",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 314,
-									name: "材质",
-									icon: "icon-threejs",
 									path: "/three/mesh",
-									meta: { isFull: false },
+									name: "mesh",
+									redirect: "/three/meshBasicMaterial",
+									meta: {
+										title: "材质",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 315,
-											name: "网格基础材质",
-											icon: "icon-threejs",
 											path: "/three/meshBasicMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshBasicMaterial"
+											name: "meshBasicMaterial",
+											component: "/three/material/MeshBasicMaterial",
+											meta: {
+												title: "网格基础材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 316,
-											name: "网格深度材质",
-											icon: "icon-threejs",
 											path: "/three/meshDepthMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshDepthMaterial"
+											name: "meshDepthMaterial",
+											component: "/three/material/MeshDepthMaterial",
+											meta: {
+												title: "网格深度材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 317,
-											name: "联合材质",
-											icon: "icon-threejs",
 											path: "/three/multiMaterialObject",
-											meta: { isFull: false },
-											component: "/three/material/MultiMaterialObject"
+											name: "multiMaterialObject",
+											component: "/three/material/MultiMaterialObject",
+											meta: {
+												title: "联合材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 318,
-											name: "网格法向材质",
-											icon: "icon-threejs",
 											path: "/three/meshNormalMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshNormalMaterial"
+											name: "meshNormalMaterial",
+											component: "/three/material/MeshNormalMaterial",
+											meta: {
+												title: "网格法向材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 319,
-											name: "使用不同材质",
-											icon: "icon-threejs",
 											path: "/three/meshFaceMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshFaceMaterial"
+											name: "",
+											component: "/three/material/MeshFaceMaterial",
+											meta: {
+												title: "使用不同材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 320,
-											name: "网格Lambert材质",
-											icon: "icon-threejs",
 											path: "/three/meshLambertMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshLambertMaterial"
+											name: "",
+											component: "/three/material/MeshLambertMaterial",
+											meta: {
+												title: "网格Lambert材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 321,
-											name: "网格Phong材质",
-											icon: "icon-threejs",
 											path: "/three/meshPhongMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshPhongMaterial"
+											name: "meshPhongMaterial",
+											component: "/three/material/MeshPhongMaterial",
+											meta: {
+												title: "网格Phong材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 322,
-											name: "网格标准材质",
-											icon: "icon-threejs",
 											path: "/three/meshStandardMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshStandardMaterial"
+											name: "meshStandardMaterial",
+											component: "/three/material/MeshStandardMaterial",
+											meta: {
+												title: "网格标准材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 323,
-											name: "网格物理材质",
-											icon: "icon-threejs",
 											path: "/three/meshPhysicalMaterial",
-											meta: { isFull: false },
-											component: "/three/material/MeshPhysicalMaterial"
+											name: "meshPhysicalMaterial",
+											component: "/three/material/MeshPhysicalMaterial",
+											meta: {
+												title: "网格物理材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 323,
-											name: "网格物理材质2",
-											icon: "icon-threejs",
 											path: "/three/meshPhysicalMaterial2",
-											meta: { isFull: false },
-											component: "/three/material/MeshPhysicalMaterial2"
+											name: "meshPhysicalMaterial2",
+											component: "/three/material/MeshPhysicalMaterial2",
+											meta: {
+												title: "网格物理材质2",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 324,
-											name: "直线基础材质",
-											icon: "icon-threejs",
 											path: "/three/lineBasicMaterial",
-											meta: { isFull: false },
-											component: "/three/material/LineBasicMaterial"
+											name: "lineBasicMaterial",
+											component: "/three/material/LineBasicMaterial",
+											meta: {
+												title: "直线基础材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 325,
-											name: "虚线材质",
-											icon: "icon-threejs",
 											path: "/three/lineDashedMaterial",
-											meta: { isFull: false },
-											component: "/three/material/LineDashedMaterial"
+											name: "lineDashedMaterial",
+											component: "/three/material/LineDashedMaterial",
+											meta: {
+												title: "虚线材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 326,
-									name: "几何体",
-									icon: "icon-threejs",
 									path: "/three/geometry",
-									meta: { isFull: false },
+									name: "geometry",
+									redirect: "/three/bufferGeometry",
+									meta: {
+										title: "几何体",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 327,
-											name: "几何体",
-											icon: "icon-threejs",
 											path: "/three/bufferGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/BufferGeometry"
+											name: "bufferGeometry",
+											component: "/three/geometry/BufferGeometry",
+											meta: {
+												title: "几何体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 327,
-											name: "三角形",
-											icon: "icon-threejs",
 											path: "/three/triangle",
-											meta: { isFull: false },
-											component: "/three/geometry/Triangle"
+											name: "triangle",
+											component: "/three/geometry/Triangle",
+											meta: {
+												title: "三角形",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 327,
-											name: "平面",
-											icon: "icon-threejs",
 											path: "/three/planeGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/PlaneGeometry"
+											name: "",
+											component: "/three/geometry/PlaneGeometry",
+											meta: {
+												title: "平面",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 328,
-											name: "圆形",
-											icon: "icon-threejs",
 											path: "/three/circleGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/CircleGeometry"
+											name: "circleGeometry",
+											component: "/three/geometry/CircleGeometry",
+											meta: {
+												title: "圆形",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 329,
-											name: "环形",
-											icon: "icon-threejs",
 											path: "/three/ringGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/RingGeometry"
+											name: "ringGeometry",
+											component: "/three/geometry/RingGeometry",
+											meta: {
+												title: "环形",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 330,
-											name: "任意图形",
-											icon: "icon-threejs",
 											path: "/three/shapeGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/ShapeGeometry"
+											name: "shapeGeometry",
+											component: "/three/geometry/ShapeGeometry",
+											meta: {
+												title: "任意图形",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 331,
-											name: "长方体",
-											icon: "icon-threejs",
 											path: "/three/boxGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/BoxGeometry"
+											name: "boxGeometry",
+											component: "/three/geometry/BoxGeometry",
+											meta: {
+												title: "长方体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 332,
-											name: "球体",
-											icon: "icon-threejs",
 											path: "/three/sphereGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/SphereGeometry"
+											name: "sphereGeometry",
+											component: "/three/geometry/SphereGeometry",
+											meta: {
+												title: "球体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 333,
-											name: "圆柱体",
-											icon: "icon-threejs",
 											path: "/three/cylinderGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/CylinderGeometry"
+											name: "cylinderGeometry",
+											component: "/three/geometry/CylinderGeometry",
+											meta: {
+												title: "圆柱体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 334,
-											name: "圆锥体",
-											icon: "icon-threejs",
 											path: "/three/coneGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/ConeGeometry"
+											name: "coneGeometry",
+											component: "/three/geometry/ConeGeometry",
+											meta: {
+												title: "圆锥体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 335,
-											name: "圆环",
-											icon: "icon-threejs",
 											path: "/three/torusGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/TorusGeometry"
+											name: "torusGeometry",
+											component: "/three/geometry/TorusGeometry",
+											meta: {
+												title: "圆环",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 336,
-											name: "环状扭结",
-											icon: "icon-threejs",
 											path: "/three/torusKnotGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/TorusKnotGeometry"
+											name: "torusKnotGeometry",
+											component: "/three/geometry/TorusKnotGeometry",
+											meta: {
+												title: "环状扭结",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 337,
-											name: "多面体",
-											icon: "icon-threejs",
 											path: "/three/polyhedron",
-											meta: { isFull: false },
-											component: "/three/geometry/Polyhedron"
+											name: "polyhedron",
+											component: "/three/geometry/Polyhedron",
+											meta: {
+												title: "多面体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 338,
-											name: "凸包几何体",
-											icon: "icon-threejs",
 											path: "/three/convexGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/ConvexGeometry"
+											name: "convexGeometry",
+											component: "/three/geometry/ConvexGeometry",
+											meta: {
+												title: "凸包几何体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 339,
-											name: "车削缓冲几何体",
-											icon: "icon-threejs",
 											path: "/three/latheGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/LatheGeometry"
+											name: "latheGeometry",
+											component: "/three/geometry/LatheGeometry",
+											meta: {
+												title: "车削缓冲几何体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 340,
-											name: "挤压缓冲几何体",
-											icon: "icon-threejs",
 											path: "/three/extrudeGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/ExtrudeGeometry"
+											name: "extrudeGeometry",
+											component: "/three/geometry/ExtrudeGeometry",
+											meta: {
+												title: "挤压缓冲几何体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 341,
-											name: "管道缓冲几何体",
-											icon: "icon-threejs",
 											path: "/three/tubeGeometry",
-											meta: { isFull: false },
-											component: "/three/geometry/TubeGeometry"
+											name: "tubeGeometry",
+											component: "/three/geometry/TubeGeometry",
+											meta: {
+												title: "管道缓冲几何体",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 342,
-											name: "对象组合",
-											icon: "icon-threejs",
 											path: "/three/group",
-											meta: { isFull: false },
-											component: "/three/geometry/Group"
+											name: "group",
+											component: "/three/geometry/Group",
+											meta: {
+												title: "对象组合",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 342,
-											name: "合并网络",
-											icon: "icon-threejs",
 											path: "/three/merge",
-											meta: { isFull: false },
-											component: "/three/geometry/Merge"
+											name: "merge",
+											component: "/three/geometry/Merge",
+											meta: {
+												title: "合并网络",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 342,
-											name: "JSON",
-											icon: "icon-threejs",
 											path: "/three/json",
-											meta: { isFull: false },
-											component: "/three/geometry/Json"
+											name: "json",
+											component: "/three/geometry/Json",
+											meta: {
+												title: "JSON",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 342,
-											name: "检测",
-											icon: "icon-threejs",
 											path: "/three/detect",
-											meta: { isFull: false },
-											component: "/three/geometry/Detect"
+											name: "detect",
+											component: "/three/geometry/Detect",
+											meta: {
+												title: "检测",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "粒子和精灵",
-									icon: "icon-threejs",
 									path: "/three/particle",
-									meta: { isFull: false },
+									name: "particle",
+									redirect: "/three/spriteMaterial1",
+									meta: {
+										title: "粒子和精灵",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "点精灵材质1",
-											icon: "icon-threejs",
 											path: "/three/spriteMaterial1",
-											meta: { isFull: false },
-											component: "/three/particle/SpriteMaterial1"
+											name: "spriteMaterial1",
+											component: "/three/particle/SpriteMaterial1",
+											meta: {
+												title: "点精灵材质1",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "点精灵材质2",
-											icon: "icon-threejs",
 											path: "/three/spriteMaterial2",
-											meta: { isFull: false },
-											component: "/three/particle/SpriteMaterial2"
+											name: "spriteMaterial2",
+											component: "/three/particle/SpriteMaterial2",
+											meta: {
+												title: "点精灵材质2",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质1",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial1",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial1"
+											name: "pointsMaterial1",
+											component: "/three/particle/PointsMaterial1",
+											meta: {
+												title: "点材质1",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质2",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial2",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial2"
+											name: "pointsMaterial2",
+											component: "/three/particle/PointsMaterial2",
+											meta: {
+												title: "点材质2",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质3",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial3",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial3"
+											name: "pointsMaterial3",
+											component: "/three/particle/PointsMaterial3",
+											meta: {
+												title: "点材质3",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质4",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial4",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial4"
+											name: "pointsMaterial4",
+											component: "/three/particle/PointsMaterial4",
+											meta: {
+												title: "点材质4",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质5",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial5",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial5"
+											name: "pointsMaterial5",
+											component: "/three/particle/PointsMaterial5",
+											meta: {
+												title: "点材质5",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 345,
-											name: "点材质6",
-											icon: "icon-threejs",
 											path: "/three/pointsMaterial6",
-											meta: { isFull: false },
-											component: "/three/particle/PointsMaterial6"
+											name: "pointsMaterial6",
+											component: "/three/particle/PointsMaterial6",
+											meta: {
+												title: "点材质6",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "贴图",
-									icon: "icon-threejs",
 									path: "/three/bump",
-									meta: { isFull: false },
+									name: "bump1",
+									redirect: "/three/bump",
+									meta: {
+										title: "贴图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "凹凸贴图",
-											icon: "icon-threejs",
 											path: "/three/bump",
-											meta: { isFull: false },
-											component: "/three/texture/Bump"
+											name: "bump",
+											component: "/three/texture/Bump",
+											meta: {
+												title: "凹凸贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "法向贴图",
-											icon: "icon-threejs",
 											path: "/three/normal",
-											meta: { isFull: false },
-											component: "/three/texture/Normal"
+											name: "normal",
+											component: "/three/texture/Normal",
+											meta: {
+												title: "法向贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "移位贴图",
-											icon: "icon-threejs",
 											path: "/three/displacement",
-											meta: { isFull: false },
-											component: "/three/texture/Displacement"
+											name: "displacement",
+											component: "/three/texture/Displacement",
+											meta: {
+												title: "移位贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "光泽度贴图",
-											icon: "icon-threejs",
 											path: "/three/setalness",
-											meta: { isFull: false },
-											component: "/three/texture/Metalness"
+											name: "setalness",
+											component: "/three/texture/Metalness",
+											meta: {
+												title: "光泽度贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "透明度贴图",
-											icon: "icon-threejs",
 											path: "/three/alpha",
-											meta: { isFull: false },
-											component: "/three/texture/Alpha"
+											name: "alpha",
+											component: "/three/texture/Alpha",
+											meta: {
+												title: "透明度贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "自发光贴图",
-											icon: "icon-threejs",
 											path: "/three/emissive",
-											meta: { isFull: false },
-											component: "/three/texture/Emissive"
+											name: "emissive",
+											component: "/three/texture/Emissive",
+											meta: {
+												title: "自发光贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "高光贴图",
-											icon: "icon-threejs",
 											path: "/three/specular",
-											meta: { isFull: false },
-											component: "/three/texture/Specular"
+											name: "specular",
+											component: "/three/texture/Specular",
+											meta: {
+												title: "高光贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "环境贴图",
-											icon: "icon-threejs",
 											path: "/three/env",
-											meta: { isFull: false },
-											component: "/three/texture/Env"
+											name: "env",
+											component: "/three/texture/Env",
+											meta: {
+												title: "环境贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "贴图",
-											icon: "icon-threejs",
 											path: "/three/door",
-											meta: { isFull: false },
-											component: "/three/texture/Door"
+											name: "door",
+											component: "/three/texture/Door",
+											meta: {
+												title: "贴图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "纹理显示",
-											icon: "icon-threejs",
 											path: "/three/texture",
-											meta: { isFull: false },
-											component: "/three/texture/Texture"
+											name: "texture",
+											component: "/three/texture/Texture",
+											meta: {
+												title: "纹理显示",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "canvas",
-											icon: "icon-threejs",
 											path: "/three/canvas",
-											meta: { isFull: false },
-											component: "/three/texture/Canvas"
+											name: "canvas",
+											component: "/three/texture/Canvas",
+											meta: {
+												title: "canvas",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "video",
-											icon: "icon-threejs",
 											path: "/three/video",
-											meta: { isFull: false },
-											component: "/three/texture/Video"
+											name: "video",
+											component: "/three/texture/Video",
+											meta: {
+												title: "video",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 501,
-											name: "青联",
-											icon: "icon-yidong",
 											path: "/three/test",
-											meta: { isFull: false },
-											component: "/three/geometry/Test"
+											name: "test",
+											component: "/three/geometry/Test",
+											meta: {
+												title: "青联",
+												icon: "icon-yidong",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "物理",
-									icon: "icon-threejs",
 									path: "/three/physics",
-									meta: { isFull: false },
+									name: "physics",
+									redirect: "/three/physics1",
+									meta: {
+										title: "物理",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "小球下落",
-											icon: "icon-threejs",
 											path: "/three/physics1",
-											meta: { isFull: false },
-											component: "/three/physics/Physics1"
+											name: "physics1",
+											component: "/three/physics/Physics1",
+											meta: {
+												title: "小球下落",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "碰撞",
-											icon: "icon-threejs",
 											path: "/three/physics2",
-											meta: { isFull: false },
-											component: "/three/physics/Physics2"
+											name: "physics2",
+											component: "/three/physics/Physics2",
+											meta: {
+												title: "碰撞",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "着色器",
-									icon: "icon-threejs",
 									path: "/three/webGL",
-									meta: { isFull: false },
+									name: "webGL",
+									redirect: "/three/webGL1",
+									meta: {
+										title: "着色器",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "WebGL",
-											icon: "icon-threejs",
 											path: "/three/webGL1",
-											meta: { isFull: false },
-											component: "/three/shader/WebGL"
+											name: "webGL1",
+											component: "/three/shader/WebGL",
+											meta: {
+												title: "WebGL",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "原始着色器材质",
-											icon: "icon-threejs",
 											path: "/three/rowShaderMaterial",
-											meta: { isFull: false },
-											component: "/three/shader/rawShaderMaterial/RawShadermaterial"
+											name: "rowShaderMaterial",
+											component: "/three/shader/rawShaderMaterial/RawShadermaterial",
+											meta: {
+												title: "原始着色器材质",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "着色器",
-											icon: "icon-threejs",
 											path: "/three/deep",
-											meta: { isFull: false },
-											component: "/three/shader/deep/Deep"
+											name: "deep",
+											component: "/three/shader/deep/Deep",
+											meta: {
+												title: "着色器",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "孔明灯",
-											icon: "icon-threejs",
 											path: "/three/flyLight",
-											meta: { isFull: false },
-											component: "/three/shader/flyLight/FlyLight"
+											name: "flyLight",
+											component: "/three/shader/flyLight/FlyLight",
+											meta: {
+												title: "孔明灯",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "水",
-											icon: "icon-threejs",
 											path: "/three/water",
-											meta: { isFull: false },
-											component: "/three/shader/water/Water"
+											name: "water",
+											component: "/three/shader/water/Water",
+											meta: {
+												title: "水",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "水2",
-											icon: "icon-threejs",
 											path: "/three/water2",
-											meta: { isFull: false },
-											component: "/three/shader/water2/Water2"
+											name: "water2",
+											component: "/three/shader/water2/Water2",
+											meta: {
+												title: "水2",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "点",
-											icon: "icon-threejs",
 											path: "/three/point",
-											meta: { isFull: false },
-											component: "/three/shader/point/Point"
+											name: "point",
+											component: "/three/shader/point/Point",
+											meta: {
+												title: "点",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "修改Shader",
-											icon: "icon-threejs",
 											path: "/three/customShader",
-											meta: { isFull: false },
-											component: "/three/shader/custom/CustomShader"
+											name: "customShader",
+											component: "/three/shader/custom/CustomShader",
+											meta: {
+												title: "修改Shader",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "效果合成",
-											icon: "icon-threejs",
 											path: "/three/effect",
-											meta: { isFull: false },
-											component: "/three/shader/effect/Effect"
+											name: "effect",
+											component: "/three/shader/effect/Effect",
+											meta: {
+												title: "效果合成",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "CSS",
-									icon: "icon-threejs",
 									path: "/three/css",
-									meta: { isFull: false },
+									name: "css",
+									redirect: "/three/moon",
+									meta: {
+										title: "CSS",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "Moon",
-											icon: "icon-threejs",
 											path: "/three/moon",
-											meta: { isFull: false },
-											component: "/three/css/moon/Moon"
+											name: "moon",
+											component: "/three/css/moon/Moon",
+											meta: {
+												title: "Moon",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "demo",
-									icon: "icon-threejs",
 									path: "/three/demo",
-									meta: { isFull: false },
+									name: "demo",
+									redirect: "/three/car",
+									meta: {
+										title: "demo",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 344,
-											name: "汽车",
-											icon: "icon-threejs",
 											path: "/three/car",
-											meta: { isFull: false },
-											component: "/three/demo/car/Car"
+											name: "car",
+											component: "/three/demo/car/Car",
+											meta: {
+												title: "汽车",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "烟花",
-											icon: "icon-threejs",
 											path: "/three/fireWork",
-											meta: { isFull: false },
-											component: "/three/demo/firework/FireWork"
+											name: "fireWork",
+											component: "/three/demo/firework/FireWork",
+											meta: {
+												title: "烟花",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "导弹轨迹",
-											icon: "icon-threejs",
 											path: "/three/missile",
-											meta: { isFull: false },
-											component: "/three/demo/missile/Missile"
+											name: "missile",
+											component: "/three/demo/missile/Missile",
+											meta: {
+												title: "导弹轨迹",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "地球",
-											icon: "icon-threejs",
 											path: "/three/earch",
-											meta: { isFull: false },
-											component: "/three/demo/earch/Earch"
+											name: "earch",
+											component: "/three/demo/earch/Earch",
+											meta: {
+												title: "地球",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "机器人",
-											icon: "icon-threejs",
 											path: "/three/robot",
-											meta: { isFull: false },
-											component: "/three/demo/robot/Robot"
+											name: "robot",
+											component: "/three/demo/robot/Robot",
+											meta: {
+												title: "机器人",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "智慧城市",
-											icon: "icon-threejs",
 											path: "/open/smartCity",
-											meta: { isFull: false },
-											component: "/open/smartCity/SmartCity"
+											name: "smartCity",
+											component: "/open/smartCity/SmartCity",
+											meta: {
+												title: "智慧城市",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "智慧城市2",
-											icon: "icon-threejs",
 											path: "/open/smartCity2",
-											meta: { isFull: false },
-											component: "/open/smartCity2/HomeView"
+											name: "smartCity2",
+											component: "/open/smartCity2/HomeView",
+											meta: {
+												title: "智慧城市2",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 402,
-											name: "智慧园区",
-											icon: "icon-threejs",
 											path: "/open/smartPark",
-											meta: { isFull: false },
-											component: "/open/smartPark/SmartPark"
+											name: "smartPark",
+											component: "/open/smartPark/SmartPark",
+											meta: {
+												title: "智慧园区",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 402,
-											name: "日夜交替",
-											icon: "icon-threejs",
 											path: "/open/hotel",
-											meta: { isFull: false },
-											component: "/open/hotel/Hotel"
+											name: "hotel",
+											component: "/open/hotel/Hotel",
+											meta: {
+												title: "日夜交替",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "智慧工厂",
-											icon: "icon-threejs",
 											path: "/open/smartFactory",
-											meta: { isFull: false },
-											component: "/open/smartFactory/SmartFactory"
+											name: "smartFactory",
+											component: "/open/smartFactory/SmartFactory",
+											meta: {
+												title: "智慧工厂",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "全景看房",
-											icon: "icon-threejs",
 											path: "/open/homeViewing",
-											meta: { isFull: false },
-											component: "/three/demo/houseViewing/HomeViewing"
+											name: "homeViewing",
+											component: "/three/demo/houseViewing/HomeViewing",
+											meta: {
+												title: "全景看房",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "3D地图",
-											icon: "icon-threejs",
 											path: "/open/map",
-											meta: { isFull: false },
-											component: "/open/map/Map"
+											name: "map",
+											component: "/open/map/Map",
+											meta: {
+												title: "3D地图",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "3D官网",
-											icon: "icon-threejs",
 											path: "/open/website",
-											meta: { isFull: false },
-											component: "/open/website/Website"
+											name: "website",
+											component: "/open/website/Website",
+											meta: {
+												title: "3D官网",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "飞机",
-											icon: "icon-threejs",
 											path: "/open/plane",
-											meta: { isFull: false },
-											component: "/open/plane/Plane"
+											name: "plane",
+											component: "/open/plane/Plane",
+											meta: {
+												title: "飞机",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 344,
-											name: "轮廓",
-											icon: "icon-threejs",
 											path: "/open/click",
-											meta: { isFull: false },
-											component: "/open/click/Click"
+											name: "click",
+											component: "/open/click/Click",
+											meta: {
+												title: "轮廓",
+												icon: "icon-threejs",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								}
 							]
 						},
 						{
-							id: 400,
-							name: "功能",
-							icon: "icon-dangedemoban",
 							path: "/function",
-							meta: { isFull: false },
+							name: "function",
+							redirect: "/function/transfer",
+							meta: {
+								title: "功能",
+								icon: "icon-threejs",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 403,
-									name: "穿梭框",
-									icon: "icon-chuansuokuang",
 									path: "/function/transfer",
-									meta: { isFull: false },
-									component: "/function/transfer/Transfer"
+									name: "transfer",
+									component: "/function/transfer/Transfer",
+									meta: {
+										title: "穿梭框",
+										icon: "icon-chuansuokuang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 403,
-									name: "数字",
-									icon: "icon-number",
 									path: "/function/number",
-									meta: { isFull: false },
-									component: "/function/number/Number"
+									name: "number",
+									component: "/function/number/Number",
+									meta: {
+										title: "数字",
+										icon: "icon-number",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 404,
-									name: "引导页",
-									icon: "icon-xinshouyindao",
 									path: "/function/driver",
-									meta: { isFull: false },
-									component: "/function/driver/Driver"
+									name: "driver",
+									component: "/function/driver/Driver",
+									meta: {
+										title: "引导页",
+										icon: "icon-xinshouyindao",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 405,
-									name: "富文本编辑器",
-									icon: "icon-fuwenbenbianjiqi",
 									path: "/function/richText",
-									meta: { isFull: false },
-									component: "/function/richText/RichText"
+									name: "richText",
+									component: "/function/richText/RichText",
+									meta: {
+										title: "富文本编辑器",
+										icon: "icon-fuwenbenbianjiqi",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 406,
-									name: "拖拽组件",
-									icon: "icon-rili",
 									path: "/function/drag",
-									meta: { isFull: false },
-									component: "/function/drag/Draggable"
+									name: "drag",
+									component: "/function/drag/Draggable",
+									meta: {
+										title: "拖拽组件",
+										icon: "icon-rili",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "内嵌页面",
-									icon: "icon-beijingtupian",
 									path: "/function/embedded",
-									meta: { isFull: false },
-									component: "/function/embedded/index"
+									name: "embedded",
+									component: "/function/embedded/index",
+									meta: {
+										title: "内嵌页面",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "复制指令",
-									icon: "icon-beijingtupian",
 									path: "/function/copyDirect",
-									meta: { isFull: false },
-									component: "/function/copyDirect/index"
+									name: "copyDirect",
+									component: "/function/copyDirect/index",
+									meta: {
+										title: "复制指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "水印指令",
-									icon: "icon-beijingtupian",
 									path: "/function/waterMark",
-									meta: { isFull: false },
-									component: "/function/waterMarkDirect/index"
+									name: "",
+									component: "/function/waterMarkDirect/index",
+									meta: {
+										title: "水印指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "拖拽指令",
-									icon: "icon-beijingtupian",
 									path: "/function/dragDirect",
-									meta: { isFull: false },
-									component: "/function/dragDirect/index"
+									name: "dragDirect",
+									component: "/function/dragDirect/index",
+									meta: {
+										title: "拖拽指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "长按指令",
-									icon: "icon-beijingtupian",
 									path: "/function/longPress",
-									meta: { isFull: false },
-									component: "/function/longPressDirect/index"
+									name: "longPress",
+									component: "/function/longPressDirect/index",
+									meta: {
+										title: "长按指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "节流指令",
-									icon: "icon-beijingtupian",
 									path: "/function/throttle",
-									meta: { isFull: false },
-									component: "/function/throttle/index"
+									name: "throttle",
+									component: "/function/throttle/index",
+									meta: {
+										title: "节流指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "防抖指令",
-									icon: "icon-beijingtupian",
 									path: "/function/debounce",
-									meta: { isFull: false },
-									component: "/function/debounce/index"
+									name: "",
+									component: "/function/debounce/index",
+									meta: {
+										title: "防抖指令",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 407,
-									name: "图片预览",
-									icon: "icon-beijingtupian",
 									path: "/function/imageView",
-									meta: { isFull: false },
-									component: "/function/imageView/ImageView"
+									name: "",
+									component: "/function/imageView/ImageView",
+									meta: {
+										title: "图片预览",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 344,
-							name: "游戏",
-							icon: "icon-threejs",
 							path: "/game",
-							meta: { isFull: false },
+							name: "game",
+							redirect: "/game/sheep",
+							meta: {
+								title: "游戏",
+								icon: "icon-threejs",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 401,
-									name: "菜了个菜",
-									icon: "icon-choujiang",
 									path: "/game/sheep",
-									meta: { isFull: false },
-									component: "/game/sheep/Sheep"
+									name: "sheep",
+									component: "/game/sheep/Sheep",
+									meta: {
+										title: "菜了个菜",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "跳一跳",
-									icon: "icon-choujiang",
 									path: "/game/jump",
-									meta: { isFull: false },
-									component: "/game/jump/Jump"
+									name: "jump",
+									component: "/game/jump/Jump",
+									meta: {
+										title: "跳一跳",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "扫雷",
-									icon: "icon-choujiang",
 									path: "/game/minesweeper",
-									meta: { isFull: false },
-									component: "/game/minesweeper/Minesweeper"
+									name: "minesweeper",
+									component: "/game/minesweeper/Minesweeper",
+									meta: {
+										title: "扫雷",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 400,
-							name: "Canvas",
-							icon: "icon-dangedemoban",
 							path: "/canvas",
-							meta: { isFull: false },
+							name: "canvas",
+							redirect: "/canvas/canvas1",
+							meta: {
+								title: "Canvas",
+								icon: "icon-dangedemoban",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 401,
-									name: "Canvas1",
-									icon: "icon-choujiang",
 									path: "/canvas/canvas1",
-									meta: { isFull: false },
-									component: "/canvas/Canvas1"
+									name: "canvas1",
+									component: "/canvas/Canvas1",
+									meta: {
+										title: "Canvas1",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "抽奖",
-									icon: "icon-choujiang",
 									path: "/canvas/canvas2",
-									meta: { isFull: false },
-									component: "/canvas/Canvas2"
+									name: "canvas2",
+									component: "/canvas/Canvas2",
+									meta: {
+										title: "抽奖",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "画板",
-									icon: "icon-choujiang",
 									path: "/canvas/canvas3",
-									meta: { isFull: false },
-									component: "/canvas/Canvas3"
+									name: "canvas3",
+									component: "/canvas/Canvas3",
+									meta: {
+										title: "画板",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "时钟",
-									icon: "icon-choujiang",
 									path: "/canvas/canvas4",
-									meta: { isFull: false },
-									component: "/canvas/Canvas4"
+									name: "canvas4",
+									component: "/canvas/Canvas4",
+									meta: {
+										title: "时钟",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "碰撞",
-									icon: "icon-choujiang",
 									path: "/canvas/canvas5",
-									meta: { isFull: false },
-									component: "/canvas/Canvas5"
+									name: "canvas5",
+									component: "/canvas/Canvas5",
+									meta: {
+										title: "碰撞",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 400,
-							name: "Echarts",
-							icon: "icon-dangedemoban",
 							path: "/echarts",
-							meta: { isFull: false },
+							name: "echarts",
+							redirect: "/echarts/pie1",
+							meta: {
+								title: "Echarts",
+								icon: "icon-dangedemoban",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 343,
-									name: "饼图",
-									icon: "icon-threejs",
 									path: "/echarts/pie",
-									meta: { isFull: false },
+									name: "pie",
+									redirect: "/echarts/pie1",
+									meta: {
+										title: "饼图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "饼图1",
-											icon: "icon-choujiang",
 											path: "/echarts/pie1",
-											meta: { isFull: false },
-											component: "/echarts/pie/Pie1"
+											name: "pie1",
+											component: "/echarts/pie/Pie1",
+											meta: {
+												title: "饼图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "饼图2",
-											icon: "icon-choujiang",
 											path: "/echarts/pie2",
-											meta: { isFull: false },
-											component: "/echarts/pie/Pie2"
+											name: "pie2",
+											component: "/echarts/pie/Pie2",
+											meta: {
+												title: "饼图2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "饼图3",
-											icon: "icon-choujiang",
 											path: "/echarts/pie3",
-											meta: { isFull: false },
-											component: "/echarts/pie/Pie3"
+											name: "pie3",
+											component: "/echarts/pie/Pie3",
+											meta: {
+												title: "饼图3",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "仪表盘",
-									icon: "icon-threejs",
 									path: "/echarts/gauge",
-									meta: { isFull: false },
+									name: "gauge",
+									redirect: "/echarts/gauge1",
+									meta: {
+										title: "仪表盘",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "仪表盘1",
-											icon: "icon-choujiang",
 											path: "/echarts/gauge1",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge1"
+											name: "gauge1",
+											component: "/echarts/gauge/Gauge1",
+											meta: {
+												title: "仪表盘1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "仪表盘2",
-											icon: "icon-choujiang",
 											path: "/echarts/gauge2",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge2"
+											name: "gauge2",
+											component: "/echarts/gauge/Gauge2",
+											meta: {
+												title: "仪表盘2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "仪表盘3",
-											icon: "icon-choujiang",
 											path: "/echarts/guage3",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge3"
+											name: "",
+											component: "/echarts/gauge/Gauge3",
+											meta: {
+												title: "仪表盘3",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "仪表盘4",
-											icon: "icon-choujiang",
 											path: "/echarts/guage4",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge4"
+											name: "guage4",
+											component: "/echarts/gauge/Gauge4",
+											meta: {
+												title: "仪表盘4",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "仪表盘5",
-											icon: "icon-choujiang",
 											path: "/echarts/guage5",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge5"
+											name: "guage5",
+											component: "/echarts/gauge/Gauge5",
+											meta: {
+												title: "仪表盘5",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "仪表盘6",
-											icon: "icon-choujiang",
 											path: "/echarts/guage6",
-											meta: { isFull: false },
-											component: "/echarts/gauge/Gauge6"
+											name: "guage6",
+											component: "/echarts/gauge/Gauge6",
+											meta: {
+												title: "仪表盘6",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "柱形图",
-									icon: "icon-threejs",
 									path: "/echarts/bar",
-									meta: { isFull: false },
+									name: "bar",
+									redirect: "/echarts/bar1",
+									meta: {
+										title: "柱形图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "柱形图1",
-											icon: "icon-choujiang",
 											path: "/echarts/bar1",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar1"
+											name: "bar1",
+											component: "/echarts/bar/Bar1",
+											meta: {
+												title: "柱形图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图2",
-											icon: "icon-choujiang",
 											path: "/echarts/bar2",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar2"
+											name: "bar2",
+											component: "/echarts/bar/Bar2",
+											meta: {
+												title: "柱形图2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图3",
-											icon: "icon-choujiang",
 											path: "/echarts/bar3",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar3"
+											name: "bar3",
+											component: "/echarts/bar/Bar3",
+											meta: {
+												title: "柱形图3",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图4",
-											icon: "icon-choujiang",
 											path: "/echarts/bar4",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar4"
+											name: "bar4",
+											component: "/echarts/bar/Bar4",
+											meta: {
+												title: "柱形图4",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图5",
-											icon: "icon-choujiang",
 											path: "/echarts/bar5",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar5"
+											name: "bar5",
+											component: "/echarts/bar/Bar5",
+											meta: {
+												title: "柱形图5",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图6",
-											icon: "icon-choujiang",
 											path: "/echarts/bar6",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar6"
+											name: "bar6",
+											component: "/echarts/bar/Bar6",
+											meta: {
+												title: "柱形图6",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图7",
-											icon: "icon-choujiang",
 											path: "/echarts/bar7",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar7"
+											name: "bar7",
+											component: "/echarts/bar/Bar7",
+											meta: {
+												title: "柱形图7",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图8",
-											icon: "icon-choujiang",
 											path: "/echarts/bar8",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar8"
+											name: "bar8",
+											component: "/echarts/bar/Bar8",
+											meta: {
+												title: "柱形图8",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "柱形图9",
-											icon: "icon-choujiang",
 											path: "/echarts/bar9",
-											meta: { isFull: false },
-											component: "/echarts/bar/Bar9"
+											name: "bar9",
+											component: "/echarts/bar/Bar9",
+											meta: {
+												title: "柱形图9",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "折线图",
-									icon: "icon-threejs",
 									path: "/echarts/line",
-									meta: { isFull: false },
+									name: "line",
+									redirect: "/echarts/line1",
+									meta: {
+										title: "折线图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "折线图1",
-											icon: "icon-choujiang",
 											path: "/echarts/line1",
-											meta: { isFull: false },
-											component: "/echarts/line/Line1"
+											name: "line1",
+											component: "/echarts/line/Line1",
+											meta: {
+												title: "折线图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "折线图2",
-											icon: "icon-choujiang",
 											path: "/echarts/line2",
-											meta: { isFull: false },
-											component: "/echarts/line/Line2"
+											name: "line2",
+											component: "/echarts/line/Line2",
+											meta: {
+												title: "折线图2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "折线图3",
-											icon: "icon-choujiang",
 											path: "/echarts/line3",
-											meta: { isFull: false },
-											component: "/echarts/line/Line3"
+											name: "line3",
+											component: "/echarts/line/Line3",
+											meta: {
+												title: "折线图3",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "树图",
-									icon: "icon-threejs",
 									path: "/echarts/tree",
-									meta: { isFull: false },
+									name: "tree",
+									redirect: "/echarts/tree1",
+									meta: {
+										title: "树图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "树图1",
-											icon: "icon-choujiang",
 											path: "/echarts/tree1",
-											meta: { isFull: false },
-											component: "/echarts/tree/Tree1"
+											name: "tree1",
+											component: "/echarts/tree/Tree1",
+											meta: {
+												title: "树图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "树图2",
-											icon: "icon-choujiang",
 											path: "/echarts/tree2",
-											meta: { isFull: false },
-											component: "/echarts/tree/Tree2"
+											name: "tree2",
+											component: "/echarts/tree/Tree2",
+											meta: {
+												title: "树图2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "散点图",
-									icon: "icon-threejs",
 									path: "/echarts/scatter",
-									meta: { isFull: false },
+									name: "scatter",
+									redirect: "/echarts/tree1",
+									meta: {
+										title: "散点图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "散点图1",
-											icon: "icon-choujiang",
 											path: "/echarts/scatter1",
-											meta: { isFull: false },
-											component: "/echarts/scatter/Scatter1"
+											name: "scatter1",
+											component: "/echarts/scatter/Scatter1",
+											meta: {
+												title: "散点图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "地图",
-									icon: "icon-threejs",
 									path: "/echarts/map",
-									meta: { isFull: false },
+									name: "map",
+									redirect: "/echarts/map1",
+									meta: {
+										title: "地图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "地图1",
-											icon: "icon-choujiang",
 											path: "/echarts/map1",
-											meta: { isFull: false },
-											component: "/echarts/map/Map1"
+											name: "map1",
+											component: "/echarts/map/Map1",
+											meta: {
+												title: "地图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "地图2",
-											icon: "icon-choujiang",
 											path: "/echarts/map2",
-											meta: { isFull: false },
-											component: "/echarts/map/Map2"
+											name: "map2",
+											component: "/echarts/map/Map2",
+											meta: {
+												title: "地图2",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "地图3",
-											icon: "icon-choujiang",
 											path: "/echarts/map3",
-											meta: { isFull: false },
-											component: "/echarts/map/Map3"
+											name: "map3",
+											component: "/echarts/map/Map3",
+											meta: {
+												title: "地图3",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										},
 										{
-											id: 401,
-											name: "地图4",
-											icon: "icon-choujiang",
 											path: "/echarts/map4",
-											meta: { isFull: false },
-											component: "/echarts/map/Map4"
+											name: "map4",
+											component: "/echarts/map/Map4",
+											meta: {
+												title: "地图4",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								},
 								{
-									id: 343,
-									name: "关系图",
-									icon: "icon-threejs",
 									path: "/echarts/graph",
-									meta: { isFull: false },
+									name: "graph",
+									redirect: "/echarts/graph1",
+									meta: {
+										title: "地图",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									},
 									children: [
 										{
-											id: 401,
-											name: "关系图1",
-											icon: "icon-choujiang",
 											path: "/echarts/graph1",
-											meta: { isFull: false },
-											component: "/echarts/graph/Graph1"
+											name: "graph1",
+											component: "/echarts/graph/Graph1",
+											meta: {
+												title: "关系图1",
+												icon: "icon-choujiang",
+												isFull: false,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
 										}
 									]
 								}
 							]
 						},
 						{
-							id: 344,
-							name: "Cesium",
-							icon: "icon-threejs",
 							path: "/cesium/cesium",
-							meta: { isFull: false },
+							name: "cesium",
+							redirect: "/cesium/cesium1",
+							meta: {
+								title: "Cesium",
+								icon: "icon-threejs",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 401,
-									name: "cesium",
-									icon: "icon-choujiang",
 									path: "/cesium/cesium1",
-									meta: { isFull: false },
-									component: "/cesium/init/Cesium"
+									name: "cesium1",
+									component: "/cesium/init/Cesium",
+									meta: {
+										title: "cesium",
+										icon: "icon-choujiang",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 501,
-							name: "工作台",
-							icon: "icon-yidong",
 							path: "/work",
-							meta: { isFull: false },
+							name: "work",
+							redirect: "/work/index",
+							meta: {
+								title: "工作台",
+								icon: "icon-yidong",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
 							children: [
 								{
-									id: 401,
-									name: "工作台",
-									icon: "icon-yidong",
 									path: "/work/index",
-									meta: { isFull: false },
-									component: "/work/index"
+									name: "workIndex",
+									component: "/work/index",
+									meta: {
+										title: "工作台",
+										icon: "icon-yidong",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								},
 								{
-									id: 401,
-									name: "文字识别",
-									icon: "icon-yidong",
 									path: "/work/characterRecognition",
-									meta: { isFull: false },
-									component: "/work/function/characterRecognition/CharacterRecognition"
+									name: "characterRecognition",
+									component: "/work/function/characterRecognition/CharacterRecognition",
+									meta: {
+										title: "文字识别",
+										icon: "icon-yidong",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
 								}
 							]
 						},
 						{
-							id: 501,
-							name: "拖拽",
-							icon: "icon-yidong",
 							path: "/open/editor1",
-							meta: { isFull: false },
-							component: "/open/edit/index"
+							name: "editor1",
+							icon: "icon-yidong",
+							component: "/open/edit/index",
+							meta: {
+								title: "拖拽",
+								icon: "icon-yidong",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							}
 						}
 						// {
-						//     id: 400,
 						//     name: '唱歌排名',
 						//     icon: 'icon-dangedemoban',
 						//     path: '/open',
 						//     children: [
 						//         {
-						//             id: 401,
 						//             name: '分数管理',
 						//             icon: 'icon-choujiang',
 						//             path: '/open/rankedList'
 						//         },
 						//         {
-						//             id: 402,
 						//             name: '分数排名',
 						//             icon: 'icon-rili',
 						//             path: '/open/rankedManage'

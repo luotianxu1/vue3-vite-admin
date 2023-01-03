@@ -11,7 +11,9 @@
 			<el-main>
 				<Connect></Connect>
 			</el-main>
-			<el-footer></el-footer>
+			<el-footer>
+				<Footer></Footer>
+			</el-footer>
 		</el-container>
 	</el-container>
 </template>
@@ -21,6 +23,7 @@ import Header from "./header/Header.vue"
 import Sidebar from "./sidebar/Sidebar.vue"
 import Connect from "./content/Content.vue"
 import Tabs from "./tabs/index.vue"
+import Footer from "./components/footer/index.vue"
 </script>
 
 <style lang="scss" scoped>

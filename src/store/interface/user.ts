@@ -1,4 +1,4 @@
-import { IPageItem, IUserData } from "@/api/system/userApi"
+import { IMenuOptions, IUserData } from "@/api/system/userApi"
 
 export interface UserState {
 	// 用户信息
@@ -6,7 +6,7 @@ export interface UserState {
 	// token
 	TOEKN: string
 	// 用户菜单
-	USER_MENULIST: Array<IPageItem>
+	USER_MENULIST: Array<IMenuOptions>
 	// 按钮权限
 	USER_BUTTNLIST: Array<any>
 }

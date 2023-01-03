@@ -46,6 +46,7 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    Footer: typeof import('./../components/layoutBase/components/footer/index.vue')['default']
     Header: typeof import('./../components/layoutBase/header/Header.vue')['default']
     Info: typeof import('./../components/layoutBase/header/components/Info.vue')['default']
     LayoutBase: typeof import('./../components/layoutBase/index.vue')['default']

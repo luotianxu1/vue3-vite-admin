@@ -92,3 +92,19 @@ a {
 #nprogress .peg {
 	box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
 }
+
+/* Breadcrumb */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+	transition: all 0.2s ease;
+}
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+	opacity: 0;
+	transform: translateX(10px);
+}
+.breadcrumb-leave-active {
+	position: absolute;
+	left: 50px;
+	z-index: -1;
+}

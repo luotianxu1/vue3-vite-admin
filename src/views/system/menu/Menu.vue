@@ -17,7 +17,7 @@
 			<el-table
 				ref="table"
 				:data="tableData.data"
-				row-key="id"
+				row-key="path"
 				stripe
 				:border="true"
 				highlight-current-row
@@ -31,11 +31,15 @@
 				<el-table-column prop="name" align="center" label="名称" />
 				<el-table-column prop="icon" align="center" label="图标">
 					<template #default="scope">
-						<MyIcon :icon="scope.row.icon"></MyIcon>
+						<MyIcon :icon="scope.row.meta.icon"></MyIcon>
 					</template>
 				</el-table-column>
-				<el-table-column prop="url" align="center" label="链接" />
-				<el-table-column prop="show" align="center" label="隐藏" />
+				<el-table-column prop="path" align="center" label="链接" />
+				<el-table-column prop="meta.isHide" align="center" label="隐藏">
+					<template #default="scope">
+						<el-switch v-model="scope.row.meta.isHide" />
+					</template>
+				</el-table-column>
 				<el-table-column align="center" label="操作" width="300">
 					<template #default="scope">
 						<el-button v-if="scope.row.children" type="success" :icon="CirclePlus"> 新增 </el-button>

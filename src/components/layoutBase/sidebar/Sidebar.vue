@@ -12,7 +12,7 @@
 			:collapse-transition="false"
 			:unique-opened="true"
 		>
-			<TreeMenu :tree-data="list"></TreeMenu>
+			<TreeMenu :tree-data="menuList"></TreeMenu>
 		</el-menu>
 	</el-scrollbar>
 </template>
@@ -20,7 +20,6 @@
 <script lang="ts" setup>
 import { GlobalStore } from "@/store/modules/global"
 import { UserStore } from "@/store/modules/user"
-import { getUserPageList, IPageItem } from "@/api/system/userApi"
 import TreeMenu from "@/components/layoutBase/sidebar/components/TreeMenu.vue"
 
 const router = useRouter()
@@ -38,26 +37,8 @@ watch(
 	{ immediate: true }
 )
 
-// 用户菜单
-const list = ref<IPageItem[]>([])
-
-// 获取菜单列表
-onMounted(() => {
-	getList()
-})
-
 const userStore = UserStore()
-const getList = async () => {
-	const res = await getUserPageList({
-		userId: userStore.USER_INFO.id as string
-	})
-	if (!res.data) {
-		ElMessage.error(res.message)
-		router.push("/login")
-		return
-	}
-	list.value = res.data.list
-}
+const menuList = computed(() => userStore.showMenuListGet)
 </script>
 
 <style scoped lang="scss">

@@ -49,17 +49,28 @@ export interface IPageListParams {
 	userId: string
 }
 
-export interface IPageItem {
-	id: number
+export interface IMetaProps {
 	icon: string
-	name: string
+	title: string
+	activeMenu?: string
+	isLink?: string
+	isHide: boolean
+	isFull: boolean
+	isAffix: boolean
+	isKeepAlive: boolean
+}
+
+export interface IMenuOptions {
 	path: string
-	component: string
-	children?: IPageItem[]
+	name: string
+	component?: string | (() => Promise<any>)
+	redirect?: string
+	meta: IMetaProps
+	children?: IMenuOptions[]
 }
 
 export interface IPageListData {
-	list: IPageItem[]
+	list: IMenuOptions[]
 	total: number
 }
 
