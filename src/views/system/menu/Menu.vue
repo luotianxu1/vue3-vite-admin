@@ -95,7 +95,7 @@ async function getMenuList() {
 }
 
 onMounted(() => {
-	// getMenuList()
+	getMenuList()
 })
 </script>
 
