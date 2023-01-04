@@ -55,7 +55,7 @@
 					<el-button type="danger" :icon="Delete" circle @click="deleteInfo(row.data)"></el-button>
 				</template>
 				<template #img="row">
-					<el-avatar :src="row.data.img" fit="cover"></el-avatar>
+					<el-avatar :src="row.data.img" fit="cover" :size="30"></el-avatar>
 				</template>
 				<template #sex="row">
 					{{ Number(row.data.sex) === 1 ? "男" : "女" }}
@@ -152,7 +152,7 @@ const data = [
 		prop: "img",
 		type: "slot",
 		slot_name: "img",
-		width: "80"
+		width: 70
 	},
 	{ label: "年龄", prop: "age", width: 80, sort: true },
 	{
