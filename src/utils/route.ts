@@ -24,3 +24,18 @@ export function getShowMenuList(menuList: IMenuOptions[]) {
 		return !item.meta?.isHide
 	})
 }
+
+/**
+ *
+ * @param menuList 递归找出所有面包屑导航
+ * @param result
+ * @param parent
+ * @returns
+ */
+export const getAllBreadcrumbList = (menuList: IMenuOptions[], result: { [key: string]: any } = {}, parent = []) => {
+	for (const item of menuList) {
+		result[item.path] = [...parent, item]
+		if (item.children) getAllBreadcrumbList(item.children, result, result[item.path])
+	}
+	return result
+}

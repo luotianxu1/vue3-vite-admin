@@ -10,7 +10,7 @@ import { setTimeStamp } from "@/utils/auth"
 import { ElNotification } from "element-plus"
 import { getTimeState } from "@/utils/time"
 import { initdynamicRouter } from "@/router/modules/dynamicRouter"
-import { getFlatArr, getShowMenuList } from "@/utils/route"
+import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route"
 
 export const UserStore = defineStore({
 	id: "UserState",
@@ -24,7 +24,9 @@ export const UserStore = defineStore({
 		// 扁平化之后的一维数组路由，主要用来添加动态路由
 		flatMenuListGet: state => getFlatArr(state.USER_MENULIST),
 		// 后端返回的菜单列表 ==> 左侧菜单栏渲染，需要去除 isHide == true
-		showMenuListGet: state => getShowMenuList(state.USER_MENULIST)
+		showMenuListGet: state => getShowMenuList(state.USER_MENULIST),
+		// 所有面包屑导航列表
+		breadcrumbListGet: state => getAllBreadcrumbList(state.USER_MENULIST)
 	},
 	actions: {
 		/**
