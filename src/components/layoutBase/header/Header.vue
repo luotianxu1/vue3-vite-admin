@@ -5,6 +5,8 @@
 				:icon="globalStore.SYSTEM_COLLAPSE ? 'icon-mulushousuo' : 'icon-muluzhankai'"
 				:font="20"
 				@click="changAside"
+				:hover="true"
+				:point="true"
 			></MyIcon>
 			<BreadCrumb class="item"></BreadCrumb>
 		</div>

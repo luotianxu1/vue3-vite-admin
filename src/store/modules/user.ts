@@ -62,10 +62,16 @@ export const UserStore = defineStore({
 		 * 退出登录
 		 */
 		logout() {
-			this.USER_INFO = {}
-			this.TOEKN = ""
-			removeAllToken()
-			router.push("/login")
+			ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning"
+			}).then(() => {
+				this.USER_INFO = {}
+				this.TOEKN = ""
+				removeAllToken()
+				router.push("/login")
+			})
 		},
 		/**
 		 * 获取用户菜单

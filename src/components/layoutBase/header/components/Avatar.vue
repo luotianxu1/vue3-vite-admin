@@ -1,6 +1,6 @@
 <template>
 	<div class="avatar">
-		<el-dropdown @command="handleCommand">
+		<el-dropdown @command="handleCommand" trigger="click">
 			<span class="el-dropdown-link">
 				<span class="user">
 					<el-avatar :size="30" :src="USER_INFO?.img"></el-avatar>
@@ -8,15 +8,17 @@
 						<span>{{ USER_INFO?.name }}</span>
 					</span>
 				</span>
-				<el-icon class="el-icon--right">
-					<ArrowDown />
-				</el-icon>
 			</span>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item command="userCenter">个人中心</el-dropdown-item>
-					<el-dropdown-item command="taskCenter">任务中心</el-dropdown-item>
-					<el-dropdown-item command="quit" divided>退出登录</el-dropdown-item>
+					<el-dropdown-item command="userCenter">
+						<i class="iconfont icon-yonghu1"></i>
+						个人中心
+					</el-dropdown-item>
+					<el-dropdown-item command="quit" divided>
+						<i class="iconfont icon-qidong"></i>
+						退出登录
+					</el-dropdown-item>
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>
@@ -26,7 +28,6 @@
 <script lang="ts" setup>
 import { UserStore } from "@/store/modules/user"
 import { storeToRefs } from "pinia"
-import { ArrowDown } from "@element-plus/icons-vue"
 
 const userStore = UserStore()
 const { USER_INFO } = storeToRefs(userStore)
@@ -34,8 +35,6 @@ const { USER_INFO } = storeToRefs(userStore)
 const handleCommand = command => {
 	switch (command) {
 		case "userCenter":
-			break
-		case "taskCenter":
 			break
 		case "quit":
 			userStore.logout()
@@ -76,9 +75,9 @@ const handleCommand = command => {
 			}
 		}
 	}
+}
 
-	.iconfont {
-		font-size: 15px;
-	}
+.iconfont {
+	font-size: 16px;
 }
 </style>
