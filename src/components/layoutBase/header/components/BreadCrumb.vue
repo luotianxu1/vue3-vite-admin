@@ -3,14 +3,14 @@
 		<transition-group name="breadcrumb" mode="out-in">
 			<el-breadcrumb-item :key="GLOB_APP_HOME" :to="{ path: GLOB_APP_HOME }">
 				<div class="link">
-					<i class="iconfont icon-home"></i>
+					<i class="iconfont icon-home" v-if="globalStore.themeConfig.breadcrumbIcon"></i>
 					首页
 				</div>
 			</el-breadcrumb-item>
 			<el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path">
 				<el-link :underline="false" :disabled="index === breadcrumbList.length - 1" @click="goto(item.path)">
 					<div class="link">
-						<i class="iconfont" :class="item.meta.icon"></i>
+						<i class="iconfont" :class="item.meta.icon" v-if="globalStore.themeConfig.breadcrumbIcon"></i>
 						{{ item.meta.title }}
 					</div>
 				</el-link>
@@ -22,14 +22,14 @@
 import { ArrowRight } from "@element-plus/icons-vue"
 import { GLOB_APP_HOME } from "@/config/config"
 import { UserStore } from "@/store/modules/user"
+import { GlobalStore } from "@/store/modules/global"
 
+const globalStore = GlobalStore()
 const route = useRoute()
 const userRouter = useRouter()
 const userStore = UserStore()
 
 const breadcrumbList = computed(() => {
-	console.log(userStore.breadcrumbListGet[route.matched[route.matched.length - 1].path])
-
 	return userStore.breadcrumbListGet[route.matched[route.matched.length - 1].path]
 })
 

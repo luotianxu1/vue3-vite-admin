@@ -13,11 +13,11 @@ import { useI18n } from "vue-i18n"
 const { locale } = useI18n()
 const globalStore = GlobalStore()
 const localLanguage = computed((): any => {
-	locale.value = globalStore.SYSTEM_LANGUAGE
-	if (globalStore.SYSTEM_LANGUAGE && globalStore.SYSTEM_LANGUAGE === "zh") {
+	locale.value = globalStore.language
+	if (globalStore.language && globalStore.language === "zh") {
 		return zhCn
 	}
-	if (globalStore.SYSTEM_LANGUAGE === "en") {
+	if (globalStore.language === "en") {
 		return en
 	}
 	return ""
@@ -32,7 +32,7 @@ const size = ref<"large" | "default" | "small">("default")
 let timer
 onMounted(() => {
 	timer = setInterval(() => {
-		globalStore.SYETEM_TIME = new Date().valueOf()
+		globalStore.systemTime = new Date().valueOf()
 	}, 1000)
 })
 

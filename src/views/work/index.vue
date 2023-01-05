@@ -2,7 +2,7 @@
 	<div class="work">
 		<div class="header">
 			<div class="header-time">
-				{{ globalStore.systemTime }}
+				{{ globalStore.systemTimeFormat }}
 			</div>
 		</div>
 		<el-row :gutter="20">

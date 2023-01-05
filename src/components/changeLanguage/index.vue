@@ -34,7 +34,7 @@ const options = shallowReadonly([
 ])
 const globalStore = GlobalStore()
 const handleCommand = (command: string) => {
-	globalStore.SYSTEM_LANGUAGE = command
+	globalStore.language = command
 	locale.value = command
 }
 </script>

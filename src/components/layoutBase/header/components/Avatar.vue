@@ -3,9 +3,9 @@
 		<el-dropdown @command="handleCommand" trigger="click">
 			<span class="el-dropdown-link">
 				<span class="user">
-					<el-avatar :size="30" :src="USER_INFO?.img"></el-avatar>
+					<el-avatar :size="30" :src="userInfo?.img"></el-avatar>
 					<span class="userInfo">
-						<span>{{ USER_INFO?.name }}</span>
+						<span>{{ userInfo?.name }}</span>
 					</span>
 				</span>
 			</span>
@@ -30,14 +30,20 @@ import { UserStore } from "@/store/modules/user"
 import { storeToRefs } from "pinia"
 
 const userStore = UserStore()
-const { USER_INFO } = storeToRefs(userStore)
+const { userInfo } = storeToRefs(userStore)
 
 const handleCommand = command => {
 	switch (command) {
 		case "userCenter":
 			break
 		case "quit":
-			userStore.logout()
+			ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning"
+			}).then(() => {
+				userStore.logout()
+			})
 			break
 		default:
 			break

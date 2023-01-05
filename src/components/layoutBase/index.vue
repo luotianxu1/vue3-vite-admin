@@ -6,12 +6,12 @@
 		<el-container>
 			<el-header>
 				<Header></Header>
-				<Tabs></Tabs>
+				<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
 			</el-header>
 			<el-main>
 				<Connect></Connect>
 			</el-main>
-			<el-footer>
+			<el-footer v-if="globalStore.themeConfig.footer">
 				<Footer></Footer>
 			</el-footer>
 		</el-container>
@@ -24,6 +24,9 @@ import Sidebar from "./sidebar/Sidebar.vue"
 import Connect from "./content/Content.vue"
 import Tabs from "./tabs/index.vue"
 import Footer from "./components/footer/index.vue"
+import { GlobalStore } from "@/store/modules/global"
+
+const globalStore = GlobalStore()
 </script>
 
 <style lang="scss" scoped>

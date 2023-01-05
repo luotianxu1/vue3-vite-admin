@@ -20,7 +20,7 @@ request.interceptors.request.use(
 				userState.logout()
 				return Promise.reject("登录过期！请重新登录！")
 			}
-			config.headers.Authorization = `Bearer ${getToken(TOKEN)}`
+			config.headers["Authorization"] = `Bearer ${getToken(TOKEN)}`
 		}
 		return config
 	},

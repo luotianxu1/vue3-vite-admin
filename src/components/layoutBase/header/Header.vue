@@ -2,13 +2,13 @@
 	<div class="header">
 		<div class="left">
 			<MyIcon
-				:icon="globalStore.SYSTEM_COLLAPSE ? 'icon-mulushousuo' : 'icon-muluzhankai'"
+				:icon="globalStore.themeConfig.isCollapse ? 'icon-mulushousuo' : 'icon-muluzhankai'"
 				:font="20"
 				@click="changAside"
 				:hover="true"
 				:point="true"
 			></MyIcon>
-			<BreadCrumb class="item"></BreadCrumb>
+			<BreadCrumb class="item" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
 		</div>
 		<div class="right">
 			<Select class="item"></Select>
@@ -32,7 +32,7 @@ import Select from "./components/Select.vue"
 
 const globalStore = GlobalStore()
 const changAside = () => {
-	globalStore.SYSTEM_COLLAPSE = !globalStore.SYSTEM_COLLAPSE
+	globalStore.themeConfig.isCollapse = !globalStore.themeConfig.isCollapse
 }
 </script>
 

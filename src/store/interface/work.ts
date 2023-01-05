@@ -6,6 +6,5 @@ export interface ToDoItem {
 }
 
 export interface WorkState {
-	// 用户信息
-	TODO_LIST: ToDoItem[]
+	todoList: ToDoItem[]
 }

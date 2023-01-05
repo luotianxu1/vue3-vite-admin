@@ -53,20 +53,17 @@
 </template>
 
 <script lang="ts" setup>
+import { GlobalStore } from "@/store/modules/global"
+
 const drawer = ref(false)
 const open = () => {
 	drawer.value = true
 }
 const color1 = ref("#409EFF")
 const value1 = ref(true)
-const themeConfig = reactive({
-	isCollapse: false,
-	breadcrumb: false,
-	breadcrumbIcon: false,
-	tabs: false,
-	tabsIcon: false,
-	footer: false
-})
+
+const globalStore = GlobalStore()
+const themeConfig = computed(() => globalStore.themeConfig)
 </script>
 
 <style scoped lang="scss">

@@ -11,7 +11,10 @@
 					:closable="item.close"
 				>
 					<template #label>
-						{{ item.title }}
+						<span>
+							<i class="iconfont" :class="item.icon" v-if="globalStore.themeConfig.tabsIcon"></i>
+							{{ item.title }}
+						</span>
 					</template>
 				</el-tab-pane>
 			</el-tabs>
@@ -26,10 +29,11 @@ import { GlobalStore } from "@/store/modules/global"
 import { TabPaneName, TabsPaneContext } from "element-plus"
 
 const globalStore = GlobalStore()
-const tabsMenuList = computed(() => globalStore.SYSTEM_ROUTER_LIST)
+const tabsMenuList = computed(() => globalStore.routerList)
+
 const tabsMenuValue = computed({
 	get: () => {
-		return globalStore.SYSTEM_ACTIVE_ROUTER
+		return globalStore.routerActive
 	},
 	set: val => {
 		globalStore.setTabsMenuValue(val)
@@ -45,6 +49,7 @@ watch(
 		let params = {
 			title: route.meta.title as string,
 			path: route.path,
+			icon: route.meta.icon as string,
 			close: true
 		}
 		globalStore.addTabs(params)
@@ -100,6 +105,13 @@ const removeTab = (activeTabPath: TabPaneName) => {
 		}
 		.el-tabs__item .is-icon-close svg {
 			margin-top: 0.5px;
+		}
+
+		.el-tabs__item {
+			i {
+				font-size: 16px;
+				margin-right: 10px;
+			}
 		}
 	}
 }

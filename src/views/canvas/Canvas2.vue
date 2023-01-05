@@ -18,7 +18,7 @@ if (random < 0.1) {
 
 const globalStore = GlobalStore()
 const width = computed(() => {
-	if (globalStore.SYSTEM_COLLAPSE) {
+	if (globalStore.themeConfig.isCollapse) {
 		return 24
 	}
 	return 200

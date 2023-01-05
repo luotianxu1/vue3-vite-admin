@@ -1,20 +1,24 @@
 export interface IRouterList {
 	title: string
 	path: string
+	icon: string
 	close: boolean
 }
 
 export interface GlobalState {
-	// 系统语言
-	SYSTEM_LANGUAGE: string
-	// 是否收缩侧边栏
-	SYSTEM_COLLAPSE: boolean
-	// 当前页面路由
-	SYSTEM_ACTIVE_ROUTER: string
-	// 历史路由
-	SYSTEM_ROUTER_LIST: IRouterList[]
-	// 分页页数
-	SYSTEM_PAGE_SIZE: number
-	// 系统时间
-	SYETEM_TIME: number
+	language: string
+	routerActive: string
+	routerList: IRouterList[]
+	pageSize: number
+	systemTime: number
+	themeConfig: {
+		isDark: boolean
+		isGrey: boolean
+		isCollapse: boolean
+		breadcrumb: boolean
+		breadcrumbIcon: boolean
+		tabs: boolean
+		tabsIcon: boolean
+		footer: boolean
+	}
 }

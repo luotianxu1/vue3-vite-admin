@@ -49,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
 
 	// 如果没有菜单列表，就重新请求菜单列表并添加动态路由
 	const userStore = UserStore()
-	if (!userStore.USER_MENULIST.length) {
+	if (!userStore.userMenuList.length) {
 		await initdynamicRouter()
 		return next({ ...to, replace: true })
 	}

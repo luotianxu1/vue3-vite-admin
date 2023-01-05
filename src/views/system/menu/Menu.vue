@@ -80,9 +80,9 @@ const userStore = UserStore()
 async function getMenuList() {
 	tableData.loading = true
 	let res
-	if (userStore.USER_INFO) {
+	if (userStore.userInfo) {
 		res = await getUserPageList({
-			userId: userStore.USER_INFO.id as string
+			userId: userStore.userInfo.id as string
 		})
 	}
 	if (res.data && res.data.total && res.data.list) {

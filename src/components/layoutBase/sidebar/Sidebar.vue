@@ -1,13 +1,13 @@
 <template>
 	<div class="top">
 		<el-avatar :size="40" :src="url"></el-avatar>
-		<div v-show="!globalStore.SYSTEM_COLLAPSE" class="title">管理系统模板</div>
+		<div v-show="!globalStore.themeConfig.isCollapse" class="title">管理系统模板</div>
 	</div>
 	<el-scrollbar class="scrollbar">
 		<el-menu
-			:collapse="globalStore.SYSTEM_COLLAPSE"
+			:collapse="globalStore.themeConfig.isCollapse"
 			class="el-menu-vertical-demo"
-			:default-active="globalStore.SYSTEM_ACTIVE_ROUTER"
+			:default-active="globalStore.routerActive"
 			:router="false"
 			:collapse-transition="false"
 			:unique-opened="true"
@@ -32,7 +32,7 @@ const globalStore = GlobalStore()
 watch(
 	() => router.currentRoute.value.path,
 	newValue => {
-		globalStore.SYSTEM_ACTIVE_ROUTER = newValue
+		globalStore.routerActive = newValue
 	},
 	{ immediate: true }
 )

@@ -15,18 +15,22 @@ import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route
 export const UserStore = defineStore({
 	id: "UserState",
 	state: (): UserState => ({
-		USER_INFO: {},
-		TOEKN: getToken(TOKEN) || "",
-		USER_MENULIST: [],
-		USER_BUTTNLIST: []
+		// 用户信息
+		userInfo: {},
+		// token
+		token: getToken(TOKEN) || "",
+		// 用户菜单
+		userMenuList: [],
+		// 按钮权限
+		userButtonList: []
 	}),
 	getters: {
 		// 扁平化之后的一维数组路由，主要用来添加动态路由
-		flatMenuListGet: state => getFlatArr(state.USER_MENULIST),
+		flatMenuListGet: state => getFlatArr(state.userMenuList),
 		// 后端返回的菜单列表 ==> 左侧菜单栏渲染，需要去除 isHide == true
-		showMenuListGet: state => getShowMenuList(state.USER_MENULIST),
+		showMenuListGet: state => getShowMenuList(state.userMenuList),
 		// 所有面包屑导航列表
-		breadcrumbListGet: state => getAllBreadcrumbList(state.USER_MENULIST)
+		breadcrumbListGet: state => getAllBreadcrumbList(state.userMenuList)
 	},
 	actions: {
 		/**
@@ -57,33 +61,27 @@ export const UserStore = defineStore({
 		 * 获取用户信息
 		 */
 		async getUserInfo() {
-			const res = await getUserInfoApi(this.TOEKN)
-			res.data && (this.USER_INFO = res.data)
+			const res = await getUserInfoApi(this.token)
+			res.data && (this.userInfo = res.data)
 		},
 		/**
 		 * 退出登录
 		 */
 		logout() {
-			ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
-				confirmButtonText: "确定",
-				cancelButtonText: "取消",
-				type: "warning"
-			}).then(() => {
-				this.USER_INFO = {}
-				this.TOEKN = ""
-				removeAllToken()
-				router.push("/login")
-			})
+			this.userInfo = {}
+			this.token = ""
+			removeAllToken()
+			router.push("/login")
 		},
 		/**
 		 * 获取用户菜单
 		 */
 		async getUserMenuList() {
 			const { data } = await getUserPageList({
-				userId: this.TOEKN as string
+				userId: this.token as string
 			})
 			if (data) {
-				this.USER_MENULIST = data.list
+				this.userMenuList = data.list
 			}
 		}
 	}

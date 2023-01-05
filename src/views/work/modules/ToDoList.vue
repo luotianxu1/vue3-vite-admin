@@ -6,7 +6,7 @@
 				<el-button type="primary" @click="addEvent">添加</el-button>
 			</div>
 		</template>
-		<el-table :data="workStore.TODO_LIST" style="width: 100%">
+		<el-table :data="workStore.todoList" style="width: 100%">
 			<el-table-column prop="time" label="时间" width="180">
 				<template #default="scope">
 					{{ transformTime(scope.row.time, "YYYY-MM-DD HH:mm:ss") }}
@@ -96,11 +96,11 @@ const confirm = async (formEl: FormInstance | undefined) => {
 	}
 	await formEl.validate(valid => {
 		if (valid) {
-			workStore.TODO_LIST.push({
+			workStore.todoList.push({
 				name: ruleForm.name,
 				time: dayjs(ruleForm.time).valueOf(),
 				remind: ruleForm.remind,
-				id: workStore.TODO_LIST.length
+				id: workStore.todoList.length
 			})
 			ElMessage.success("保存成功")
 			dialogVisible.value = false
@@ -110,20 +110,20 @@ const confirm = async (formEl: FormInstance | undefined) => {
 
 // 完成待办
 const complete = (row: ToDoItem) => {
-	workStore.TODO_LIST = workStore.TODO_LIST.filter(item => item.id !== row.id)
+	workStore.todoList = workStore.todoList.filter(item => item.id !== row.id)
 }
 let toDoTime: string[] = []
 workStore.$subscribe(
 	(mutation, state) => {
-		toDoTime = state.TODO_LIST.map(item => dayjs(item.time - 600000).format("YYYY-MM-DD HH:mm:ss"))
+		toDoTime = state.todoList.map(item => dayjs(item.time - 600000).format("YYYY-MM-DD HH:mm:ss"))
 	},
 	{ detached: false }
 )
 globalStore.$subscribe(
 	() => {
-		if (toDoTime.includes(globalStore.systemTime)) {
-			let data = workStore.TODO_LIST.filter(
-				item => globalStore.systemTime === dayjs(item.time - 600000).format("YYYY-MM-DD HH:mm:ss")
+		if (toDoTime.includes(globalStore.systemTimeFormat)) {
+			let data = workStore.todoList.filter(
+				item => globalStore.systemTimeFormat === dayjs(item.time - 600000).format("YYYY-MM-DD HH:mm:ss")
 			)
 			if (data[0].remind) {
 				audioRef.value.play()

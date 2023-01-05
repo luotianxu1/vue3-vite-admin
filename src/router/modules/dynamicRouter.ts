@@ -18,7 +18,7 @@ export const initdynamicRouter = async () => {
 		// 获取菜单列表
 		await userStore.getUserMenuList()
 		// 判断当前用户有没有菜单权限
-		if (!userStore.USER_MENULIST.length) {
+		if (!userStore.userMenuList.length) {
 			ElNotification({
 				title: "无权限访问",
 				message: "当前账号无任何菜单权限，请联系系统管理员！",

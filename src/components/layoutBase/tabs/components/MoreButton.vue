@@ -21,15 +21,15 @@ const globalStore = GlobalStore()
 
 // 关闭当前
 const closeCurrentTab = () => {
-	if (globalStore.SYSTEM_ACTIVE_ROUTER === GLOB_APP_HOME) {
+	if (globalStore.routerActive === GLOB_APP_HOME) {
 		return
 	}
-	globalStore.removeTabs(globalStore.SYSTEM_ACTIVE_ROUTER)
+	globalStore.removeTabs(globalStore.routerActive)
 }
 
 // 关闭其他
 const closeOtherTab = () => {
-	globalStore.closeMultipleTab(globalStore.SYSTEM_ACTIVE_ROUTER)
+	globalStore.closeMultipleTab(globalStore.routerActive)
 }
 
 // 关闭所有
