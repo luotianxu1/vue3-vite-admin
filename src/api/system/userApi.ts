@@ -43,7 +43,8 @@ export interface IUserData {
 }
 
 // 获取用户信息
-export const getUserInfoApi = (data: string): Promise<IResponseData<IUserData>> => request.post("/api/getUserInfo", data)
+export const getUserInfoApi = (data: { token: string }): Promise<IResponseData<IUserData>> =>
+	request.post("/api/getUserInfo", data)
 
 export interface IPageListParams {
 	userId: string

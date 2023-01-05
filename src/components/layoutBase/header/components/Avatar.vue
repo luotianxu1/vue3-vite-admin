@@ -32,6 +32,10 @@ import { storeToRefs } from "pinia"
 const userStore = UserStore()
 const { userInfo } = storeToRefs(userStore)
 
+onMounted(() => {
+	userStore.getUserInfo()
+})
+
 const handleCommand = command => {
 	switch (command) {
 		case "userCenter":

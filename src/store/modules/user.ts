@@ -49,7 +49,6 @@ export const UserStore = defineStore({
 				})
 				setToken(TOKEN, data.token)
 				await initdynamicRouter()
-				await this.getUserInfo()
 				router.push(GLOB_APP_HOME)
 				// 保存登录时间
 				setTimeStamp()
@@ -61,7 +60,9 @@ export const UserStore = defineStore({
 		 * 获取用户信息
 		 */
 		async getUserInfo() {
-			const res = await getUserInfoApi(this.token)
+			const res = await getUserInfoApi({
+				token: this.token
+			})
 			res.data && (this.userInfo = res.data)
 		},
 		/**

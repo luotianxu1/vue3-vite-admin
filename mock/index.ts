@@ -2,21 +2,6 @@ import mockjs, { Random } from "mockjs"
 import { IResponseData } from "@/api/interface/type"
 import { ILoginParams, ILoginData, IRegisterParams, IRegisterData, IUserListData } from "@/api/system/userApi"
 
-const userInfo = mockjs.mock({
-	id: "@id",
-	name: "@cname",
-	age: "@integer( 18, 60)",
-	sex: "@integer( 0, 1)",
-	phone: "@phone",
-	email: "@email",
-	city: "@county(true)",
-	status: "@integer( 0, 1)",
-	type: "@integer( 0, 1)",
-	img: Random.image("200x100"),
-	addTime: "@datetime",
-	editTime: "@datetime"
-})
-
 export default [
 	// 用户列表
 	{
@@ -27,7 +12,22 @@ export default [
 				status: 200,
 				message: "查询用户列表成功！",
 				data: mockjs.mock({
-					"list|100": [userInfo]
+					"list|100": [
+						{
+							id: "@id",
+							name: "@cname",
+							age: "@integer( 18, 60)",
+							sex: "@integer( 0, 1)",
+							phone: "@phone",
+							email: "@email",
+							city: "@county(true)",
+							status: "@integer( 0, 1)",
+							type: "@integer( 0, 2)",
+							img: Random.image("200x100"),
+							addTime: "@datetime",
+							editTime: "@datetime"
+						}
+					]
 				})
 			}
 		}
@@ -44,7 +44,7 @@ export default [
 					message: "登陆成功！",
 					data: {
 						isLogin: true,
-						token: "123465789"
+						token: "@guid"
 					}
 				}
 			}
@@ -90,7 +90,18 @@ export default [
 				status: 200,
 				message: "查询用户信息成功！",
 				data: {
-					...userInfo
+					id: "@id",
+					name: "@cname",
+					age: "@integer( 18, 60)",
+					sex: "@integer( 0, 1)",
+					phone: "@phone",
+					email: "@email",
+					city: "@county(true)",
+					status: "@integer( 0, 1)",
+					type: "@integer( 0, 2)",
+					img: Random.image("200x100"),
+					addTime: "@datetime",
+					editTime: "@datetime"
 				}
 			}
 		}

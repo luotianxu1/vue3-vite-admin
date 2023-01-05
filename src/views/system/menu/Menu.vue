@@ -93,10 +93,6 @@ async function getMenuList() {
 		ElMessage.warning("暂无数据！")
 	}
 }
-
-onMounted(() => {
-	getMenuList()
-})
 </script>
 
 <style scoped lang="scss"></style>

@@ -6,6 +6,7 @@
 		</el-button>
 		<template #dropdown>
 			<el-dropdown-menu>
+				<el-dropdown-item @click="refresh">刷新</el-dropdown-item>
 				<el-dropdown-item @click="closeCurrentTab">关闭当前</el-dropdown-item>
 				<el-dropdown-item @click="closeOtherTab">关闭其他</el-dropdown-item>
 				<el-dropdown-item @click="closeAllTab">关闭所有</el-dropdown-item>
@@ -17,6 +18,7 @@
 <script setup lang="ts">
 import { GlobalStore } from "@/store/modules/global"
 import { GLOB_APP_HOME } from "@/config/config"
+import eventHub from "@/utils/eventHub"
 const globalStore = GlobalStore()
 
 // 关闭当前
@@ -36,6 +38,10 @@ const closeOtherTab = () => {
 const closeAllTab = () => {
 	globalStore.closeMultipleTab()
 	globalStore.goHome()
+}
+
+const refresh = () => {
+	eventHub.emit("refresh")
 }
 </script>
 
