@@ -22,7 +22,7 @@
 			</div>
 			<div class="item">
 				<span>黑白模式</span>
-				<el-switch v-model="themeConfig.isGrey" @change="changeGreyOrWeak(themeConfig.isGrey, 'grey')" />
+				<el-switch v-model="themeConfig.isGrey" @change="changeGrey(themeConfig.isGrey)" />
 			</div>
 			<el-divider content-position="center">
 				<MyIcon icon="icon-xitong" :padding="5"></MyIcon>
@@ -66,6 +66,9 @@ const open = () => {
 	drawer.value = true
 }
 
+const globalStore = GlobalStore()
+const themeConfig = computed(() => globalStore.themeConfig)
+
 // 预定义主题颜色
 const colorList = [
 	DEFAULT_PRIMARY,
@@ -80,15 +83,12 @@ const colorList = [
 	"#9b59b6"
 ]
 
-const { changePrimary, changeGreyOrWeak, switchDark } = useTheme()
+const { changePrimary, changeGrey, switchDark } = useTheme()
 
 const changeColor = color => {
 	changePrimary(color)
 	ElMessage({ type: "success", message: color ? `主题颜色已设置为 ${color}` : `主题颜色已重置为 ${DEFAULT_PRIMARY}` })
 }
-
-const globalStore = GlobalStore()
-const themeConfig = computed(() => globalStore.themeConfig)
 </script>
 
 <style scoped lang="scss">

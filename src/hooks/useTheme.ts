@@ -43,23 +43,22 @@ export const useTheme = () => {
 		}
 	}
 
-	// 灰色和弱色切换
-	const changeGreyOrWeak = (value: boolean, type: string) => {
+	// 灰色切换
+	const changeGrey = (value: boolean) => {
 		const body = document.body as HTMLElement
 		if (!value) return body.setAttribute("style", "")
-		if (type === "grey") body.setAttribute("style", "filter: grayscale(1)")
-		globalStore.setThemeConfig({ ...themeConfig.value, ["isGrey"]: false })
+		body.setAttribute("style", "filter: grayscale(1)")
 	}
 
 	onBeforeMount(() => {
 		switchDark()
 		changePrimary(themeConfig.value.primary)
-		if (themeConfig.value.isGrey) changeGreyOrWeak(true, "grey")
+		if (themeConfig.value.isGrey) changeGrey(true)
 	})
 
 	return {
 		switchDark,
 		changePrimary,
-		changeGreyOrWeak
+		changeGrey
 	}
 }
