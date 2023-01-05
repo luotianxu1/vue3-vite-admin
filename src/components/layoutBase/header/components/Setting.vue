@@ -14,11 +14,15 @@
 			</el-divider>
 			<div class="item">
 				<span>主题颜色</span>
-				<el-color-picker v-model="color1" />
+				<el-color-picker v-model="themeConfig.primary" :predefine="colorList" @change="changeColor(themeConfig.primary)" />
 			</div>
 			<div class="item">
 				<span>黑暗模式</span>
-				<el-switch v-model="value1" />
+				<el-switch v-model="themeConfig.isDark" @change="switchDark" />
+			</div>
+			<div class="item">
+				<span>黑白模式</span>
+				<el-switch v-model="themeConfig.isGrey" @change="changeGreyOrWeak(themeConfig.isGrey, 'grey')" />
 			</div>
 			<el-divider content-position="center">
 				<MyIcon icon="icon-xitong" :padding="5"></MyIcon>
@@ -53,14 +57,35 @@
 </template>
 
 <script lang="ts" setup>
+import { DEFAULT_PRIMARY } from "@/config/config"
+import { useTheme } from "@/hooks/useTheme"
 import { GlobalStore } from "@/store/modules/global"
 
 const drawer = ref(false)
 const open = () => {
 	drawer.value = true
 }
-const color1 = ref("#409EFF")
-const value1 = ref(true)
+
+// 预定义主题颜色
+const colorList = [
+	DEFAULT_PRIMARY,
+	"#DAA96E",
+	"#0C819F",
+	"#409EFF",
+	"#27ae60",
+	"#ff5c93",
+	"#e74c3c",
+	"#fd726d",
+	"#f39c12",
+	"#9b59b6"
+]
+
+const { changePrimary, changeGreyOrWeak, switchDark } = useTheme()
+
+const changeColor = color => {
+	changePrimary(color)
+	ElMessage({ type: "success", message: color ? `主题颜色已设置为 ${color}` : `主题颜色已重置为 ${DEFAULT_PRIMARY}` })
+}
 
 const globalStore = GlobalStore()
 const themeConfig = computed(() => globalStore.themeConfig)

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import piniaPersistConfig from "@/config/piniaPersist"
-import { GlobalState, IRouterList } from "../interface/global"
-import { GLOB_APP_HOME, TABS_BLACK_LIST } from "@/config/config"
+import { GlobalState, IRouterList, ThemeConfigProps } from "../interface/global"
+import { DEFAULT_PRIMARY, GLOB_APP_HOME, TABS_BLACK_LIST } from "@/config/config"
 import router from "@/router/index"
 import dayjs from "dayjs"
 
@@ -20,6 +20,7 @@ export const GlobalStore = defineStore({
 		// 系统时间
 		systemTime: 0,
 		themeConfig: {
+			primary: DEFAULT_PRIMARY,
 			// 深色模式
 			isDark: false,
 			// 灰色模式
@@ -95,6 +96,10 @@ export const GlobalStore = defineStore({
 		goHome() {
 			router.push(GLOB_APP_HOME)
 			this.routerActive = GLOB_APP_HOME
+		},
+		// 设置主题
+		setThemeConfig(themeConfig: ThemeConfigProps) {
+			this.themeConfig = themeConfig
 		}
 	},
 	persist: piniaPersistConfig("GlobalState")

@@ -5,20 +5,23 @@ export interface IRouterList {
 	close: boolean
 }
 
+export interface ThemeConfigProps {
+	primary: string
+	isDark: boolean
+	isGrey: boolean
+	isCollapse: boolean
+	breadcrumb: boolean
+	breadcrumbIcon: boolean
+	tabs: boolean
+	tabsIcon: boolean
+	footer: boolean
+}
+
 export interface GlobalState {
 	language: string
 	routerActive: string
 	routerList: IRouterList[]
 	pageSize: number
 	systemTime: number
-	themeConfig: {
-		isDark: boolean
-		isGrey: boolean
-		isCollapse: boolean
-		breadcrumb: boolean
-		breadcrumbIcon: boolean
-		tabs: boolean
-		tabsIcon: boolean
-		footer: boolean
-	}
+	themeConfig: ThemeConfigProps
 }

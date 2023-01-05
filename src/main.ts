@@ -5,6 +5,7 @@ import I18n from "@/lang/index"
 import App from "./App.vue"
 import directives from "@/directives/index"
 import "element-plus/dist/index.css"
+import "element-plus/theme-chalk/dark/css-vars.css"
 import "@/assets/scss/main.scss"
 import * as globalVariables from "@/utils/global.js"
 
