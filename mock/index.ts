@@ -99,7 +99,7 @@ export default [
 					city: "@county(true)",
 					status: "@integer( 0, 1)",
 					type: "@integer( 0, 2)",
-					img: Random.image("200x100"),
+					img: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80",
 					addTime: "@datetime",
 					editTime: "@datetime"
 				}
