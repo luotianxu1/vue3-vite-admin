@@ -2322,7 +2322,7 @@ export default [
 											meta: {
 												title: "汽车",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2335,7 +2335,7 @@ export default [
 											meta: {
 												title: "烟花",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2374,7 +2374,7 @@ export default [
 											meta: {
 												title: "机器人",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2387,7 +2387,7 @@ export default [
 											meta: {
 												title: "智慧城市",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2400,7 +2400,7 @@ export default [
 											meta: {
 												title: "智慧城市2",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2413,7 +2413,7 @@ export default [
 											meta: {
 												title: "智慧园区",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2426,7 +2426,7 @@ export default [
 											meta: {
 												title: "日夜交替",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2439,7 +2439,7 @@ export default [
 											meta: {
 												title: "智慧工厂",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2452,20 +2452,20 @@ export default [
 											meta: {
 												title: "全景看房",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
 											}
 										},
 										{
-											path: "/open/map",
-											name: "map",
+											path: "/open/threeMap",
+											name: "threeMap",
 											component: "/open/map/Map",
 											meta: {
 												title: "3D地图",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2478,7 +2478,7 @@ export default [
 											meta: {
 												title: "3D官网",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2491,7 +2491,7 @@ export default [
 											meta: {
 												title: "飞机",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2504,7 +2504,7 @@ export default [
 											meta: {
 												title: "轮廓",
 												icon: "icon-threejs",
-												isFull: false,
+												isFull: true,
 												isHide: false,
 												isAffix: false,
 												isKeepAlive: false
@@ -2705,7 +2705,7 @@ export default [
 							meta: {
 								title: "游戏",
 								icon: "icon-threejs",
-								isFull: false,
+								isFull: true,
 								isHide: false,
 								isAffix: false,
 								isKeepAlive: false
@@ -2718,7 +2718,7 @@ export default [
 									meta: {
 										title: "菜了个菜",
 										icon: "icon-choujiang",
-										isFull: false,
+										isFull: true,
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: false
@@ -2731,7 +2731,7 @@ export default [
 									meta: {
 										title: "跳一跳",
 										icon: "icon-choujiang",
-										isFull: false,
+										isFull: true,
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: false
@@ -2744,7 +2744,7 @@ export default [
 									meta: {
 										title: "扫雷",
 										icon: "icon-choujiang",
-										isFull: false,
+										isFull: true,
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: false
@@ -3364,7 +3364,7 @@ export default [
 									meta: {
 										title: "cesium",
 										icon: "icon-choujiang",
-										isFull: false,
+										isFull: true,
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: false
@@ -3421,7 +3421,7 @@ export default [
 							meta: {
 								title: "拖拽",
 								icon: "icon-yidong",
-								isFull: false,
+								isFull: true,
 								isHide: false,
 								isAffix: false,
 								isKeepAlive: false
