@@ -1,5 +1,7 @@
 import { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
+import Icons from "unplugin-icons/vite"
+import IconsResolver from "unplugin-icons/resolver"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import setupExtend from "vite-plugin-vue-setup-extend"
@@ -12,7 +14,12 @@ export const getPlugins = mode => [
 	vue(),
 	vueJsx(),
 	AutoImport({
-		resolvers: [ElementPlusResolver()],
+		resolvers: [
+			ElementPlusResolver(),
+			IconsResolver({
+				prefix: "Icon"
+			})
+		],
 		imports: ["vue", "vue-router"],
 		dts: "src/types/auto-imports.d.ts",
 		eslintrc: {
@@ -22,11 +29,19 @@ export const getPlugins = mode => [
 		}
 	}),
 	Components({
-		resolvers: [ElementPlusResolver()],
+		resolvers: [
+			ElementPlusResolver(),
+			IconsResolver({
+				enabledCollections: ["ep"]
+			})
+		],
 		// dirs: ['src/components'],
 		// directoryAsNamespace: true,
 		dts: "src/types/components.d.ts"
 		// deep: true
+	}),
+	Icons({
+		autoInstall: true
 	}),
 	// setup语法糖设置名字
 	setupExtend(),

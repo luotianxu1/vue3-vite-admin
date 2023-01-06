@@ -20,7 +20,10 @@ export const GlobalStore = defineStore({
 		// 系统时间
 		systemTime: 0,
 		themeConfig: {
+			// 主题色
 			primary: DEFAULT_PRIMARY,
+			// 布局
+			layout: "vertical",
 			// 深色模式
 			isDark: false,
 			// 灰色模式
