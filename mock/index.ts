@@ -1931,7 +1931,7 @@ export default [
 								{
 									path: "/three/bump",
 									name: "bump1",
-									redirect: "/three/bump",
+									redirect: "/three/bump1",
 									meta: {
 										title: "贴图",
 										icon: "icon-threejs",
@@ -1942,7 +1942,7 @@ export default [
 									},
 									children: [
 										{
-											path: "/three/bump",
+											path: "/three/bump1",
 											name: "bump",
 											component: "/three/texture/Bump",
 											meta: {
