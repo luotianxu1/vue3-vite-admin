@@ -6,27 +6,38 @@
 			ref="headerSearchRef"
 			v-model="search"
 			filterable
-			default-first-option
 			remote
-			:remote-method="querySearch"
 			placeholder="搜索"
 			@change="onSelectChange"
 		>
-			<el-option v-for="option in 5" :key="option" :label="option" :value="option">
-				{{ option }}
+			<el-option v-for="item in menuList" :key="item.path" :label="item.meta.title" :value="item.path">
+				{{ item.meta.title }}
 			</el-option>
 		</el-select>
 	</div>
 </template>
 
 <script lang="ts" setup>
+import { UserStore } from "@/store/modules/user"
+import router from "@/router/index"
+
+const headerSearchRef = ref()
 const isShow = ref(false)
 const showSearch = () => {
 	isShow.value = !isShow.value
+	isShow.value && headerSearchRef.value.focus()
 }
+
 const search = ref("")
-const querySearch = () => {}
-const onSelectChange = () => {}
+const userStore = UserStore()
+const menuList = computed(() => userStore.flatMenuListGet.filter(item => !item.meta.isHide && item.component))
+
+const onSelectChange = path => {
+	router.push(path)
+	isShow.value = false
+	search.value = ""
+	headerSearchRef.value.blur()
+}
 </script>
 <style lang="scss" scoped>
 .header-search {

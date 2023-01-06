@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { GlobalStore } from "@/store/modules/global"
 import { UserStore } from "@/store/modules/user"
-import TreeMenu from "@/components/layoutBase/sidebar/components/TreeMenu.vue"
+import TreeMenu from "./components/TreeMenu.vue"
 
 const router = useRouter()
 

@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import Header from "./header/Header.vue"
-import Sidebar from "./sidebar/Sidebar.vue"
-import Connect from "./content/Content.vue"
-import Tabs from "./tabs/index.vue"
+import Header from "./components/header/Header.vue"
+import Sidebar from "./components/sidebar/Sidebar.vue"
+import Connect from "./components/content/Content.vue"
+import Tabs from "./components/tabs/index.vue"
 import Footer from "./components/footer/index.vue"
 import { GlobalStore } from "@/store/modules/global"
 
