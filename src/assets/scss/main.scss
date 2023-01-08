@@ -60,6 +60,19 @@ a {
 	font-size: 25px;
 }
 
+/* flex */
+.flx-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flx-justify-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .query-item {
 	margin-left: 12px;
 

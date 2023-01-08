@@ -33,20 +33,6 @@ const props = defineProps({
 		}
 	}
 })
-
-// const set = () => {
-//     let canvas = document.createElement('canvas')
-//     canvas.width = 300
-//     canvas.height = 200
-//     canvas.style.display = 'none'
-//     let ctx = canvas.getContext('2d')
-//     ctx.font = '16px Microsoft JhengHei'
-//     ctx.fillStyle = 'raga(0,0,0,.3)'
-//     ctx.rotate(-0.3)
-//     ctx.fillText('罗天旭', canvas.width / 8, canvas.height / 4)
-//     let img = canvas.toDataURL('img/png')
-//     main.value.setAttribute('style', `background-image:url(${img});z-index:999999`)
-// }
 </script>
 
 <style scoped lang="scss">
@@ -55,7 +41,6 @@ const props = defineProps({
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	background-color: #ffffff;
 	border-radius: 4px;
 	box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 	margin: 10px 13px;

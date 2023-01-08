@@ -1,0 +1,123 @@
+<template>
+	<el-container>
+		<el-aside>
+			<div class="menu" :style="{ width: isCollapse ? '65px' : '210px' }">
+				<div class="logo flx-center">
+					<img :src="url" alt="logo" />
+					<span v-show="!isCollapse">管理系统模板</span>
+				</div>
+				<el-scrollbar>
+					<el-menu
+						:collapse="globalStore.themeConfig.isCollapse"
+						:default-active="globalStore.routerActive"
+						:router="false"
+						:collapse-transition="false"
+						:unique-opened="true"
+					>
+						<TreeMenu :tree-data="menuList"></TreeMenu>
+					</el-menu>
+				</el-scrollbar>
+			</div>
+		</el-aside>
+		<el-container>
+			<el-header>
+				<HeaderLeft></HeaderLeft>
+				<HeaderRight></HeaderRight>
+			</el-header>
+			<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
+			<el-main>
+				<Main></Main>
+			</el-main>
+			<el-footer v-if="globalStore.themeConfig.footer">
+				<Footer></Footer>
+			</el-footer>
+		</el-container>
+	</el-container>
+</template>
+
+<script lang="ts" setup>
+import HeaderLeft from "../components/header/HeaderLeft.vue"
+import HeaderRight from "../components/header/HeaderRight.vue"
+import Main from "../components/main/Main.vue"
+import Tabs from "../components/tabs/index.vue"
+import Footer from "../components/footer/index.vue"
+import { GlobalStore } from "@/store/modules/global"
+import { UserStore } from "@/store/modules/user"
+
+// 图标
+const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")
+
+const globalStore = GlobalStore()
+const isCollapse = computed(() => globalStore.themeConfig.isCollapse)
+
+const userStore = UserStore()
+const menuList = computed(() => userStore.showMenuListGet)
+</script>
+
+<style lang="scss" scoped>
+.el-main {
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.el-footer {
+	height: auto;
+	padding: 0;
+}
+
+.el-container {
+	width: 100%;
+	height: 100%;
+	.el-aside {
+		width: auto;
+		overflow: inherit;
+		border-right: 1px solid var(--el-border-color);
+
+		.menu {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			transition: all 0.3s ease;
+			.el-scrollbar {
+				height: calc(100% - 55px);
+				.el-menu {
+					overflow-x: hidden;
+					border-right: none;
+				}
+			}
+			.logo {
+				box-sizing: border-box;
+				height: 55px;
+				span {
+					white-space: nowrap;
+					font-weight: 600;
+					margin-left: 10px;
+					letter-spacing: 3px;
+				}
+				img {
+					width: 28px;
+					object-fit: contain;
+					margin-right: 6px;
+				}
+			}
+		}
+	}
+	.el-header {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 55px;
+		padding: 0 15px;
+		border-bottom: 1px solid var(--el-border-color);
+
+		:deep(.tool-bar-ri) {
+			.toolBar-icon,
+			.username {
+				color: var(--el-text-color-primary);
+			}
+		}
+	}
+}
+</style>

@@ -7,7 +7,7 @@ export interface IRouterList {
 
 export interface ThemeConfigProps {
 	primary: string
-	layout: "vertical" | "transverse" | "columns"
+	layout: "vertical" | "transverse" | "classic" | "columns"
 	isDark: boolean
 	isGrey: boolean
 	isCollapse: boolean

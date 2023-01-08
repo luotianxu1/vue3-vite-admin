@@ -1,32 +1,17 @@
 <template>
-	<el-container>
-		<el-aside>
-			<Sidebar></Sidebar>
-		</el-aside>
-		<el-container>
-			<el-header>
-				<Header></Header>
-				<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
-			</el-header>
-			<el-main>
-				<Connect></Connect>
-			</el-main>
-			<el-footer v-if="globalStore.themeConfig.footer">
-				<Footer></Footer>
-			</el-footer>
-		</el-container>
-	</el-container>
+	<component :is="LayoutComponents[themeConfig.layout]" />
 </template>
 
 <script lang="ts" setup>
-import Header from "./components/header/Header.vue"
-import Sidebar from "./components/sidebar/Sidebar.vue"
-import Connect from "./components/content/Content.vue"
-import Tabs from "./components/tabs/index.vue"
-import Footer from "./components/footer/index.vue"
 import { GlobalStore } from "@/store/modules/global"
+import LayoutVertical from "./LayoutVertical/index.vue"
+
+const LayoutComponents: { [key: string]: any } = {
+	vertical: LayoutVertical
+}
 
 const globalStore = GlobalStore()
+const themeConfig = computed(() => globalStore.themeConfig)
 </script>
 
 <style lang="scss" scoped>

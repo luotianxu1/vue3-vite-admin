@@ -23,6 +23,19 @@
 						<el-icon v-if="themeConfig.layout == 'vertical'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
 					</div>
 				</el-tooltip>
+				<el-tooltip effect="dark" content="经典" placement="top" :show-after="200">
+					<div
+						:class="['layout-item layout-classic', themeConfig.layout == 'classic' ? 'is-active' : '']"
+						@click="changeLayout('classic')"
+					>
+						<div class="layout-dark"></div>
+						<div class="layout-container">
+							<div class="layout-light"></div>
+							<div class="layout-content"></div>
+						</div>
+						<el-icon v-if="themeConfig.layout == 'classic'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
+					</div>
+				</el-tooltip>
 				<el-tooltip effect="dark" content="横向" placement="top" :show-after="200">
 					<div
 						:class="['layout-item layout-transverse', themeConfig.layout == 'transverse' ? 'is-active' : '']"

@@ -12,11 +12,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #ffffff;
-	border-top: 1px solid #e4e7ed;
+	border-top: 1px solid var(--el-border-color);
 	span {
 		font-size: 14px;
-		color: #858585;
+		color: var(--el-text-color-primary);
+
 		text-decoration: none;
 		letter-spacing: 0.5px;
 	}
