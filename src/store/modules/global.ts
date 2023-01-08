@@ -104,6 +104,6 @@ export const GlobalStore = defineStore({
 		setThemeConfig(themeConfig: ThemeConfigProps) {
 			this.themeConfig = themeConfig
 		}
-	},
-	persist: piniaPersistConfig("GlobalState")
+	}
+	// persist: piniaPersistConfig("GlobalState")
 })

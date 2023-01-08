@@ -111,13 +111,6 @@ const menuList = computed(() => userStore.showMenuListGet)
 		height: 55px;
 		padding: 0 15px;
 		border-bottom: 1px solid var(--el-border-color);
-
-		:deep(.tool-bar-ri) {
-			.toolBar-icon,
-			.username {
-				color: var(--el-text-color-primary);
-			}
-		}
 	}
 }
 </style>

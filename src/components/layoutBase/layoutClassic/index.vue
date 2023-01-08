@@ -1,36 +1,38 @@
 <template>
 	<el-container>
-		<el-aside>
-			<div class="menu" :style="{ width: isCollapse ? '65px' : '210px' }">
+		<el-header>
+			<div class="header-lf">
 				<div class="logo flx-center">
 					<img :src="url" alt="logo" />
-					<span v-show="!isCollapse">管理系统模板</span>
+					<span>管理系统模板</span>
 				</div>
-				<el-scrollbar>
-					<el-menu
-						:collapse="globalStore.themeConfig.isCollapse"
-						:default-active="globalStore.routerActive"
-						:router="false"
-						:collapse-transition="false"
-						:unique-opened="true"
-					>
-						<TreeMenu :tree-data="menuList"></TreeMenu>
-					</el-menu>
-				</el-scrollbar>
-			</div>
-		</el-aside>
-		<el-container>
-			<el-header>
 				<HeaderLeft></HeaderLeft>
-				<HeaderRight></HeaderRight>
-			</el-header>
-			<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
-			<el-main>
+			</div>
+			<HeaderRight></HeaderRight>
+		</el-header>
+		<el-container class="classic-content">
+			<el-aside>
+				<div class="menu" :style="{ width: isCollapse ? '65px' : '210px' }">
+					<el-scrollbar>
+						<el-menu
+							:collapse="globalStore.themeConfig.isCollapse"
+							:default-active="globalStore.routerActive"
+							:router="false"
+							:collapse-transition="false"
+							:unique-opened="true"
+						>
+							<TreeMenu :tree-data="menuList"></TreeMenu>
+						</el-menu>
+					</el-scrollbar>
+				</div>
+			</el-aside>
+			<el-container class="classic-main">
+				<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
 				<Main></Main>
-			</el-main>
-			<el-footer v-if="globalStore.themeConfig.footer">
-				<Footer></Footer>
-			</el-footer>
+				<el-footer v-if="globalStore.themeConfig.footer">
+					<Footer></Footer>
+				</el-footer>
+			</el-container>
 		</el-container>
 	</el-container>
 </template>
@@ -55,40 +57,23 @@ const menuList = computed(() => userStore.showMenuListGet)
 </script>
 
 <style lang="scss" scoped>
-.el-main {
-	padding: 0;
-	box-sizing: border-box;
-	overflow: hidden;
-}
-
-.el-footer {
-	height: auto;
-	padding: 0;
-}
-
 .el-container {
 	width: 100%;
 	height: 100%;
-	.el-aside {
-		width: auto;
-		overflow: inherit;
-		border-right: 1px solid var(--el-border-color);
-
-		.menu {
+	.el-header {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 55px;
+		padding: 0 15px 0 0;
+		border-bottom: 1px solid var(--el-border-color);
+		.header-lf {
 			display: flex;
-			flex-direction: column;
-			height: 100%;
-			transition: all 0.3s ease;
-			.el-scrollbar {
-				height: calc(100% - 55px);
-				.el-menu {
-					overflow-x: hidden;
-					border-right: none;
-				}
-			}
+			align-items: center;
 			.logo {
-				box-sizing: border-box;
-				height: 55px;
+				width: 210px;
+				margin-right: 16px;
 				span {
 					white-space: nowrap;
 					font-weight: 600;
@@ -103,21 +88,34 @@ const menuList = computed(() => userStore.showMenuListGet)
 			}
 		}
 	}
-	.el-header {
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 55px;
-		padding: 0 15px;
-		border-bottom: 1px solid var(--el-border-color);
-
-		:deep(.tool-bar-ri) {
-			.toolBar-icon,
-			.username {
-				color: var(--el-text-color-primary);
+	.el-aside {
+		width: auto;
+		overflow: inherit;
+		border-right: 1px solid var(--el-border-color);
+		transition: all 0.3s ease;
+		.menu {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			transition: all 0.3s ease;
+			.el-menu {
+				overflow-x: hidden;
+				border-right: none;
 			}
 		}
 	}
+}
+
+.classic-content {
+	height: calc(100% - 55px); // 减去头部高度
+	.classic-main {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.el-footer {
+	height: auto;
+	padding: 0;
 }
 </style>
