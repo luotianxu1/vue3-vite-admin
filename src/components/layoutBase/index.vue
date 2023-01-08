@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { GlobalStore } from "@/store/modules/global"
-import LayoutVertical from "./LayoutVertical/index.vue"
+import LayoutVertical from "./layoutVertical/index.vue"
 
 const LayoutComponents: { [key: string]: any } = {
 	vertical: LayoutVertical
