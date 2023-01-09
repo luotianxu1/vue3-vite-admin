@@ -1,3 +1,4 @@
+<!-- 纵向布局 -->
 <template>
 	<el-container>
 		<el-aside>

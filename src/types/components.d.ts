@@ -57,6 +57,7 @@ declare module 'vue' {
     LayoutClassic: typeof import('./../components/layoutBase/layoutClassic/index.vue')['default']
     LayoutColumns: typeof import('./../components/layoutBase/layoutColumns/index.vue')['default']
     LayoutQuery: typeof import('./../components/layoutQuery/index.vue')['default']
+    LayoutTransverse: typeof import('./../components/layoutBase/layoutTransverse/index.vue')['default']
     LayoutVertical: typeof import('./../components/layoutBase/layoutVertical/index.vue')['default']
     ListItem: typeof import('./../components/myTransfer/components/ListItem.vue')['default']
     ListTitle: typeof import('./../components/myTransfer/components/ListTitle.vue')['default']
