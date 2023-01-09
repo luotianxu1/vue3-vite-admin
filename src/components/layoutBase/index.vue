@@ -6,10 +6,12 @@
 import { GlobalStore } from "@/store/modules/global"
 import LayoutVertical from "./layoutVertical/index.vue"
 import LayoutClassic from "./layoutClassic/index.vue"
+import LayoutColumns from "./layoutColumns/index.vue"
 
 const LayoutComponents: { [key: string]: any } = {
 	vertical: LayoutVertical,
-	classic: LayoutClassic
+	classic: LayoutClassic,
+	columns: LayoutColumns
 }
 
 const globalStore = GlobalStore()

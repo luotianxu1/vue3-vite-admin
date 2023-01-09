@@ -8,7 +8,6 @@ declare module 'vue' {
     BreadCrumb: typeof import('./../components/layoutBase/components/header/components/BreadCrumb.vue')['default']
     ButtonGroup: typeof import('./../components/myTransfer/components/ButtonGroup.vue')['default']
     ChangeLanguage: typeof import('./../components/changeLanguage/index.vue')['default']
-    Content: typeof import('./../components/layoutBase/components/main/Content.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']
