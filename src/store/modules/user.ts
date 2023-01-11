@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { UserState } from "../interface/user"
-// import piniaPersistConfig from '@/config/piniaPersist'
+// import piniaPersistConfig from "@/config/piniaPersist"
 import { loginApi, getUserInfoApi, getUserPageList } from "@/api/system/userApi"
 import md5 from "md5"
 import { GLOB_APP_HOME, TOKEN } from "@/config/config"
@@ -86,5 +86,5 @@ export const UserStore = defineStore({
 			}
 		}
 	}
-	// persist: piniaPersistConfig('UserState')
+	// persist: piniaPersistConfig("UserState")
 })
