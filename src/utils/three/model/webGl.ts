@@ -47,13 +47,13 @@ export default class WebGl {
 	updateMeshArr: any = []
 	isDay: Boolean | undefined
 
-	constructor(domElement, controls = true) {
+	constructor(domElement, controls = true, config: any = {}) {
 		this.domElement = domElement
 		this.scene = Scene()
 		this.camera = PerspectiveCamera(domElement.offsetWidth, domElement.offsetHeight)
 		this.scene.add(this.camera)
 		this.camera.lookAt(this.scene)
-		this.renderer = Renderer(domElement)
+		this.renderer = Renderer(domElement, config.antialias, config.alpha)
 		this.renderer.render(this.scene, this.camera)
 		if (controls) {
 			this.controls = Controls(this.camera, this.renderer)

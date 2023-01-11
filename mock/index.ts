@@ -2457,6 +2457,19 @@ export default [
 											}
 										},
 										{
+											path: "/open/fan",
+											name: "intelligentFan",
+											component: "/open/intelligentFan/index",
+											meta: {
+												title: "智慧风机",
+												icon: "icon-threejs",
+												isFull: true,
+												isHide: false,
+												isAffix: false,
+												isKeepAlive: false
+											}
+										},
+										{
 											path: "/open/homeViewing",
 											name: "homeViewing",
 											component: "/three/demo/houseViewing/HomeViewing",
