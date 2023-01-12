@@ -2312,229 +2312,6 @@ export default [
 											}
 										}
 									]
-								},
-								{
-									path: "/three/demo",
-									name: "demo",
-									redirect: "/three/car",
-									meta: {
-										title: "demo",
-										icon: "icon-threejs",
-										isFull: false,
-										isHide: false,
-										isAffix: false,
-										isKeepAlive: false
-									},
-									children: [
-										{
-											path: "/three/car",
-											name: "car",
-											component: "/three/demo/car/Car",
-											meta: {
-												title: "汽车",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/three/fireWork",
-											name: "fireWork",
-											component: "/three/demo/firework/FireWork",
-											meta: {
-												title: "烟花",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/three/missile",
-											name: "missile",
-											component: "/three/demo/missile/Missile",
-											meta: {
-												title: "导弹轨迹",
-												icon: "icon-threejs",
-												isFull: false,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/three/earch",
-											name: "earch",
-											component: "/three/demo/earch/Earch",
-											meta: {
-												title: "地球",
-												icon: "icon-threejs",
-												isFull: false,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/three/robot",
-											name: "robot",
-											component: "/three/demo/robot/Robot",
-											meta: {
-												title: "机器人",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/smartCity",
-											name: "smartCity",
-											component: "/open/smartCity/SmartCity",
-											meta: {
-												title: "智慧城市",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/smartCity2",
-											name: "smartCity2",
-											component: "/open/smartCity2/HomeView",
-											meta: {
-												title: "智慧城市2",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/smartPark",
-											name: "smartPark",
-											component: "/open/smartPark/SmartPark",
-											meta: {
-												title: "智慧园区",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/hotel",
-											name: "hotel",
-											component: "/open/hotel/Hotel",
-											meta: {
-												title: "日夜交替",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/smartFactory",
-											name: "smartFactory",
-											component: "/open/smartFactory/SmartFactory",
-											meta: {
-												title: "智慧工厂",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/fan",
-											name: "intelligentFan",
-											component: "/open/intelligentFan/index",
-											meta: {
-												title: "智慧风机",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/homeViewing",
-											name: "homeViewing",
-											component: "/three/demo/houseViewing/HomeViewing",
-											meta: {
-												title: "全景看房",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/threeMap",
-											name: "threeMap",
-											component: "/open/map/Map",
-											meta: {
-												title: "3D地图",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/website",
-											name: "website",
-											component: "/open/website/Website",
-											meta: {
-												title: "3D官网",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/plane",
-											name: "plane",
-											component: "/open/plane/Plane",
-											meta: {
-												title: "飞机",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										},
-										{
-											path: "/open/click",
-											name: "click",
-											component: "/open/click/Click",
-											meta: {
-												title: "轮廓",
-												icon: "icon-threejs",
-												isFull: true,
-												isHide: false,
-												isAffix: false,
-												isKeepAlive: false
-											}
-										}
-									]
 								}
 							]
 						},
@@ -2715,6 +2492,229 @@ export default [
 										title: "图片预览",
 										icon: "icon-beijingtupian",
 										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								}
+							]
+						},
+						{
+							path: "/three/demo",
+							name: "demo",
+							redirect: "/three/car",
+							meta: {
+								title: "threejs案例",
+								icon: "icon-threejs",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
+							children: [
+								{
+									path: "/three/car",
+									name: "car",
+									component: "/three/demo/car/Car",
+									meta: {
+										title: "汽车",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/three/fireWork",
+									name: "fireWork",
+									component: "/three/demo/firework/FireWork",
+									meta: {
+										title: "烟花",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/three/missile",
+									name: "missile",
+									component: "/three/demo/missile/Missile",
+									meta: {
+										title: "导弹轨迹",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/three/earch",
+									name: "earch",
+									component: "/three/demo/earch/Earch",
+									meta: {
+										title: "地球",
+										icon: "icon-threejs",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/three/robot",
+									name: "robot",
+									component: "/three/demo/robot/Robot",
+									meta: {
+										title: "机器人",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/smartCity",
+									name: "smartCity",
+									component: "/open/smartCity/SmartCity",
+									meta: {
+										title: "智慧城市",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/smartCity2",
+									name: "smartCity2",
+									component: "/open/smartCity2/HomeView",
+									meta: {
+										title: "智慧城市2",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/smartPark",
+									name: "smartPark",
+									component: "/open/smartPark/SmartPark",
+									meta: {
+										title: "智慧园区",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/hotel",
+									name: "hotel",
+									component: "/open/hotel/Hotel",
+									meta: {
+										title: "日夜交替",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/smartFactory",
+									name: "smartFactory",
+									component: "/open/smartFactory/SmartFactory",
+									meta: {
+										title: "智慧工厂",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/fan",
+									name: "intelligentFan",
+									component: "/open/intelligentFan/index",
+									meta: {
+										title: "智慧风机",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/homeViewing",
+									name: "homeViewing",
+									component: "/three/demo/houseViewing/HomeViewing",
+									meta: {
+										title: "全景看房",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/threeMap",
+									name: "threeMap",
+									component: "/open/map/Map",
+									meta: {
+										title: "3D地图",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/website",
+									name: "website",
+									component: "/open/website/Website",
+									meta: {
+										title: "3D官网",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/plane",
+									name: "plane",
+									component: "/open/plane/Plane",
+									meta: {
+										title: "飞机",
+										icon: "icon-threejs",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/open/click",
+									name: "click",
+									component: "/open/click/Click",
+									meta: {
+										title: "轮廓",
+										icon: "icon-threejs",
+										isFull: true,
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: false

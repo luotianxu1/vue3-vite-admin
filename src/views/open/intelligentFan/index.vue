@@ -1,6 +1,6 @@
 <template>
 	<div class="page">
-		<Fengji class="fengji" ref="fengji"></Fengji>
+		<Fengji class="fengji" ref="fengji" :bbzShow="bbzShow"></Fengji>
 		<div class="header">风机</div>
 		<div class="main">
 			<Left></Left>
@@ -123,6 +123,7 @@ const changeView3 = () => {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		pointer-events: auto;
 		.item {
 			width: 140px;
 			height: 120px;

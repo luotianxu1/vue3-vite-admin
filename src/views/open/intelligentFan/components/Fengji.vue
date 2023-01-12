@@ -1,8 +1,12 @@
 <template>
-	<div ref="webGl" class="webGl"></div>
+	<div class="scene" @click="closePop">
+		<div ref="webGl" class="webGl"></div>
+		<AlarmPop ref="alarmPop"></AlarmPop>
+	</div>
 </template>
 
 <script setup lang="ts">
+import AlarmPop from "./AlarmPop.vue"
 import * as THREE from "three"
 import gsap from "gsap"
 import WebGl from "@/utils/three/model/webGl"
@@ -10,7 +14,16 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { reSetName } from "../utils/utils"
 
+const props = defineProps({
+	bbzShow: {
+		type: Boolean,
+		default: false
+	}
+})
+
 const webGl = ref()
+const alarmPop = ref()
+
 // 场景风机动画
 const arrTweenAn: Array<any> = []
 let landform1, landform2, landform3
@@ -25,15 +38,6 @@ let bLoaded = false
 
 let textloader = new THREE.TextureLoader()
 let textureFlow = textloader.load("./textures/light-animation.png")
-
-onMounted(() => {
-	init()
-	addModel()
-})
-
-onUnmounted(() => {
-	web.remove()
-})
 
 let web
 const init = () => {
@@ -280,6 +284,7 @@ const addModel = () => {
 			result[17]
 		)
 
+		// 添加轮廓线
 		addOutLine(result[8], "zhuzhou", false)
 		addOutLine(result[9], "dizuo_2", false)
 		addOutLine(result[10], "fadongji", false)
@@ -290,8 +295,6 @@ const addModel = () => {
 		addOutLine(result[15], "dizuo_4", false)
 		addOutLine(result[16], "dianzi_1", false)
 		addOutLine(result[17], "dianzi_2", false)
-
-		setErrStatus("fadongji", true)
 
 		flowfengye.position.set(-2.2235, 99.65812, -1.5)
 		flowfengji.scale.set(0.04, 0.04, 0.04)
@@ -647,6 +650,12 @@ defineExpose({
 	changeView3
 })
 
+/**
+ * 添加轮廓线
+ * @param obj
+ * @param strName
+ * @param bErr
+ */
 const addOutLine = (obj, strName, bErr) => {
 	let cloneObj = obj.clone()
 	cloneObj.position.x = obj.position.x + 0.1
@@ -669,15 +678,6 @@ const stroke = (obj, bErr) => {
 			child.material.color = bErr ? new THREE.Color(0xff0000) : new THREE.Color(0xffffff)
 		}
 	})
-}
-const setErrStatus = (strName, bErr) => {
-	let nSize = arrNeedOutLine.length
-	for (let i = 0; i < nSize; ++i) {
-		if (strName == arrNeedOutLine[i].name) {
-			arrNeedOutLine[i].err = bErr
-			break
-		}
-	}
 }
 const cloneFan = (x, y, z) => {
 	let fengji_clone = fengji.clone()
@@ -708,9 +708,73 @@ const rendererScene = () => {
 	}
 	requestAnimationFrame(rendererScene)
 }
+
+/**
+ * 模型轮廓线
+ * @param cloneObj
+ * @param bEnter
+ */
+const changeStatus = (cloneObj, bEnter) => {
+	cloneObj.visible = bEnter
+}
+
+/**
+ * 选中的模型
+ */
+let nowSelected
+const findModelSelected = strName => {
+	let nSize = arrNeedOutLine.length
+	for (let i = 0; i < nSize; ++i) {
+		if (strName.indexOf(arrNeedOutLine[i].name) !== -1) {
+			nowSelected = arrNeedOutLine[i].obj
+			changeStatus(arrNeedOutLine[i].obj, true)
+			return arrNeedOutLine[i].name
+		}
+	}
+}
+
+/**
+ * 鼠标点击
+ */
+const mouseClick = e => {
+	if (props.bbzShow) {
+		return
+	}
+	const mouse = new THREE.Vector2()
+	mouse.x = (e.offsetX / web.renderer.domElement.offsetWidth) * 2 - 1
+	mouse.y = -(e.offsetY / web.renderer.domElement.offsetHeight) * 2 + 1
+	const raycaster = new THREE.Raycaster()
+	raycaster.setFromCamera(mouse, web.camera)
+	let intersects = raycaster.intersectObjects(flowfengji.children, true)
+
+	if (nowSelected !== undefined) {
+		changeStatus(nowSelected, false)
+	}
+	if (intersects[0] === undefined) return
+	let strSelectName = findModelSelected(intersects[0].object.name)
+	alarmPop.value.show(strSelectName, e.offsetX, e.offsetY)
+}
+
+const closePop = () => {
+	alarmPop.value.close()
+}
+
+onMounted(() => {
+	init()
+	addModel()
+	window.addEventListener("click", mouseClick)
+})
+
+onUnmounted(() => {
+	web.remove()
+})
 </script>
 
 <style scoped lang="scss">
+.scene {
+	width: 100%;
+	height: 100%;
+}
 .webGl {
 	width: 100%;
 	height: 100%;
