@@ -3,7 +3,7 @@
 		<el-dropdown trigger="click" @command="handleCommand">
 			<span class="el-dropdown-link">
 				<el-tooltip content="语言" placement="bottom" effect="light">
-					<MyIcon icon="icon-duoyuyan" :font="20" :hover="true" :width="500"></MyIcon>
+					<i class="iconfont icon-duoyuyan"></i>
 				</el-tooltip>
 			</span>
 			<template #dropdown>
@@ -42,5 +42,12 @@ const handleCommand = (command: string) => {
 <style scoped lang="scss">
 .changeLanguage {
 	cursor: pointer;
+}
+
+i {
+	font-size: 20px;
+	&:hover {
+		color: var(--el-color-primary);
+	}
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
 	<div class="header-search" :class="{ show: isShow }">
-		<my-icon icon="icon-search" :font="20" class="icon" @click="showSearch"></my-icon>
+		<el-tooltip content="搜索" placement="bottom" effect="light">
+			<i class="iconfont icon-search" @click="showSearch"></i>
+		</el-tooltip>
 		<el-select
 			class="header-search-select"
 			ref="headerSearchRef"
@@ -43,9 +45,13 @@ const onSelectChange = path => {
 .header-search {
 	font-size: 0 !important;
 
-	.icon {
+	i {
 		cursor: pointer;
 		vertical-align: middle;
+		font-size: 20px;
+		&:hover {
+			color: var(--el-color-primary);
+		}
 	}
 
 	.header-search-select {

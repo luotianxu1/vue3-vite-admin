@@ -1,7 +1,7 @@
 <template>
 	<div class="systemSetting">
 		<el-tooltip content="系统设置" placement="bottom" effect="light">
-			<MyIcon icon="icon-setting" :font="20" :hover="true" :width="500" @click="open"></MyIcon>
+			<i class="iconfont icon-setting" @click="open"></i>
 		</el-tooltip>
 		<!-- 布局切换 -->
 		<el-drawer v-model="drawer" title="系统设置" direction="rtl" size="300">
@@ -10,53 +10,45 @@
 				布局切换
 			</el-divider>
 			<div class="layout-box">
-				<el-tooltip effect="dark" content="纵向" placement="top" :show-after="200">
-					<div
-						:class="['layout-item layout-vertical', themeConfig.layout == 'vertical' ? 'is-active' : '']"
-						@click="changeLayout('vertical')"
-					>
-						<div class="layout-dark"></div>
-						<div class="layout-container">
-							<div class="layout-light"></div>
-							<div class="layout-content"></div>
-						</div>
-						<el-icon v-if="themeConfig.layout == 'vertical'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
-					</div>
-				</el-tooltip>
-				<el-tooltip effect="dark" content="经典" placement="top" :show-after="200">
-					<div
-						:class="['layout-item layout-classic', themeConfig.layout == 'classic' ? 'is-active' : '']"
-						@click="changeLayout('classic')"
-					>
-						<div class="layout-dark"></div>
-						<div class="layout-container">
-							<div class="layout-light"></div>
-							<div class="layout-content"></div>
-						</div>
-						<el-icon v-if="themeConfig.layout == 'classic'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
-					</div>
-				</el-tooltip>
-				<el-tooltip effect="dark" content="横向" placement="top" :show-after="200">
-					<div
-						:class="['layout-item layout-transverse', themeConfig.layout == 'transverse' ? 'is-active' : '']"
-						@click="changeLayout('transverse')"
-					>
-						<div class="layout-dark"></div>
-						<div class="layout-content"></div>
-						<el-icon v-if="themeConfig.layout == 'transverse'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
-					</div>
-				</el-tooltip>
-				<el-tooltip effect="dark" content="分栏" placement="top" :show-after="200">
-					<div
-						:class="['layout-item layout-columns', themeConfig.layout == 'columns' ? 'is-active' : '']"
-						@click="changeLayout('columns')"
-					>
-						<div class="layout-dark"></div>
+				<div
+					:class="['layout-item layout-vertical', themeConfig.layout == 'vertical' ? 'is-active' : '']"
+					@click="changeLayout('vertical')"
+				>
+					<div class="layout-dark"></div>
+					<div class="layout-container">
 						<div class="layout-light"></div>
 						<div class="layout-content"></div>
-						<el-icon v-if="themeConfig.layout == 'columns'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
 					</div>
-				</el-tooltip>
+					<el-icon v-if="themeConfig.layout == 'vertical'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
+				</div>
+				<div
+					:class="['layout-item layout-classic', themeConfig.layout == 'classic' ? 'is-active' : '']"
+					@click="changeLayout('classic')"
+				>
+					<div class="layout-dark"></div>
+					<div class="layout-container">
+						<div class="layout-light"></div>
+						<div class="layout-content"></div>
+					</div>
+					<el-icon v-if="themeConfig.layout == 'classic'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
+				</div>
+				<div
+					:class="['layout-item layout-transverse', themeConfig.layout == 'transverse' ? 'is-active' : '']"
+					@click="changeLayout('transverse')"
+				>
+					<div class="layout-dark"></div>
+					<div class="layout-content"></div>
+					<el-icon v-if="themeConfig.layout == 'transverse'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
+				</div>
+				<div
+					:class="['layout-item layout-columns', themeConfig.layout == 'columns' ? 'is-active' : '']"
+					@click="changeLayout('columns')"
+				>
+					<div class="layout-dark"></div>
+					<div class="layout-light"></div>
+					<div class="layout-content"></div>
+					<el-icon v-if="themeConfig.layout == 'columns'"><IEpCircleCheckFilled></IEpCircleCheckFilled></el-icon>
+				</div>
 			</div>
 			<!-- 主题切换 -->
 			<el-divider content-position="center">
@@ -272,6 +264,13 @@ const changeLayout = val => {
 		.layout-content {
 			width: 55%;
 		}
+	}
+}
+
+i {
+	font-size: 20px;
+	&:hover {
+		color: var(--el-color-primary);
 	}
 }
 </style>

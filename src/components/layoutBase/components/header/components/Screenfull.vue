@@ -1,7 +1,7 @@
 <template>
 	<div class="screenfull" @click="click">
 		<el-tooltip content="全屏" placement="bottom" effect="light">
-			<MyIcon :icon="isFullscreen === true ? 'icon-suoxiao' : 'icon-fullScreen'" :font="20" :hover="true" :width="500"></MyIcon>
+			<i class="iconfont" :class="isFullscreen === true ? 'icon-suoxiao' : 'icon-fullScreen'"></i>
 		</el-tooltip>
 	</div>
 </template>
@@ -55,5 +55,12 @@ const click = () => {
 <style scoped lang="scss">
 .screenfull {
 	cursor: pointer;
+}
+
+i {
+	font-size: 20px;
+	&:hover {
+		color: var(--el-color-primary);
+	}
 }
 </style>

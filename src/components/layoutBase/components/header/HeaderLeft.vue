@@ -1,12 +1,11 @@
 <template>
 	<div class="left">
-		<MyIcon
-			:icon="globalStore.themeConfig.isCollapse ? 'icon-mulushousuo' : 'icon-muluzhankai'"
-			:font="20"
+		<i
+			class="iconfont icon-duoyuyan"
+			:class="globalStore.themeConfig.isCollapse ? 'icon-mulushousuo' : 'icon-muluzhankai'"
 			@click="changAside"
-			:hover="true"
-			:point="true"
-		></MyIcon>
+		></i>
+
 		<BreadCrumb class="item" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
 	</div>
 </template>
@@ -28,6 +27,14 @@ const changAside = () => {
 
 	.item {
 		margin-left: 10px;
+	}
+}
+
+i {
+	font-size: 20px;
+	cursor: pointer;
+	&:hover {
+		color: var(--el-color-primary);
 	}
 }
 </style>

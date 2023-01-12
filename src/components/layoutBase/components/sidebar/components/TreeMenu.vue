@@ -2,13 +2,13 @@
 	<template v-for="item in props.treeData" :key="item._id">
 		<el-sub-menu v-if="item.children && item.children.length > 0" :index="item.path">
 			<template #title>
-				<MyIcon :padding="5" :icon="item.meta.icon"></MyIcon>
+				<i class="iconfont" :class="item.meta.icon"></i>
 				<span>{{ item.meta.title }}</span>
 			</template>
 			<TreeMenu :tree-data="item.children"></TreeMenu>
 		</el-sub-menu>
 		<el-menu-item v-else :index="item.path" @click="handleClickMenu(item)">
-			<MyIcon :padding="5" :icon="item.meta.icon"></MyIcon>
+			<i class="iconfont" :class="item.meta.icon"></i>
 			<template #title>
 				<span>{{ item.meta.title }}</span>
 			</template>
@@ -34,4 +34,9 @@ const handleClickMenu = item => {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+i {
+	font-size: 18px;
+	padding: 0 5px;
+}
+</style>

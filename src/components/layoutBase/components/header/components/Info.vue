@@ -4,7 +4,9 @@
 			123
 			<template #reference>
 				<el-badge :value="12">
-					<MyIcon icon="icon-xiaoxi" :font="20" :hover="true" :width="500"></MyIcon>
+					<el-tooltip content="消息" placement="bottom" effect="light">
+						<i class="iconfont icon-xiaoxi"></i>
+					</el-tooltip>
 				</el-badge>
 			</template>
 		</el-popover>
@@ -16,5 +18,12 @@
 <style scoped lang="scss">
 .info {
 	cursor: pointer;
+}
+
+i {
+	font-size: 20px;
+	&:hover {
+		color: var(--el-color-primary);
+	}
 }
 </style>
