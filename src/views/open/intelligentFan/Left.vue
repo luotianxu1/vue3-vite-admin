@@ -1,11 +1,19 @@
 <template>
 	<div class="left">
-		<Item></Item>
+		<SimpleLine></SimpleLine>
+		<BarLine></BarLine>
+		<CapacityPictogram></CapacityPictogram>
+		<MoreBar></MoreBar>
+		<Status></Status>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import Item from "./components/Item.vue"
+import SimpleLine from "./components/SimpleLine.vue"
+import BarLine from "./components/BarLine.vue"
+import CapacityPictogram from "./components/CapacityPictogram.vue"
+import MoreBar from "./components/MoreBar.vue"
+import Status from "./components/Status.vue"
 </script>
 
 <style lang="scss" scoped>
@@ -14,6 +22,6 @@ import Item from "./components/Item.vue"
 	height: 100%;
 	position: absolute;
 	left: 0;
-	background-color: red;
+	padding-left: 18px;
 }
 </style>

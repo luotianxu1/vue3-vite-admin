@@ -1,12 +1,12 @@
 <template>
 	<div class="page">
 		<Fengji class="fengji" ref="fengji"></Fengji>
-		<div class="header"></div>
+		<div class="header">风机</div>
 		<div class="main">
 			<Left></Left>
 			<Right></Right>
 		</div>
-		<div class="footer" :class="!bctsjShow && !bbzShow ? 'footer-bg' : ''">
+		<div class="footer footer-bg">
 			<div class="item" @click="startFan">
 				<div class="fan-dz" :class="{ fandznew: bfanShow }"></div>
 				<span class="fan-name">风机开启</span>
@@ -75,32 +75,6 @@ const changeView3 = () => {
 	bbzShow.value = !bbzShow.value
 	fengji.value.changeView3(bbzShow.value)
 }
-
-// 设置 rem 函数
-function setRem() {
-	//  PC端
-	console.log("非移动设备")
-	// 基准大小
-	let baseSize = 100
-	let basePc = baseSize / 1920 // 表示1920的设计图,使用100PX的默认值
-	let vW = window.innerWidth // 当前窗口的宽度
-	let vH = window.innerHeight // 当前窗口的高度
-	// 非正常屏幕下的尺寸换算
-	let dueH = (vW * 1080) / 1920
-	if (vH < dueH) {
-		// 当前屏幕高度小于应有的屏幕高度，就需要根据当前屏幕高度重新计算屏幕宽度
-		vW = (vH * 1920) / 1080
-	}
-	let rem = vW * basePc // 以默认比例值乘以当前窗口宽度,得到该宽度下的相应font-size值
-	document.documentElement.style.fontSize = rem + "px"
-}
-// 初始化
-setRem()
-// 改变窗口大小时重新设置 rem
-window.onresize = function () {
-	console.log("我执行了")
-	setRem()
-}
 </script>
 
 <style lang="scss" scoped>
@@ -117,11 +91,16 @@ window.onresize = function () {
 	}
 
 	.header {
-		height: 123px;
+		height: 100px;
 		width: 100%;
-		background-image: url("@/assets/img/open/intelligentFan/bg_ding_kuang.png");
+		background-image: url("@/assets/img/open/smartCity/title.png");
 		background-repeat: no-repeat;
+		background-position: center;
+		text-align: center;
 		z-index: 99;
+		color: rgb(226, 226, 255);
+		font-size: 30px;
+		text-align: center;
 	}
 
 	.main {
@@ -132,7 +111,7 @@ window.onresize = function () {
 	}
 
 	.footer-bg {
-		background-image: url("@/assets/img/open/intelligentFan/bg_xia_bg.png");
+		background: url("@/assets/img/open/intelligentFan/bg_xia_bg.png") no-repeat center center;
 	}
 
 	.footer {

@@ -91,6 +91,11 @@ a {
 	font-style: normal;
 }
 
+@font-face {
+	font-family: "DS-Digital-Bold";
+	src: url("../font/DS-DIGI-1.ttf");
+}
+
 /* nprogress样式 */
 #nprogress .bar {
 	background: var(--el-color-primary) !important;

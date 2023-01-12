@@ -2,17 +2,12 @@
 	<div class="item">
 		<div class="header">
 			<div class="img">
-				<slot name="icon"></slot>
-				<slot name="title"></slot>
+				<span class="icon"></span>
+				设备信息
 			</div>
-			<div class="num">
-				<span><slot name="num"></slot> </span><slot name="unit"></slot>
-				<slot name="defaultValue"></slot>
-			</div>
+			<div class="num"></div>
 		</div>
-		<div class="echarts">
-			<slot name="echarts"></slot>
-		</div>
+		<div class="echarts"></div>
 	</div>
 </template>
 
@@ -21,7 +16,7 @@
 <style lang="scss" scoped>
 .item {
 	width: 317px;
-	background-image: url("@/assets/img/open/intelligentFan/bg_zuoce_1.png");
+	background-image: url("@/assets/img/open/intelligentFan/bg_sbxx.png");
 	background-repeat: no-repeat;
 	margin-bottom: 15px;
 	pointer-events: auto;
@@ -49,8 +44,19 @@
 		}
 	}
 }
+.icon {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background: url("@/assets/img/open/intelligentFan/icon_sbxx.png") no-repeat center;
+	background-size: 100% 100%;
+	margin-right: 5px;
+}
+
 .echarts {
 	width: 100%;
-	// height: 95px;
+	height: 309px;
+	background-image: url("@/assets/img/open/intelligentFan/fanpic.gif");
+	background-size: 100% 100%;
 }
 </style>
