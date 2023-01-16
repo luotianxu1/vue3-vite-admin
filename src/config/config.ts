@@ -2,7 +2,7 @@
 export const TABS_BLACK_LIST: string[] = ["/403", "/404", "/500", "/login"]
 
 // 路由白名单
-export const RROUTER_WHITLE: string[] = ["/login", "/work/index"]
+export const RROUTER_WHITLE: string[] = ["/login", "/work/index", "/newYear"]
 
 // token名称
 export const TOKEN: string = "token"

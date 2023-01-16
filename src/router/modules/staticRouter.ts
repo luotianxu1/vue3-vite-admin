@@ -23,6 +23,11 @@ export const staticRouter: AppRouteRecordRaw[] = [
 		children: []
 	},
 	{
+		path: "/newYear",
+		name: "newYear",
+		component: () => import("@/views/open/newYear/newYear.vue")
+	},
+	{
 		path: "/403",
 		name: "403",
 		component: () => import("@/views/error/403.vue")
