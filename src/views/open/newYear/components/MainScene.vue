@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import eventHub from "@/utils/eventHub"
 import Game from "../game"
+import { playBGM } from "../game/audio"
 
 const isLoaded = ref(false)
 const progress = ref(0)
@@ -35,6 +36,7 @@ const strList = [
 ]
 
 onMounted(() => {
+	playBGM()
 	new Game(gameRef.value)
 
 	eventHub.on("open", () => {
