@@ -77,7 +77,7 @@ const emit = defineEmits(["changeScene"])
 
 	p {
 		color: rgb(253, 190, 0);
-		font-size: 28px;
+		font-size: 1rem;
 		text-align: center;
 		width: 100%;
 		animation: flash 2s infinite ease-in-out;
