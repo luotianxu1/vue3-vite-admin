@@ -25,7 +25,10 @@ export const staticRouter: AppRouteRecordRaw[] = [
 	{
 		path: "/newYear",
 		name: "newYear",
-		component: () => import("@/views/open/newYear/newYear.vue")
+		component: () => import("@/views/open/newYear/newYear.vue"),
+		meta: {
+			title: "新春祝福"
+		}
 	},
 	{
 		path: "/403",
