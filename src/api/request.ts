@@ -1,9 +1,9 @@
 import { getToken } from "@/utils/token"
 import { TOKEN } from "@/config/config"
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { checkStatus } from "./checkStatus"
-import { isCheckTimeout } from "@/utils/auth"
-import { UserStore } from "@/store/modules/user"
+// import { checkStatus } from "./checkStatus"
+// import { isCheckTimeout } from "@/utils/auth"
+// import { UserStore } from "@/store/modules/user"
 
 const request: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_APP_BASE_URL as string,
@@ -15,11 +15,11 @@ request.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		if (config && config.headers && getToken(TOKEN)) {
 			// token过期退出操作
-			if (isCheckTimeout()) {
-				const userState = UserStore()
-				userState.logout()
-				return Promise.reject("登录过期！请重新登录！")
-			}
+			// if (isCheckTimeout()) {
+			// 	const userState = UserStore()
+			// 	userState.logout()
+			// 	return Promise.reject("登录过期！请重新登录！")
+			// }
 			config.headers["Authorization"] = `Bearer ${getToken(TOKEN)}`
 		}
 		return config
