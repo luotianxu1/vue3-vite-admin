@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import * as echarts from "echarts"
 const myCharts = ref<HTMLDivElement>()
-
+let changePieInterval
 onMounted(() => {
 	init()
 })
@@ -33,12 +33,17 @@ const init = () => {
 				color: "#fff"
 			}
 		},
+		tooltip: {
+			trigger: "item",
+			formatter: "{b} : {c} ({d}%)"
+		},
 		series: [
 			{
 				type: "pie",
 				radius: ["45%", "62%"],
 				center: ["50%", "50%"],
 				color: ["#E9EBEE", "#AEC1E0", "#84B4FE", "#4B6EC2", "#1C44B2", "#0F246F"],
+
 				data: [
 					{
 						value: 5,
@@ -169,9 +174,9 @@ const init = () => {
 					show: false
 				},
 				splitLine: {
-					length: 80,
+					length: 90,
 					lineStyle: {
-						width: 5,
+						width: 4,
 						color: "#111111"
 					}
 				},
@@ -193,8 +198,57 @@ const init = () => {
 			}
 		]
 	}
+
 	chart.setOption(option)
+
+	let currentIndex = -1 // 当前高亮图形在饼图数据中的下标
+	changePieInterval = setInterval(selectPie, 1000) // 设置自动切换高亮图形的定时器
+
+	chart.on("mouseover", () => {
+		clearInterval(changePieInterval)
+		if (!option.series) {
+			return
+		}
+		chart.dispatchAction({
+			type: "downplay",
+			seriesIndex: 0,
+			dataIndex: currentIndex
+		})
+	})
+	chart.on("mouseout", () => {
+		changePieInterval = setInterval(selectPie, 2000)
+	})
+
+	// 高亮效果切换到下一个图形
+	function selectPie() {
+		if (option.series) {
+			let dataLen = option.series[0].data.length
+			currentIndex = (currentIndex + 1) % dataLen
+			for (let idx in option.series[0].data) {
+				chart.dispatchAction({
+					type: "downplay",
+					seriesIndex: 0,
+					dataIndex: idx
+				})
+			}
+			// 高亮当前图形
+			chart.dispatchAction({
+				type: "highlight",
+				seriesIndex: 0,
+				dataIndex: currentIndex
+			})
+			chart.dispatchAction({
+				type: "showTip",
+				seriesIndex: 0,
+				dataIndex: currentIndex
+			})
+		}
+	}
 }
+
+onUnmounted(() => {
+	clearInterval(changePieInterval)
+})
 </script>
 
 <style scoped lang="scss">
