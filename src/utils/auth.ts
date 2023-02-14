@@ -24,5 +24,9 @@ export const isCheckTimeout = (): boolean => {
 	const currentTime = Date.now()
 	// 缓存时间
 	const timeStamp = getTimeStamp()
-	return currentTime - timeStamp > TOKEN_TIME_VALUE
+	if(timeStamp) {
+		return currentTime - timeStamp > TOKEN_TIME_VALUE
+	} else {
+		return false
+	}
 }
