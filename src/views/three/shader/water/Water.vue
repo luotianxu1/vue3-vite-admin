@@ -63,7 +63,7 @@ const shadermaterial = new THREE.ShaderMaterial({
 	}
 })
 
-const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1, 1024, 1024), shadermaterial)
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 1024, 1024), shadermaterial)
 plane.rotation.x = -Math.PI / 2
 
 let web

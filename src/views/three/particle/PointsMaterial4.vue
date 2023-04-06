@@ -16,7 +16,7 @@ onUnmounted(() => {
 	web.remove()
 })
 
-const sphereMetrial = new THREE.SphereBufferGeometry(3, 30, 30)
+const sphereMetrial = new THREE.SphereGeometry(3, 30, 30)
 const pointsMaterial = new THREE.PointsMaterial()
 pointsMaterial.size = 0.2
 pointsMaterial.color.set(0xfff000)

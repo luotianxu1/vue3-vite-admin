@@ -24,7 +24,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
 	fragmentShader: basicFragmentShader
 })
 
-const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1, 64, 64), shaderMaterial)
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 64, 64), shaderMaterial)
 
 let web
 const init = () => {

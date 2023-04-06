@@ -20,7 +20,7 @@ const material = new THREE.MeshBasicMaterial()
 const texture = new THREE.TextureLoader().load("./textures/test.jpg")
 material.map = texture
 
-const skyBox = new THREE.Mesh(new THREE.SphereBufferGeometry(100, 100, 100), material)
+const skyBox = new THREE.Mesh(new THREE.SphereGeometry(100, 100, 100), material)
 skyBox.geometry.scale(1, 1, -1)
 
 let web

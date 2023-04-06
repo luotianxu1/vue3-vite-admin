@@ -39,7 +39,7 @@ const rawShaderMaterial = new THREE.RawShaderMaterial({
 	}
 })
 
-const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1, 64, 64), rawShaderMaterial)
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 64, 64), rawShaderMaterial)
 
 let web
 const init = () => {

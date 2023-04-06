@@ -17,7 +17,7 @@ onUnmounted(() => {
 	window.removeEventListener("mousemove", detect)
 })
 
-const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({
 	wireframe: true
 })

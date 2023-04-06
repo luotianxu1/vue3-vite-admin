@@ -7,7 +7,7 @@ export default class Ocean {
 	mesh
 
 	constructor(radius = 1000) {
-		this.waterGeometry = new THREE.CircleBufferGeometry(radius, 128)
+		this.waterGeometry = new THREE.CircleGeometry(radius, 128)
 		this.water = new Water(this.waterGeometry, {
 			textureWidth: 1024,
 			textureHeight: 1024,

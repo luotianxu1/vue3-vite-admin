@@ -13,7 +13,7 @@ export default class FlyLine {
 		// 1 创建曲线
 		this.lineCurve = new THREE.CatmullRomCurve3(linePoints)
 		// 2 根据曲线生成管道几何体
-		this.geometry = new THREE.TubeBufferGeometry(this.lineCurve, 100, 0.4, 2, false)
+		this.geometry = new THREE.TubeGeometry(this.lineCurve, 100, 0.4, 2, false)
 		// 3 设置飞线材质
 		const textLoader = new THREE.TextureLoader()
 		this.texture = textLoader.load("./textures/flyLine/z_11.png")

@@ -2485,6 +2485,19 @@ export default [
 									}
 								},
 								{
+									path: "/function/excel",
+									name: "",
+									component: "/function/excel/index",
+									meta: {
+										title: "Excel",
+										icon: "icon-beijingtupian",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
 									path: "/function/imageView",
 									name: "",
 									component: "/function/imageView/ImageView",

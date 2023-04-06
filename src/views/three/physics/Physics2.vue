@@ -9,7 +9,7 @@ import WebGl from "@/utils/three/model/webGl"
 
 const cubeArr: any = []
 const createCube = () => {
-	const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+	const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
 	const cubeMaterial = new THREE.MeshStandardMaterial()
 	const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
 	cube.castShadow = true
@@ -53,7 +53,7 @@ const createCube = () => {
 	})
 }
 
-const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20), new THREE.MeshStandardMaterial())
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.MeshStandardMaterial())
 floor.position.set(0, -5, 0)
 floor.rotation.x = -Math.PI / 2
 floor.receiveShadow = true

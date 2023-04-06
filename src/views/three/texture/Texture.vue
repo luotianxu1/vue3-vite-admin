@@ -24,7 +24,7 @@ texture.magFilter = THREE.NearestFilter
 // texture.minFilter = THREE.LinearFilter
 // texture.magFilter = THREE.LinearFilter
 
-const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
 const basicMaterial = new THREE.MeshBasicMaterial({
 	map: texture
 })

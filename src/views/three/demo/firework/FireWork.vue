@@ -99,7 +99,7 @@ const init = () => {
 		web.scene.add(gltf.scene)
 
 		// 创建水面
-		const waterGeometry = new THREE.PlaneBufferGeometry(100, 100)
+		const waterGeometry = new THREE.PlaneGeometry(100, 100)
 		let water = new Water(waterGeometry, {
 			scale: 4,
 			textureHeight: 1024,

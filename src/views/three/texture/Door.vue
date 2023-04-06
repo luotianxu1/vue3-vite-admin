@@ -40,7 +40,7 @@ const doorMetalnessTexture = textureLoader.load("./textures/door/metalness.jpg")
 // 法线贴图
 const normalTexture = textureLoader.load("./textures/door/normal.jpg")
 
-const cubeGeometry = new THREE.BoxBufferGeometry(1, 1, 1, 200, 200, 200)
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1, 200, 200, 200)
 const material = new THREE.MeshStandardMaterial({
 	map: doorColorTexture,
 	alphaMap: doorAlphaTexture,
@@ -59,7 +59,7 @@ const material = new THREE.MeshStandardMaterial({
 const cube = new THREE.Mesh(cubeGeometry, material)
 cubeGeometry.setAttribute("uv2", new THREE.BufferAttribute(cubeGeometry.attributes.uv.array, 2))
 
-const planeGeometry = new THREE.PlaneBufferGeometry(1, 1, 200, 200)
+const planeGeometry = new THREE.PlaneGeometry(1, 1, 200, 200)
 const plane = new THREE.Mesh(planeGeometry, material)
 plane.position.set(2, 0, 0)
 

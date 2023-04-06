@@ -57,7 +57,7 @@ const createMesh = polygon => {
 	})
 
 	const color = new THREE.Color(Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5)
-	const geometry = new THREE.ExtrudeBufferGeometry(shape, {
+	const geometry = new THREE.ExtrudeGeometry(shape, {
 		depth: 5
 	})
 	const material = new THREE.MeshBasicMaterial({

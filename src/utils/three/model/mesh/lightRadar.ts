@@ -10,7 +10,7 @@ export default class LightRadar {
 	eventListIndex
 
 	constructor(radius = 2, position = { x: 0, z: 0 }, color = 0xff0000) {
-		this.geometry = new THREE.PlaneBufferGeometry(radius, radius)
+		this.geometry = new THREE.PlaneGeometry(radius, radius)
 		this.material = new THREE.ShaderMaterial({
 			vertexShader: vertex,
 			fragmentShader: fragment,

@@ -12,7 +12,7 @@ const sphereMaterial = new THREE.MeshStandardMaterial()
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 sphere.castShadow = true
 
-const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20), new THREE.MeshStandardMaterial())
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.MeshStandardMaterial())
 floor.position.set(0, -5, 0)
 floor.rotation.x = -Math.PI / 2
 floor.receiveShadow = true

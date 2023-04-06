@@ -9,8 +9,8 @@ export default class LightWall {
 	mesh
 	eventListIndex
 
-	constructor(radius = 5, length = 2, position = { x: 0, z: 0 }, color = 0xff0000) {
-		this.geometry = new THREE.CylinderBufferGeometry(radius, radius, 2, 32, 1, true)
+	constructor(radius = 5, length = 2, position = { x: 0, z: 0 }) {
+		this.geometry = new THREE.CylinderGeometry(radius, radius, 2, 32, 1, true)
 		this.material = new THREE.ShaderMaterial({
 			vertexShader: vertex,
 			fragmentShader: fragment,

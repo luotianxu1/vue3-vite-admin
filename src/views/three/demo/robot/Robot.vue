@@ -41,7 +41,7 @@ const init = () => {
 	lightPlane.mesh.rotation.set(-Math.PI / 2, 0, 0)
 
 	// 镜面反射
-	let reflectorGeometry = new THREE.PlaneBufferGeometry(100, 100)
+	let reflectorGeometry = new THREE.PlaneGeometry(100, 100)
 	let reflectorPlane = new Reflector(reflectorGeometry, {
 		textureWidth: window.innerWidth,
 		textureHeight: window.innerHeight,
