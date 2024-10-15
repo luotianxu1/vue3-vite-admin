@@ -2735,60 +2735,60 @@ export default [
 								}
 							]
 						},
-						// {
-						// 	path: "/game",
-						// 	name: "game",
-						// 	redirect: "/game/sheep",
-						// 	meta: {
-						// 		title: "游戏",
-						// 		icon: "icon-threejs",
-						// 		isFull: true,
-						// 		isHide: false,
-						// 		isAffix: false,
-						// 		isKeepAlive: false
-						// 	},
-						// 	children: [
-						// 		{
-						// 			path: "/game/sheep",
-						// 			name: "sheep",
-						// 			component: "/game/sheep/Sheep",
-						// 			meta: {
-						// 				title: "菜了个菜",
-						// 				icon: "icon-choujiang",
-						// 				isFull: true,
-						// 				isHide: false,
-						// 				isAffix: false,
-						// 				isKeepAlive: false
-						// 			}
-						// 		},
-						// 		{
-						// 			path: "/game/jump",
-						// 			name: "jump",
-						// 			component: "/game/jump/Jump",
-						// 			meta: {
-						// 				title: "跳一跳",
-						// 				icon: "icon-choujiang",
-						// 				isFull: true,
-						// 				isHide: false,
-						// 				isAffix: false,
-						// 				isKeepAlive: false
-						// 			}
-						// 		},
-						// 		{
-						// 			path: "/game/minesweeper",
-						// 			name: "minesweeper",
-						// 			component: "/game/minesweeper/Minesweeper",
-						// 			meta: {
-						// 				title: "扫雷",
-						// 				icon: "icon-choujiang",
-						// 				isFull: true,
-						// 				isHide: false,
-						// 				isAffix: false,
-						// 				isKeepAlive: false
-						// 			}
-						// 		}
-						// 	]
-						// },
+						{
+							path: "/game",
+							name: "game",
+							redirect: "/game/sheep",
+							meta: {
+								title: "游戏",
+								icon: "icon-threejs",
+								isFull: true,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
+							children: [
+								{
+									path: "/game/sheep",
+									name: "sheep",
+									component: "/game/sheep/Sheep",
+									meta: {
+										title: "菜了个菜",
+										icon: "icon-choujiang",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/game/jump",
+									name: "jump",
+									component: "/game/jump/Jump",
+									meta: {
+										title: "跳一跳",
+										icon: "icon-choujiang",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								},
+								{
+									path: "/game/minesweeper",
+									name: "minesweeper",
+									component: "/game/minesweeper/Minesweeper",
+									meta: {
+										title: "扫雷",
+										icon: "icon-choujiang",
+										isFull: true,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: false
+									}
+								}
+							]
+						},
 						{
 							path: "/canvas",
 							name: "canvas",
